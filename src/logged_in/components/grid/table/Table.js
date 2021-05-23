@@ -24,8 +24,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeHeader,changeHeaderType,changeHeaderName,
-         addRow,changeRow, selectHeader,selectRows } from './tableSlice';
+// import { changeHeader,changeHeaderType,changeHeaderName,
+//          addRow,changeRow, selectHeader,selectRows } from './tableSlice';
+import {changeHeader,changeHeaderType,changeHeaderName,
+    addRow,changeRow} from '../../../../shared/redux/actions/table.actions.js'
+
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
@@ -79,8 +82,8 @@ let columns = [
 export function EnhancedTable() {
     // const [rows, setRows] = React.useState(defaultRows);
     const [lineNumber, setLineNumber] = React.useState(1);
-    const header = useSelector(selectHeader);
-    const rows = useSelector(selectRows);
+    const header = useSelector(state => state.table.headers);
+    const rows = useSelector(state => state.table.rows);
     const dispatch = useDispatch();
 
     const CustomFooterStatusComponent = (props) => {
@@ -108,32 +111,6 @@ export function EnhancedTable() {
 
     }
 
-    
-    let editing = false
-    if (editing) {
-        return (
-            <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                    <TableHead>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
-                            {rows.map(el => {
-                                console.log("EL", el)
-                                for (const [key, value] of Object.entries(el)) {
-                                    <TableCell id={key}>{value}</TableCell>
-                                }
-                                return null
-                            }
-
-                            )}
-
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        )
-    } else {
         return (
             <DataGrid rows={rows} columns={header}
                 components={{
@@ -143,7 +120,7 @@ export function EnhancedTable() {
             />
         );
 
-    }
+    
 }
 
 //-------------------------------
@@ -155,7 +132,7 @@ const TableSettingMenus = () => {
     const [openDialog, setOpenDialog] = React.useState(false);
     const [_columns] = React.useState(columns);
     const dispatch = useDispatch();
-    const header = useSelector(selectHeader);
+    const header = useSelector(state => state.table.headers);
     const [headerControl, setHeaderControl] = React.useState(header);
 
     const handleChangeType = (event, col) => {
@@ -164,6 +141,7 @@ const TableSettingMenus = () => {
         
     };
     const handleChangeName = (event, c) => {
+        console.log("c",c,event)
         let field = c.field
         dispatch(changeHeaderName({field: field, type: event.target.value}))
         
@@ -230,7 +208,7 @@ const TableSettingMenus = () => {
                                         id={col.headerName}
                                         value={col.headerName}
                                         className={classes.input}
-                                        onChange={(e) => handleChangeName( col)}
+                                        onChange={(e) => handleChangeName(e,col)}
                                         key={'1ad4'+col.headerName}
                                     />
                                     <Select

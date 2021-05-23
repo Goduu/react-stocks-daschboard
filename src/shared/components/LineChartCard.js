@@ -6,7 +6,6 @@ import {
   Line,
   Tooltip,
   ResponsiveContainer,
-  YAxis,
 } from "recharts";
 import format from "date-fns/format";
 import {
@@ -16,7 +15,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles,
   Box,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -42,13 +40,12 @@ function calculateMin(data, yKey, factor) {
 }
 
 const itemHeight = 216;
-const options = ["1 Week", "1 Month", "6 Months"];
+const options = ["6 Months", "1 Year", "3 Years"];
 
 function PriceChart(props) {
   const { color, data, title, classes, theme, height } = props;
-  console.log("PROPS CHART", { paha: props.data })
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("1 Month");
+  const [selectedOption, setSelectedOption] = useState("6 Months");
 
   const handleClick = useCallback(
     (event) => {
@@ -66,12 +63,12 @@ function PriceChart(props) {
 
   const getSubtitle = useCallback(() => {
     switch (selectedOption) {
-      case "1 Week":
-        return "Last week";
-      case "1 Month":
-        return "Last month";
       case "6 Months":
         return "Last 6 months";
+      case "1 Year":
+        return "Last year";
+      case "3 Years":
+        return "Last 3 years";
       default:
         throw new Error("No branch selected in switch-statement");
     }
@@ -80,13 +77,13 @@ function PriceChart(props) {
   const processData = useCallback(() => {
     let seconds;
     switch (selectedOption) {
-      case "1 Week":
+      case "6 Months":
         seconds = 60 * 60 * 24 * 7;
         break;
-      case "1 Month":
+      case "1 Year":
         seconds = 60 * 60 * 24 * 31;
         break;
-      case "6 Months":
+      case "3 Years":
         seconds = 60 * 60 * 24 * 31 * 6;
         break;
       default:

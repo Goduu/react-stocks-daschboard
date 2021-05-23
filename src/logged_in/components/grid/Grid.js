@@ -11,9 +11,9 @@ import ActionMenu from './actionmenu/ActionMenu';
 import PowerInputIcon from '@material-ui/icons/PowerInput';
 import CardChart from '../../../shared/components/CardChart'
 import { Grid as Xongas } from "@material-ui/core";
-import { LineChartCard } from '../../../shared/components/LineChart';
-import BarChartCard from '../../../shared/components/BarChartCard';
-
+import { LineChartCard } from '../../../shared/components/LineChartCard';
+import {BarChartCard} from '../../../shared/components/BarChartCard';
+import Counter from './Counter'
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
@@ -31,7 +31,7 @@ function Grid(props) {
     i: 0,
     x: 0,
     y: Infinity, // puts it at the bottom
-    w: 2,
+    w: 3,
     h: 2,
     minW: 2,
     maxW: 3,
@@ -75,10 +75,11 @@ function Grid(props) {
         i: iTemp,
         x: (gridItens.items.length * 2) % (gridItens.cols || 12),
         y: Infinity, // puts it at the bottom
-        w: 2,
+        w: 3,
         h: 2,
+        minH: 3,
+        maxW: 3,
         minH: 2,
-        maxH: 2,
         onRemoveItem: onRemoveItem
       }
       console.log("Al", gridItens.items)
@@ -154,6 +155,21 @@ function Grid(props) {
         newCounter: gridItens.newCounter + 1
       });
     }
+    else if (adding === 'dividendchart') {
+      let tprops = {
+        i: iTemp,
+        x: (gridItens.items.length * 2) % (gridItens.cols || 12),
+        y: Infinity, // puts it at the bottom
+        w: 5,
+        h: 2,
+        props: props,
+        onRemoveItem: () => onRemoveItem(iTemp)
+      }
+      setGridItens({
+        items: gridItens.items.concat(BarChartCard(tprops)),
+        newCounter: gridItens.newCounter + 1
+      });
+    }
     console.log("adsa", gridItens.items.map(el => {
       console.log(el)
       el.onRemoveItem = onRemoveItem
@@ -177,62 +193,12 @@ function Grid(props) {
 
   function onRemoveItem(rId) {
     console.log("removing", rId, gridItens.items);
-    console.log(gridItens.items.forEach((el) => {
-      console.log("----", el.i, rId, el.i != rId)
-    }))
-    // setGridItens({ items: gridItens.items.filter((el) => {
-    //   console.log("----", el.i, rId,el.i != rId)
-    //   return true
-    // }), newCounter: gridItens.newCounter });
+    // console.log(gridItens.items.forEach((el) => {
+    //   console.log("----", el.i, rId, el.i != rId)
+    // }))
+    setGridItens({ items: gridItens.items.filter((el) => el.i != rId), newCounter: gridItens.newCounter });
   }
 
-  let data = [
-    {
-      value: 5685,
-      timestamp: 1621433840
-    },
-    {
-      value: 1685,
-      timestamp: 1621434840
-    },
-    {
-      value: 8285,
-      timestamp: 1621435840
-    },
-    {
-      value: 5985,
-      timestamp: 1621436840
-    },
-    {
-      value: 6685,
-      timestamp: 1621437840
-    },
-    {
-      value: 7285,
-      timestamp: 1621438840
-    },
-    {
-      value: 4285,
-      timestamp: 1621439840
-    },
-    {
-      value: 8285,
-      timestamp: 1621440840
-    },
-    {
-      value: 3285,
-      timestamp: 1621441840
-    },
-    {
-      value: 5285,
-      timestamp: 1621442840
-    },
-    {
-      value: 10285,
-      timestamp: 1621443840
-    },
-
-  ]
   return (
     <div>
       <ActionMenu onClose={onAddItem} />
@@ -246,19 +212,8 @@ function Grid(props) {
         {_.map(gridItens.items, el => createElement(el))}
       </ResponsiveReactGridLayout>
       <br />
-      <Xongas item xs={10} md={6}>
-        <BarChartCard
-          data={data}
-          color={"red"}
-          height="100px"
-          title="Dividend"
-        />
-      </Xongas>
       <div>
-        pahaalca {gridItens.items.length}
-        {gridItens.items.forEach((a) =>
-          <span> paha {a.i}</span>
-        )}
+        <Counter/>
       </div>
     </div>
   );

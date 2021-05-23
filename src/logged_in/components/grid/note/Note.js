@@ -1,13 +1,68 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-    Card,
-    CardContent,
-    Box,
-  } from "@material-ui/core";
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { border, positions } from '@material-ui/system';
+import InputBase from '@material-ui/core/InputBase';
 
+const CssTextField = withStyles({
+    root: {
+        border: 'none',
+        '& label.Mui-focused': {
+            margin: '-10px',
+            border: 'none',
+        },
+        '& label': {
+            margin: '-10px',
+            border: 'none',
+        },
+        '& .MuiInput-underline:after': {
+        },
+        '& .MuiOutlinedInput-root': {
+            width: '260px',
+            height: '100%',
+            '& fieldset': {
+                display: 'flex',
+                margin: '-15px',
+                border: 'none',
+                
+            }
+        },
+    },
+})(TextField);
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        height: '100%'
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
+
+function NoteCard(props) {
+    const classes = useStyles();
+    console.log("props", props)
+    return (
+        <Card className={classes.root} variant="outlined">
+            <CardContent>
+                <CssTextField
+                    className={classes.margin}
+                    label="Note"
+                    variant="outlined"
+                    id="custom-css-outlined-input"
+                    multiline
+                />
+            </CardContent>
+        </Card>
+
+
+    );
+}
 
 
 export function NoteGrid(props) {
@@ -15,32 +70,21 @@ export function NoteGrid(props) {
         type: 'note',
         i: props.i,
         content: (
-            <CardContent key={props.i}>
-                
-                    <div  data-grid={props} className="MuiPaper-elevation1">
-                        <span className="grid-menu">
-                            <span >
-                                {/* <TableSettingMenus options={options} /> */}
-                            </span>
-                            <span onClick={() => props.onRemoveItem(props.i)}>
-                                <CloseIcon fontSize="small" />
-                            </span>
-                        </span>
-                        <div >
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Note"
-                                multiline
-                                rows={9}
-                                defaultValue=""
-                                variant="outlined"
-                                color="secondary"
-                                fullWidth={true}
-                            />
-                        </div>
-                    </div>
-            </CardContent>
+            <div key={props.i} data-grid={props}>
+                <span className="grid-menu">
+                    <span >
+                        {/* <TableSettingMenus options={options} /> */}
+                    </span>
+                    <span onClick={() => props.onRemoveItem(props.i)}>
+                        <CloseIcon fontSize="small" />
+                    </span>
+                </span>
+                <div className="grid-content">
+
+                    <NoteCard key={props.i} {...props} />
+                </div>
+            </div>
         )
-    }
-    );
+    })
+
 }

@@ -14,6 +14,9 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import { login } from '../../../shared/functions/requests.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStatus, setToken, setUser,selectStatus, selectToken, selectUser } from './loginSlice';
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -36,9 +39,33 @@ const styles = (theme) => ({
   },
 });
 
+const handleSubmit = async (email, password) => {
+
+  return new Promise((resolve, reject) => {
+    loginUser({
+      email,
+      password
+    }).then(res => {
+      console.log("TOKEN", res)
+      resolve(res.data.token)
+    })
+      .catch( e => reject(e))
+  });
+}
+
+function loginUser(credentials) {
+  return new Promise((resolve, reject) => {
+    login(credentials)
+      .then(res => {
+        resolve(res)
+      }).catch( e => console.log("ERRO PAHA"))
+  });
+
+}
+
 function LoginDialog(props) {
   const {
-    setStatus,
+    setStatusMessage,
     history,
     classes,
     onClose,
@@ -49,26 +76,31 @@ function LoginDialog(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const loginEmail = useRef();
   const loginPassword = useRef();
+  const dispatch = useDispatch();
+  const loginStatus = useSelector(selectStatus)
 
   const login = useCallback(() => {
     setIsLoading(true);
-    setStatus(null);
-    if (loginEmail.current.value !== "test@web.com") {
+    setStatusMessage(null);
+    handleSubmit(loginEmail.current.value, loginPassword.current.value)
+      .then(token => {
+        dispatch(setToken(token))
+        dispatch(setUser(loginEmail.current.value))
+        dispatch(setStatus(200))
+        setTimeout(() => {
+          history.push("/c/dashboard");
+        }, 150);
+      })
+      .catch( (e) => {
+        console.log("ERROR",e)
+      })
       setTimeout(() => {
-        setStatus("invalidEmail");
-        setIsLoading(false);
-      }, 1500);
-    } else if (loginPassword.current.value !== "HaRzwc") {
-      setTimeout(() => {
-        setStatus("invalidPassword");
-        setIsLoading(false);
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        history.push("/c/dashboard");
-      }, 150);
-    }
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
+        setStatusMessage("invalidPassword")
+      }, 350);
+//     setStatusMessage("invalidEmail");
+      setIsLoading(false);
+
+  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage]);
 
   return (
     <Fragment>
@@ -97,7 +129,7 @@ function LoginDialog(props) {
               type="email"
               onChange={() => {
                 if (status === "invalidEmail") {
-                  setStatus(null);
+                  setStatusMessage(null);
                 }
               }}
               helperText={
@@ -117,7 +149,7 @@ function LoginDialog(props) {
               autoComplete="off"
               onChange={() => {
                 if (status === "invalidPassword") {
-                  setStatus(null);
+                  setStatusMessage(null);
                 }
               }}
               helperText={
@@ -198,7 +230,7 @@ function LoginDialog(props) {
 LoginDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
-  setStatus: PropTypes.func.isRequired,
+  setStatusMessage: PropTypes.func.isRequired,
   openChangePasswordDialog: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   status: PropTypes.string,

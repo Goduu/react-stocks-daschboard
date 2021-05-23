@@ -14,12 +14,14 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ViewDayIcon from '@material-ui/icons/ViewDay';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
     { value: 'card', label: 'Card', icon: <ViewDayIcon /> },
     { value: 'table', label: 'Table', icon: <TableChartIcon /> },
-    { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon/> }];
+    { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon/> },
+    { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon/> }];
 
 const useStyles = makeStyles((theme) => ({
     fab: {

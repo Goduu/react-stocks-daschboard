@@ -42,7 +42,7 @@ function DialogSelector(props) {
           <LoginDialog
             onClose={_onClose}
             status={loginStatus}
-            setStatus={setLoginStatus}
+            setStatusMessage={setLoginStatus}
             openChangePasswordDialog={openChangePasswordDialog}
           />
         );

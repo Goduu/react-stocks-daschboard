@@ -31,6 +31,8 @@ import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import { removeToken } from '../../../logged_out/components/register_login/loginSlice';
+import { useDispatch } from 'react-redux';
 
 const styles = (theme) => ({
   appBar: {
@@ -128,6 +130,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
+  const dispatch = useDispatch();
   const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
@@ -150,6 +153,10 @@ function NavBar(props) {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
+  const handleLogout = () => {
+    console.log("Logout")
+    dispatch(removeToken())
+  }
   const menuItems = [
     {
       link: "/c/grid",
@@ -337,7 +344,7 @@ function NavBar(props) {
                     divider={index !== menuItems.length - 1}
                     className={classes.permanentDrawerListItem}
                     onClick={() => {
-                      links.current[index].click();
+                      handleLogout();
                     }}
                     aria-label={
                       element.name === "Logout"

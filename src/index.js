@@ -5,11 +5,19 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import '../node_modules/react-resizable/css/styles.css'
 import '../node_modules/react-grid-layout/css/styles.css'
 import { Provider } from 'react-redux'
-import {store} from './store/store'
+import { store, persistedStore } from './shared/redux/store/store'
+import interceptor from './shared/functions/interceptor'
+import { PersistGate } from 'redux-persist/integration/react'
+
+// const preloadedState = window.__PRELOADED_STATE__
+// const store = configureStore(preloadedState)
+
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />,
+    <PersistGate persistor={persistedStore}>
+      <App />,
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
