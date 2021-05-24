@@ -1,4 +1,4 @@
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -6,9 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import { addCard, fetchCardInfo } from '../../../../shared/redux/actions/card.action'
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -31,51 +30,43 @@ const useStyles = makeStyles({
 function OutlinedCard() {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [ticker, setTicker] = useState('AAPL')
-    let cards = useSelector(state => state.card.cards)
-
+    // const [ticker, setTicker] = useState('AAPL')
+    let ticker = useSelector(state => state.grid.currentTicker)
+    let card = useSelector(state => state.grid.grids[ticker].card)
+    let name = useSelector(state => state.grid.grids[ticker].card.name)
+    let price = useSelector(state => state.grid.grids[ticker].card.price)
+    let currency = useSelector(state => state.grid.grids[ticker].card.currency)
+    
     // console.log("OUTLINE DEPOIS DISPATCH")
-    if (!cards[ticker]) {
-        return (
-            <Card className={classes.root} variant="outlined">
-                {ticker}
-                <CardContent>
-                <TextField id="outlined-basic" label="Chose Your Stock"
-                    value={ticker}
-                    variant="outlined"
-                    onChange={(e) => setTicker(e.target.value)} />
-                    <CardActions>
-                        <Button size="small" onClick={() => dispatch(fetchCardInfo('AAPL'))}>Start</Button>
-                    </CardActions>
-                </CardContent>
-            </Card>
-        )
-    } else {
+    if(card){
         return (
             <Card className={classes.root} variant="outlined">
                 {/* card:{cards.name} */}
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {cards[ticker].name}
+                        {name}a 
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {ticker}
+                        {ticker} b
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        {cards[ticker].currency} {cards[ticker].price}
+                        {currency} {price} c
                     </Typography>
                     <Typography variant="body2" component="p">
                         Technology
-                    <br />
+                        <br />
                         {'"a benevolent smile"'}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={() => dispatch(fetchCardInfo('AAPL'))}>Learn More</Button>
+                    <Button size="small" >Learn More</Button>
                 </CardActions>
             </Card>
         );
+    } else {
+        return null
     }
+
 }
 
 export function CardGrid(props) {

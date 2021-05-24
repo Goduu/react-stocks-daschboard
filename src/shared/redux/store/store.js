@@ -1,10 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { createTransform } from 'redux-persist';
 
-import gridSlice from '../../../logged_in/components/grid/gridSlice';
+import grid from '../reducers/grid.reducer';
 import counter from '../reducers/counter'
 import card from '../reducers/card.reducer'
 import table from '../reducers/table.reducer'
@@ -12,9 +11,25 @@ import thunk from 'redux-thunk'
 
 // const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
+// const GridParse = createTransform(
+//   // transform state on its way to being serialized and persisted.
+//   (inboundState, key) => {
+//     // convert mySet to an Array.
+//     console.log("ALCAPAHA AQUI",inboundState.grids)
+//     return { ...inboundState, grids: JSON.stringify(inboundState.grids) };
+//   },
+//   // transform state being rehydrated
+//   (outboundState, key) => {
+//     // convert mySet back to a Set.
+//     return { ...outboundState, grids: JSON.parse(outboundState.grids) };
+//   },
+//   // define which reducers this transform gets called for.
+//   { whitelist: ['grid'] }
+// );
+
 
 const rootReducer = combineReducers({
-  grid: gridSlice,
+  grid: grid,
   table: table,
   card: card,
   counter: counter,
@@ -22,15 +37,12 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer({
   key: 'root',
-  storage
+  // transforms: [GridParse],
+  storage: storage,
 }, rootReducer)
 
 export const store = createStore(persistedReducer,applyMiddleware(thunk))
 export const persistedStore = persistStore(store)
-
-// import { createStore, applyMiddleware } from 'redux'
-// import thunk from 'redux-thunk'
-// import rootReducer from '../reducers'
 
 
 

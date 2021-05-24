@@ -1,4 +1,4 @@
-import { ADD_CARD } from '../actions/card.action'
+import { ADD_CARD } from '../actions/card.actions'
 
 const initialState = {
   status: 'idle',
