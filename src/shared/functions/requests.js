@@ -3,8 +3,6 @@ import axios from 'axios';
 const apiUrl = 'http://127.0.0.1:5000/api/';
 
 export function login(credentials){
-  
-
   const headers = {headers: {'Content-Type': 'application/json'}}
   const data = {
     data:  JSON.stringify(credentials)
@@ -14,7 +12,57 @@ export function login(credentials){
       .then(res => {
         resolve(res)
       })
+      .catch(e =>{
+        reject(e)
+      })
   });
+}
+
+export function saveGridElements(identifier, user,gridElements, layout){
+  const headers = {headers: {'Content-Type': 'application/json'}}
+  const data = {
+    data:  JSON.stringify({id: identifier, user: user, grid: gridElements, layout: layout } )
+  };
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl+'post_grid_elements', data,headers)
+      .then(res => {
+        resolve(res)
+      })
+      .catch(e =>{
+        reject(e)
+      })
+  });
+}
+
+export function addUser(email, password){
+  const headers = {headers: {'Content-Type': 'application/json'}}
+  const data = {
+    data:  JSON.stringify({email: email, password: password})
+  };
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl+'add_user', data, headers)
+    .then(res => {
+      console.log("add user res", res)
+      resolve(res)
+    })
+  })
+}
+
+
+export function checkPermission(email, jwt, roleRequired){
+  return new Promise((resolve, reject) => { resolve({permited: true})})
+  
+  const headers = {headers: {'Content-Type': 'application/json'}}
+  const data = {
+    data:  JSON.stringify({email: email, jwt: jwt, role: roleRequired})
+  };
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl+'check_permission', data, headers)
+    .then(res => {
+      console.log("check_permission res", res)
+      resolve(res)
+    })
+  })
 }
 
 export function get_user_data(email){

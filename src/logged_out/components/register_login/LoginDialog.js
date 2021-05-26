@@ -15,8 +15,8 @@ import HighlightedInformation from "../../../shared/components/HighlightedInform
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 import { login } from '../../../shared/functions/requests.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { setStatus, setToken, setUser,selectStatus, selectToken, selectUser } from './loginSlice';
+import { useDispatch } from 'react-redux';
+import {setToken, setUser, setRoles} from '../../../shared/redux/actions/auth.actions.js'
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -39,26 +39,14 @@ const styles = (theme) => ({
   },
 });
 
-const handleSubmit = async (email, password) => {
 
+function loginUser(user, password) {
   return new Promise((resolve, reject) => {
-    loginUser({
-      email,
-      password
-    }).then(res => {
-      console.log("TOKEN", res)
-      resolve(res.data.token)
-    })
-      .catch( e => reject(e))
-  });
-}
-
-function loginUser(credentials) {
-  return new Promise((resolve, reject) => {
-    login(credentials)
+     
+    login({user: user, password: password})
       .then(res => {
-        resolve(res)
-      }).catch( e => console.log("ERRO PAHA"))
+        resolve(res.data)
+      }).catch( e =>reject(e))
   });
 
 }
@@ -77,29 +65,23 @@ function LoginDialog(props) {
   const loginEmail = useRef();
   const loginPassword = useRef();
   const dispatch = useDispatch();
-  const loginStatus = useSelector(selectStatus)
 
   const login = useCallback(() => {
     setIsLoading(true);
     setStatusMessage(null);
-    handleSubmit(loginEmail.current.value, loginPassword.current.value)
-      .then(token => {
-        dispatch(setToken(token))
+    loginUser(loginEmail.current.value, loginPassword.current.value)
+      .then(res => {
+        dispatch(setToken(res.token))
         dispatch(setUser(loginEmail.current.value))
-        dispatch(setStatus(200))
-        setTimeout(() => {
-          history.push("/c/dashboard");
-        }, 150);
+        dispatch(setRoles(res.roles))
+        setIsLoading(false);
+        history.push("/c/dashboard");
       })
       .catch( (e) => {
-        console.log("ERROR",e)
-      })
-      setTimeout(() => {
         setStatusMessage("invalidPassword")
-      }, 350);
+        setIsLoading(false);
+      })
 //     setStatusMessage("invalidEmail");
-      setIsLoading(false);
-
   }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage]);
 
   return (

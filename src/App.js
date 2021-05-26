@@ -6,7 +6,7 @@ import GlobalStyles from "./GlobalStyles";
 import Pace from "./shared/components/Pace";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-
+import PrivateRoute from './PrivateRoute'
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
@@ -20,9 +20,10 @@ function App() {
         <Pace color={theme.palette.primary.dark} />
         <Suspense fallback={<Fragment />}>
           <Switch>
-            <Route path="/c">
+          <PrivateRoute path="/c" roles={['user']} component={LoggedInComponent} />
+            {/* <Route path="/c">
               <LoggedInComponent />
-            </Route>
+            </Route> */}
             <Route>
               <LoggedOutComponent />
             </Route>

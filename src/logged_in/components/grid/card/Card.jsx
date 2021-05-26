@@ -44,18 +44,18 @@ function OutlinedCard() {
                 {/* card:{cards.name} */}
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {name}a 
+                        {name}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {ticker} b
+                        {ticker} 
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        {currency} {price} c
+                        {currency} {price} 
                     </Typography>
                     <Typography variant="body2" component="p">
                         Technology
                         <br />
-                        {'"a benevolent smile"'}
+                        {'"Lorem ipslum here linder"'}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -81,7 +81,7 @@ export function CardGrid(props) {
                     <span >
                         {/* <TableSettingMenus options={options} /> */}
                     </span>
-                    <span onClick={props.onRemoveItem}>
+                    <span onClick={() => props.onRemoveItem(props.i)}>
                         <CloseIcon fontSize="small" />
                     </span>
                 </span>

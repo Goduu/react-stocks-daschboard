@@ -7,6 +7,7 @@ import grid from '../reducers/grid.reducer';
 import counter from '../reducers/counter'
 import card from '../reducers/card.reducer'
 import table from '../reducers/table.reducer'
+import auth from '../reducers/auth.reducer'
 import thunk from 'redux-thunk'
 
 // const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   table: table,
   card: card,
   counter: counter,
+  auth: auth,
 })
 
 const persistedReducer = persistReducer({

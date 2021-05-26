@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
 function NoteCard(props) {
     const classes = useStyles();
     console.log("props", props)
+
+    const changeParams = (e) =>{
+        props.changeParams({id: props.i, content:{text: e.target.value}})
+    }
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent>
@@ -56,6 +60,7 @@ function NoteCard(props) {
                     variant="outlined"
                     id="custom-css-outlined-input"
                     multiline
+                    onChange={changeParams}
                 />
             </CardContent>
         </Card>
@@ -66,6 +71,11 @@ function NoteCard(props) {
 
 
 export function NoteGrid(props) {
+
+    const seeprops = () => {
+        console.log("props", props)
+    }
+
     return ({
         type: 'note',
         i: props.i,
@@ -80,9 +90,9 @@ export function NoteGrid(props) {
                     </span>
                 </span>
                 <div className="grid-content">
-
                     <NoteCard key={props.i} {...props} />
                 </div>
+
             </div>
         )
     })

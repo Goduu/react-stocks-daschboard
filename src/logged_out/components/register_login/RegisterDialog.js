@@ -13,6 +13,7 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import { addUser } from '../../../shared/functions/requests.js';
 
 const styles = (theme) => ({
   link: {
@@ -38,6 +39,7 @@ function RegisterDialog(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerTermsCheckbox = useRef();
   const registerPassword = useRef();
+  const registerEmail = useRef();
   const registerPasswordRepeat = useRef();
 
   const register = useCallback(() => {
@@ -53,9 +55,13 @@ function RegisterDialog(props) {
     }
     setStatus(null);
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    addUser(registerEmail.current.value, registerPassword.current.value)
+      .then((res) => {
+        setIsLoading(false);
+      })
+    // setTimeout(() => {
+    //   
+    // }, 1500);
   }, [
     setIsLoading,
     setStatus,
@@ -89,6 +95,7 @@ function RegisterDialog(props) {
             autoFocus
             autoComplete="off"
             type="email"
+            inputRef={registerEmail}
             onChange={() => {
               if (status === "invalidEmail") {
                 setStatus(null);
