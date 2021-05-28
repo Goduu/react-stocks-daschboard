@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {React, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -46,9 +46,11 @@ const useStyles = makeStyles((theme) => ({
 
 function NoteCard(props) {
     const classes = useStyles();
+    const [text, setText] = useState(props.params.text)
     console.log("props", props)
 
     const changeParams = (e) =>{
+        setText(e.target.value)
         props.changeParams({id: props.i, content:{text: e.target.value}})
     }
     return (
@@ -61,6 +63,7 @@ function NoteCard(props) {
                     id="custom-css-outlined-input"
                     multiline
                     onChange={changeParams}
+                    value={text}
                 />
             </CardContent>
         </Card>
@@ -71,7 +74,7 @@ function NoteCard(props) {
 
 
 export function NoteGrid(props) {
-
+    
     const seeprops = () => {
         console.log("props", props)
     }

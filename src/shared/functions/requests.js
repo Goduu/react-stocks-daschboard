@@ -34,6 +34,22 @@ export function saveGridElements(identifier, user,gridElements, layout){
   });
 }
 
+export function fetchGridElements(user){
+  const headers = {headers: {'Content-Type': 'application/json'}}
+  const data = {
+    data:  JSON.stringify({user: user } )
+  };
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl+'get_grid_elements', data,headers)
+      .then(res => {
+        resolve(res)
+      })
+      .catch(e =>{
+        reject(e)
+      })
+  });
+}
+
 export function addUser(email, password){
   const headers = {headers: {'Content-Type': 'application/json'}}
   const data = {

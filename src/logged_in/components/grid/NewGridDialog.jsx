@@ -7,9 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCardInfo } from '../../../shared/redux/actions/grid.actions'
+// import { fetchCardInfo } from '../../../shared/redux/actions/grid.actions'
+// import { fetchCardInfo } from '../../../shared/functions/requests.js';
 
-export default function NewGridDialog({onClose}) {
+export default function NewGridDialog({ chooseIdentifier}) {
     const [open, setOpen] = useState(true);
     const dispatch = useDispatch()
     const [ticker, setTicker] = useState('')
@@ -22,9 +23,11 @@ export default function NewGridDialog({onClose}) {
     };
 
     const handleSave = () => {
-        dispatch(fetchCardInfo(ticker))
+        console.log("Choose ticker", ticker)
+        chooseIdentifier(ticker)
+        // dispatch(fetchCardInfo(ticker))
         // setOpen(false);
-        onClose(ticker)
+        
     };
 
     return (

@@ -1,6 +1,5 @@
 import './Grid.css'
-import React, { useEffect, useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
@@ -9,13 +8,12 @@ import { CardGrid } from './card/Card';
 import { NoteGrid } from './note/Note';
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
-import PowerInputIcon from '@material-ui/icons/PowerInput';
 import { LineChartCard } from '../../../shared/components/LineChartCard';
 import { BarChartCard } from '../../../shared/components/BarChartCard';
 import { useSelector, useDispatch } from 'react-redux';
 import NewGridDialog from './NewGridDialog'
 // import { setGridElements } from '../../../shared/redux/actions/grid.actions'
-import { saveGridElements } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements } from '../../../shared/functions/requests.js';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 /**
@@ -23,33 +21,51 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
  */
 function Grid(props) {
 
-  const useStyles = makeStyles({
-    selectMenu: {
-      position: 'absolute',
-      alignItems: 'center'
-    }
-  })
-
-  const classes = useStyles();
-  const grids = useSelector(state => state.grid.grids);
-  const currentTicker = useSelector(state => state.grid.currentTicker);
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.auth.user)
-  const {
-    selectGrid
-  } = props;
-
-  useEffect(selectGrid, [selectGrid]);
-
-
-
   let initialGridItens = {
     items: [],
     newCounter: 0
   };
+
   const [gridItens, setGridItens] = useState(initialGridItens)
   const [gridElements, setGridElements] = useState([])
+  const [layout, setLayout] = useState([])
+  const [identifier, setIdentifier] = useState(undefined)
+  const user = useSelector(state => state.auth.user)
+  // const {
+  //   selectGrid
+  // } = props;
 
+  // useEffect(selectGrid, [selectGrid]);
+  let gridItens_; let gridElements_ = []
+  const restoreItens = useCallback((gridElements, layout, identifier) => {
+    gridItens_ = initialGridItens
+    setIdentifier(identifier)
+    setLayout(layout)
+    layout.sort(function (a, b) {
+      return a.y - b.y;
+    });
+
+    layout.forEach(l => {
+      let g = gridElements.find(g => l.i === g.id)
+      onRestauringItems(g, identifier, l)
+    })
+    console.log("GRID ITENS FINAL", gridItens_)
+    setGridItens(gridItens_)
+    setGridElements(gridElements_)
+  }, [gridItens, gridElements, layout, identifier])
+
+  useEffect(() => {
+    fetchGridElements(user)
+      .then(response => {
+        console.log('response fetch', response)
+        // setGridElements(response.data.grid_elements)
+        restoreItens(
+          response.data.grid_elements,
+          response.data.layout,
+          response.data.identifier)
+
+      })
+  }, [user])
 
   const createElement = (el) => {
     if (el.type) {
@@ -65,18 +81,19 @@ function Grid(props) {
     }
   }
 
-  const onAddItem = (adding, ticker) => {
-    ticker = ticker ? ticker : currentTicker
-    let iTemp = "n" + gridItens.newCounter
+  const onAddItem = (type, ticker, iTemp = "n" + gridItens.newCounter) => {
+    ticker = ticker ? ticker : identifier
+
     let props = {
       params: {},
       i: iTemp,
       x: (gridItens.items.length * 2) % (gridItens.cols || 12),
-      y: Infinity, // puts it at the bottom
+      y: -99, // puts it at the bottom
     }
     console.log("adding", iTemp)
-    if (adding === 'note') {
-      props = { ...props,
+    if (type === 'note') {
+      props = {
+        ...props,
         w: 3,
         h: 2,
         minH: 3,
@@ -85,24 +102,17 @@ function Grid(props) {
         onRemoveItem: onRemoveItem,
         changeParams: changeParams
       }
-      console.log("Al", gridItens.items)
-      let newItens = [...gridItens.items]
-      newItens = gridItens.items.map(el => {
-        console.log(el)
-        el.onRemoveItem = onRemoveItem
-        return el
-      }).concat(NoteGrid(props))
-      console.log("Al", newItens)
       setGridItens({
         // Add a new item. It must have a unique key!
 
-        items: newItens,
+        items: gridItens.items.concat(NoteGrid(props)),
         // Increment the counter to ensure key is always unique.
         newCounter: gridItens.newCounter + 1
       });
 
-    } else if (adding === 'card') {
-      props = { ...props,
+    } else if (type === 'card') {
+      props = {
+        ...props,
         w: 3,
         h: 2,
         minW: 2,
@@ -110,7 +120,8 @@ function Grid(props) {
         minH: 2,
         maxH: 2,
         onRemoveItem: onRemoveItem,
-        changeParams: changeParams
+        changeParams: changeParams,
+        identifier: ticker
       }
       setGridItens({
         // Add a new item. It must have a unique key!
@@ -120,9 +131,10 @@ function Grid(props) {
         newCounter: gridItens.newCounter + 1
       });
 
-    } else if (adding === 'table') {
+    } else if (type === 'table') {
 
-      props = { ...props,
+      props = {
+        ...props,
         w: 6,
         h: 2,
         onRemoveItem: () => onRemoveItem(iTemp),
@@ -133,8 +145,9 @@ function Grid(props) {
         newCounter: gridItens.newCounter + 1
       });
 
-    } else if (adding === 'pricechart') {
-      props = { ...props,
+    } else if (type === 'pricechart') {
+      props = {
+        ...props,
         w: 5,
         h: 2,
         onRemoveItem: () => onRemoveItem(iTemp),
@@ -146,8 +159,9 @@ function Grid(props) {
       });
     }
 
-    else if (adding === 'dividendchart') {
-      props = { ...props,
+    else if (type === 'dividendchart') {
+      props = {
+        ...props,
         w: 5,
         h: 2,
         onRemoveItem: () => onRemoveItem(iTemp),
@@ -158,13 +172,76 @@ function Grid(props) {
         newCounter: gridItens.newCounter + 1
       });
     }
-    console.log("adsa", gridItens.items.map(el => {
-      console.log(el)
-      el.onRemoveItem = onRemoveItem
-      return el
-    }))
 
-    setGridElements(gridElements.concat({id: iTemp, type: adding, params: props.params}))
+    setGridElements(gridElements.concat({ id: iTemp, type: type, params: props.params }))
+
+  }
+  const onRestauringItems = (g, ticker, props) => {
+    let type = g.type
+    let  iTemp = g.id
+    let params = g.params
+    props = {...props, params: params}
+    console.log("onRestauringItems", type, ticker, iTemp)
+    console.log("setGridElements", gridElements)
+    ticker = ticker ? ticker : identifier
+
+    if (type === 'note') {
+      props = {
+        ...props,
+        onRemoveItem: onRemoveItem,
+        changeParams: changeParams
+      }
+      gridItens_.items.push(NoteGrid(props))
+      gridItens_.newCounter += 1
+      
+
+    } else if (type === 'card') {
+      props = {
+        ...props,
+        onRemoveItem: onRemoveItem,
+        changeParams: changeParams,
+        identifier: ticker
+      }
+      gridItens_.items.push(CardGrid(props))
+      gridItens_.newCounter += 1
+      
+
+    } else if (type === 'table') {
+
+      props = {
+        ...props,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(TableGrid(props))
+      gridItens_.newCounter += 1
+      
+
+    } else if (type === 'pricechart') {
+      props = {
+        ...props,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(LineChartCard(props))
+      gridItens_.newCounter += 1
+      
+    }
+
+    else if (type === 'dividendchart') {
+      props = {
+        ...props,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(BarChartCard(props))
+      gridItens_.newCounter += 1
+      
+    }
+    console.log("PARAAAAMS", { id: iTemp, type: type, params: params })
+    gridElements_.push({ id: iTemp, type: type, params: params })
+  
+
   }
 
   // We're using the cols coming back from this to calculate where to add new items.
@@ -176,29 +253,27 @@ function Grid(props) {
   }
 
   const onLayoutChange = (layout) => {
-    console.log("layoutchange",layout)
-    saveGridElements(currentTicker, user, gridElements, layout)
-      .then(res => console.log("res save ", res))
+    console.log("layoutchange", layout, identifier, gridElements)
+    if (identifier && gridElements.length) {
+      saveGridElements(identifier, user, gridElements, layout)
+        .then(res => console.log("res save ", res))
+    }
     // props.onLayoutChange(layout);
     // setGridItens({ layout: layout });
   }
 
   function changeParams(params) {
     setGridElements(prev => {
-      console.log("prev", prev);
+      console.log("CHANGE PARAMS", params, prev)
       var foundIndex = prev.findIndex(x => x.id == params.id);
+      console.log("CHANGE PARAMS 2", foundIndex)
       prev[foundIndex].params = params.content;
       return prev
     }
     );
-    console.log("changeParams", gridElements);
 
   }
   function onRemoveItem(rId) {
-    console.log("removing", rId, gridItens.items);
-    // console.log(gridItens.items.forEach((el) => {
-    //   console.log("----", el.i, rId, el.i != rId)
-    // }))
     setGridItens(prev => {
       return {
         ...prev,
@@ -207,19 +282,28 @@ function Grid(props) {
       }
     }
     );
+    setGridElements(prev => {
+      return prev.filter( el => el.id != rId)
+    }
+    );
 
   }
-  const initialSettings = (ticker) => {
-    console.log("Initial Settings")
+
+
+  const chooseIdentifier = (ticker) => {
+    setIdentifier(ticker)
     onAddItem('card', ticker)
   }
 
-  
+  const testfunction = () =>{
+    console.log("testfunction", gridElements)
+  }
 
-  if (currentTicker) {
+
+  if (identifier) {
     return (
       <div>
-        <SelectMenu/>
+        <SelectMenu />
         <ActionMenu onClose={onAddItem} />
         <ResponsiveReactGridLayout
           onLayoutChange={onLayoutChange}
@@ -231,12 +315,13 @@ function Grid(props) {
           {_.map(gridItens.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
+        <button onClick={() => testfunction()}>testfunction</button>
       </div>
     )
   } else {
     return (
       <div>
-        <NewGridDialog onClose={initialSettings} />
+        <NewGridDialog chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
       </div>
 
     )

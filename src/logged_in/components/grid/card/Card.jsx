@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import TextField from '@material-ui/core/TextField';
 import { useSelector, useDispatch } from 'react-redux';
+import { getQuoteData } from '../../../../shared/functions/requests.js';
 
 const useStyles = makeStyles({
     root: {
@@ -27,18 +28,30 @@ const useStyles = makeStyles({
 
 
 
-function OutlinedCard() {
+function OutlinedCard(props) {
+    console.log("Propsorsp", props)
     const classes = useStyles();
     const dispatch = useDispatch();
     // const [ticker, setTicker] = useState('AAPL')
-    let ticker = useSelector(state => state.grid.currentTicker)
-    let card = useSelector(state => state.grid.grids[ticker].card)
-    let name = useSelector(state => state.grid.grids[ticker].card.name)
-    let price = useSelector(state => state.grid.grids[ticker].card.price)
-    let currency = useSelector(state => state.grid.grids[ticker].card.currency)
-    
+    let ticker = props.identifier
+    const [card, setCard] = useState('')
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState('')
+    const [currency, setCurrency] = useState('')
+
+    useEffect(() => {
+        console.log('getQuoteData', ticker)
+        getQuoteData(ticker)
+            .then(res => {
+                console.log('response fetch card', res)
+                setName(res.name)
+                setPrice(res.price)
+                setCurrency(res.currency)
+            })
+    }, [ticker])
+
     // console.log("OUTLINE DEPOIS DISPATCH")
-    if(card){
+    if (ticker) {
         return (
             <Card className={classes.root} variant="outlined">
                 {/* card:{cards.name} */}
@@ -47,10 +60,10 @@ function OutlinedCard() {
                         {name}
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {ticker} 
+                        {ticker}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        {currency} {price} 
+                        {currency} {price}
                     </Typography>
                     <Typography variant="body2" component="p">
                         Technology
@@ -86,7 +99,7 @@ export function CardGrid(props) {
                     </span>
                 </span>
                 <div className="grid-text-field">
-                    <OutlinedCard />
+                    <OutlinedCard {...props}/>
                 </div>
             </div>)
     }

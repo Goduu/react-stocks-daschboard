@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     root: {
         width: 500,
         overflow: 'hidden',
-        height: 200,
+        height: 150,
         background: 'none',
 
     },
