@@ -8,8 +8,8 @@ import { CardGrid } from './card/Card';
 import { NoteGrid } from './note/Note';
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
-import { LineChartCard } from '../../../shared/components/LineChartCard';
-import { BarChartCard } from '../../../shared/components/BarChartCard';
+import LineChartCard from './LineChart/LineChartCard';
+import BarChartCard from './BarChart/BarChartCard';
 import { useSelector, useDispatch } from 'react-redux';
 import NewGridDialog from './NewGridDialog'
 // import { setGridElements } from '../../../shared/redux/actions/grid.actions'
@@ -103,10 +103,7 @@ function Grid(props) {
         changeParams: changeParams
       }
       setGridItens({
-        // Add a new item. It must have a unique key!
-
         items: gridItens.items.concat(NoteGrid(props)),
-        // Increment the counter to ensure key is always unique.
         newCounter: gridItens.newCounter + 1
       });
 
@@ -124,10 +121,7 @@ function Grid(props) {
         identifier: ticker
       }
       setGridItens({
-        // Add a new item. It must have a unique key!
-
         items: gridItens.items.concat(CardGrid(props)),
-        // Increment the counter to ensure key is always unique.
         newCounter: gridItens.newCounter + 1
       });
 
@@ -150,6 +144,8 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
+        params: "1 Month",
+        identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
       }
@@ -164,6 +160,8 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
+        params: "6 Months",
+        identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
       }
@@ -198,9 +196,9 @@ function Grid(props) {
     } else if (type === 'card') {
       props = {
         ...props,
+        identifier: ticker,
         onRemoveItem: onRemoveItem,
         changeParams: changeParams,
-        identifier: ticker
       }
       gridItens_.items.push(CardGrid(props))
       gridItens_.newCounter += 1
@@ -220,6 +218,7 @@ function Grid(props) {
     } else if (type === 'pricechart') {
       props = {
         ...props,
+        identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
       }
@@ -231,6 +230,7 @@ function Grid(props) {
     else if (type === 'dividendchart') {
       props = {
         ...props,
+        identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
       }

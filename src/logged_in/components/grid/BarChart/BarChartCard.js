@@ -1,12 +1,15 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import CloseIcon from '@material-ui/icons/Close';
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
   Tooltip,
   ResponsiveContainer,
+  YAxis,
+  XAxis
 } from "recharts";
+import moment from 'moment'
 import format from "date-fns/format";
 import {
   Card,
@@ -18,6 +21,7 @@ import {
   Box,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { fetchDividendData } from '../../../../shared/functions/requests'
 
 const styles = (theme) => ({
   cardContentInner: {
@@ -40,12 +44,23 @@ function calculateMin(data, yKey, factor) {
 }
 
 const itemHeight = 216;
-const options = ["6 Months", "1 Year", "3 Years"];
+const options = ["6 Months", "1 Year", "5 Years", "Max"];
 
-function PriceChart(props) {
+function DividendChart(props) {
   const { color, data, title, classes, theme, height } = props;
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("6 Months");
+  const [selectedOption, setSelectedOption] = useState(80);
+  const [chartData, setChartData] = useState([]);
+
+  let ticker = props.identifier
+  console.log("TICKER", props)
+  useEffect(() => {
+    console.log('getQuoteData', ticker)
+    fetchDividendData(ticker, 180)
+      .then(res => {
+        setChartData(res.data)
+      })
+  }, [props.identifier])
 
   const handleClick = useCallback(
     (event) => {
@@ -62,50 +77,56 @@ function PriceChart(props) {
   );
 
   const getSubtitle = useCallback(() => {
+    console.log("select -----------", selectedOption, props.params)
     switch (selectedOption) {
       case "6 Months":
-        return "Last 6 months";
+        return "Last semester";
       case "1 Year":
         return "Last year";
-      case "3 Years":
-        return "Last 3 years";
+      case "5 Years":
+        return "Last 5 years";
+      case "Max":
+        return "Historic Period"
       default:
-        throw new Error("No branch selected in switch-statement");
+        return
+        // throw new Error("No branch selected in switch-statement");
     }
   }, [selectedOption]);
-
-  const processData = useCallback(() => {
-    let seconds;
-    switch (selectedOption) {
-      case "6 Months":
-        seconds = 60 * 60 * 24 * 7;
-        break;
-      case "1 Year":
-        seconds = 60 * 60 * 24 * 31;
-        break;
-      case "3 Years":
-        seconds = 60 * 60 * 24 * 31 * 6;
-        break;
-      default:
-        throw new Error("No branch selected in switch-statement");
-    }
-    const minSeconds = new Date() / 1000 - seconds;
-    const arr = [];
-    for (let i = 0; i < data.length; i += 1) {
-      if (minSeconds < data[i].timestamp) {
-        arr.unshift(data[i]);
-      }
-    }
-    return arr;
-  }, [data, selectedOption]);
 
   const handleClose = useCallback(() => {
     setAnchorEl(null);
   }, [setAnchorEl]);
 
+  const changeParams = (e) => {
+    
+  }
+
   const selectOption = useCallback(
-    (selectedOption) => {
-      setSelectedOption(selectedOption);
+    (selectedOption_) => {
+      setSelectedOption(selectedOption_);
+      let period = 300
+      console.log("SelnewSelectionect Option", selectedOption_ === "1 Year")
+      switch (selectedOption_) {
+        case "6 Months":
+          period = 180
+          break;
+        case "1 Year":
+          period = 365
+          break;
+        case "5 Years":
+          period = 1825;
+          break;
+        case "Max":
+          period = -1;
+          break;
+        default:
+          period = 30
+      }
+      fetchDividendData(ticker, period)
+        .then(res => {
+          setChartData(res.data)
+        })
+        props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
     [setSelectedOption, handleClose]
@@ -165,28 +186,19 @@ function PriceChart(props) {
           <Box height={'73px'}>
             {/* <Box className={classes.cardContentInner} height={height}> */}
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={processData()} type="number">
-                <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
+              <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
+                <Bar type="monotone" dataKey="value" fill="#8884d8" strokeWidth={2} dot={false} />
+                <YAxis domain={[0, 'dataMax']} hide />
+                <XAxis dataKey="time" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
                 <Tooltip
                   labelFormatter={labelFormatter}
                   formatter={formatter}
                   cursor={false}
                   contentStyle={{
                     border: "none",
-                    // padding: theme.spacing(1),
-                    // borderRadius: theme.shape.borderRadius,
-                    // boxShadow: theme.shadows[1],
                   }}
-                // labelStyle={theme.typography.body1}
-                // itemStyle={{
-                //   fontSize: theme.typography.body1.fontSize,
-                //   letterSpacing: theme.typography.body1.letterSpacing,
-                //   fontFamily: theme.typography.body1.fontFamily,
-                //   lineHeight: theme.typography.body1.lineHeight,
-                //   fontWeight: theme.typography.body1.fontWeight,
-                // }}
                 />
-              </LineChart>
+              </BarChart>
             </ResponsiveContainer>
           </Box>
         </CardContent>
@@ -195,63 +207,14 @@ function PriceChart(props) {
   );
 }
 
-PriceChart.propTypes = {
+DividendChart.propTypes = {
   color: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
-  // theme: PropTypes.object.isRequired,
   height: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
 };
-let dataXongas = [
-  {
-    value: 5685,
-    timestamp: 1621433840
-  },
-  {
-    value: 1685,
-    timestamp: 1621434840
-  },
-  {
-    value: 8285,
-    timestamp: 1621435840
-  },
-  {
-    value: 5985,
-    timestamp: 1621436840
-  },
-  {
-    value: 6685,
-    timestamp: 1621437840
-  },
-  {
-    value: 7285,
-    timestamp: 1621438840
-  },
-  {
-    value: 4285,
-    timestamp: 1621439840
-  },
-  {
-    value: 8285,
-    timestamp: 1621440840
-  },
-  {
-    value: 3285,
-    timestamp: 1621441840
-  },
-  {
-    value: 5285,
-    timestamp: 1621442840
-  },
-  {
-    value: 10285,
-    timestamp: 1621443840
-  },
 
-]
-
-export function LineChartCard(props) {
+export default function BarChartCard(props) {
   return ({
     type: 'chart',
     i: props.i,
@@ -262,8 +225,8 @@ export function LineChartCard(props) {
             <CloseIcon fontSize="small" />
           </span>
         </span>
-        <PriceChart
-          data={dataXongas}
+        <DividendChart
+          {...props}
           color={"red"}
           height="100px"
           title="Dividend" />
@@ -272,5 +235,3 @@ export function LineChartCard(props) {
   }
   );
 }
-
-// export default withStyles(styles, { withTheme: true })(LineChartCard);

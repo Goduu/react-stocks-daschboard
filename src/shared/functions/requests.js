@@ -50,6 +50,33 @@ export function fetchGridElements(user){
   });
 }
 
+export function fetchPriceData(tick, period){
+  return new Promise((resolve, reject) => {
+    console.log("fetchPriceData",tick, period)
+    axios.get(apiUrl+'priceData/?tick=' + tick + '&period=' + period)
+      .then(res => {
+          console.log("res price", res.data)
+          resolve(res.data)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
+export function fetchDividendData(tick, period){
+  return new Promise((resolve, reject) => {
+    console.log("fetchDividendData",tick, period)
+    axios.get(apiUrl+'dividendData/?tick=' + tick + '&period=' + period)
+      .then(res => {
+          console.log("res dividend", res.data)
+          resolve(res.data)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
+
 export function addUser(email, password){
   const headers = {headers: {'Content-Type': 'application/json'}}
   const data = {
