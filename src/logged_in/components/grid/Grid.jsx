@@ -10,6 +10,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import LineChartCard from './LineChart/LineChartCard';
 import BarChartCard from './BarChart/BarChartCard';
+import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import NewGridDialog from './NewGridDialog'
 // import { setGridElements } from '../../../shared/redux/actions/grid.actions'
@@ -49,7 +50,6 @@ function Grid(props) {
       let g = gridElements.find(g => l.i === g.id)
       onRestauringItems(g, identifier, l)
     })
-    console.log("GRID ITENS FINAL", gridItens_)
     setGridItens(gridItens_)
     setGridElements(gridElements_)
   }, [gridItens, gridElements, layout, identifier])
@@ -57,7 +57,6 @@ function Grid(props) {
   useEffect(() => {
     fetchGridElements(user)
       .then(response => {
-        console.log('response fetch', response)
         // setGridElements(response.data.grid_elements)
         restoreItens(
           response.data.grid_elements,
@@ -66,6 +65,12 @@ function Grid(props) {
 
       })
   }, [user])
+
+  useEffect(() => {
+    if(identifier && gridElements && layout.length != 0){
+      saveGridElements(identifier, user, gridElements, layout)
+    }
+  }, [gridElements,layout])
 
   const createElement = (el) => {
     if (el.type) {
@@ -144,7 +149,7 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
-        params: "1 Month",
+        params: {period: "1 Month"},
         identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
@@ -160,7 +165,7 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
-        params: "6 Months",
+        params: {period: "6 Months"},
         identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
@@ -253,13 +258,7 @@ function Grid(props) {
   }
 
   const onLayoutChange = (layout) => {
-    console.log("layoutchange", layout, identifier, gridElements)
-    if (identifier && gridElements.length) {
-      saveGridElements(identifier, user, gridElements, layout)
-        .then(res => console.log("res save ", res))
-    }
-    // props.onLayoutChange(layout);
-    // setGridItens({ layout: layout });
+    setLayout(layout)
   }
 
   function changeParams(params) {
@@ -285,6 +284,7 @@ function Grid(props) {
     setGridElements(prev => {
       return prev.filter( el => el.id != rId)
     }
+    
     );
 
   }
@@ -321,7 +321,8 @@ function Grid(props) {
   } else {
     return (
       <div>
-        <NewGridDialog chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
+        {/* <NewGridDialog chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} /> */}
+        <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }}/>
       </div>
 
     )

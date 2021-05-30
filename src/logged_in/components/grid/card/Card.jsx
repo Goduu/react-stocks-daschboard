@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import TextField from '@material-ui/core/TextField';
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles({
     root: {
@@ -57,7 +58,7 @@ function OutlinedCard(props) {
                 {/* card:{cards.name} */}
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {name}
+                        {name ? name : <LinearProgress/>}
                     </Typography>
                     <Typography variant="h5" component="h2">
                         {ticker}

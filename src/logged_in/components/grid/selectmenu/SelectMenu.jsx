@@ -1,7 +1,10 @@
-import { React, useRef, useState } from 'react';
+import { React, useRef, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 const useStyles = makeStyles({
     root: {
@@ -12,13 +15,13 @@ const useStyles = makeStyles({
 
     },
     menuWrapper: {
-       position: 'relative',
-       paddingBottom: '40px'
+        position: 'relative',
+        paddingBottom: '40px'
     },
     menu: {
-       position: 'absolute',
-       top: -110,
-       left: 400
+        position: 'absolute',
+        top: -110,
+        left: 400
     },
     itens: {
         paddingTop: 100,
@@ -32,16 +35,28 @@ const useStyles = makeStyles({
             zIndex: 3
         }
     },
+    plus:{
+    }
 
 });
 
 export function SelectMenu() {
     const classes = useStyles();
     const [value, setValue] = useState(0);
+    const [identifiers, setIdentifiers] = useState([]);
     const myRef = useRef(null)
+    const user = useSelector(state => state.auth.user)
     const executeScroll = (e) => {
         myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
     }
+
+    useEffect(() => {
+        console.log("TEM Q VIR")
+        getGridsIdentifiers(user)
+            .then(res => {
+                setIdentifiers(res)
+            })
+    }, [])
 
     return (
         <div className={classes.menuWrapper}>
@@ -56,67 +71,16 @@ export function SelectMenu() {
                     onMouseMove={(e) => executeScroll(e)}
                     ref={myRef}
                 >
+                    {identifiers.map(el => {
+                        return (
+                            <span className={classes.itens}>
+                                <BottomNavigationAction label="Favorites" icon={el} />
+                            </span>
+                        )
+                    })}
                     <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'MING'} />
+                        <BottomNavigationAction label="Favorites" icon={<LibraryAddIcon/>} />
                     </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'WEG3'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'1AAPL'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'POW'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'VLTS'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'EEE'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'NNN'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'12AAPL'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'AER'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'DFTR'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'EEE'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'NNN'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'AAPL'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'AER'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'DFTR'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'EEE'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'NNN'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'AAPL'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'AER'} />
-                    </span>
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={'XONG'} />
-                    </span>
-
 
                 </BottomNavigation>
             </div>

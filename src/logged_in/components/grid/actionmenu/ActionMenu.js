@@ -18,7 +18,7 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
-    { value: 'card', label: 'Card', icon: <ViewDayIcon /> },
+    // { value: 'card', label: 'Card', icon: <ViewDayIcon /> },
     { value: 'table', label: 'Table', icon: <TableChartIcon /> },
     { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon/> },
     { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon/> }];

@@ -76,6 +76,33 @@ export function fetchDividendData(tick, period){
   });
 }
 
+export function getTickers(page, search,exchange){
+  return new Promise((resolve, reject) => {
+    console.log("getTickers",page, search)
+    axios.get(apiUrl+'getTickers/?page=' + page + '&search=' + search + '&exchange=' + exchange)
+      .then(res => {
+          console.log("res getTickers", JSON.parse(res.data))
+          resolve(JSON.parse(res.data))
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
+export function getGridsIdentifiers(user){
+  return new Promise((resolve, reject) => {
+    console.log("getUserIdentifiers",user)
+    axios.get(apiUrl+'getUserIdentifiers/?user=' + user)
+      .then(res => {
+        res = JSON.parse(res.data).map(el => el.identifier)
+        console.log("res getUserIdentifiers",res)
+          resolve(res)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
 
 export function addUser(email, password){
   const headers = {headers: {'Content-Type': 'application/json'}}

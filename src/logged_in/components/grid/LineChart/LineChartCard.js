@@ -48,7 +48,7 @@ const options = ["1 Week", "1 Month", "6 Months", "1 Year", "Max"];
 function PriceChart(props) {
   const { color, data, title, classes, theme, height } = props;
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("1 Month");
+  const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState([]);
 
   let ticker = props.identifier
@@ -124,6 +124,7 @@ function PriceChart(props) {
         .then(res => {
           setChartData(res.data)
         })
+      props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
     [setSelectedOption, handleClose]
