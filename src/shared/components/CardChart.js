@@ -46,7 +46,6 @@ const options = ["1 Week", "1 Month", "6 Months"];
 
 function CardChart(props) {
   const { color, data, title, classes, theme, height } = props;
-  console.log("PROPS CHART", {paha:props.data})
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("1 Month");
 

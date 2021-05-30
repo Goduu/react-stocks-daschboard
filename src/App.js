@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import Pace from "./shared/components/Pace";
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 import PrivateRoute from './PrivateRoute'
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 

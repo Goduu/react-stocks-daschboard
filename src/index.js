@@ -6,7 +6,6 @@ import '../node_modules/react-resizable/css/styles.css'
 import '../node_modules/react-grid-layout/css/styles.css'
 import { Provider } from 'react-redux'
 import { store, persistedStore } from './shared/redux/store/store'
-import interceptor from './shared/functions/interceptor'
 import { PersistGate } from 'redux-persist/integration/react'
 
 // const preloadedState = window.__PRELOADED_STATE__

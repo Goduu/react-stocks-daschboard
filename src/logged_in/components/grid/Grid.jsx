@@ -29,6 +29,7 @@ function Grid(props) {
 
   const [gridItens, setGridItens] = useState(initialGridItens)
   const [gridElements, setGridElements] = useState([])
+  const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
   const [identifier, setIdentifier] = useState(undefined)
   const user = useSelector(state => state.auth.user)
@@ -56,21 +57,31 @@ function Grid(props) {
 
   useEffect(() => {
     fetchGridElements(user)
-      .then(response => {
-        // setGridElements(response.data.grid_elements)
-        restoreItens(
-          response.data.grid_elements,
-          response.data.layout,
-          response.data.identifier)
-
+      .then(dashboards => {
+        if (dashboards.length > 0) {
+          setAllDashboards(dashboards)
+          let toBeRestored = dashboards.filter(r => {
+            return r.active == true
+          })[0]
+          restoreItens(
+            toBeRestored.grid_elements,
+            toBeRestored.layout,
+            toBeRestored.identifier)
+        }
       })
   }, [user])
 
   useEffect(() => {
-    if(identifier && gridElements && layout.length != 0){
+    console.log("Saving")
+    if (identifier && gridElements && layout.length != 0) {
       saveGridElements(identifier, user, gridElements, layout)
+      setAllDashboards(prev => {
+        prev.find(el => {return el.active === true}).gridElements = gridElements
+        prev.find(el => {return el.active === true}).layout = layout
+        return prev
+      })
     }
-  }, [gridElements,layout])
+  }, [gridElements, layout])
 
   const createElement = (el) => {
     if (el.type) {
@@ -95,7 +106,6 @@ function Grid(props) {
       x: (gridItens.items.length * 2) % (gridItens.cols || 12),
       y: -99, // puts it at the bottom
     }
-    console.log("adding", iTemp)
     if (type === 'note') {
       props = {
         ...props,
@@ -149,7 +159,7 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
-        params: {period: "1 Month"},
+        params: { period: "1 Month" },
         identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
@@ -165,7 +175,7 @@ function Grid(props) {
         ...props,
         w: 5,
         h: 2,
-        params: {period: "6 Months"},
+        params: { period: "6 Months" },
         identifier: ticker,
         onRemoveItem: () => onRemoveItem(iTemp),
         changeParams: changeParams
@@ -177,15 +187,22 @@ function Grid(props) {
     }
 
     setGridElements(gridElements.concat({ id: iTemp, type: type, params: props.params }))
+    setAllDashboards(prev => {
+      prev.find(d => d.active === true).grid_elements.push({ id: iTemp, type: type, params: props.params })
+
+      // prev.find(d => {
+      //   console.log("--------", d.identifier, ticker, d)
+      //   return d.identifier === ticker
+      // }).grid_elements.concat({ id: iTemp, type: type, params: props.params })
+      return prev
+    })
 
   }
   const onRestauringItems = (g, ticker, props) => {
     let type = g.type
-    let  iTemp = g.id
+    let iTemp = g.id
     let params = g.params
-    props = {...props, params: params}
-    console.log("onRestauringItems", type, ticker, iTemp)
-    console.log("setGridElements", gridElements)
+    props = { ...props, params: params }
     ticker = ticker ? ticker : identifier
 
     if (type === 'note') {
@@ -196,7 +213,7 @@ function Grid(props) {
       }
       gridItens_.items.push(NoteGrid(props))
       gridItens_.newCounter += 1
-      
+
 
     } else if (type === 'card') {
       props = {
@@ -207,7 +224,7 @@ function Grid(props) {
       }
       gridItens_.items.push(CardGrid(props))
       gridItens_.newCounter += 1
-      
+
 
     } else if (type === 'table') {
 
@@ -218,7 +235,7 @@ function Grid(props) {
       }
       gridItens_.items.push(TableGrid(props))
       gridItens_.newCounter += 1
-      
+
 
     } else if (type === 'pricechart') {
       props = {
@@ -229,7 +246,7 @@ function Grid(props) {
       }
       gridItens_.items.push(LineChartCard(props))
       gridItens_.newCounter += 1
-      
+
     }
 
     else if (type === 'dividendchart') {
@@ -241,11 +258,10 @@ function Grid(props) {
       }
       gridItens_.items.push(BarChartCard(props))
       gridItens_.newCounter += 1
-      
+
     }
-    console.log("PARAAAAMS", { id: iTemp, type: type, params: params })
     gridElements_.push({ id: iTemp, type: type, params: params })
-  
+
 
   }
 
@@ -263,9 +279,7 @@ function Grid(props) {
 
   function changeParams(params) {
     setGridElements(prev => {
-      console.log("CHANGE PARAMS", params, prev)
       var foundIndex = prev.findIndex(x => x.id == params.id);
-      console.log("CHANGE PARAMS 2", foundIndex)
       prev[foundIndex].params = params.content;
       return prev
     }
@@ -282,29 +296,75 @@ function Grid(props) {
     }
     );
     setGridElements(prev => {
-      return prev.filter( el => el.id != rId)
+      return prev.filter(el => el.id != rId)
     }
-    
     );
+    setAllDashboards(prev => {
+      prev.find(d => d.active === true).grid_elements.filter(el => el.id != rId)
+      return prev
+    })
 
   }
 
 
   const chooseIdentifier = (ticker) => {
+    setAllDashboards(prev => {
+      prev.map(d => {
+        if (d.active === true) {
+          d.active = false
+        }
+      })
+      prev.push({ active: true, grid_elements: [], identifier: ticker, layout: [] })
+      return prev
+    })
+    setGridItens(initialGridItens)
+    setGridElements([])
     setIdentifier(ticker)
-    onAddItem('card', ticker)
+    
+      onAddItem('card', ticker)
+    
+
   }
 
-  const testfunction = () =>{
+  const newDashboard = () => {
+    setGridItens(initialGridItens)
+    setGridElements([])
+    setIdentifier(undefined)
+
+  }
+
+  const testfunction = () => {
     console.log("testfunction", gridElements)
   }
 
+  const selectDashboard = (el) => {
+
+    let selectedDashboard
+    allDashboards.map(d => {
+      if (d.identifier === el) {
+        selectedDashboard = d
+        d.active = true
+      } else {
+        d.active = false
+      }
+    })
+    if(selectDashboard){
+      restoreItens(
+        selectedDashboard.grid_elements,
+        selectedDashboard.layout,
+        selectedDashboard.identifier)
+    }
+  }
+
+  const deleteDashboard = () => {
+
+  }
 
   if (identifier) {
     return (
       <div>
-        <SelectMenu />
-        <ActionMenu onClose={onAddItem} />
+        <SelectMenu selectDashboard={selectDashboard} identifier={identifier} />
+        <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard}/>
         <ResponsiveReactGridLayout
           onLayoutChange={onLayoutChange}
           onBreakpointChange={onBreakpointChange}
@@ -322,7 +382,7 @@ function Grid(props) {
     return (
       <div>
         {/* <NewGridDialog chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} /> */}
-        <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }}/>
+        <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
       </div>
 
     )

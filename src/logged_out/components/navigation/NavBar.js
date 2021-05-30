@@ -20,7 +20,7 @@ import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 const styles = theme => ({
   appBar: {
     boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.background.paper
   },
   toolbar: {
     display: "flex",
@@ -80,7 +80,6 @@ function NavBar(props) {
               variant="h4"
               className={classes.brandText}
               display="inline"
-              color="primary"
             >
               Nex
             </Typography>
@@ -88,7 +87,6 @@ function NavBar(props) {
               variant="h4"
               className={classes.brandText}
               display="inline"
-              color="secondary"
             >
               it
             </Typography>

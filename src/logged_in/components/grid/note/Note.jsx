@@ -4,8 +4,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { border, positions } from '@material-ui/system';
-import InputBase from '@material-ui/core/InputBase';
 
 const CssTextField = withStyles({
     root: {
@@ -47,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 function NoteCard(props) {
     const classes = useStyles();
     const [text, setText] = useState(props.params.text)
-    console.log("props", props)
 
     const changeParams = (e) =>{
         setText(e.target.value)
@@ -75,10 +72,6 @@ function NoteCard(props) {
 
 export function NoteGrid(props) {
     
-    const seeprops = () => {
-        console.log("props", props)
-    }
-
     return ({
         type: 'note',
         i: props.i,

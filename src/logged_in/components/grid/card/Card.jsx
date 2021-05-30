@@ -6,8 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import TextField from '@material-ui/core/TextField';
-import { useSelector, useDispatch } from 'react-redux';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -30,28 +28,21 @@ const useStyles = makeStyles({
 
 
 function OutlinedCard(props) {
-    console.log("Propsorsp", props)
     const classes = useStyles();
-    const dispatch = useDispatch();
-    // const [ticker, setTicker] = useState('AAPL')
     let ticker = props.identifier
-    const [card, setCard] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [currency, setCurrency] = useState('')
 
     useEffect(() => {
-        console.log('getQuoteData', ticker)
         getQuoteData(ticker)
             .then(res => {
-                console.log('response fetch card', res)
                 setName(res.name)
                 setPrice(res.price)
                 setCurrency(res.currency)
             })
     }, [ticker])
 
-    // console.log("OUTLINE DEPOIS DISPATCH")
     if (ticker) {
         return (
             <Card className={classes.root} variant="outlined">

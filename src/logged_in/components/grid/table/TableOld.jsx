@@ -93,14 +93,12 @@ export function EnhancedTable() {
         );
     }
     const addLine = () => {
-        console.log("linen", lineNumber)
         dispatch(addRow());
 
         setLineNumber(lineNumber + 1)
 
     }
     const saveRow = (e) => {
-        console.log("linen", e)
         dispatch(changeRow({ ...e }));
 
         setLineNumber(lineNumber + 1)
@@ -141,7 +139,6 @@ const TableSettingMenus = (props) => {
 
     };
     const handleChangeName = (event, c) => {
-        console.log("c", c, event)
         let field = c.field
         dispatch(changeHeaderName({ field: field, type: event.target.value }))
 
@@ -162,7 +159,6 @@ const TableSettingMenus = (props) => {
 
 
     const handleClickOpenDialog = () => {
-        console.log("Open Dialog")
         setHeaderControl(header)
         setOpenDialog(true);
     };

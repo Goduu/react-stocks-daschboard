@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 const useStyles = makeStyles({
     root: {
@@ -40,23 +39,31 @@ const useStyles = makeStyles({
 
 });
 
-export function SelectMenu() {
+export function SelectMenu(props) {
     const classes = useStyles();
     const [value, setValue] = useState(0);
     const [identifiers, setIdentifiers] = useState([]);
     const myRef = useRef(null)
     const user = useSelector(state => state.auth.user)
+
     const executeScroll = (e) => {
         myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
     }
 
     useEffect(() => {
-        console.log("TEM Q VIR")
         getGridsIdentifiers(user)
             .then(res => {
                 setIdentifiers(res)
             })
-    }, [])
+    }, [user])
+
+    useEffect(() => {
+        getGridsIdentifiers(user)
+            .then(res => {
+                setIdentifiers(res)
+            })
+    }, [props.identifier,user])
+    
 
     return (
         <div className={classes.menuWrapper}>
@@ -73,15 +80,11 @@ export function SelectMenu() {
                 >
                     {identifiers.map(el => {
                         return (
-                            <span className={classes.itens}>
+                            <span key={el} className={classes.itens} onClick={() => props.selectDashboard(el)}>
                                 <BottomNavigationAction label="Favorites" icon={el} />
                             </span>
                         )
                     })}
-                    <span className={classes.itens}>
-                        <BottomNavigationAction label="Favorites" icon={<LibraryAddIcon/>} />
-                    </span>
-
                 </BottomNavigation>
             </div>
         </div>

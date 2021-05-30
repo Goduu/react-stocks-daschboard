@@ -10,7 +10,6 @@ import {
   XAxis
 } from "recharts";
 import moment from 'moment'
-import format from "date-fns/format";
 import {
   Card,
   CardContent,
@@ -23,44 +22,43 @@ import {
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchDividendData } from '../../../../shared/functions/requests'
 
-const styles = (theme) => ({
-  cardContentInner: {
-    marginTop: theme.spacing(-4),
-  },
-});
+// const styles = (theme) => ({
+//   cardContentInner: {
+//     marginTop: theme.spacing(-4),
+//   },
+// });
 
-function labelFormatter(label) {
-  return format(new Date(label * 1000), "MMMM d, p yyyy");
-}
+// function labelFormatter(label) {
+//   return new Date(label);
+// }
 
-function calculateMin(data, yKey, factor) {
-  let max = Number.POSITIVE_INFINITY;
-  data.forEach((element) => {
-    if (max > element[yKey]) {
-      max = element[yKey];
-    }
-  });
-  return Math.round(max - max * factor);
-}
+// function calculateMin(data, yKey, factor) {
+//   let max = Number.POSITIVE_INFINITY;
+//   data.forEach((element) => {
+//     if (max > element[yKey]) {
+//       max = element[yKey];
+//     }
+//   });
+//   return Math.round(max - max * factor);
+// }
 
 const itemHeight = 216;
 const options = ["6 Months", "1 Year", "5 Years", "Max"];
 
 function DividendChart(props) {
-  const { color, data, title, classes, theme, height } = props;
+  // const { color, data, title, classes, theme, height } = props;
+  const { title } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState([]);
 
   let ticker = props.identifier
-  console.log("TICKER", props)
   useEffect(() => {
-    console.log('getQuoteData', ticker)
     fetchDividendData(ticker, 180)
       .then(res => {
         setChartData(res.data)
       })
-  }, [props.identifier])
+  }, [props.identifier,ticker])
 
   const handleClick = useCallback(
     (event) => {
@@ -69,15 +67,14 @@ function DividendChart(props) {
     [setAnchorEl]
   );
 
-  const formatter = useCallback(
-    (value) => {
-      return [value, title];
-    },
-    [title]
-  );
+  // const formatter = useCallback(
+  //   (value) => {
+  //     return [value, title];
+  //   },
+  //   [title]
+  // );
 
   const getSubtitle = useCallback(() => {
-    console.log("select -----------", selectedOption, props.params)
     switch (selectedOption) {
       case "6 Months":
         return "Last semester";
@@ -97,15 +94,10 @@ function DividendChart(props) {
     setAnchorEl(null);
   }, [setAnchorEl]);
 
-  const changeParams = (e) => {
-    
-  }
-
   const selectOption = useCallback(
     (selectedOption_) => {
       setSelectedOption(selectedOption_);
       let period = 300
-      console.log("SelnewSelectionect Option", selectedOption_ === "1 Year")
       switch (selectedOption_) {
         case "6 Months":
           period = 180
@@ -129,7 +121,7 @@ function DividendChart(props) {
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
-    [setSelectedOption, handleClose]
+    [setSelectedOption, handleClose,props,ticker]
   );
 
   const isOpen = Boolean(anchorEl);
@@ -189,10 +181,10 @@ function DividendChart(props) {
               <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
                 <Bar type="monotone" dataKey="value" fill="#8884d8" strokeWidth={2} dot={false} />
                 <YAxis domain={[0, 'dataMax']} hide />
-                <XAxis dataKey="time" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
+                <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
                 <Tooltip
-                  labelFormatter={labelFormatter}
-                  formatter={formatter}
+                  labelFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')}
+                  // formatter={formatter}
                   cursor={false}
                   contentStyle={{
                     border: "none",

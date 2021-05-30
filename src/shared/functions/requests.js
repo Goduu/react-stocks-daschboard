@@ -40,9 +40,9 @@ export function fetchGridElements(user){
     data:  JSON.stringify({user: user } )
   };
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl+'get_grid_elements', data,headers)
+    axios.post(apiUrl+'fetchGridElements', data,headers)
       .then(res => {
-        resolve(res)
+        resolve(res.data.dashboards)
       })
       .catch(e =>{
         reject(e)
@@ -52,10 +52,8 @@ export function fetchGridElements(user){
 
 export function fetchPriceData(tick, period){
   return new Promise((resolve, reject) => {
-    console.log("fetchPriceData",tick, period)
     axios.get(apiUrl+'priceData/?tick=' + tick + '&period=' + period)
       .then(res => {
-          console.log("res price", res.data)
           resolve(res.data)
         
       })
@@ -65,10 +63,8 @@ export function fetchPriceData(tick, period){
 
 export function fetchDividendData(tick, period){
   return new Promise((resolve, reject) => {
-    console.log("fetchDividendData",tick, period)
     axios.get(apiUrl+'dividendData/?tick=' + tick + '&period=' + period)
       .then(res => {
-          console.log("res dividend", res.data)
           resolve(res.data)
         
       })
@@ -78,10 +74,8 @@ export function fetchDividendData(tick, period){
 
 export function getTickers(page, search,exchange){
   return new Promise((resolve, reject) => {
-    console.log("getTickers",page, search)
     axios.get(apiUrl+'getTickers/?page=' + page + '&search=' + search + '&exchange=' + exchange)
       .then(res => {
-          console.log("res getTickers", JSON.parse(res.data))
           resolve(JSON.parse(res.data))
         
       })
@@ -91,11 +85,9 @@ export function getTickers(page, search,exchange){
 
 export function getGridsIdentifiers(user){
   return new Promise((resolve, reject) => {
-    console.log("getUserIdentifiers",user)
     axios.get(apiUrl+'getUserIdentifiers/?user=' + user)
       .then(res => {
         res = JSON.parse(res.data).map(el => el.identifier)
-        console.log("res getUserIdentifiers",res)
           resolve(res)
         
       })
@@ -112,7 +104,6 @@ export function addUser(email, password){
   return new Promise((resolve, reject) => {
     axios.post(apiUrl+'add_user', data, headers)
     .then(res => {
-      console.log("add user res", res)
       resolve(res)
     })
   })
@@ -122,17 +113,17 @@ export function addUser(email, password){
 export function checkPermission(email, jwt, roleRequired){
   return new Promise((resolve, reject) => { resolve({permited: true})})
   
-  const headers = {headers: {'Content-Type': 'application/json'}}
-  const data = {
-    data:  JSON.stringify({email: email, jwt: jwt, role: roleRequired})
-  };
-  return new Promise((resolve, reject) => {
-    axios.post(apiUrl+'check_permission', data, headers)
-    .then(res => {
-      console.log("check_permission res", res)
-      resolve(res)
-    })
-  })
+  // const headers = {headers: {'Content-Type': 'application/json'}}
+  // const data = {
+  //   data:  JSON.stringify({email: email, jwt: jwt, role: roleRequired})
+  // };
+  // return new Promise((resolve, reject) => {
+  //   axios.post(apiUrl+'check_permission', data, headers)
+  //   .then(res => {
+  //     console.log("check_permission res", res)
+  //     resolve(res)
+  //   })
+  // })
 }
 
 export function get_user_data(email){
@@ -154,7 +145,6 @@ export function get_analysts_info(){
         result['EPS_trend'] = JSON.parse(res.data[3])
         result['EPS_revisions'] = JSON.parse(res.data[3])
         result['growth_estimates'] = JSON.parse(res.data[3])
-        console.log(result)
         return result
       })
   }
@@ -186,7 +176,6 @@ export function getEarningsHistory(tick){
   return new Promise((resolve, reject) => {
     axios.get(apiUrl+'get_earnings_history/?tick=' + tick)
       .then(res => {
-        console.log('get_earns_history',res )
         resolve(res.data)
       })
   });
@@ -210,11 +199,9 @@ export function getData(tick){
 }
 
 export function getDividends(tick){
-  console.log("TICK no request", tick)
   return new Promise((resolve, reject) => {
     axios.get(apiUrl+'dividends/?tick='+tick)
       .then(res => {
-        console.log(res)
         let dividend = res.data.dividend
         let values = []
         let dates = []
@@ -222,7 +209,6 @@ export function getDividends(tick){
             values.push(dividend[date].toFixed(2))
             dates.push(new Date(date*1).toLocaleDateString())
         }
-        console.log(dates,values)
         resolve([dates, values])
       })
   });

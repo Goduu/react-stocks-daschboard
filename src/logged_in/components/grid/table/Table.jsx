@@ -44,10 +44,8 @@ export default function ToolbarGrid() {
         rowLength: 3,
         maxColumns: 4,
     });
-    console.log("asdsa", data)
 
     const addRow = () => {
-        console.log("Add row")
         //   rowsTemp = [...state.rows]
         //         rowsTemp
         //         .push({

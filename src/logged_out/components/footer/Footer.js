@@ -19,7 +19,7 @@ import ColoredButton from "../../../shared/components/ColoredButton";
 
 const styles = theme => ({
   footerInner: {
-    backgroundColor: theme.palette.common.darkBlack,
+    backgroundColor: theme.palette.background.paper,
     paddingTop: theme.spacing(8),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -71,7 +71,7 @@ const styles = theme => ({
     }
   },
   whiteBg: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.background.paper
   }
 });
 
@@ -156,10 +156,10 @@ const socialIcons = [
 function Footer(props) {
   const { classes, theme, width } = props;
   return (
-    <footer className="lg-p-top">
+    <footer >
       <WaveBorder
-        upperColor="#FFFFFF"
-        lowerColor={theme.palette.common.darkBlack}
+        upperColor={theme.palette.background.default}
+        lowerColor={theme.palette.background.paper}
         animationNegativeDelay={4}
       />
       <div className={classes.footerInner}>
@@ -211,7 +211,7 @@ function Footer(props) {
                         flexDirection="column"
                         justifyContent="center"
                       >
-                        <Typography variant="h6" className="text-white">
+                        <Typography variant="h6" >
                           {info.description}
                         </Typography>
                       </Box>

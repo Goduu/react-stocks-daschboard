@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import { checkPermission } from './shared/functions/requests.js';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
     const user = useSelector(state => state.auth.user)
@@ -19,7 +19,6 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => {
             // let permited = true
             // checkPermission(user, token, roles)
             //     .then(res => {
-            //         console.log("Res chec permission", res.permited)
             //         // res.permited ? permited = true : permited = false
             //     });
                 if (!permited) {

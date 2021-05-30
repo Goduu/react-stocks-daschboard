@@ -82,7 +82,7 @@ function LoginDialog(props) {
         setIsLoading(false);
       })
 //     setStatusMessage("invalidEmail");
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage]);
+  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage,dispatch]);
 
   return (
     <Fragment>

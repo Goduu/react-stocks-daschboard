@@ -11,7 +11,6 @@ let cardsTemp
 const card = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CARD:
-      console.log("ADD CARD", action.payload,"to",state.cards)
       cardsTemp = [...state.cards]
       cardsTemp[action.payload.ticker] = action.payload
       state.cards = cardsTemp

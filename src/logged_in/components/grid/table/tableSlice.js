@@ -29,21 +29,18 @@ export const tableSlice = createSlice({
       state.headers = action.payload;
     },
     changeHeaderType: (state, action) => {
-      console.log("change header type", action.payload)
       let field = action.payload.field
       let headersTemp = state.headers
       headersTemp.find(h => { return h.field === field }).type = action.payload.type
       state.headers = headersTemp;
     },
     changeHeaderName: (state, action) => {
-      console.log("change header type", action.payload)
       let field = action.payload.field
       let headersTemp = state.headers
       headersTemp.find(h => { return h.field === field }).headerName = action.payload.type
       state.headers = headersTemp;
     },
     changeRow: (state, action) => {
-      console.log("change rows value", action.payload)
       let id = action.payload.id
       let field = action.payload.field
       let rowsTemp = state.rows
@@ -51,7 +48,6 @@ export const tableSlice = createSlice({
       state.rows = rowsTemp;
     },
     addRow: (state) => {
-      console.log("addrow")
       state.rows
       .push({
         id: state.rowNumber + 1,

@@ -7,7 +7,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   YAxis,
+  XAxis
 } from "recharts";
+import moment from 'moment'
 import format from "date-fns/format";
 import {
   Card,
@@ -16,50 +18,48 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles,
   Box,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchPriceData } from '../../../../shared/functions/requests'
 
-const styles = (theme) => ({
-  cardContentInner: {
-    marginTop: theme.spacing(-4),
-  },
-});
+// const styles = (theme) => ({
+//   cardContentInner: {
+//     marginTop: theme.spacing(-4),
+//   },
+// });
 
 function labelFormatter(label) {
   return format(new Date(label * 1000), "MMMM d, p yyyy");
 }
 
-function calculateMin(data, yKey, factor) {
-  let max = Number.POSITIVE_INFINITY;
-  data.forEach((element) => {
-    if (max > element[yKey]) {
-      max = element[yKey];
-    }
-  });
-  return Math.round(max - max * factor);
-}
+// function calculateMin(data, yKey, factor) {
+//   let max = Number.POSITIVE_INFINITY;
+//   data.forEach((element) => {
+//     if (max > element[yKey]) {
+//       max = element[yKey];
+//     }
+//   });
+//   return Math.round(max - max * factor);
+// }
 
 const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months", "1 Year", "Max"];
 
 function PriceChart(props) {
-  const { color, data, title, classes, theme, height } = props;
+  // const { color, data, title, classes, theme, height } = props;
+  const { title } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState([]);
 
   let ticker = props.identifier
-  console.log("TICKER", props)
   useEffect(() => {
-    console.log('getQuoteData', ticker)
     fetchPriceData(ticker,30)
       .then(res => {
         setChartData(res.data)
       })
-  }, [props.identifier])
+  }, [props.identifier,ticker])
 
   const handleClick = useCallback(
     (event) => {
@@ -100,7 +100,6 @@ function PriceChart(props) {
     (selectedOption_) => {
       setSelectedOption(selectedOption_);
       let period = 300
-      console.log("SelnewSelectionect Option",selectedOption_==="1 Week")
       switch (selectedOption_) {
         case "1 Week":
           period = 7
@@ -127,7 +126,7 @@ function PriceChart(props) {
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
-    [setSelectedOption, handleClose]
+    [setSelectedOption, handleClose,props,ticker]
   );
 
   const isOpen = Boolean(anchorEl);
@@ -187,6 +186,7 @@ function PriceChart(props) {
               <LineChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
                 <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} dot={false} />
                 <YAxis domain={['dataMin-0.2*dataMin', 'dataMax+0.2*dataMax']} hide />
+                <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
                 <Tooltip
                   labelFormatter={labelFormatter}
                   formatter={formatter}

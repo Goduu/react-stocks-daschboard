@@ -10,7 +10,6 @@ export const addCard = (value) => ({
 
 
 export const fetchCardInfo = (ticker) => dispatch => {
-    console.log("fetchCardInfo")
     setTimeout(() => {
         getQuoteData(ticker)
             .then(resp => {

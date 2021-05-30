@@ -32,14 +32,12 @@ const table = (state = initialState, action) => {
             state.headers = headersTemp;
             return state
         case CHANGE_ROW:
-            console.log("change rows value", action.payload)
             field = action.payload.field
             rowsTemp = state.rows
             rowsTemp.find(h => { return h.id === action.payload.id })[field] = action.payload.props.value
             state.rows= rowsTemp
             return state
         case ADD_ROW:
-            console.log("ADDROW")
             rowsTemp = [...state.rows]
             rowsTemp
             .push({

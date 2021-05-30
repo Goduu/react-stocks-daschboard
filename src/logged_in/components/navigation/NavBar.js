@@ -37,7 +37,7 @@ import { useDispatch } from 'react-redux';
 const styles = (theme) => ({
   appBar: {
     boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -95,7 +95,7 @@ const styles = (theme) => ({
   },
   menuLink: {
     textDecoration: "none",
-    color: theme.palette.text.primary,
+    color: theme.palette.text.primary.light,
   },
   iconListItem: {
     width: "auto",
@@ -154,7 +154,6 @@ function NavBar(props) {
   }, [setIsSideDrawerOpen]);
 
   const handleLogout = () => {
-    console.log("Logout")
     dispatch(removeToken())
   }
   const menuItems = [
@@ -256,7 +255,6 @@ function NavBar(props) {
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                color="primary"
               >
                 Nex
               </Typography>
@@ -264,7 +262,6 @@ function NavBar(props) {
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                color="secondary"
               >
                 it
               </Typography>

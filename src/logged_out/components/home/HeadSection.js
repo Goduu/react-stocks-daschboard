@@ -66,7 +66,7 @@ const styles = (theme) => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     paddingBottom: theme.spacing(2),
   },
   image: {
@@ -138,7 +138,7 @@ function HeadSection(props) {
                         </Box>
                         <Button
                           variant="contained"
-                          color="secondary"
+                          color="primary"
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
@@ -164,8 +164,8 @@ function HeadSection(props) {
         </div>
       </div>
       <WaveBorder
-        upperColor={theme.palette.secondary.main}
-        lowerColor="#FFFFFF"
+        upperColor={theme.palette.primary.main}
+        lowerColor={theme.palette.background.default}
         className={classes.waveBorder}
         animationNegativeDelay={2}
       />

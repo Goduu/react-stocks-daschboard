@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Counter = ({increment, incrementIfOdd, incrementAsync, decrement, counter}) => (
-  <p>
+  <span>
     Clicked: {counter} times
     {' '}
     <button onClick={increment}>+</button>
@@ -12,7 +12,7 @@ const Counter = ({increment, incrementIfOdd, incrementAsync, decrement, counter}
     <button onClick={incrementIfOdd}>Increment if odd</button>
     {' '}
     <button onClick={() => incrementAsync()}>Increment async</button>
-  </p>
+  </span>
 )
 
 Counter.propTypes = {
