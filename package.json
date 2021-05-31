@@ -1,9 +1,6 @@
 {
   "name": "react-saas-template",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.17.0"
-  },
   "private": true,
   "homepage": "",
   "description": "Template for building an SaaS/admin application using React + Material-UI",
@@ -62,7 +59,7 @@
     "@testing-library/user-event": "^13.1.9"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
