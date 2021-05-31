@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const apiUrl = 'http://127.0.0.1:5000/api/';
-const apiUrl = 'https://stocks-studies-api.herokuapp.com:80/api/';
+const apiUrl = 'http://127.0.0.1:5000/api/';
+// const apiUrl = 'https://stocks-studies-api.herokuapp.com/api/';
 
 export function login(credentials){
   const headers = {headers: {'Content-Type': 'application/json'}}

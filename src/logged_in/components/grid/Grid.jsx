@@ -375,7 +375,7 @@ function Grid(props) {
           {_.map(gridItens.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        <button onClick={() => testfunction()}>testfunction</button>
+        {/* <button onClick={() => testfunction()}>testfunction</button> */}
       </div>
     )
   } else {
