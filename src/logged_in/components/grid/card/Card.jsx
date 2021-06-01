@@ -83,9 +83,6 @@ export function CardGrid(props) {
         content: (
             <div key={props.i} data-grid={props} className="MuiPaper-elevation1">
                 <span className="grid-menu">
-                    <span >
-                        {/* <TableSettingMenus options={options} /> */}
-                    </span>
                     <span onClick={() => props.onRemoveItem(props.i)}>
                         <CloseIcon fontSize="small" />
                     </span>

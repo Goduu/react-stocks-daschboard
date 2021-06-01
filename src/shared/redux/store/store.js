@@ -7,25 +7,8 @@ import counter from '../reducers/counter'
 import card from '../reducers/card.reducer'
 import table from '../reducers/table.reducer'
 import auth from '../reducers/auth.reducer'
+import notification from '../reducers/notification.reducer'
 import thunk from 'redux-thunk'
-
-// const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
-
-// const GridParse = createTransform(
-//   // transform state on its way to being serialized and persisted.
-//   (inboundState, key) => {
-//     // convert mySet to an Array.
-//     console.log("ALCAPAHA AQUI",inboundState.grids)
-//     return { ...inboundState, grids: JSON.stringify(inboundState.grids) };
-//   },
-//   // transform state being rehydrated
-//   (outboundState, key) => {
-//     // convert mySet back to a Set.
-//     return { ...outboundState, grids: JSON.parse(outboundState.grids) };
-//   },
-//   // define which reducers this transform gets called for.
-//   { whitelist: ['grid'] }
-// );
 
 
 const rootReducer = combineReducers({
@@ -34,6 +17,7 @@ const rootReducer = combineReducers({
   card: card,
   counter: counter,
   auth: auth,
+  notification: notification,
 })
 
 const persistedReducer = persistReducer({

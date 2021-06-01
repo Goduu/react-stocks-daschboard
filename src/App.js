@@ -5,6 +5,8 @@ import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import Pace from "./shared/components/Pace";
 import PrivateRoute from './PrivateRoute'
+import NotificationBar from './shared/components/NotificationBar'
+
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
@@ -28,6 +30,7 @@ function App() {
           </Switch>
         </Suspense>
       </MuiThemeProvider>
+      <NotificationBar/>
     </BrowserRouter>
   );
 }

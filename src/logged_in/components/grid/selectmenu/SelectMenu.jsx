@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles({
     root: {
@@ -24,17 +26,17 @@ const useStyles = makeStyles({
     },
     itens: {
         paddingTop: 100,
-        transition: 'all 300ms',
+        transition: 'all 200ms',
         width: 'auto',
         zIndex: 4,
         "&:hover": {
-            transform: 'scale(2.5)',
-            transition: 'all 400ms',
+            transform: 'scale(2)',
+            transition: 'all 200ms',
             paddingBottom: 200,
             zIndex: 3
         }
     },
-    plus:{
+    plus: {
     }
 
 });
@@ -62,8 +64,8 @@ export function SelectMenu(props) {
             .then(res => {
                 setIdentifiers(res)
             })
-    }, [props.identifier,user])
-    
+    }, [props.identifier, user])
+
 
     return (
         <div className={classes.menuWrapper}>
@@ -78,6 +80,7 @@ export function SelectMenu(props) {
                     onMouseMove={(e) => executeScroll(e)}
                     ref={myRef}
                 >
+                    <ArrowBackIosIcon />
                     {identifiers.map(el => {
                         return (
                             <span key={el} className={classes.itens} onClick={() => props.selectDashboard(el)}>
@@ -85,8 +88,10 @@ export function SelectMenu(props) {
                             </span>
                         )
                     })}
+                    <ArrowForwardIosIcon />
                 </BottomNavigation>
             </div>
         </div>
     );
 }
+

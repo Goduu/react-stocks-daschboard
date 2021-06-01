@@ -62,6 +62,22 @@ export function fetchPriceData(tick, period){
   });
 }
 
+export function deleteGrid(user, identifier){
+  const headers = {headers: {'Content-Type': 'application/json'}}
+  const data = {
+    data:  {user: user, identifier: identifier } 
+  };
+  return new Promise((resolve, reject) => {
+    axios.delete(apiUrl+'deleteGrid', data,headers)
+      .then(res => {
+        resolve(res)
+      })
+      .catch(e =>{
+        reject(e)
+      })
+  });
+}
+
 export function fetchDividendData(tick, period){
   return new Promise((resolve, reject) => {
     axios.get(apiUrl+'dividendData/?tick=' + tick + '&period=' + period)

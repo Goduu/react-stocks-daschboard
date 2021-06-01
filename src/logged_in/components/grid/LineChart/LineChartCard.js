@@ -9,8 +9,6 @@ import {
   YAxis,
   XAxis
 } from "recharts";
-import moment from 'moment'
-import format from "date-fns/format";
 import {
   Card,
   CardContent,
@@ -22,6 +20,7 @@ import {
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchPriceData } from '../../../../shared/functions/requests'
+import NoData from '../../../../shared/components/NoData'
 
 // const styles = (theme) => ({
 //   cardContentInner: {
@@ -30,7 +29,7 @@ import { fetchPriceData } from '../../../../shared/functions/requests'
 // });
 
 function labelFormatter(label) {
-  return format(new Date(label * 1000), "MMMM d, p yyyy");
+  return new Date(label * 1000).toLocaleDateString();
 }
 
 // function calculateMin(data, yKey, factor) {
@@ -42,6 +41,10 @@ function labelFormatter(label) {
 //   });
 //   return Math.round(max - max * factor);
 // }
+
+const formatXAxis = (tickItem) => {
+  return new Date(tickItem).toLocaleDateString();
+}
 
 const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months", "1 Year", "Max"];
@@ -55,11 +58,11 @@ function PriceChart(props) {
 
   let ticker = props.identifier
   useEffect(() => {
-    fetchPriceData(ticker,30)
+    fetchPriceData(ticker, 30)
       .then(res => {
         setChartData(res.data)
       })
-  }, [props.identifier,ticker])
+  }, [props.identifier, ticker])
 
   const handleClick = useCallback(
     (event) => {
@@ -126,7 +129,7 @@ function PriceChart(props) {
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
-    [setSelectedOption, handleClose,props,ticker]
+    [setSelectedOption, handleClose, props, ticker]
   );
 
   const isOpen = Boolean(anchorEl);
@@ -181,26 +184,32 @@ function PriceChart(props) {
         </Box>
         <CardContent>
           <Box height={'73px'}>
-            {/* <Box className={classes.cardContentInner} height={height}> */}
-            <ResponsiveContainer width="100%" height="100%">
+            {chartData ?
+
+              < ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
-                <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} dot={false} />
-                <YAxis domain={['dataMin-0.2*dataMin', 'dataMax+0.2*dataMax']} hide />
-                <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
-                <Tooltip
-                  labelFormatter={labelFormatter}
-                  formatter={formatter}
-                  cursor={false}
-                  contentStyle={{
-                    border: "none",
-                  }}
-                />
-              </LineChart>
+              <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} dot={false} />
+              <YAxis domain={['dataMin-0.2*dataMin', 'dataMax+0.2*dataMax']} hide />
+              <XAxis dataKey="timestamp" tickFormatter={formatXAxis} hide />
+              <Tooltip
+                labelFormatter={labelFormatter}
+                formatter={formatter}
+                cursor={false}
+                contentStyle={{
+                  border: "none",
+                  borderRadius: '5px',
+                  boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+                  color: 'black'
+                }}
+              
+              />
+            </LineChart>
             </ResponsiveContainer>
+            : <NoData />}
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </Box >
   );
 }
 
@@ -216,7 +225,7 @@ export default function LineChartCard(props) {
     type: 'chart',
     i: props.i,
     content: (
-      <div key={props.i} data-grid={props}>
+      <div key={props.i} data-grid={props} className="MuiPaper-elevation1">
         <span className="grid-menu">
           <span onClick={props.onRemoveItem}>
             <CloseIcon fontSize="small" />

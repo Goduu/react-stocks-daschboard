@@ -21,26 +21,11 @@ import {
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchDividendData } from '../../../../shared/functions/requests'
+import NoData from '../../../../shared/components/NoData'
 
-// const styles = (theme) => ({
-//   cardContentInner: {
-//     marginTop: theme.spacing(-4),
-//   },
-// });
-
-// function labelFormatter(label) {
-//   return new Date(label);
-// }
-
-// function calculateMin(data, yKey, factor) {
-//   let max = Number.POSITIVE_INFINITY;
-//   data.forEach((element) => {
-//     if (max > element[yKey]) {
-//       max = element[yKey];
-//     }
-//   });
-//   return Math.round(max - max * factor);
-// }
+function labelFormatter(label) {
+  return new Date(label * 1000).toLocaleDateString();
+}
 
 const itemHeight = 216;
 const options = ["6 Months", "1 Year", "5 Years", "Max"];
@@ -50,15 +35,17 @@ function DividendChart(props) {
   const { title } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState();
 
   let ticker = props.identifier
   useEffect(() => {
     fetchDividendData(ticker, 180)
       .then(res => {
-        setChartData(res.data)
+        if (res.data) {
+          setChartData(res.data)
+        }
       })
-  }, [props.identifier,ticker])
+  }, [props.identifier, ticker])
 
   const handleClick = useCallback(
     (event) => {
@@ -67,12 +54,12 @@ function DividendChart(props) {
     [setAnchorEl]
   );
 
-  // const formatter = useCallback(
-  //   (value) => {
-  //     return [value, title];
-  //   },
-  //   [title]
-  // );
+  const formatter = useCallback(
+    (value) => {
+      return [value, title];
+    },
+    [title]
+  );
 
   const getSubtitle = useCallback(() => {
     switch (selectedOption) {
@@ -86,7 +73,7 @@ function DividendChart(props) {
         return "Historic Period"
       default:
         return
-        // throw new Error("No branch selected in switch-statement");
+      // throw new Error("No branch selected in switch-statement");
     }
   }, [selectedOption]);
 
@@ -121,10 +108,11 @@ function DividendChart(props) {
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
-    [setSelectedOption, handleClose,props,ticker]
+    [setSelectedOption, handleClose, props, ticker]
   );
 
   const isOpen = Boolean(anchorEl);
+
   return (
     <Box height={'100px'}>
       <Card>
@@ -176,22 +164,26 @@ function DividendChart(props) {
         </Box>
         <CardContent>
           <Box height={'73px'}>
-            {/* <Box className={classes.cardContentInner} height={height}> */}
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
-                <Bar type="monotone" dataKey="value" fill="#8884d8" strokeWidth={2} dot={false} />
-                <YAxis domain={[0, 'dataMax']} hide />
-                <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide/>
-                <Tooltip
-                  labelFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')}
-                  // formatter={formatter}
-                  cursor={false}
-                  contentStyle={{
-                    border: "none",
-                  }}
-                />
-              </BarChart>
-            </ResponsiveContainer>
+            {chartData ?
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
+                  <Bar type="monotone" dataKey="value" fill="#8884d8" strokeWidth={2} dot={false} />
+                  <YAxis domain={[0, 'dataMax']} hide />
+                  <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide />
+                  <Tooltip
+                    labelFormatter={labelFormatter}
+                    formatter={formatter}
+                    cursor={false}
+                    contentStyle={{
+                      border: "none",
+                      borderRadius: '5px',
+                      boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+                      color: 'black'
+                    }}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+              : <NoData />}
           </Box>
         </CardContent>
       </Card>
