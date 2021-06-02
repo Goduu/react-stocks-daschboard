@@ -17,6 +17,7 @@ import {
   Menu,
   MenuItem,
   Box,
+  makeStyles
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchPriceData } from '../../../../shared/functions/requests'
@@ -42,6 +43,14 @@ function labelFormatter(label) {
 //   return Math.round(max - max * factor);
 // }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+      height: '100%',
+      border: '1px solid rgba(255, 255, 255, 0.12)',
+      borderRadius: '5px'
+  },
+}))
+
 const formatXAxis = (tickItem) => {
   return new Date(tickItem).toLocaleDateString();
 }
@@ -50,6 +59,8 @@ const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months", "1 Year", "Max"];
 
 function PriceChart(props) {
+  const classes = useStyles();
+
   // const { color, data, title, classes, theme, height } = props;
   const { title } = props;
   const [anchorEl, setAnchorEl] = useState(null);
@@ -134,7 +145,7 @@ function PriceChart(props) {
 
   const isOpen = Boolean(anchorEl);
   return (
-    <Box height={'100px'}>
+    <Box height={'100px'} className={classes.root}>
       <Card>
         <Box pt={2} px={2} pb={4}>
           <Box display="flex" justifyContent="space-between">
@@ -220,7 +231,9 @@ PriceChart.propTypes = {
   identifier: PropTypes.string.isRequired,
 };
 
+
 export default function LineChartCard(props) {
+
   return ({
     type: 'chart',
     i: props.i,

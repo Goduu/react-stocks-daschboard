@@ -62,6 +62,17 @@ export function fetchPriceData(tick, period){
   });
 }
 
+export function fetchNews(tick){
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl+'fetchNews/?tick=' + tick )
+      .then(res => {
+          resolve(res.data)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function deleteGrid(user, identifier){
   const headers = {headers: {'Content-Type': 'application/json'}}
   const data = {

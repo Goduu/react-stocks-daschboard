@@ -17,11 +17,13 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import Tooltip from '@material-ui/core/Tooltip';
+import RssFeedIcon from '@material-ui/icons/RssFeed';
 
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
     // { value: 'card', label: 'Card', icon: <ViewDayIcon /> },
     { value: 'table', label: 'Table', icon: <TableChartIcon /> },
+    { value: 'news', label: 'News', icon: <RssFeedIcon /> },
     { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon /> },
     { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> }];
 

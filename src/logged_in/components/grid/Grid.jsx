@@ -11,6 +11,7 @@ import ActionMenu from './actionmenu/ActionMenu';
 import LineChartCard from './LineChart/LineChartCard';
 import BarChartCard from './BarChart/BarChartCard';
 import NewDashboard from './newdashboard/NewDashboard';
+import News from './news/News';
 import { useSelector, useDispatch } from 'react-redux';
 import { notify } from '../../../shared/redux/actions/notification.actions'
 import { saveGridElements, fetchGridElements, deleteGrid } from '../../../shared/functions/requests.js';
@@ -22,8 +23,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 function Grid(props) {
 
   let initialGridItens = {
-    items: [],
-    newCounter: 0
+    items: []
   };
   const dispatch = useDispatch()
   const [gridItens, setGridItens] = useState(initialGridItens)
@@ -125,8 +125,7 @@ function Grid(props) {
         changeParams: changeParams
       }
       setGridItens({
-        items: gridItens.items.concat(NoteGrid(props)),
-        newCounter: gridItens.newCounter + 1
+        items: gridItens.items.concat(NoteGrid(props))
       });
 
     } else if (type === 'card') {
@@ -143,8 +142,7 @@ function Grid(props) {
         identifier: ticker
       }
       setGridItens({
-        items: gridItens.items.concat(CardGrid(props)),
-        newCounter: gridItens.newCounter + 1
+        items: gridItens.items.concat(CardGrid(props))
       });
 
     } else if (type === 'table') {
@@ -157,8 +155,7 @@ function Grid(props) {
         changeParams: changeParams
       }
       setGridItens({
-        items: gridItens.items.concat(TableGrid(props)),
-        newCounter: gridItens.newCounter + 1
+        items: gridItens.items.concat(TableGrid(props))
       });
 
     } else if (type === 'pricechart') {
@@ -172,8 +169,7 @@ function Grid(props) {
         changeParams: changeParams
       }
       setGridItens({
-        items: gridItens.items.concat(LineChartCard(props)),
-        newCounter: gridItens.newCounter + 1
+        items: gridItens.items.concat(LineChartCard(props))
       });
     }
 
@@ -188,19 +184,30 @@ function Grid(props) {
         changeParams: changeParams
       }
       setGridItens({
-        items: gridItens.items.concat(BarChartCard(props)),
-        newCounter: gridItens.newCounter + 1
+        items: gridItens.items.concat(BarChartCard(props))
+      });
+    }
+  
+    else if (type === 'news') {
+      props = {
+        ...props,
+        w: 3,
+        h: 2,
+        minH: 2,
+        maxH: 2,
+        minW: 3,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      setGridItens({
+        items: gridItens.items.concat(News(props))
       });
     }
 
     setGridElements(gridElements.concat({ id: iTemp, type: type, params: props.params }))
     setAllDashboards(prev => {
       prev.find(d => d.active === true).grid_elements.push({ id: iTemp, type: type, params: props.params })
-
-      // prev.find(d => {
-      //   console.log("--------", d.identifier, ticker, d)
-      //   return d.identifier === ticker
-      // }).grid_elements.concat({ id: iTemp, type: type, params: props.params })
       return prev
     })
 
@@ -219,7 +226,6 @@ function Grid(props) {
         changeParams: changeParams
       }
       gridItens_.items.push(NoteGrid(props))
-      gridItens_.newCounter += 1
 
 
     } else if (type === 'card') {
@@ -230,7 +236,6 @@ function Grid(props) {
         changeParams: changeParams,
       }
       gridItens_.items.push(CardGrid(props))
-      gridItens_.newCounter += 1
 
 
     } else if (type === 'table') {
@@ -241,7 +246,6 @@ function Grid(props) {
         changeParams: changeParams
       }
       gridItens_.items.push(TableGrid(props))
-      gridItens_.newCounter += 1
 
 
     } else if (type === 'pricechart') {
@@ -252,7 +256,6 @@ function Grid(props) {
         changeParams: changeParams
       }
       gridItens_.items.push(LineChartCard(props))
-      gridItens_.newCounter += 1
 
     }
 
@@ -264,8 +267,16 @@ function Grid(props) {
         changeParams: changeParams
       }
       gridItens_.items.push(BarChartCard(props))
-      gridItens_.newCounter += 1
 
+    }
+    else if (type === 'news') {
+      props = {
+        ...props,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(News(props))
     }
     gridElements_.push({ id: iTemp, type: type, params: params })
 
@@ -299,8 +310,7 @@ function Grid(props) {
     setGridItens(prev => {
       return {
         ...prev,
-        items: prev.items.filter((el) => el.i !== rId),
-        newCounter: prev.newCounter
+        items: prev.items.filter((el) => el.i !== rId)
       }
     }
     );
@@ -414,6 +424,7 @@ function Grid(props) {
         </ResponsiveReactGridLayout>
         <br />
         {/* <button onClick={() => dispatch(notify({type: 'info', 'msg': 'suuuucesso'}))}>testfunction</button> */}
+        {/* <News/> */}
       </div>
     )
   } else {
