@@ -73,7 +73,7 @@ function PriceChart(props) {
       .then(res => {
         setChartData(res.data)
       })
-  }, [props.identifier, ticker])
+  }, [ticker])
 
   const handleClick = useCallback(
     (event) => {
@@ -135,6 +135,7 @@ function PriceChart(props) {
       }
       fetchPriceData(ticker, period)
         .then(res => {
+          console.log('fetched', res)
           setChartData(res.data)
         })
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })

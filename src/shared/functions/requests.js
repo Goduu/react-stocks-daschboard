@@ -51,6 +51,17 @@ export function fetchGridElements(user){
   });
 }
 
+export function fetchIndicators(tick){
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl+'indicators/?tick=' + tick )
+      .then(res => {
+          resolve(res.data)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function fetchPriceData(tick, period){
   return new Promise((resolve, reject) => {
     axios.get(apiUrl+'priceData/?tick=' + tick + '&period=' + period)

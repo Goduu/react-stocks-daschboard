@@ -18,6 +18,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import Tooltip from '@material-ui/core/Tooltip';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import LabelIcon from '@material-ui/icons/Label';
 
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
@@ -25,7 +27,10 @@ const options = [
     { value: 'table', label: 'Table', icon: <TableChartIcon /> },
     { value: 'news', label: 'News', icon: <RssFeedIcon /> },
     { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon /> },
-    { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> }];
+    { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
+    { value: 'swot', label: 'SWOT Analysis', icon: <AssignmentIcon /> },
+    { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
+];
 
 const useStyles = makeStyles((theme) => ({
     fab: {

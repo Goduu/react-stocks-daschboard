@@ -199,6 +199,7 @@ export default function NewsGrid(props) {
                     <span onClick={() => props.onRemoveItem(props.i)}>
                         <CloseIcon fontSize="small" />
                     </span>
+                    <CloseIcon fontSize="small" />
                 </span>
                 <News {...props} />
             </div>)

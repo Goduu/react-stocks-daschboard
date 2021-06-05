@@ -18,6 +18,7 @@ import {
   Menu,
   MenuItem,
   Box,
+  makeStyles
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchDividendData } from '../../../../shared/functions/requests'
@@ -30,7 +31,18 @@ function labelFormatter(label) {
 const itemHeight = 216;
 const options = ["6 Months", "1 Year", "5 Years", "Max"];
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    border: '1px solid rgba(255, 255, 255, 0.12)',
+    borderRadius: '5px'
+  },
+}))
+
 function DividendChart(props) {
+  const classes = useStyles();
+
   // const { color, data, title, classes, theme, height } = props;
   const { title } = props;
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,13 +51,28 @@ function DividendChart(props) {
 
   let ticker = props.identifier
   useEffect(() => {
-    fetchDividendData(ticker, 180)
+    fetchDividendData(ticker, selectedOption)
       .then(res => {
         if (res.data) {
           setChartData(res.data)
         }
       })
-  }, [props.identifier, ticker])
+  }, [ticker])
+
+  useEffect(() => {
+    firstCall()
+  }, [])
+
+  const firstCall = useCallback(() => {
+    fetchDividendData(ticker, selectedOption)
+      .then(res => {
+        if (res.data) {
+          setChartData(res.data)
+        }
+      })
+  },
+    [selectedOption]
+  );
 
   const handleClick = useCallback(
     (event) => {
@@ -114,7 +141,7 @@ function DividendChart(props) {
   const isOpen = Boolean(anchorEl);
 
   return (
-    <Box height={'100px'}>
+    <Box height={'100px'} className={classes.root}>
       <Card>
         <Box pt={2} px={2} pb={4}>
           <Box display="flex" justifyContent="space-between">

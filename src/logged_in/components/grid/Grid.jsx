@@ -204,6 +204,38 @@ function Grid(props) {
         items: gridItens.items.concat(News(props))
       });
     }
+    else if (type === 'swot') {
+      props = {
+        ...props,
+        w: 4,
+        h: 2,
+        minH: 2,
+        minW: 4,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      setGridItens({
+        items: gridItens.items.concat(SwotGrid(props))
+      });
+    }
+    else if (type === 'indicators') {
+      props = {
+        ...props,
+        w: 4,
+        h: 2,
+        minH: 2,
+        minW: 2,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams,
+        editIndicatorList: editIndicatorList
+      }
+      setGridItens({
+        items: gridItens.items.concat(IndicatorsGrid(props))
+      });
+    }
+
 
     setGridElements(gridElements.concat({ id: iTemp, type: type, params: props.params }))
     setAllDashboards(prev => {
@@ -277,6 +309,24 @@ function Grid(props) {
         changeParams: changeParams
       }
       gridItens_.items.push(News(props))
+    }
+    else if (type === 'swot') {
+      props = {
+        ...props,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(SwotGrid(props))
+    }
+    else if (type === 'indicators') {
+      props = {
+        ...props,
+        identifier: ticker,
+        onRemoveItem: () => onRemoveItem(iTemp),
+        changeParams: changeParams
+      }
+      gridItens_.items.push(IndicatorsGrid(props))
     }
     gridElements_.push({ id: iTemp, type: type, params: params })
 

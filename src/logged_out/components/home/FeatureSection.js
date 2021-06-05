@@ -12,6 +12,9 @@ import MeassageIcon from "@material-ui/icons/Message";
 import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
 import FeatureCard from "./FeatureCard";
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import NoteIcon from '@material-ui/icons/Note';
+import FiberNewIcon from '@material-ui/icons/FiberNew';
 // import classes from "*.module.css";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,28 +23,28 @@ const iconSize = 30;
 const features = [
   {
     color: "#00C853",
-    headline: "Feature 1",
+    headline: "Price and Dividend Charts",
     text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.",
-    icon: <BuildIcon style={{ fontSize: iconSize }} />,
+      "Have an overview about the price and dividends of your stocks",
+    icon: <TrendingUpIcon style={{ fontSize: iconSize }} />,
     mdDelay: "0",
     smDelay: "0"
   },
   {
     color: "#6200EA",
-    headline: "Feature 2",
+    headline: "Notes",
     text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.",
-    icon: <CalendarTodayIcon style={{ fontSize: iconSize }} />,
+      "Make your own notes about every stocks",
+    icon: <NoteIcon style={{ fontSize: iconSize }} />,
     mdDelay: "200",
     smDelay: "200"
   },
   {
     color: "#0091EA",
-    headline: "Feature 3",
+    headline: "News",
     text:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.",
-    icon: <MeassageIcon style={{ fontSize: iconSize }} />,
+      "Never uninformed! See the latest news of your stocks",
+    icon: <FiberNewIcon style={{ fontSize: iconSize }} />,
     mdDelay: "400",
     smDelay: "0"
   },
