@@ -103,7 +103,8 @@ function PriceChart(props) {
       case "Max":
         return "Historic Period"
       default:
-        throw new Error("No branch selected in switch-statement");
+        return ""
+        // throw new Error("No branch selected in switch-statement");
     }
   }, [selectedOption]);
 
@@ -242,7 +243,7 @@ export default function LineChartCard(props) {
     content: (
       <div key={props.i} data-grid={props} className="MuiPaper-elevation1">
         <span className="grid-menu">
-          <span onClick={props.onRemoveItem}>
+          <span onClick={() => props.onRemoveItem(props.i)}>
             <CloseIcon fontSize="small" />
           </span>
         </span>

@@ -234,7 +234,7 @@ export default function BarChartCard(props) {
     content: (
       <div key={props.i} data-grid={props}>
         <span className="grid-menu">
-          <span onClick={props.onRemoveItem}>
+          <span onClick={() => props.onRemoveItem(props.i)}>
             <CloseIcon fontSize="small" />
           </span>
         </span>

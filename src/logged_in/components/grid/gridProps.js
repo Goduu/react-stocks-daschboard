@@ -15,7 +15,7 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         x: (gridItems.items.length * 2) % (gridItems.cols || 12),
         y: -99, // puts it at the bottom
         identifier: ticker,
-        onRemoveItem: functions.onRemoveItem,
+        onRemoveItem: (id) => functions.onRemoveItem(id),
         changeParams: functions.changeParams
     }
     let component
@@ -122,14 +122,14 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
 
 
 export const getRestoredItems = (g, ticker, props, functions) => {
-    let gridItems_ = {items: []}
+    let gridItems_
     let type = g.type
     let iTemp = g.id
     let params = g.params
     props = { 
         ...props,
         params: params,
-        onRemoveItem: functions.onRemoveItem,
+        onRemoveItem: (i) => functions.onRemoveItem(i),
         changeParams: functions.changeParams
          }
 
@@ -138,7 +138,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         ...props,
         
       }
-      gridItems_.items.push(NoteGrid(props))
+      gridItems_ = NoteGrid(props)
 
 
     } else if (type === 'card') {
@@ -146,7 +146,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(CardGrid(props))
+      gridItems_ = CardGrid(props)
 
 
     } else if (type === 'table') {
@@ -154,7 +154,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       props = {
         ...props,
       }
-      gridItems_.items.push(TableGrid(props))
+      gridItems_ = TableGrid(props)
 
 
     } else if (type === 'pricechart') {
@@ -162,7 +162,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(LineChartCard(props))
+      gridItems_ = LineChartCard(props)
 
     }
 
@@ -171,7 +171,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(BarChartCard(props))
+      gridItems_ = BarChartCard(props)
 
     }
     else if (type === 'news') {
@@ -179,21 +179,21 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(News(props))
+      gridItems_ = News(props)
     }
     else if (type === 'swot') {
       props = {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(SwotGrid(props))
+      gridItems_ = SwotGrid(props)
     }
     else if (type === 'indicators') {
       props = {
         ...props,
         identifier: ticker,
       }
-      gridItems_.items.push(IndicatorsGrid(props))
+      gridItems_ = IndicatorsGrid(props)
     }
     return {
         gridItems: gridItems_,

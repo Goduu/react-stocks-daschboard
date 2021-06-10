@@ -1,7 +1,7 @@
 import './Grid.css'
 import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import { WidthProvider, Responsive } from "react-grid-layout";
+import RGL,{ WidthProvider, Responsive} from "react-grid-layout";
 import _ from "lodash";
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
@@ -12,13 +12,13 @@ import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { notify } from '../../../shared/redux/actions/notification.actions'
 import { saveGridElements, fetchGridElements, deleteGrid } from '../../../shared/functions/requests.js';
-import { getCardProps,getRestoredItems } from './gridProps'
+import { getCardProps, getRestoredItems } from './gridProps'
 import { TableGrid } from './table/Table';
 import { CardGrid } from './card/Card';
 import { NoteGrid } from './note/Note';
 import { SwotGrid } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const ResponsiveReactGridLayout = WidthProvider(RGL);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
@@ -37,6 +37,7 @@ function Grid(props) {
   const user = useSelector(state => state.auth.user)
   const userId = useSelector(state => state.auth.id)
   const token = useSelector(state => state.auth.token)
+  const [firstSave, setFirstSave] = useState(true)
   // const {
   //   selectGrid
   // } = props;
@@ -45,30 +46,25 @@ function Grid(props) {
   let gridItems_; let gridElements_ = []
 
   const restoreItems = useCallback((newGridElements, newIdentifier) => {
-    gridElements_ = []
-    gridItems_ = initialGridItems
     setIdentifier(newIdentifier)
     let newLayout = []
+    setGridItems(initialGridItems)
+    setGridElements([])
     newGridElements.forEach(g => {
       onRestauringItems(g, newIdentifier, g.layout)
       newLayout.push(g.layout)
     })
-    console.log("NEW LAYUT 123", newLayout,newIdentifier)
     setLayout(newLayout)
-    setGridItems(gridItems_)
-    setGridElements(gridElements_)
   }, [gridItems, gridElements, layout, identifier])
 
   useEffect(() => {
     fetchGridElements(userId, token)
       .then(dashboards => {
-        console.log("RES FETCH ELEMEN2", dashboards)
         if (dashboards.length > 0) {
           setAllDashboards(dashboards)
           let toBeRestored = dashboards.find(r => {
             return r.active === true
           })
-          console.log("TObe rest",toBeRestored)
           if (toBeRestored) {
             restoreItems(
               toBeRestored.gridElements,
@@ -79,23 +75,28 @@ function Grid(props) {
   }, [userId, token])
 
   useEffect(() => {
-    if (gridElements && layout && gridElements.length == layout.length) {
-      console.log("Saving", layout)
-      if (identifier && gridElements && layout.length !== 0) {
-        console.log("gridelements on save", gridElements)
-        // saveGridElements(gridId, identifier, userId, gridElements,token)
-        //   .then(res => setGridId(res))
-        setAllDashboards(prev => {
-          prev.find(el => { return el.active === true }).gridElements = gridElements
-          prev.find(el => { return el.active === true }).layout = layout
-          return prev
-        })
+    console.log("Alcapaha save")
+
+    console.log("first s, gridid", firstSave, gridId)
+    if (firstSave || gridId != undefined) {
+      if (gridElements && layout && gridElements.length == layout.length) {
+        if (identifier && gridElements && layout.length !== 0) {
+          saveGridElements(gridId, identifier, userId, gridElements, token)
+            .then(res => {
+              setGridId(res)
+            })
+          setAllDashboards(prev => {
+            prev.find(el => { return el.active === true }).gridElements = gridElements
+            prev.find(el => { return el.active === true }).layout = layout
+            setFirstSave(false)
+            return prev
+          })
+        }
       }
     }
-  }, [gridElements, layout])
+  }, [layout])
 
   const createElement = (el) => {
-    console.log("create element", el)
     return el.content
     // if (el.type) {
     //   return el.content
@@ -127,7 +128,7 @@ function Grid(props) {
     });
     setGridElements(gridElements.concat({ id: iTemp, type: type, params: {} }))
     setAllDashboards(prev => {
-      prev.find(d => d.active === true).grid_elements.push({ id: iTemp, type: type, params: props.params })
+      prev.find(d => d.active === true).gridElements.push({ id: iTemp, type: type, params: props.params })
       return prev
     })
 
@@ -142,11 +143,14 @@ function Grid(props) {
     let res = getRestoredItems(g, ticker, props, functions)
 
     setGridElements(prev => {
-      console.log("PRev rest", prev)
-      prev.items.push(res.gridElements)
+      prev.push(res.gridElements)
       return prev
     })
-    setGridItems(res.gridItems);
+    setGridItems(prev => {
+      prev.items.push(res.gridItems)
+      return prev
+    }
+    );
 
 
   }
@@ -160,11 +164,10 @@ function Grid(props) {
   }
 
   const onLayoutChange = useCallback((layout_) => {
+    console.log("LAYOUT CHANGE")
 
-    console.log("layoutchange", layout_, gridElements)
     setGridElements(prev => {
       if (prev) {
-        console.log("PREVEZERA", prev)
         prev.forEach(g => {
           g['layout'] = layout_.find(l => l.i === g.id)
         })
@@ -176,7 +179,6 @@ function Grid(props) {
 
 
   function changeParams(params) {
-    console.log("Change params", params)
     setGridElements(prev => {
       var foundIndex = prev.findIndex(x => x.id === params.id);
       prev[foundIndex].params = params.content;
@@ -185,7 +187,7 @@ function Grid(props) {
     );
 
   }
-  function onRemoveItem(rId) {
+  function onRemoveItem(rId, a) {
     setGridItems(prev => {
       return {
         ...prev,
@@ -198,7 +200,7 @@ function Grid(props) {
     }
     );
     setAllDashboards(prev => {
-      prev.find(d => d.active === true).grid_elements.filter(el => el.id !== rId)
+      prev.find(d => d.active === true).gridElements.filter(el => el.id !== rId)
       return prev
     })
 
@@ -213,7 +215,7 @@ function Grid(props) {
         }
         return d
       })
-      prev.push({ active: true, grid_elements: [], identifier: ticker, layout: [] })
+      prev.push({ active: true, gridElements: [], identifier: ticker, layout: [] })
       return prev
     })
     setGridItems(initialGridItems)
@@ -221,8 +223,6 @@ function Grid(props) {
     setIdentifier(ticker)
 
     onAddItem('card', ticker)
-
-
   }
 
   const newDashboard = () => {
@@ -247,9 +247,8 @@ function Grid(props) {
       return
     })
     if (selectedDashboard) {
-      console.log("RESTORING.....", selectedDashboard)
       restoreItems(
-        selectedDashboard.grid_elements,
+        selectedDashboard.gridElements,
         selectedDashboard.layout,
         selectedDashboard.identifier)
     }
@@ -278,7 +277,6 @@ function Grid(props) {
     }).catch(e => {
       dispatch(notify({ type: 'error', 'msg': 'error' }))
     })
-    console.log("Alcapaha delete", identifier, "gto", next)
     if (next) {
       selectDashboard(next)
     } else {
@@ -302,7 +300,7 @@ function Grid(props) {
           {_.map(gridItems.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        <button onClick={() => console.log("gridElements,griitems", gridElements,gridItems)}>testfunction</button>
+        <button onClick={() => console.log("gridElements,griitems,allDashboards", gridElements, gridItems, allDashboards)}>testfunction</button>
         {/* <News/> */}
       </div>
     )

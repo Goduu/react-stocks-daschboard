@@ -29,16 +29,16 @@ export function saveGridElements(gridId,identifier, userId, gridElements,token) 
   const data = 
     { id:gridId, identifier: identifier, userId: userId, gridElements: gridElements}
   
-  // return new Promise((resolve, reject) => {
-  //   axios.put(apiUrl + 'grid/' + gridId, data, headers)
-  //     .then(res => {
-  //       console.log("Res save grid", res)
-  //       resolve(res.data)
-  //     })
-  //     .catch(e => {
-  //       reject(e)
-  //     })
-  // });
+  return new Promise((resolve, reject) => {
+    axios.put(apiUrl + 'grid/' + gridId, data, headers)
+      .then(res => {
+        console.log("Res save grid", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
 }
 
 export function fetchGridElements(userId, token) {
