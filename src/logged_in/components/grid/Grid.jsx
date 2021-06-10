@@ -3,79 +3,88 @@ import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
-import { TableGrid } from './table/Table';
-import { CardGrid } from './card/Card';
-import { NoteGrid } from './note/Note';
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import LineChartCard from './LineChart/LineChartCard';
 import BarChartCard from './BarChart/BarChartCard';
-import NewDashboard from './newdashboard/NewDashboard';
 import News from './news/News';
+import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import { notify } from '../../../shared/redux/actions/notification.actions'
 import { saveGridElements, fetchGridElements, deleteGrid } from '../../../shared/functions/requests.js';
-
+import { getCardProps,getRestoredItems } from './gridProps'
+import { TableGrid } from './table/Table';
+import { CardGrid } from './card/Card';
+import { NoteGrid } from './note/Note';
+import { SwotGrid } from './swot/Swot';
+import { IndicatorsGrid } from './indicators/Indicators';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
 function Grid(props) {
 
-  let initialGridItens = {
+  let initialGridItems = {
     items: []
   };
   const dispatch = useDispatch()
-  const [gridItens, setGridItens] = useState(initialGridItens)
+  const [gridItems, setGridItems] = useState(initialGridItems)
   const [gridElements, setGridElements] = useState([])
   const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
   const [identifier, setIdentifier] = useState(undefined)
+  const [gridId, setGridId] = useState(undefined)
   const user = useSelector(state => state.auth.user)
+  const userId = useSelector(state => state.auth.id)
+  const token = useSelector(state => state.auth.token)
   // const {
   //   selectGrid
   // } = props;
 
   // useEffect(selectGrid, [selectGrid]);
-  let gridItens_; let gridElements_ = []
+  let gridItems_; let gridElements_ = []
 
-  const restoreItens = useCallback((newGridElements, newLayout, newIdentifier) => {
+  const restoreItems = useCallback((newGridElements, newIdentifier) => {
     gridElements_ = []
-    gridItens_ = initialGridItens
+    gridItems_ = initialGridItems
     setIdentifier(newIdentifier)
-    setLayout(newLayout)
-
-    newLayout.forEach(l => {
-      let g = newGridElements.find(g => l.i === g.id)
-      onRestauringItems(g, newIdentifier, l)
+    let newLayout = []
+    newGridElements.forEach(g => {
+      onRestauringItems(g, newIdentifier, g.layout)
+      newLayout.push(g.layout)
     })
-    setGridItens(gridItens_)
+    console.log("NEW LAYUT 123", newLayout,newIdentifier)
+    setLayout(newLayout)
+    setGridItems(gridItems_)
     setGridElements(gridElements_)
-  }, [gridItens, gridElements, layout, identifier])
+  }, [gridItems, gridElements, layout, identifier])
 
   useEffect(() => {
-    fetchGridElements(user)
+    fetchGridElements(userId, token)
       .then(dashboards => {
+        console.log("RES FETCH ELEMEN2", dashboards)
         if (dashboards.length > 0) {
           setAllDashboards(dashboards)
-          let toBeRestored = dashboards.filter(r => {
+          let toBeRestored = dashboards.find(r => {
             return r.active === true
-          })[0]
+          })
+          console.log("TObe rest",toBeRestored)
           if (toBeRestored) {
-            restoreItens(
-              toBeRestored.grid_elements,
-              toBeRestored.layout,
+            restoreItems(
+              toBeRestored.gridElements,
               toBeRestored.identifier)
           }
         }
       })
-  }, [user])
+  }, [userId, token])
 
   useEffect(() => {
-    if (gridElements.length == layout.length) {
+    if (gridElements && layout && gridElements.length == layout.length) {
       console.log("Saving", layout)
       if (identifier && gridElements && layout.length !== 0) {
-        saveGridElements(identifier, user, gridElements, layout)
+        console.log("gridelements on save", gridElements)
+        // saveGridElements(gridId, identifier, userId, gridElements,token)
+        //   .then(res => setGridId(res))
         setAllDashboards(prev => {
           prev.find(el => { return el.active === true }).gridElements = gridElements
           prev.find(el => { return el.active === true }).layout = layout
@@ -86,16 +95,18 @@ function Grid(props) {
   }, [gridElements, layout])
 
   const createElement = (el) => {
-    if (el.type) {
-      return el.content
-    } else {
-      return (
-        <div key={el.i} data-grid={el} className="grid-wrapper">
-          {el.content ? el.content : ''}
-        </div>
-      );
+    console.log("create element", el)
+    return el.content
+    // if (el.type) {
+    //   return el.content
+    // } else {
+    //   return (
+    //     <div key={el.i} data-grid={el} className="grid-wrapper">
+    //       {el.content ? el.content : ''}
+    //     </div>
+    //   );
 
-    }
+    // }
   }
   const randomId = () => {
     // Math.random should be unique because of its seeding algorithm.
@@ -106,138 +117,15 @@ function Grid(props) {
 
   const onAddItem = (type, ticker, iTemp = randomId()) => {
     ticker = ticker ? ticker : identifier
-
-    let props = {
-      params: {},
-      i: iTemp,
-      x: (gridItens.items.length * 2) % (gridItens.cols || 12),
-      y: -99, // puts it at the bottom
+    const functions = {
+      onRemoveItem: onRemoveItem,
+      changeParams: changeParams
     }
-    if (type === 'note') {
-      props = {
-        ...props,
-        w: 3,
-        h: 2,
-        minH: 2,
-        maxW: 3,
-        minW: 2,
-        onRemoveItem: onRemoveItem,
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(NoteGrid(props))
-      });
-
-    } else if (type === 'card') {
-      props = {
-        ...props,
-        w: 3,
-        h: 2,
-        minW: 2,
-        maxW: 3,
-        minH: 2,
-        maxH: 2,
-        onRemoveItem: onRemoveItem,
-        changeParams: changeParams,
-        identifier: ticker
-      }
-      setGridItens({
-        items: gridItens.items.concat(CardGrid(props))
-      });
-
-    } else if (type === 'table') {
-
-      props = {
-        ...props,
-        w: 6,
-        h: 2,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(TableGrid(props))
-      });
-
-    } else if (type === 'pricechart') {
-      props = {
-        ...props,
-        w: 5,
-        h: 2,
-        params: { period: "1 Month" },
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(LineChartCard(props))
-      });
-    }
-
-    else if (type === 'dividendchart') {
-      props = {
-        ...props,
-        w: 5,
-        h: 2,
-        params: { period: "6 Months" },
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(BarChartCard(props))
-      });
-    }
-  
-    else if (type === 'news') {
-      props = {
-        ...props,
-        w: 3,
-        h: 2,
-        minH: 2,
-        maxH: 2,
-        minW: 3,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(News(props))
-      });
-    }
-    else if (type === 'swot') {
-      props = {
-        ...props,
-        w: 4,
-        h: 2,
-        minH: 2,
-        minW: 4,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      setGridItens({
-        items: gridItens.items.concat(SwotGrid(props))
-      });
-    }
-    else if (type === 'indicators') {
-      props = {
-        ...props,
-        w: 4,
-        h: 2,
-        minH: 2,
-        minW: 2,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams,
-        editIndicatorList: editIndicatorList
-      }
-      setGridItens({
-        items: gridItens.items.concat(IndicatorsGrid(props))
-      });
-    }
-
-
-    setGridElements(gridElements.concat({ id: iTemp, type: type, params: props.params }))
+    setGridItems(prev => {
+      prev.items.push(getCardProps(type, functions, gridItems, ticker, iTemp))
+      return prev
+    });
+    setGridElements(gridElements.concat({ id: iTemp, type: type, params: {} }))
     setAllDashboards(prev => {
       prev.find(d => d.active === true).grid_elements.push({ id: iTemp, type: type, params: props.params })
       return prev
@@ -245,106 +133,47 @@ function Grid(props) {
 
   }
   const onRestauringItems = (g, ticker, props) => {
-    let type = g.type
-    let iTemp = g.id
-    let params = g.params
-    props = { ...props, params: params }
-    ticker = ticker ? ticker : identifier
 
-    if (type === 'note') {
-      props = {
-        ...props,
-        onRemoveItem: onRemoveItem,
-        changeParams: changeParams
-      }
-      gridItens_.items.push(NoteGrid(props))
-
-
-    } else if (type === 'card') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: onRemoveItem,
-        changeParams: changeParams,
-      }
-      gridItens_.items.push(CardGrid(props))
-
-
-    } else if (type === 'table') {
-
-      props = {
-        ...props,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(TableGrid(props))
-
-
-    } else if (type === 'pricechart') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(LineChartCard(props))
-
+    const functions = {
+      onRemoveItem: onRemoveItem,
+      changeParams: changeParams
     }
 
-    else if (type === 'dividendchart') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(BarChartCard(props))
+    let res = getRestoredItems(g, ticker, props, functions)
 
-    }
-    else if (type === 'news') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(News(props))
-    }
-    else if (type === 'swot') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(SwotGrid(props))
-    }
-    else if (type === 'indicators') {
-      props = {
-        ...props,
-        identifier: ticker,
-        onRemoveItem: () => onRemoveItem(iTemp),
-        changeParams: changeParams
-      }
-      gridItens_.items.push(IndicatorsGrid(props))
-    }
-    gridElements_.push({ id: iTemp, type: type, params: params })
+    setGridElements(prev => {
+      console.log("PRev rest", prev)
+      prev.items.push(res.gridElements)
+      return prev
+    })
+    setGridItems(res.gridItems);
 
 
   }
 
   // We're using the cols coming back from this to calculate where to add new items.
   const onBreakpointChange = (breakpoint, cols) => {
-    // setGridItens({
+    // setGridItems({
     //   breakpoint: breakpoint,
     //   cols: cols
     // });
   }
 
-  const onLayoutChange = (layout_) => {
-    console.log("layoutchange", layout, layout_)
+  const onLayoutChange = useCallback((layout_) => {
+
+    console.log("layoutchange", layout_, gridElements)
+    setGridElements(prev => {
+      if (prev) {
+        console.log("PREVEZERA", prev)
+        prev.forEach(g => {
+          g['layout'] = layout_.find(l => l.i === g.id)
+        })
+      }
+      return prev
+    })
     setLayout(layout_)
-  }
+  }, [gridElements, layout])
+
 
   function changeParams(params) {
     console.log("Change params", params)
@@ -357,7 +186,7 @@ function Grid(props) {
 
   }
   function onRemoveItem(rId) {
-    setGridItens(prev => {
+    setGridItems(prev => {
       return {
         ...prev,
         items: prev.items.filter((el) => el.i !== rId)
@@ -387,7 +216,7 @@ function Grid(props) {
       prev.push({ active: true, grid_elements: [], identifier: ticker, layout: [] })
       return prev
     })
-    setGridItens(initialGridItens)
+    setGridItems(initialGridItems)
     setGridElements([])
     setIdentifier(ticker)
 
@@ -397,7 +226,7 @@ function Grid(props) {
   }
 
   const newDashboard = () => {
-    setGridItens(initialGridItens)
+    setGridItems(initialGridItems)
     setGridElements([])
     setLayout([])
     setIdentifier(undefined)
@@ -405,7 +234,7 @@ function Grid(props) {
   }
 
   const selectDashboard = (el) => {
-    setGridItens(initialGridItens)
+    setGridItems(initialGridItems)
     setGridElements([])
     let selectedDashboard
     allDashboards.map(d => {
@@ -419,7 +248,7 @@ function Grid(props) {
     })
     if (selectedDashboard) {
       console.log("RESTORING.....", selectedDashboard)
-      restoreItens(
+      restoreItems(
         selectedDashboard.grid_elements,
         selectedDashboard.layout,
         selectedDashboard.identifier)
@@ -470,10 +299,10 @@ function Grid(props) {
           rowHeight={99}
           columnHeight={100}
         >
-          {_.map(gridItens.items, el => createElement(el))}
+          {_.map(gridItems.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        {/* <button onClick={() => dispatch(notify({type: 'info', 'msg': 'suuuucesso'}))}>testfunction</button> */}
+        <button onClick={() => console.log("gridElements,griitems", gridElements,gridItems)}>testfunction</button>
         {/* <News/> */}
       </div>
     )

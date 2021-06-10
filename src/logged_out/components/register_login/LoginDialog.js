@@ -16,7 +16,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 import { login } from '../../../shared/functions/requests.js';
 import { useDispatch } from 'react-redux';
-import {setToken, setUser, setRoles} from '../../../shared/redux/actions/auth.actions.js'
+import {setToken, setUser, setRoles,setId} from '../../../shared/redux/actions/auth.actions.js'
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -43,7 +43,7 @@ const styles = (theme) => ({
 function loginUser(user, password) {
   return new Promise((resolve, reject) => {
      
-    login({user: user, password: password})
+    login({email: user, password: password})
       .then(res => {
         resolve(res.data)
       }).catch( e =>reject(e))
@@ -71,9 +71,11 @@ function LoginDialog(props) {
     setStatusMessage(null);
     loginUser(loginEmail.current.value, loginPassword.current.value)
       .then(res => {
-        dispatch(setToken(res.token))
-        dispatch(setUser(loginEmail.current.value))
-        dispatch(setRoles(res.roles))
+        console.log("FINISHED", res.authToken,res.info.email,res.info.roles)
+        dispatch(setToken(res.authToken))
+        dispatch(setUser(res.info.email))
+        dispatch(setRoles(res.info.roles))
+        dispatch(setId(res.info.id))
         setIsLoading(false);
         history.push("/c/dashboard");
       })

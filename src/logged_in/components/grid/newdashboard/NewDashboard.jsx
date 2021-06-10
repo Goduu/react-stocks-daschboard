@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Avatar from '@material-ui/core/Avatar';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -75,23 +76,25 @@ export default function NewDashboard(props) {
     const classes = useStyles();
     const [tickers, setTickers] = useState(undefined)
     const [exchange, setExchange] = useState('US')
+    const token = useSelector(state => state.auth.token)
 
     useEffect(() => {
-        getTickers(0, 'AP', 'US')
+        getTickers(0, 'AP', 'US',token)
             .then(res => {
+                console.log("Res-----", res)
                 setTickers(res)
             })
     }, [])
 
     const filter = (e) => {
-        getTickers(0, e.target.value, exchange)
+        getTickers(0, e.target.value, exchange,token)
             .then(res => {
                 setTickers(res)
             })
     }
     const handleChange = (e) => {
         setExchange(e.target.value)
-        getTickers(0, e.target.value, e.target.value)
+        getTickers(0, e.target.value, e.target.value,token)
             .then(res => {
                 setTickers(res)
             })
@@ -149,6 +152,7 @@ export default function NewDashboard(props) {
             </>
         )
     } else {
+        
         return null
     }
 }

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Stockinfos from './StockInfos';
 
 const useStyles = makeStyles({
     root: {
@@ -30,43 +31,43 @@ const useStyles = makeStyles({
 function OutlinedCard(props) {
     const classes = useStyles();
     let ticker = props.identifier
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [currency, setCurrency] = useState('')
+    const [data, setData] = useState(undefined)
+    const [dialogOpen, setDialogOpen] = useState(false)
 
     useEffect(() => {
         getQuoteData(ticker)
             .then(res => {
-                setName(res.name)
-                setPrice(res.price)
-                setCurrency(res.currency)
+                console.log("Alcapaha data", res)
+                setData(res)
             })
     }, [ticker])
 
-    if (ticker) {
+    if (data) {
         return (
+            <>
+            {dialogOpen && 
+            <Stockinfos onClose={() => setDialogOpen(false)} data={data}/> }
             <Card className={classes.root} variant="outlined">
                 {/* card:{cards.name} */}
                 <CardContent>
                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {name ? name : <LinearProgress/>}
+                        {data.longName ? data.longName : <LinearProgress/>}
                     </Typography>
                     <Typography variant="h5" component="h2">
                         {ticker}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        {currency} {price}
+                        {data.currency} {data.price}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        Technology
-                        <br />
-                        {'"Lorem ipslum here linder"'}
+                        {data.sector}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" >Learn More</Button>
+                    <Button size="small" onClick={() => setDialogOpen(true)}>Learn More</Button>
                 </CardActions>
             </Card>
+            </>
         );
     } else {
         return null

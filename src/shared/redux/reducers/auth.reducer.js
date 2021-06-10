@@ -1,4 +1,4 @@
-import { SET_TOKEN,SET_USER,SET_ROLES } from '../actions/auth.actions'
+import { SET_TOKEN,SET_USER,SET_ROLES, SET_ID } from '../actions/auth.actions'
 
 const initialState = {
   token: '',
@@ -21,6 +21,10 @@ const authentication = (state = initialState, action) => {
     case SET_ROLES:
       stateTemp = {...state}
       stateTemp.roles = action.payload
+      return stateTemp
+    case SET_ID:
+      stateTemp = {...state}
+      stateTemp.id = action.payload
       return stateTemp
     default:
       return state

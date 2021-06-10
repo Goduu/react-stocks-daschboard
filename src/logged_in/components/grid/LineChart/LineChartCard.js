@@ -30,7 +30,7 @@ import NoData from '../../../../shared/components/NoData'
 // });
 
 function labelFormatter(label) {
-  return new Date(label * 1000).toLocaleDateString();
+  return new Date(Date.parse(label)).toLocaleDateString();
 }
 
 // function calculateMin(data, yKey, factor) {
@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const formatXAxis = (tickItem) => {
-  return new Date(tickItem).toLocaleDateString();
+  console.log("DATE ", tickItem)
+  return new Date.parse(tickItem).toLocaleDateString();
 }
 
 const itemHeight = 216;
@@ -71,7 +72,7 @@ function PriceChart(props) {
   useEffect(() => {
     fetchPriceData(ticker, 30)
       .then(res => {
-        setChartData(res.data)
+        setChartData(res.PriceHistory)
       })
   }, [ticker])
 
@@ -200,9 +201,9 @@ function PriceChart(props) {
 
               < ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
-              <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="close" stroke="#8884d8" strokeWidth={2} dot={false} />
               <YAxis domain={['dataMin-0.2*dataMin', 'dataMax+0.2*dataMax']} hide />
-              <XAxis dataKey="timestamp" tickFormatter={formatXAxis} hide />
+              <XAxis dataKey="date" tickFormatter={formatXAxis} hide />
               <Tooltip
                 labelFormatter={labelFormatter}
                 formatter={formatter}

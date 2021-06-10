@@ -24,9 +24,11 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchDividendData } from '../../../../shared/functions/requests'
 import NoData from '../../../../shared/components/NoData'
 
+// https://codesandbox.io/s/8m6n8?file=/src/Chart.jsx candelstick chart
 function labelFormatter(label) {
-  return new Date(label * 1000).toLocaleDateString();
+  return new Date(Date.parse(label)).toLocaleDateString();
 }
+
 
 const itemHeight = 216;
 const options = ["6 Months", "1 Year", "5 Years", "Max"];
@@ -53,8 +55,8 @@ function DividendChart(props) {
   useEffect(() => {
     fetchDividendData(ticker, selectedOption)
       .then(res => {
-        if (res.data) {
-          setChartData(res.data)
+        if (res.PriceHistory) {
+          setChartData(res.PriceHistory)
         }
       })
   }, [ticker])
@@ -194,9 +196,9 @@ function DividendChart(props) {
             {chartData ?
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
-                  <Bar type="monotone" dataKey="value" fill="#8884d8" strokeWidth={2} dot={false} />
+                  <Bar type="monotone" dataKey="adjDividend" fill="#8884d8" strokeWidth={2} dot={false} />
                   <YAxis domain={[0, 'dataMax']} hide />
-                  <XAxis dataKey="timestamp" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide />
+                  <XAxis dataKey="date" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide />
                   <Tooltip
                     labelFormatter={labelFormatter}
                     formatter={formatter}
