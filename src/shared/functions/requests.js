@@ -60,6 +60,25 @@ export function fetchGridElements(userId, token) {
   });
 }
 
+export function getGridsIdentifiers(userId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'grid/' + userId + '/tickers', headers)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
 export function fetchNews(tick) {
   return new Promise((resolve, reject) => {
     axios.get(apiUrl + 'fetchNews/?tick=' + tick)
@@ -87,9 +106,23 @@ export function deleteGrid(user, identifier) {
   });
 }
 
-export function fetchPriceData(tick, period) {
+export function fetchPriceData(ticker, period,token) {
+
+  const data = {
+    ticker: ticker,
+    amount: period,
+    period: 'DAY',
+    granularity: 'DAILY'
+  }
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/priceHistory/' + tick)
+    axios.post(apiUrl + 'stocks/priceHistory',data,headers)
       .then(res => {
         console.log("fetchPriceData", res)
         resolve(res.data)
@@ -99,9 +132,23 @@ export function fetchPriceData(tick, period) {
   });
 }
 
-export function fetchDividendData(tick, period) {
+export function fetchDividendData(ticker, period, token) {
+
+  const data = {
+    ticker: ticker,
+    amount: period,
+    period: 'DAY',
+  }
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/dividendHistory/' + tick)
+    axios.post(apiUrl + 'stocks/dividendHistory',data,headers)
       .then(res => {
         console.log("fetchDividendData", res)
         resolve(res.data)
@@ -152,17 +199,17 @@ export function getTickers(page, search, exchange, token) {
   });
 }
 
-export function getGridsIdentifiers(user) {
-  return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'getUserIdentifiers/?user=' + user)
-      .then(res => {
-        res = JSON.parse(res.data).map(el => el.identifier)
-        resolve(res)
+// export function getGridsIdentifiers(user) {
+//   return new Promise((resolve, reject) => {
+//     axios.get(apiUrl + 'getUserIdentifiers/?user=' + user)
+//       .then(res => {
+//         res = JSON.parse(res.data).map(el => el.identifier)
+//         resolve(res)
 
-      })
-      .catch(error => reject(error))
-  });
-}
+//       })
+//       .catch(error => reject(error))
+//   });
+// }
 
 
 export function addUser(email, password) {
@@ -204,72 +251,5 @@ export function get_user_data(email) {
   });
 }
 
-export function get_analysts_info() {
-  axios.get(apiUrl + 'analyst_info/')
-    .then(res => {
-      let result = {}
-      result['earnings_estimate'] = JSON.parse(res.data[0])
-      result['revenue_estimate'] = JSON.parse(res.data[1])
-      result['earnings_history'] = JSON.parse(res.data[2])
-      result['EPS_trend'] = JSON.parse(res.data[3])
-      result['EPS_revisions'] = JSON.parse(res.data[3])
-      result['growth_estimates'] = JSON.parse(res.data[3])
-      return result
-    })
-}
-
-export function get_live_price(tick) {
-  return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'price/?tick=' + tick)
-      .then(res => {
-        if (res.data.price) {
-          resolve(res.data.price.toFixed(2))
-        }
-      })
-      .catch(error => reject(error))
-  });
-}
 
 
-export function getEarningsHistory(tick) {
-  return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'get_earnings_history/?tick=' + tick)
-      .then(res => {
-        resolve(res.data)
-      })
-  });
-}
-
-export function getData(tick) {
-  return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'data/?tick=' + tick)
-      .then(res => {
-        let close_data = res.data.close
-        let values = []
-        let dates = []
-        for (let date in close_data) {
-          if (date && close_data[date]) {
-            values.push(close_data[date].toFixed(2))
-            dates.push(new Date(date * 1).toLocaleDateString())
-          }
-        }
-        resolve([dates, values])
-      })
-  });
-}
-
-export function getDividends(tick) {
-  return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'dividends/?tick=' + tick)
-      .then(res => {
-        let dividend = res.data.dividend
-        let values = []
-        let dates = []
-        for (let date in dividend) {
-          values.push(dividend[date].toFixed(2))
-          dates.push(new Date(date * 1).toLocaleDateString())
-        }
-        resolve([dates, values])
-      })
-  });
-}

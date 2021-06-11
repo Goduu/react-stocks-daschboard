@@ -22,6 +22,7 @@ import {
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchPriceData } from '../../../../shared/functions/requests'
 import NoData from '../../../../shared/components/NoData'
+import { useSelector} from 'react-redux';
 
 // const styles = (theme) => ({
 //   cardContentInner: {
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const formatXAxis = (tickItem) => {
   console.log("DATE ", tickItem)
-  return new Date.parse(tickItem).toLocaleDateString();
+  return tickItem;
 }
 
 const itemHeight = 216;
@@ -67,14 +68,29 @@ function PriceChart(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState([]);
+  const token = useSelector(state => state.auth.token)
+
 
   let ticker = props.identifier
   useEffect(() => {
-    fetchPriceData(ticker, 30)
+    fetchPriceData(ticker, selectedOption,token)
       .then(res => {
-        setChartData(res.PriceHistory)
+        res = res.PriceHistory.forEach(p => {
+          return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
+        })
+        setChartData(res)
       })
-  }, [ticker])
+  }, [ticker, token])
+
+  useEffect(() => {
+    firstCall()
+  }, [])
+
+  const firstCall = useCallback(() => {
+    selectOption(props.params.period)
+  },
+    [props.params.period]
+  );
 
   const handleClick = useCallback(
     (event) => {
@@ -130,15 +146,18 @@ function PriceChart(props) {
           period = 365
           break;
         case "Max":
-          period = -1;
+          period = 30000;
           break;
         default:
           period = 30
       }
-      fetchPriceData(ticker, period)
+      fetchPriceData(ticker, period,token)
         .then(res => {
-          console.log('fetched', res)
-          setChartData(res.data)
+          res = res.PriceHistory.map(p => {
+            return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
+          })
+          console.log('fetched', res, token)
+          setChartData(res)
         })
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
@@ -204,7 +223,7 @@ function PriceChart(props) {
               <LineChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
               <Line type="monotone" dataKey="close" stroke="#8884d8" strokeWidth={2} dot={false} />
               <YAxis domain={['dataMin-0.2*dataMin', 'dataMax+0.2*dataMax']} hide />
-              <XAxis dataKey="date" tickFormatter={formatXAxis} hide />
+              <XAxis dataKey="date" hide />
               <Tooltip
                 labelFormatter={labelFormatter}
                 formatter={formatter}

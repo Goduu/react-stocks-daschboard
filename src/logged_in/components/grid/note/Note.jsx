@@ -5,7 +5,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-const CssTextField = withStyles({
+const NoteTextField = withStyles({
     root: {
         border: 'none',
         '& label.Mui-focused': {
@@ -48,18 +48,21 @@ function NoteCard(props) {
 
     const changeParams = (e) =>{
         setText(e.target.value)
+    }
+    const saveParams = (e) =>{
         props.changeParams({id: props.i, content:{text: e.target.value}})
     }
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent>
-                <CssTextField
+                <NoteTextField
                     className={classes.margin}
                     label="Note"
                     variant="outlined"
                     id="custom-css-outlined-input"
                     multiline
                     onChange={changeParams}
+                    onBlur={saveParams}
                     value={text}
                 />
             </CardContent>

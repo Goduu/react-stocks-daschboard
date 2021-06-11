@@ -76,10 +76,11 @@ export default function NewDashboard(props) {
     const classes = useStyles();
     const [tickers, setTickers] = useState(undefined)
     const [exchange, setExchange] = useState('US')
+    const [search, setSearch] = useState('-all-')
     const token = useSelector(state => state.auth.token)
 
     useEffect(() => {
-        getTickers(0, 'AP', 'US',token)
+        getTickers(0, 'A', 'US',token)
             .then(res => {
                 console.log("Res-----", res)
                 setTickers(res)
@@ -87,14 +88,16 @@ export default function NewDashboard(props) {
     }, [])
 
     const filter = (e) => {
-        getTickers(0, e.target.value, exchange,token)
+        let search_ = e.target.value === "" ? "-all-" : e.target.value
+        setSearch(search)
+        getTickers(0, search, exchange,token)
             .then(res => {
                 setTickers(res)
             })
     }
     const handleChange = (e) => {
         setExchange(e.target.value)
-        getTickers(0, e.target.value, e.target.value,token)
+        getTickers(0, search, e.target.value,token)
             .then(res => {
                 setTickers(res)
             })
@@ -115,7 +118,7 @@ export default function NewDashboard(props) {
                             onChange={handleChange}
 
                         >
-                            <MenuItem value={'SA'} >
+                            <MenuItem value={'BVMF'} >
                                 <span className={classes.formItem}>
                                     <Avatar alt="Remy Sharp" src={imgUrl + 'br.png'} className={classes.small} /> Brazil
                                 </span>
@@ -130,7 +133,7 @@ export default function NewDashboard(props) {
                                     <Avatar alt="Remy Sharp" src={imgUrl + 'fr.png'} className={classes.small} /> France
                                 </span>
                             </MenuItem>
-                            <MenuItem value={'F'}>
+                            <MenuItem value={'XETR'}>
                                 <span className={classes.formItem}>
                                     <Avatar alt="Remy Sharp" src={imgUrl + 'de.png'} className={classes.small} /> Germany
                                 </span>

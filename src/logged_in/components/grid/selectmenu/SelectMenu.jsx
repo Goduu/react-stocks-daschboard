@@ -46,25 +46,26 @@ export function SelectMenu(props) {
     const [value, setValue] = useState(0);
     const [identifiers, setIdentifiers] = useState([]);
     const myRef = useRef(null)
-    const user = useSelector(state => state.auth.user)
+    const userId = useSelector(state => state.auth.id)
+    const token = useSelector(state => state.auth.token)
 
     const executeScroll = (e) => {
         myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
     }
 
     useEffect(() => {
-        getGridsIdentifiers(user)
+        getGridsIdentifiers(userId, token)
             .then(res => {
                 setIdentifiers(res)
             })
-    }, [user])
+    }, [userId])
 
     useEffect(() => {
-        getGridsIdentifiers(user)
+        getGridsIdentifiers(userId, token)
             .then(res => {
                 setIdentifiers(res)
             })
-    }, [props.identifier, user])
+    }, [props.identifier, userId])
 
 
     return (

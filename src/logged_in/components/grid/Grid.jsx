@@ -43,7 +43,6 @@ function Grid(props) {
   // } = props;
 
   // useEffect(selectGrid, [selectGrid]);
-  let gridItems_; let gridElements_ = []
 
   const restoreItems = useCallback((newGridElements, newIdentifier) => {
     setIdentifier(newIdentifier)
@@ -55,7 +54,7 @@ function Grid(props) {
       newLayout.push(g.layout)
     })
     setLayout(newLayout)
-  }, [gridItems, gridElements, layout, identifier])
+  }, [gridItems, gridElements, layout, identifier, userId,gridId])
 
   useEffect(() => {
     fetchGridElements(userId, token)
@@ -66,6 +65,8 @@ function Grid(props) {
             return r.active === true
           })
           if (toBeRestored) {
+            console.log("TOBERRESTORED", toBeRestored)
+            setGridId(toBeRestored.id)
             restoreItems(
               toBeRestored.gridElements,
               toBeRestored.identifier)
@@ -178,15 +179,22 @@ function Grid(props) {
   }, [gridElements, layout])
 
 
-  function changeParams(params) {
+  function changeParams(params){
+    let newGridEl
     setGridElements(prev => {
       var foundIndex = prev.findIndex(x => x.id === params.id);
       prev[foundIndex].params = params.content;
+      newGridEl = prev
       return prev
     }
     );
+    console.log("CHange params", gridId, identifier, userId, newGridEl, token)
+    if (typeof identifier !== 'undefined' && typeof gridId !== 'undefined' && token) {
+      saveGridElements(gridId, identifier, userId, newGridEl, token)
+    }
 
   }
+  
   function onRemoveItem(rId, a) {
     setGridItems(prev => {
       return {
@@ -226,6 +234,7 @@ function Grid(props) {
   }
 
   const newDashboard = () => {
+    setGridId(undefined)
     setGridItems(initialGridItems)
     setGridElements([])
     setLayout([])
@@ -300,7 +309,7 @@ function Grid(props) {
           {_.map(gridItems.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        <button onClick={() => console.log("gridElements,griitems,allDashboards", gridElements, gridItems, allDashboards)}>testfunction</button>
+        <button onClick={() => console.log("gridId, userId", gridId, userId)}>testfunction</button>
         {/* <News/> */}
       </div>
     )

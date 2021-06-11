@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -66,10 +66,31 @@ const useStyles = makeStyles((theme) => ({
     // }
 }));
 
-function Swot() {
+function Swot(props) {
     const classes = useStyles();
-    function valuetext(value) {
-        return `${value}°C`;
+    const [str1, setStr1] = useState(props.params.str1 || [])
+    const [str2, setStr2] = useState(props.params.str2 || [])
+    const [str3, setStr3] = useState(props.params.str3 || [])
+    const [wek1, setWek1] = useState(props.params.wek1 || [])
+    const [wek2, setWek2] = useState(props.params.wek2 || [])
+    const [wek3, setWek3] = useState(props.params.wek3 || [])
+    const [opt1, setOpt1] = useState(props.params.opt1 || [])
+    const [opt2, setOpt2] = useState(props.params.opt2 || [])
+    const [opt3, setOpt3] = useState(props.params.opt3 || [])
+    const [trt1, setTrt1] = useState(props.params.trt1 || [])
+    const [trt2, setTrt2] = useState(props.params.trt2 || [])
+    const [trt3, setTrt3] = useState(props.params.trt3 || [])
+
+    const saveParams = () => {
+        props.changeParams({
+            id: props.i,
+            content: {
+                str1: str1, str2: str2, str3: str3,
+                wek1: wek1, wek2: wek2, wek3: wek3,
+                opt1: opt1, opt2: opt2, opt3: opt3,
+                trt1: trt1, trt2: trt2, trt3: trt3
+            }
+        })
     }
     return (
         <div className={classes.root}>
@@ -94,31 +115,28 @@ function Swot() {
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setStr1(e.target.value)}
+                        onBlur={saveParams}
+                        value={str1}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setStr2(e.target.value)}
+                        onBlur={saveParams}
+                        value={str2}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setStr3(e.target.value)}
+                        onBlur={saveParams}
+                        value={str3}
                     />
-                    <span className={classes.slider}>
-                        
-                        <Slider
-                            orientation="vertical"
-                            getAriaValueText={valuetext}
-                            defaultValue={30}
-                            aria-labelledby="vertical-slider"
-                        />
-                        </span>
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -139,21 +157,27 @@ function Swot() {
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setWek1(e.target.value)}
+                        onBlur={saveParams}
+                        value={wek1}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setWek2(e.target.value)}
+                        onBlur={saveParams}
+                        value={wek2}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setWek3(e.target.value)}
+                        onBlur={saveParams}
+                        value={wek3}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -176,21 +200,27 @@ function Swot() {
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setOpt1(e.target.value)}
+                        onBlur={saveParams}
+                        value={opt1}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setOpt2(e.target.value)}
+                        onBlur={saveParams}
+                        value={opt2}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setOpt3(e.target.value)}
+                        onBlur={saveParams}
+                        value={opt3}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -213,21 +243,27 @@ function Swot() {
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setTrt1(e.target.value)}
+                        onBlur={saveParams}
+                        value={trt1}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setTrt2(e.target.value)}
+                        onBlur={saveParams}
+                        value={trt2}
                     />
                     <TextField
                         id="standard-multiline-static"
                         label=""
                         multiline
                         rows={4}
-                        defaultValue=""
+                        onChange={(e) => setTrt3(e.target.value)}
+                        onBlur={saveParams}
+                        value={trt3}
                     />
                 </AccordionDetails>
             </Accordion>

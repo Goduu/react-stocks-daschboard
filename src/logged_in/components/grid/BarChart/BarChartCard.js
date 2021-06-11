@@ -23,11 +23,11 @@ import {
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { fetchDividendData } from '../../../../shared/functions/requests'
 import NoData from '../../../../shared/components/NoData'
+import { useSelector} from 'react-redux';
+
 
 // https://codesandbox.io/s/8m6n8?file=/src/Chart.jsx candelstick chart
-function labelFormatter(label) {
-  return new Date(Date.parse(label)).toLocaleDateString();
-}
+
 
 
 const itemHeight = 216;
@@ -50,30 +50,29 @@ function DividendChart(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState();
+  const token = useSelector(state => state.auth.token)
 
   let ticker = props.identifier
   useEffect(() => {
-    fetchDividendData(ticker, selectedOption)
+    fetchDividendData(ticker, selectedOption, token)
       .then(res => {
         if (res.PriceHistory) {
-          setChartData(res.PriceHistory)
+          res = res.PriceHistory.map(p => {
+            return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
+          })
+          setChartData(res)
         }
       })
-  }, [ticker])
+  }, [ticker,token])
 
   useEffect(() => {
     firstCall()
   }, [])
 
   const firstCall = useCallback(() => {
-    fetchDividendData(ticker, selectedOption)
-      .then(res => {
-        if (res.data) {
-          setChartData(res.data)
-        }
-      })
+    selectOption(props.params.period)
   },
-    [selectedOption]
+    [props.params.period]
   );
 
   const handleClick = useCallback(
@@ -125,14 +124,17 @@ function DividendChart(props) {
           period = 1825;
           break;
         case "Max":
-          period = -1;
+          period = 30000;
           break;
         default:
           period = 30
       }
-      fetchDividendData(ticker, period)
+      fetchDividendData(ticker, period, token)
         .then(res => {
-          setChartData(res.data)
+          res = res.PriceHistory.map(p => {
+            return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
+          })
+          setChartData(res)
         })
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
@@ -198,9 +200,8 @@ function DividendChart(props) {
                 <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
                   <Bar type="monotone" dataKey="adjDividend" fill="#8884d8" strokeWidth={2} dot={false} />
                   <YAxis domain={[0, 'dataMax']} hide />
-                  <XAxis dataKey="date" tickFormatter={timeStr => moment(timeStr).format('YYYY-MM-DD')} hide />
+                  <XAxis dataKey="date"  hide />
                   <Tooltip
-                    labelFormatter={labelFormatter}
                     formatter={formatter}
                     cursor={false}
                     contentStyle={{

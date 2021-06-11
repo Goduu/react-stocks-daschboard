@@ -14,6 +14,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import Tooltip from '@material-ui/core/Tooltip';
 import TransferList from './TransferList'
 import EditIcon from '@material-ui/icons/Edit';
+import Link from '@material-ui/core/Link';
 
 let init = {
     'hist': [
@@ -127,17 +128,20 @@ export default function Indicators(props) {
                     {Object.keys(indicators).map((group) => (
                         <li key={`section-${group}`} className={classes.listSection}>
                             <ul className={classes.ul}>
-                                <ListSubheader>{`${group}`}</ListSubheader>
+                                <ListSubheader>{`${t('indicators.'+group)}`}</ListSubheader>
                                 {indicators[group].map((item) => (
                                     <>
                                         {item.value &&
                                             <ListItem key={`item-${group}-${item.name}`}>
-                                                <ListItemText primary={`${item.value}`} secondary={item.name} />
+                                                <ListItemText primary={`${item.value}`}
+                                                 secondary={t('indicators.'+item.name)} />
 
                                                 <ListItemIcon className={classes.icon} >
-                                                    <Tooltip title={t('indicators.' + item.name + '.info')}>
-                                                        <InfoIcon />
-                                                    </Tooltip>
+                                                    <Link href={t('indicators.ref.' + item.name)} target="_blank" color="inherit">
+                                                        <Tooltip title={t('indicators.info.' + item.name)}>
+                                                            <InfoIcon />
+                                                        </Tooltip>
+                                                    </Link>
                                                 </ListItemIcon>
                                             </ListItem>
                                         }
