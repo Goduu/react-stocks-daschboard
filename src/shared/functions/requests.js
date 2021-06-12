@@ -90,13 +90,16 @@ export function fetchNews(tick) {
   });
 }
 
-export function deleteGrid(user, identifier) {
-  const headers = { headers: { 'Content-Type': 'application/json' } }
-  const data = {
-    data: { user: user, identifier: identifier }
-  };
+export function deleteGrid(gridId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  
   return new Promise((resolve, reject) => {
-    axios.delete(apiUrl + 'deleteGrid', data, headers)
+    axios.delete(apiUrl + 'grid/' + gridId,  headers)
       .then(res => {
         resolve(res)
       })
@@ -169,9 +172,17 @@ export function fetchIndicators(tick) {
   });
 }
 
-export function getQuoteData(tick) {
+export function getQuoteData(tick, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/data/' + tick)
+    axios.get(apiUrl + 'stocks/data/' + tick,headers)
       .then(res => {
         console.log("getQuoteData", res)
         resolve(res.data)
@@ -193,7 +204,6 @@ export function getTickers(page, search, exchange, token) {
     axios.get(apiUrl + 'ticker/' + exchange + '/' + search, headers)
       .then(res => {
         resolve(res.data)
-        axios.get(apiUrl + 'stocks/stats/FRT', headers)
       })
       .catch(error => reject(error))
   });

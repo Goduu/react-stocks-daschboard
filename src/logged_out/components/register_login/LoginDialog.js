@@ -71,11 +71,9 @@ function LoginDialog(props) {
     setStatusMessage(null);
     loginUser(loginEmail.current.value, loginPassword.current.value)
       .then(res => {
-        console.log("FINISHED", res.authToken,res.info.email,res.info.roles)
+        console.log("FINISHED",res)
         dispatch(setToken(res.authToken))
-        dispatch(setUser(res.info.email))
-        dispatch(setRoles(res.info.roles))
-        dispatch(setId(res.info.id))
+        dispatch(setUser(res.info))
         setIsLoading(false);
         history.push("/c/dashboard");
       })

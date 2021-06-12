@@ -1,23 +1,18 @@
 import './Grid.css'
 import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import RGL,{ WidthProvider, Responsive} from "react-grid-layout";
+import RGL, { WidthProvider } from "react-grid-layout";
 import _ from "lodash";
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
-import LineChartCard from './LineChart/LineChartCard';
-import BarChartCard from './BarChart/BarChartCard';
-import News from './news/News';
 import NewDashboard from './newdashboard/NewDashboard';
-import { useSelector, useDispatch } from 'react-redux';
-import { notify } from '../../../shared/redux/actions/notification.actions'
+import { useSelector } from 'react-redux';
 import { saveGridElements, fetchGridElements, deleteGrid } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
-import { TableGrid } from './table/Table';
-import { CardGrid } from './card/Card';
-import { NoteGrid } from './note/Note';
-import { SwotGrid } from './swot/Swot';
-import { IndicatorsGrid } from './indicators/Indicators';
+import { useSnackbar } from 'notistack';
+
+
+
 const ResponsiveReactGridLayout = WidthProvider(RGL);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
@@ -27,23 +22,18 @@ function Grid(props) {
   let initialGridItems = {
     items: []
   };
-  const dispatch = useDispatch()
   const [gridItems, setGridItems] = useState(initialGridItems)
   const [gridElements, setGridElements] = useState([])
   const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
   const [identifier, setIdentifier] = useState(undefined)
   const [gridId, setGridId] = useState(undefined)
-  const user = useSelector(state => state.auth.user)
   const userId = useSelector(state => state.auth.id)
   const token = useSelector(state => state.auth.token)
   const [firstSave, setFirstSave] = useState(true)
-  // const {
-  //   selectGrid
-  // } = props;
+  const { enqueueSnackbar } = useSnackbar();
 
-  // useEffect(selectGrid, [selectGrid]);
-
+  
   const restoreItems = useCallback((newGridElements, newIdentifier) => {
     setIdentifier(newIdentifier)
     let newLayout = []
@@ -54,7 +44,7 @@ function Grid(props) {
       newLayout.push(g.layout)
     })
     setLayout(newLayout)
-  }, [gridItems, gridElements, layout, identifier, userId,gridId])
+  }, [gridItems, gridElements, layout, identifier, userId, gridId])
 
   useEffect(() => {
     fetchGridElements(userId, token)
@@ -179,7 +169,7 @@ function Grid(props) {
   }, [gridElements, layout])
 
 
-  function changeParams(params){
+  function changeParams(params) {
     let newGridEl
     setGridElements(prev => {
       var foundIndex = prev.findIndex(x => x.id === params.id);
@@ -189,12 +179,12 @@ function Grid(props) {
     }
     );
     console.log("CHange params", gridId, identifier, userId, newGridEl, token)
-    if (typeof identifier !== 'undefined' && typeof gridId !== 'undefined' && token) {
+    if (typeof identifier !== 'undefined' && typeof gridId !== 'undefined' && token && typeof newGridEl !== 'undefined') {
       saveGridElements(gridId, identifier, userId, newGridEl, token)
     }
 
   }
-  
+
   function onRemoveItem(rId, a) {
     setGridItems(prev => {
       return {
@@ -229,6 +219,7 @@ function Grid(props) {
     setGridItems(initialGridItems)
     setGridElements([])
     setIdentifier(ticker)
+    setFirstSave(true)
 
     onAddItem('card', ticker)
   }
@@ -243,8 +234,8 @@ function Grid(props) {
   }
 
   const selectDashboard = (el) => {
-    setGridItems(initialGridItems)
-    setGridElements([])
+    // setGridItems(initialGridItems)
+    // setGridElements([])
     let selectedDashboard
     allDashboards.map(d => {
       if (d.identifier === el) {
@@ -255,10 +246,10 @@ function Grid(props) {
       }
       return
     })
+    setGridId(selectedDashboard.id)
     if (selectedDashboard) {
       restoreItems(
         selectedDashboard.gridElements,
-        selectedDashboard.layout,
         selectedDashboard.identifier)
     }
   }
@@ -281,10 +272,10 @@ function Grid(props) {
     setAllDashboards(prev => {
       return prev.filter(d => d.identifier !== identifier)
     })
-    deleteGrid(user, identifier).then(() => {
-      dispatch(notify({ type: 'success', 'msg': 'Dashboard Deleted' }))
+    deleteGrid(gridId, token).then(() => {
+      notify('Dashboard Deleted', 'success' )
     }).catch(e => {
-      dispatch(notify({ type: 'error', 'msg': 'error' }))
+      notify(e, 'error' )
     })
     if (next) {
       selectDashboard(next)
@@ -293,6 +284,13 @@ function Grid(props) {
     }
 
   }
+
+  const notify = (msg,variant) => {
+    // variant could be success, error, warning, info, or default
+    console.log('notify')
+    enqueueSnackbar(msg, { variant });
+  };
+
 
   if (identifier) {
     return (
@@ -309,7 +307,7 @@ function Grid(props) {
           {_.map(gridItems.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        <button onClick={() => console.log("gridId, userId", gridId, userId)}>testfunction</button>
+        <button onClick={() => notify("deu bom", "success")}>testfunction</button>
         {/* <News/> */}
       </div>
     )

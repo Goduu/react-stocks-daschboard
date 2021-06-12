@@ -1,22 +1,31 @@
-import { SET_TOKEN,SET_USER,SET_ROLES, SET_ID } from '../actions/auth.actions'
+import { SET_USER,SET_TOKEN,SET_EMAIL,SET_ROLES, SET_ID } from '../actions/auth.actions'
 
 const initialState = {
   token: '',
-  user: '', 
+  email: '', 
   roles: []
 };
 
 let stateTemp
 
 const authentication = (state = initialState, action) => {
+  
   switch (action.type) {
+    case SET_USER:
+      stateTemp = {...state}
+      stateTemp.token = action.payload.token
+      stateTemp.email = action.payload.email
+      stateTemp.roles = action.payload.roles
+      stateTemp.id = action.payload.id
+      stateTemp.name = action.payload.name
+      return stateTemp
     case SET_TOKEN:
       stateTemp = {...state}
       stateTemp.token = action.payload
       return stateTemp
-    case SET_USER:
+    case SET_EMAIL:
         stateTemp = {...state}
-        stateTemp.user = action.payload
+        stateTemp.email = action.payload
         return stateTemp
     case SET_ROLES:
       stateTemp = {...state}

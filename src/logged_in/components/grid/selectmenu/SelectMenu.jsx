@@ -41,6 +41,10 @@ const useStyles = makeStyles({
 
 });
 
+/*
+* Top menu of the grid with the tickers 
+*  select a ticker to chose its dashboard
+*/
 export function SelectMenu(props) {
     const classes = useStyles();
     const [value, setValue] = useState(0);

@@ -9,6 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Stockinfos from './StockInfos';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -33,9 +34,10 @@ function OutlinedCard(props) {
     let ticker = props.identifier
     const [data, setData] = useState(undefined)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const token = useSelector(state => state.auth.token)
 
     useEffect(() => {
-        getQuoteData(ticker)
+        getQuoteData(ticker, token)
             .then(res => {
                 console.log("Alcapaha data", res)
                 setData(res)

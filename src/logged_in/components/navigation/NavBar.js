@@ -6,7 +6,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Avatar,
   Drawer,
   List,
   IconButton,
@@ -33,6 +32,8 @@ import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import { removeToken } from '../../../logged_out/components/register_login/loginSlice';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Avatar from 'avataaars'
 
 const styles = (theme) => ({
   appBar: {
@@ -66,9 +67,6 @@ const styles = (theme) => ({
     },
   },
   accountAvatar: {
-    backgroundColor: theme.palette.secondary.main,
-    height: 24,
-    width: 24,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.down("xs")]: {
@@ -136,6 +134,9 @@ function NavBar(props) {
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
+  const userName = useSelector(state => state.auth.name)
+  console.log("ALCAPAHA", useSelector(state => state.auth))
+
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -286,16 +287,29 @@ function NavBar(props) {
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
+              <div className={classes.accountAvatar}>
+                
               <Avatar
-                alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
-                className={classNames(classes.accountAvatar)}
+                style={{width: '35px', height: '35px'}}
+                avatarStyle='Circle'
+                topType='WinterHat2'
+                accessoriesType='Prescription02'
+                hatColor='Blue02'
+                facialHairType='BeardMedium'
+                facialHairColor='BrownDark'
+                clotheType='ShirtCrewNeck'
+                clotheColor='PastelRed'
+                eyeType='Wink'
+                eyebrowType='UpDownNatural'
+                mouthType='Default'
+                skinColor='Pale'
               />
+              </div>
               {isWidthUp("sm", width) && (
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">{userName}</Typography>
                   }
                 />
               )}

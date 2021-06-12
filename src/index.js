@@ -16,7 +16,7 @@ import './shared/i18n/i18n';
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistedStore}>
-      <App />,
+        <App />,
     </PersistGate>
   </Provider>,
   document.getElementById("root")

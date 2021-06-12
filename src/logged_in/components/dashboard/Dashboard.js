@@ -5,6 +5,7 @@ import SettingsArea from "./SettingsArea";
 import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
+import AvatarSelection from "./AvatarSelection";
 
 function Dashboard(props) {
   const {
@@ -38,6 +39,7 @@ function Dashboard(props) {
         </Typography>
       </Box>
       <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} />
+      <AvatarSelection pushMessageToSnackbar={pushMessageToSnackbar} />
       <UserDataArea
         pushMessageToSnackbar={pushMessageToSnackbar}
         targets={targets}

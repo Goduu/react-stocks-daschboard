@@ -5,7 +5,7 @@ import { checkPermission } from './shared/functions/requests.js';
 import { useSelector } from 'react-redux';
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
-    const user = useSelector(state => state.auth.user)
+    const user = useSelector(state => state.auth.email)
     const token = useSelector(state => state.auth.token)
     const userRoles = useSelector(state => state.auth.roles)
     let permited = userRoles.filter(r => roles.includes(r)).length > 0 ? true : false

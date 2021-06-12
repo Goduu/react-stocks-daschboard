@@ -6,6 +6,7 @@ import GlobalStyles from "./GlobalStyles";
 import Pace from "./shared/components/Pace";
 import PrivateRoute from './PrivateRoute'
 import NotificationBar from './shared/components/NotificationBar'
+import { SnackbarProvider } from 'notistack';
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
@@ -15,22 +16,24 @@ function App() {
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles />
-        <Pace color={theme.palette.primary.dark} />
-        <Suspense fallback={<Fragment />}>
-          <Switch>
-          <PrivateRoute path="/c" roles={['user']} component={LoggedInComponent} />
-            {/* <Route path="/c">
+        <SnackbarProvider maxSnack={3}>
+          <CssBaseline />
+          <GlobalStyles />
+          <Pace color={theme.palette.primary.dark} />
+          <Suspense fallback={<Fragment />}>
+            <Switch>
+              <PrivateRoute path="/c" roles={['user']} component={LoggedInComponent} />
+              {/* <Route path="/c">
               <LoggedInComponent />
             </Route> */}
-            <Route>
-              <LoggedOutComponent />
-            </Route>
-          </Switch>
-        </Suspense>
+              <Route>
+                <LoggedOutComponent />
+              </Route>
+            </Switch>
+          </Suspense>
+        </SnackbarProvider>
       </MuiThemeProvider>
-      <NotificationBar/>
+      <NotificationBar />
     </BrowserRouter>
   );
 }
