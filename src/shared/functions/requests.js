@@ -18,7 +18,7 @@ export function login(credentials) {
   });
 }
 
-export function saveGridElements(gridId,identifier, userId, gridElements,token) {
+export function saveGridElements(gridId, identifier, userId, gridElements, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -26,11 +26,32 @@ export function saveGridElements(gridId,identifier, userId, gridElements,token) 
     }
   }
 
-  const data = 
-    { id:gridId, identifier: identifier, userId: userId, gridElements: gridElements}
-  
+  const data =
+    { id: gridId, identifier: identifier, userId: userId, gridElements: gridElements }
+
   return new Promise((resolve, reject) => {
     axios.put(apiUrl + 'grid/' + gridId, data, headers)
+      .then(res => {
+        console.log("Res save grid", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function saveUser(userId, user, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  console.log("userId,avatr ", userId)
+  return new Promise((resolve, reject) => {
+    axios.put(apiUrl + 'user/' + userId, user, headers)
       .then(res => {
         console.log("Res save grid", res)
         resolve(res.data)
@@ -97,9 +118,9 @@ export function deleteGrid(gridId, token) {
       'Authorization': "Bearer " + token
     }
   }
-  
+
   return new Promise((resolve, reject) => {
-    axios.delete(apiUrl + 'grid/' + gridId,  headers)
+    axios.delete(apiUrl + 'grid/' + gridId, headers)
       .then(res => {
         resolve(res)
       })
@@ -109,7 +130,7 @@ export function deleteGrid(gridId, token) {
   });
 }
 
-export function fetchPriceData(ticker, period,token) {
+export function fetchPriceData(ticker, period, token) {
 
   const data = {
     ticker: ticker,
@@ -125,7 +146,7 @@ export function fetchPriceData(ticker, period,token) {
     }
   }
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'stocks/priceHistory',data,headers)
+    axios.post(apiUrl + 'stocks/priceHistory', data, headers)
       .then(res => {
         console.log("fetchPriceData", res)
         resolve(res.data)
@@ -151,7 +172,7 @@ export function fetchDividendData(ticker, period, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'stocks/dividendHistory',data,headers)
+    axios.post(apiUrl + 'stocks/dividendHistory', data, headers)
       .then(res => {
         console.log("fetchDividendData", res)
         resolve(res.data)
@@ -182,7 +203,7 @@ export function getQuoteData(tick, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/data/' + tick,headers)
+    axios.get(apiUrl + 'stocks/data/' + tick, headers)
       .then(res => {
         console.log("getQuoteData", res)
         resolve(res.data)
@@ -224,11 +245,24 @@ export function getTickers(page, search, exchange, token) {
 
 export function addUser(email, password) {
   const headers = { headers: { 'Content-Type': 'application/json' } }
-  const data = {
 
-  };
+  const avatar = {
+    topType: '.',
+    hairColor: '.',
+    hatColor: '.',
+    accessoriesType: '.',
+    facialHairType: '.',
+    facialHairColor: '.',
+    clotheType: '.',
+    clotheColor: '.',
+    graphicType: '.',
+    eyeType: '.',
+    eyebrowType: '.',
+    mouthType: '.',
+    skinColor: '.'
+  }
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'user/register', { name: email.split("@")[0], email: email, password: password }, headers)
+    axios.post(apiUrl + 'user/register', { name: email.split("@")[0], email: email, password: password, avatar: avatar }, headers)
       .then(res => {
         resolve(res)
       })

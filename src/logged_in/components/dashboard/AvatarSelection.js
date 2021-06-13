@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   List,
@@ -24,6 +24,13 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import Avatar from 'avataaars'
 import _ from "lodash"
 import { makeStyles } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Grid from '@material-ui/core/Grid';
+import { useSelector, useDispatch } from 'react-redux'
+import { setAvatar, setUser } from '../../../shared/redux/actions/auth.actions.js'
+import { saveUser } from '../../../shared/functions/requests.js';
 
 const styles = (theme) => ({
   numberInput: {
@@ -44,9 +51,19 @@ const styles = (theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   options: {
-      width: '25vw'
-      
+    width: '25vw'
   },
+  nested: {
+    paddingLeft: theme.spacing(6)
+  },
+  avatar: {
+    marginLeft: theme.spacing(6),
+  },
+  openClose: {
+    marginRight: theme.spacing(3),
+    cursor: 'pointer'
+  }
+
 }))
 const topOptions = ['NoHair', 'Eyepatch', 'Hat', 'Hijab', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairMiaWallace', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart']
 const accessoriesOptions = ['Blank', 'Kurt', 'Prescription01', 'Prescription02', 'Round', 'Sunglasses', 'Wayfarers']
@@ -63,23 +80,51 @@ const mouthOptions = ['Concerned', 'Default', 'Disbelief', 'Eating', 'Grimace', 
 const skinOptions = ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
 
 function AvatarSelection(props) {
+  const avatar = useSelector(state => state.auth.avatar)
   const { classes, pushMessageToSnackbar } = props;
   const [isSaveLoading, setIsSaveLoading] = useState(false);
-  const [isDefaultLoading, setIsDefaultLoading] = useState(false);
-  const [top, setTop] = useState(_.sample(topOptions));
-  const [accessories, setAccessories] = useState(_.sample(accessoriesOptions));
-  const [hairColor, setHairColor] = useState(_.sample(hairColorOptions));
-  const [hatColor, setHatColor] = useState(_.sample(hatColorOptions));
-  const [facialHair, setFacialHair] = useState(_.sample(facialHairOptions));
-  const [facialHairColor, setFacialHairColor] = useState(_.sample(facialHairColorOptions));
-  const [clothes, setClothes] = useState(_.sample(clothesOptions));
-  const [graphic, setGraphic] = useState(_.sample(graphicOptions));
-  const [fabricColor, setFabricColor] = useState(_.sample(fabricColorOptions));
-  const [eyes, setEyes] = useState(_.sample(eyesOptions));
-  const [eyebrow, setEyebrow] = useState(_.sample(eyebrowOptions));
-  const [mouth, setMouth] = useState(_.sample(mouthOptions));
-  const [skin, setSkin] = useState(_.sample(skinOptions));
+  const [isDefaultLoading] = useState(false);
+  const [top, setTop] = useState('');
+  const [accessories, setAccessories] = useState('');
+  const [hairColor, setHairColor] = useState('');
+  const [hatColor, setHatColor] = useState('');
+  const [facialHair, setFacialHair] = useState('');
+  const [facialHairColor, setFacialHairColor] = useState('');
+  const [clothes, setClothes] = useState('');
+  const [graphic, setGraphic] = useState('');
+  const [fabricColor, setFabricColor] = useState('');
+  const [eyes, setEyes] = useState('');
+  const [eyebrow, setEyebrow] = useState('');
+  const [mouth, setMouth] = useState('');
+  const [skin, setSkin] = useState('');
+  const [topOpen, setTopOpen] = useState(false);
+  const [facialOpen, setFacialOpen] = useState(false);
+  const [clothesOpen, setClothesOpen] = useState(false);
+  const auth = useSelector(state => state.auth)
+
   const classes_ = useStyles();
+  const dispatch = useDispatch()
+
+  const firstCall = useCallback(() => {
+    console.log("alcpaha fist", avatar)
+    setTop(avatar.topType);
+    setAccessories(avatar.accessoriesType);
+    setHairColor(avatar.hairColor);
+    setHatColor(avatar.hatColor);
+    setFacialHair(avatar.facialHairType);
+    setFacialHairColor(avatar.facialHairColor);
+    setClothes(avatar.clotheType);
+    setGraphic(avatar.graphicType);
+    setFabricColor(avatar.clotheColor);
+    setEyes(avatar.eyeType);
+    setEyebrow(avatar.eyebrowType);
+    setMouth(avatar.mouthType);
+    setSkin(avatar.skinColor);
+  }, [avatar])
+
+  useEffect(() => {
+    firstCall()
+  }, [])
 
   const handleChange = useCallback(
     (event) => {
@@ -151,26 +196,6 @@ function AvatarSelection(props) {
       setHatColor, setHairColor]
   );
 
-  const resetState = useCallback(() => {
-    setIsSaveLoading(false);
-    setIsDefaultLoading(false);
-    // setOption1("None");
-    // setOption2("None");
-    // setOption3("None");
-    // setOption4("None");
-    // setOption5("2 Days");
-    // setOption6(7500);
-  }, [
-    setIsSaveLoading,
-    setIsDefaultLoading,
-    // setOption1,
-    // setOption2,
-    // setOption3,
-    // setOption4,
-    // setOption5,
-    // setOption6,
-  ]);
-
   const onSetRandom = useCallback(() => {
     setTop(_.sample(topOptions));
     setAccessories(_.sample(accessoriesOptions));
@@ -185,18 +210,44 @@ function AvatarSelection(props) {
     setEyebrow(_.sample(eyebrowOptions));
     setMouth(_.sample(mouthOptions));
     setSkin(_.sample(skinOptions));
-  }, [setSkin, setMouth,setEyebrow,setEyes,setFabricColor,setGraphic,setClothes,
-    setFacialHairColor,setFacialHair,setHatColor,setHairColor,setAccessories,setAccessories,setTop]);
+  }, [setSkin, setMouth, setEyebrow, setEyes, setFabricColor, setGraphic, setClothes,
+    setFacialHairColor, setFacialHair, setHatColor, setHairColor, setAccessories, setTop]);
+
+  const saveAvatar = useCallback(() => {
+    return saveUser(auth.id, auth, auth.token)
+    }, [auth]);
+
 
   const onSubmit = useCallback(() => {
     setIsSaveLoading(true);
-    setTimeout(() => {
-      pushMessageToSnackbar({
-        text: "Your settings have been saved",
-      });
+    const avatar_ = {
+      topType: top,
+      hairColor: hairColor,
+      hatColor: hatColor,
+      accessoriesType: accessories,
+      facialHairType: facialHair,
+      facialHairColor: facialHairColor,
+      clotheType: clothes,
+      clotheColor: fabricColor,
+      graphicType: graphic,
+      eyeType: eyes,
+      eyebrowType: eyebrow,
+      mouthType: mouth,
+      skinColor: skin
+    }
+    console.log("AV save", auth.id, avatar_)
+    dispatch(setAvatar(avatar_))
+    auth.avatar = avatar_
+    saveAvatar(auth.id, auth, auth.token).then(res => {
+      console.log("USEER SALVO AVATRA", res)
       setIsSaveLoading(false);
-    }, 1500);
-  }, [setIsSaveLoading, pushMessageToSnackbar]);
+    }
+    )
+      .catch(e => {
+        setIsSaveLoading(false);
+
+      })
+  }, [setIsSaveLoading, auth, top, hairColor, hatColor, accessories, facialHair, facialHairColor, clothes]);
 
   const inputs = [
     {
@@ -204,78 +255,113 @@ function AvatarSelection(props) {
       options: topOptions,
       label: "Top",
       stateName: "top",
+      open: { var: topOpen, fun: setTopOpen },
+      colapse:
+        [
+          {
+            state: top,
+            options: topOptions,
+            label: "Top",
+            stateName: "top",
+            open: true,
+          },
+          {
+            state: hairColor,
+            options: hairColorOptions,
+            label: "Hair Color",
+            stateName: "hairColor",
+          },
+          {
+            state: hatColor,
+            options: hatColorOptions,
+            label: "Hat Color",
+            stateName: "hatColor",
+          },
+        ]
+
     },
     {
       state: accessories,
       options: accessoriesOptions,
       label: "Accessories",
       stateName: "accessories",
-    },
-    {
-      state: hairColor,
-      options: hairColorOptions,
-      label: "Hair Color",
-      stateName: "hairColor",
-    },
-    {
-      state: hatColor,
-      options: hatColorOptions,
-      label: "Hat Color",
-      stateName: "hatColor",
+      colapse: []
     },
     {
       state: facialHair,
       options: facialHairOptions,
       label: "Facial Hair",
       stateName: "facialHair",
-    },
-    {
-      state: facialHairColor,
-      options: facialHairColorOptions,
-      label: "Facial Hair Color",
-      stateName: "facialHairColor",
+      open: { var: facialOpen, fun: setFacialOpen },
+      colapse: [
+        {
+          state: facialHair,
+          options: facialHairOptions,
+          label: "Facial Hair",
+          stateName: "facialHair",
+        },
+        {
+          state: facialHairColor,
+          options: facialHairColorOptions,
+          label: "Facial Hair Color",
+          stateName: "facialHairColor",
+        },
+      ]
     },
     {
       state: clothes,
       options: clothesOptions,
       label: "Clothes",
       stateName: "clothes",
-    },
-    {
-      state: fabricColor,
-      options: fabricColorOptions,
-      label: "Fabric Color",
-      stateName: "fabricColor",
-    },
-    {
-      state: graphic,
-      options: graphicOptions,
-      label: "Graphic",
-      stateName: "graphic",
+      open: { var: clothesOpen, fun: setClothesOpen },
+      colapse: [
+        {
+          state: clothes,
+          options: clothesOptions,
+          label: "Clothes",
+          stateName: "clothes",
+        },
+        {
+          state: fabricColor,
+          options: fabricColorOptions,
+          label: "Fabric Color",
+          stateName: "fabricColor",
+        },
+        {
+          state: graphic,
+          options: graphicOptions,
+          label: "Graphic",
+          stateName: "graphic",
+        }
+      ]
     },
     {
       state: eyes,
       options: eyesOptions,
       label: "Eyes",
       stateName: "eyes",
+      colapse: []
     },
     {
       state: eyebrow,
       options: eyebrowOptions,
       label: "Eyebrow",
       stateName: "eyebrow",
+      colapse: []
     },
     {
       state: mouth,
       options: mouthOptions,
       label: "Mouth",
       stateName: "mouth",
+      colapse: []
     },
     {
       state: skin,
       options: skinOptions,
       label: "Skin",
       stateName: "skin",
+      colapse: []
     },
   ];
 
@@ -285,61 +371,128 @@ function AvatarSelection(props) {
         <Typography>Avatar Selection</Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.dBlock}>
-        <Avatar
-          avatarStyle='Circle'
-          topType={top}
-          hairColor={hairColor}
-          accessoriesType={accessories}
-          facialHairType={facialHair}
-          facialHairColor={facialHairColor}
-          clotheType={clothes}
-          clotheColor={fabricColor}
-          graphicType={graphic}
-          eyeType={eyes}
-          eyebrowType={eyebrow}
-          mouthType={mouth}
-          skinColor={skin}
-        />
-        <List disablePadding>
-          <Bordered disableVerticalPadding disableBorderRadius>
-            {inputs.map((element, index) => (
-              <ListItem
-                className="listItemLeftPadding"
-                disableGutters
-                divider
-                key={index}
-              >
-                <ListItemText>
-                  <Typography variant="body2">{element.label}</Typography>
-                </ListItemText>
-                <FormControl variant="outlined">
-                  <ListItemSecondaryAction >
-                    <Select
-                      value={element.state}
-                      onChange={handleChange}
-                      input={
-                        <OutlinedInput
-                          name={element.stateName}
-                          labelWidth={0}
-                          className={classes_.options}
-                          classes={{ input: classes.numberInputInput }}
-                        />
-                      }
-                      MenuProps={{ disableScrollLock: true }}
-                    >
-                      {element.options.map((innerElement) => (
-                        <MenuItem value={innerElement} key={innerElement}>
-                          {innerElement}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </ListItemSecondaryAction>
-                </FormControl>
-              </ListItem>
-            ))}
+        <Grid container
+          spacing={2}
+          justify="center"
+          alignItems="center">
+          <Grid item xs={4}>
+            <div className={classes_.avatar}>
+              <Avatar
+                avatarStyle='Circle'
+                topType={top}
+                hairColor={hairColor}
+                hatColor={hatColor}
+                accessoriesType={accessories}
+                facialHairType={facialHair}
+                facialHairColor={facialHairColor}
+                clotheType={clothes}
+                clotheColor={fabricColor}
+                graphicType={graphic}
+                eyeType={eyes}
+                eyebrowType={eyebrow}
+                mouthType={mouth}
+                skinColor={skin}
+              />
 
-          </Bordered>
-        </List>
+            </div>
+          </Grid>
+          <Grid item xs={8}>
+
+            <List disablePadding>
+              <Bordered disableVerticalPadding disableBorderRadius>
+                {inputs.map((element, index) => (
+                  <>
+                    <ListItem
+                      className="listItemLeftPadding"
+                      disableGutters
+                      divider
+                      key={'avt' + index}
+                    >
+                      <ListItemText>
+                        <Typography variant="body2">{element.label}</Typography>
+                      </ListItemText>
+                      {
+                        element.colapse.length == 0 && (
+                          <FormControl variant="outlined">
+                            <ListItemSecondaryAction >
+                              <Select
+                                value={element.state}
+                                onChange={handleChange}
+                                input={
+                                  <OutlinedInput
+                                    name={element.stateName}
+                                    labelWidth={0}
+                                    className={classes_.options}
+                                    classes={{ input: classes.numberInputInput }}
+                                  />
+                                }
+                                MenuProps={{ disableScrollLock: true }}
+                              >
+                                {element.options.map((innerElement) => (
+                                  <MenuItem value={innerElement} key={innerElement}>
+                                    {innerElement}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </ListItemSecondaryAction>
+                          </FormControl>
+                        )
+                      }
+
+                      {element.open && (element.open.var ?
+                        <ExpandMore className={classes_.openClose}
+                          onClick={() => element.open.fun(!element.open.var)} /> :
+                        <ExpandLess className={classes_.openClose}
+                          onClick={() => element.open.fun(!element.open.var)} />)}
+                    </ListItem>
+                    {element.open &&
+                      <Collapse in={element.open.var} timeout="auto" unmountOnExit>
+                        {
+                          element.colapse.map((colEl, colIndex) => (
+                            <List component="div" disablePadding>
+                              <ListItem divider className={classes_.nested}>
+                                <ListItemText>
+                                  <Typography variant="body2">{colEl.label}</Typography>
+                                </ListItemText>
+                                <FormControl variant="outlined">
+                                  <ListItemSecondaryAction >
+                                    <Select
+                                      value={colEl.state}
+                                      onChange={handleChange}
+                                      input={
+                                        <OutlinedInput
+                                          name={colEl.stateName}
+                                          labelWidth={0}
+                                          className={classes_.options}
+                                          classes={{ input: classes.numberInputInput }}
+                                        />
+                                      }
+                                      MenuProps={{ disableScrollLock: true }}
+                                    >
+                                      {colEl.options.map((innerElement) => (
+                                        <MenuItem value={innerElement} key={innerElement}>
+                                          {innerElement}
+                                        </MenuItem>
+                                      ))}
+                                    </Select>
+                                  </ListItemSecondaryAction>
+                                </FormControl>
+                              </ListItem>
+                            </List>
+                          )
+                          )
+                        }
+                      </Collapse>
+                    }
+
+                  </>
+                ))}
+
+              </Bordered>
+            </List>
+          </Grid>
+
+        </Grid>
       </AccordionDetails>
       <AccordionDetails className={classes.accordionDetails}>
         <Box mr={1}>

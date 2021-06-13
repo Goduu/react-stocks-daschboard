@@ -129,14 +129,13 @@ const styles = (theme) => ({
 
 function NavBar(props) {
   const dispatch = useDispatch();
+  const avatar = useSelector(state => state.auth.avatar)
   const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const userName = useSelector(state => state.auth.name)
-  console.log("ALCAPAHA", useSelector(state => state.auth))
-
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -290,19 +289,9 @@ function NavBar(props) {
               <div className={classes.accountAvatar}>
                 
               <Avatar
-                style={{width: '35px', height: '35px'}}
                 avatarStyle='Circle'
-                topType='WinterHat2'
-                accessoriesType='Prescription02'
-                hatColor='Blue02'
-                facialHairType='BeardMedium'
-                facialHairColor='BrownDark'
-                clotheType='ShirtCrewNeck'
-                clotheColor='PastelRed'
-                eyeType='Wink'
-                eyebrowType='UpDownNatural'
-                mouthType='Default'
-                skinColor='Pale'
+                style={{width: '35px', height: '35px'}}
+                {...avatar}
               />
               </div>
               {isWidthUp("sm", width) && (

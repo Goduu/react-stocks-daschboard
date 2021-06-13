@@ -3,6 +3,7 @@ export const SET_TOKEN = 'SET_TOKEN'
 export const SET_EMAIL = 'SET_EMAIL'
 export const SET_ROLES = 'SET_ROLES'
 export const SET_ID = 'SET_ID'
+export const SET_AVATAR = 'SET_AVATAR'
 
 export const setUser = (value) => ({
     type: SET_USER,
@@ -25,5 +26,9 @@ export const setRoles = (value) => ({
 
 export const setId = (value) => ({
     type: SET_ID,
+    payload: value
+})
+export const setAvatar = (value) => ({
+    type: SET_AVATAR,
     payload: value
 })
