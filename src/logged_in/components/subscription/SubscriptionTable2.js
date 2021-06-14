@@ -182,6 +182,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import _ from 'lodash'
+import { Typography } from '@material-ui/core';
+
 const BUY = 1; const SELL = 2; const DIVIDEND = 3;
 
 const styles = theme => ({
@@ -275,23 +277,30 @@ export default function SubscriptionTable(props) {
       headerName: "Total",
       renderCell: (params) => {
         return params.row.operation == BUY ? (
-          <ColorfulChip
-            label={`-${currencyPrettyPrint(
+          <Typography 
+            color='inherit'
+            variant='body2'
+          >
+            {`-${currencyPrettyPrint(
               params.row.value * params.row.shares
             )}`}
-            color={theme.palette.error.dark}
-
-          />
+            </Typography>
         ) : params.row.operation == SELL ? (
-          <ColorfulChip
-            label={`+${currencyPrettyPrint(params.row.value * params.row.shares)}`}
-            color={theme.palette.success.dark}
-          />
+          
+          <Typography 
+            color='inherit'
+            variant='body2'
+          >
+            {`+${currencyPrettyPrint(params.row.value * params.row.shares)}`}
+          </Typography>
         ) : (
-          <ColorfulChip
-            label={`+${currencyPrettyPrint(params.row.value)}`}
-            color={theme.palette.info.dark}
-          />
+          <Typography 
+            color='inherit'
+            variant='body2'
+          >
+            {`+${currencyPrettyPrint(params.row.value)}`}
+          </Typography>
+          
         )
 
       }

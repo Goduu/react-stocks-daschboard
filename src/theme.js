@@ -11,6 +11,9 @@ const theme = createMuiTheme({
     secondary: { main: '#ec125a' },
     // background: { default: '#141818', paper:'#1c1d1c!important'},
     // text: {primary: '#ffffff!important'}
+    text: {
+      green: '#4caf50'
+    }
   },
   border: {
     borderColor: borderColor,
