@@ -31,6 +31,7 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux'
 import { setAvatar, setUser } from '../../../shared/redux/actions/auth.actions.js'
 import { saveUser } from '../../../shared/functions/requests.js';
+import { useSnackbar } from 'notistack';
 
 const styles = (theme) => ({
   numberInput: {
@@ -101,6 +102,7 @@ function AvatarSelection(props) {
   const [facialOpen, setFacialOpen] = useState(false);
   const [clothesOpen, setClothesOpen] = useState(false);
   const auth = useSelector(state => state.auth)
+  const { enqueueSnackbar } = useSnackbar();
 
   const classes_ = useStyles();
   const dispatch = useDispatch()
@@ -126,6 +128,12 @@ function AvatarSelection(props) {
     firstCall()
   }, [])
 
+  const notify = (msg,variant) => {
+    // variant could be success, error, warning, info, or default
+    console.log('notify')
+    enqueueSnackbar(msg, { variant });
+  };
+  
   const handleChange = useCallback(
     (event) => {
       const { name, value } = event.target;
@@ -239,11 +247,12 @@ function AvatarSelection(props) {
     dispatch(setAvatar(avatar_))
     auth.avatar = avatar_
     saveAvatar(auth.id, auth, auth.token).then(res => {
-      console.log("USEER SALVO AVATRA", res)
       setIsSaveLoading(false);
+      notify('Avatar saved', 'success' )
     }
     )
-      .catch(e => {
+    .catch(e => {
+        notify('Something went wrong', 'error' )
         setIsSaveLoading(false);
 
       })

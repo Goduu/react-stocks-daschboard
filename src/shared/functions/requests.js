@@ -49,9 +49,89 @@ export function saveUser(userId, user, token) {
     }
   }
 
-  console.log("userId,avatr ", userId)
   return new Promise((resolve, reject) => {
     axios.put(apiUrl + 'user/' + userId, user, headers)
+      .then(res => {
+        console.log("Res save grid", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function registerOperation(operation, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl + 'operation/registerOperation', operation, headers)
+      .then(res => {
+        console.log("Res save grid", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function deleteOperation(id, token) {
+  console.log("alcapaha", 'deleteOperation')
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.delete(apiUrl + 'operation/delete/' +  id, headers)
+      .then((res) => {
+        
+        resolve(res)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+export function editOperation(operation, token) {
+  console.log("alcapaha", 'deleteOperation')
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.put(apiUrl + 'operation/update/',operation, headers)
+      .then((res) => {
+        
+        resolve(res)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function getAllOperations(userId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'operation/getAllOperations/' + userId, headers)
       .then(res => {
         console.log("Res save grid", res)
         resolve(res.data)
@@ -147,6 +227,25 @@ export function fetchPriceData(ticker, period, token) {
   }
   return new Promise((resolve, reject) => {
     axios.post(apiUrl + 'stocks/priceHistory', data, headers)
+      .then(res => {
+        console.log("fetchPriceData", res)
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
+export function getStocksPrices(tickers, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl + 'stocks/getStocksPrices', tickers, headers)
       .then(res => {
         console.log("fetchPriceData", res)
         resolve(res.data)

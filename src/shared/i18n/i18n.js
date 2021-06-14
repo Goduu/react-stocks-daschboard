@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { DateTime } from 'luxon';
 
 i18n
   // detect user language
@@ -16,6 +17,12 @@ i18n
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+      format: (value, format, lng) => {
+        if (value instanceof Date) {
+          return DateTime.fromJSDate(value).setLocale(lng).toISODate(DateTime[format])
+        }
+        return value;
+      }
     },
     resources: {
       en: {
@@ -78,7 +85,8 @@ i18n
                   earningsAnnouncement: 'Earnings Anoucement',
                   market: 'Market',
               }
-          }
+          },
+          date: '{{date, DATE_HUGE}}'
         }
       }
     }

@@ -19,7 +19,7 @@ function SubscriptionInfo(props) {
         onClick={openAddBalanceDialog}
         disableElevation
       >
-        Add Balance
+        Add Operation
       </Button>
     </Toolbar>
   );

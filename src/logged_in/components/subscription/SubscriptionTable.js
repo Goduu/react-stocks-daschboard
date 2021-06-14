@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -13,6 +13,14 @@ import ColorfulChip from "../../../shared/components/ColorfulChip";
 import unixToDateString from "../../../shared/functions/unixToDateString";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
+import { getAllOperations } from '../../../shared/functions/requests'
+import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+
+const BUY = 1; const SELL = 2; const DIVIDEND = 3;
 
 const styles = theme => ({
   tableWrapper: {
@@ -42,14 +50,29 @@ const styles = theme => ({
 
 const rows = [
   {
-    id: "description",
+    id: "asset",
     numeric: false,
-    label: "Action"
+    label: "Asset"
   },
   {
-    id: "balanceChange",
+    id: "operation",
     numeric: false,
-    label: "Balance change"
+    label: "Operation"
+  },
+  {
+    id: "price",
+    numeric: false,
+    label: "Price"
+  },
+  {
+    id: "shares",
+    numeric: false,
+    label: "Shares"
+  },
+  {
+    id: "total",
+    numeric: false,
+    label: "Total"
   },
   {
     id: "date",
@@ -57,17 +80,21 @@ const rows = [
     label: "Date"
   },
   {
-    id: "paidUntil",
+    id: "actions",
     numeric: false,
-    label: "Paid until"
-  }
+    label: "Actions"
+  },
 ];
 
 const rowsPerPage = 25;
 
 function SubscriptionTable(props) {
-  const { transactions, theme, classes } = props;
+  const { theme, classes } = props;
   const [page, setPage] = useState(0);
+  const [transactions, setTransactions] = useState(props.transactions);
+  const userId = useSelector(state => state.auth.id)
+  const token = useSelector(state => state.auth.token)
+  const { t } = useTranslation();
 
   const handleChangePage = useCallback(
     (_, page) => {
@@ -75,6 +102,30 @@ function SubscriptionTable(props) {
     },
     [setPage]
   );
+
+  useEffect(() => {
+    setTransactions(props.transactions)
+  }, [props.transactions])
+
+  const refreshOperations = useCallback(() => {
+    getAllOperations(userId, token)
+      .then(transactions => {
+        console.log("transactions", transactions)
+        setTransactions(transactions)
+
+      })
+  }, [userId, token])
+
+  useEffect(() => {
+    refreshOperations()
+  }, [])
+
+  const getOperationLabel = (op) => {
+    let res = op === DIVIDEND ?  'Dividend' : op === BUY ? 'Buy' : 'Sell'
+    return res
+  }
+
+  const operations = ['Buy', 'Sell', 'Dividend']
 
   if (transactions.length > 0) {
     return (
@@ -91,30 +142,51 @@ function SubscriptionTable(props) {
                     scope="row"
                     className={classes.firstData}
                   >
-                    {transaction.description}
+                    {transaction.asset}
+                  </TableCell>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={classes.firstData}
+                  >
+                    {getOperationLabel(transaction.operation)}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {transaction.balanceChange > 0 ? (
+                  {`$${transaction.value}`}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                  {transaction.operation !== DIVIDEND ? transaction.shares : '-'}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {transaction.operation == BUY ? (
                       <ColorfulChip
-                        label={`+${currencyPrettyPrint(
-                          transaction.balanceChange
+                        label={`-${currencyPrettyPrint(
+                          transaction.value * transaction.shares
                         )}`}
-                        color={theme.palette.secondary.main}
+                        color={theme.palette.error.dark}
+                      />
+                    ) : transaction.operation == SELL ? (
+                      <ColorfulChip
+                        label={`+${currencyPrettyPrint(transaction.value * transaction.shares)}`}
+                        color={theme.palette.success.dark}
                       />
                     ) : (
                       <ColorfulChip
-                        label={currencyPrettyPrint(transaction.balanceChange)}
-                        color={theme.palette.error.dark}
+                        label={`+${currencyPrettyPrint(transaction.value)}`}
+                        color={theme.palette.info.dark}
                       />
                     )}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {unixToDateString(transaction.timestamp)}
+                    {t('date', { date: new Date(transaction.date) })}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {transaction.paidUntil
-                      ? unixToDateString(transaction.paidUntil)
-                      : ""}
+                    <IconButton aria-label="delete" size='small' onClick={() =>props.edit(transaction)}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="delete" size='small' onClick={() =>props.delete(transaction.id)}>
+                      <DeleteIcon />
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}

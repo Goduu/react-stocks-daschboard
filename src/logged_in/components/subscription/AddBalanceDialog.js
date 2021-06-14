@@ -118,7 +118,7 @@ const AddBalanceDialog = withTheme(function (props) {
     <FormDialog
       open={open}
       onClose={onClose}
-      headline="Add Balance"
+      headline="Add Transaction"
       hideBackdrop={false}
       loading={loading}
       onFormSubmit={async event => {

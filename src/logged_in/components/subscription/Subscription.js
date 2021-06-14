@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { List, Divider, Paper, withStyles } from "@material-ui/core";
-import SubscriptionTable from "./SubscriptionTable";
+import SubscriptionTable from "./SubscriptionTable2";
 import SubscriptionInfo from "./SubscriptionInfo";
+import AddOperadionDialog from "./AddOperationDialog";
+import { registerOperation } from '../../../shared/functions/requests'
+import { getAllOperations, deleteOperation,editOperation } from '../../../shared/functions/requests'
+import { useSnackbar } from 'notistack';
 
 const styles = {
   divider: {
@@ -12,20 +17,88 @@ const styles = {
 
 function Subscription(props) {
   const {
-    transactions,
     classes,
     openAddBalanceDialog,
     selectSubscription
   } = props;
+  const userId = useSelector(state => state.auth.id)
+  const token = useSelector(state => state.auth.token)
+  const [transactions, setTransactions] = useState([]);
+  const [editTransaction, setEditTransaction] = useState({});
+  const { enqueueSnackbar } = useSnackbar();
 
+  const [operationOpen, setOperationOpen] = useState(false);
   useEffect(selectSubscription, [selectSubscription]);
+
+  const openOperationDialog = () => {
+
+    setOperationOpen(true)
+  }
+  const openEditTransaction = (transaction) => {
+    console.log('trans',transaction)
+    if (transaction) {
+      setEditTransaction(transaction)
+      setOperationOpen(true)
+
+    }
+  }
+  const saveOperation = (form) => {
+    console.log(form)
+    registerOperation({ ...form, userId: userId }, token)
+      .then(() => {
+        refreshOperations()
+      })
+    setOperationOpen(false)
+  }
+  const editOperation_ = (form) => {
+    console.log(form)
+    editOperation({ ...form, userId: userId }, token)
+      .then(() => {
+        refreshOperations()
+      })
+    setOperationOpen(false)
+  }
+
+  const refreshOperations = useCallback(() => {
+    getAllOperations(userId, token)
+      .then(transactions => {
+        console.log("transactions", transactions)
+        setTransactions(transactions)
+
+      })
+  }, [userId, token])
+
+  useEffect(() => {
+    refreshOperations()
+  }, [])
+
+  const handleDeleteOperation = (id) => {
+    console.log("Handle delete", id)
+    deleteOperation(id, token)
+      .then(() => {
+        enqueueSnackbar('Operation Deleted', { variant: 'success' })
+        refreshOperations()
+      })
+      .catch((e) => {
+
+        enqueueSnackbar('Error - ' + e, { variant: 'error' })
+      }
+
+      )
+  }
 
   return (
     <Paper>
+      <AddOperadionDialog
+        open={operationOpen}
+        closeDialog={() => setOperationOpen(false)}
+        saveOperation={saveOperation} 
+        editOperation={editOperation_} 
+        transaction={editTransaction}/>
       <List disablePadding>
-        <SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
+        <SubscriptionInfo openAddBalanceDialog={openOperationDialog} />
         <Divider className={classes.divider} />
-        <SubscriptionTable transactions={transactions} />
+        <SubscriptionTable transactions={transactions} delete={handleDeleteOperation} edit={openEditTransaction}  />
       </List>
     </Paper>
   );
