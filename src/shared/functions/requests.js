@@ -210,6 +210,25 @@ export function deleteGrid(gridId, token) {
   });
 }
 
+export function test(listStrings, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl + 'stocks/test', listStrings, headers)
+      .then(res => {
+        console.log("test", res)
+        // resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function fetchPriceData(ticker, period, token) {
 
   const data = {
