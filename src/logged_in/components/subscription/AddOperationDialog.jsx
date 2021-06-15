@@ -59,12 +59,19 @@ export default function AddOperadionDialog(props) {
     return flag
   }
   const handleSave = () => {
-    console.log('save', {id:id, asset: asset, value: value, shares: shares, date: date, operation: operation })
+    let op = {
+      id: id,
+      asset: asset,
+      value: value,
+      shares: operation === SELL ? -shares : shares,
+      date: new Date(date).getTime(),
+      operation: operation }
+
     if (validadeOperation()) {
       if (id) {
-        props.editOperation({ id: id, asset: asset, value: value, shares: shares, date: new Date(date).getTime(), operation: operation })
+        props.editOperation(op)
       } else {
-        props.saveOperation({ asset: asset, value: value, shares: shares, date: new Date(date).getTime(), operation: operation })
+        props.saveOperation(op)
       }
     }
 
@@ -76,7 +83,7 @@ export default function AddOperadionDialog(props) {
     setAsset(props.transaction.asset)
     setExchange(props.transaction.exchange)
     setValue(props.transaction.value)
-    setShares(props.transaction.shares)
+    setShares(Math.abs(props.transaction.shares))
     const date = new Date(props.transaction.date)
     setDate(date.getFullYear() +
       '-' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) +
@@ -174,12 +181,8 @@ export default function AddOperadionDialog(props) {
                 error={validationError.shares.status}
 
               />
-
             </Grid>
-
-
             <Grid item xs={4}>
-
               <TextField
                 required
                 value={value}
@@ -216,9 +219,7 @@ export default function AddOperadionDialog(props) {
                 helperText={validationError.date.msg}
                 error={validationError.date.status}
               />
-
             </Grid>
-
           </Grid>
         </DialogContent>
         <DialogActions>

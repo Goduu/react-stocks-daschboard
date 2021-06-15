@@ -35,7 +35,6 @@ function Subscription(props) {
     setOperationOpen(true)
   }
   const openEditTransaction = (transaction) => {
-    console.log('trans',transaction)
     if (transaction) {
       setEditTransaction(transaction)
       setOperationOpen(true)
@@ -43,15 +42,22 @@ function Subscription(props) {
     }
   }
   const saveOperation = (form) => {
-    console.log(form)
     registerOperation({ ...form, userId: userId }, token)
       .then(() => {
         refreshOperations()
+        setOperationOpen(false)
+
       })
-    setOperationOpen(false)
+      .catch((e)=>{
+        if(e.response.status === 428){
+          enqueueSnackbar('Not enought Balance to operate', { variant: 'error' })
+        } else {
+          enqueueSnackbar('Something went wrong', { variant: 'error' })
+
+        }
+      })
   }
   const editOperation_ = (form) => {
-    console.log(form)
     editOperation({ ...form, userId: userId }, token)
       .then(() => {
         refreshOperations()
