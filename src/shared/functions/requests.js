@@ -61,6 +61,44 @@ export function saveUser(userId, user, token) {
   });
 }
 
+export function getCurrentPortifolio(userId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'operation/getCurrentPortifolio/' + userId, headers)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function getCurrentPortifolioHistorical(userId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'operation/getCurrentPortifolioHistorical/' + userId, headers)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
 export function registerOperation(operation, token) {
   const headers = {
     headers: {

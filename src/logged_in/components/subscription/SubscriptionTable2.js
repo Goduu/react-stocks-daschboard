@@ -111,7 +111,7 @@ export default function SubscriptionTable(props) {
             color='inherit'
             variant='body2'
           >
-            {`-${currencyPrettyPrint(
+            {`${currencyPrettyPrint(
               params.row.value * params.row.shares
             )}`}
             </Typography>
@@ -121,14 +121,14 @@ export default function SubscriptionTable(props) {
             color='inherit'
             variant='body2'
           >
-            {`+${currencyPrettyPrint(params.row.value * params.row.shares)}`}
+            {`${currencyPrettyPrint(params.row.value * params.row.shares)}`}
           </Typography>
         ) : (
           <Typography 
             color='inherit'
             variant='body2'
           >
-            {`+${currencyPrettyPrint(params.row.value)}`}
+            {`${currencyPrettyPrint(params.row.value)}`}
           </Typography>
           
         )
