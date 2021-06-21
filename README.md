@@ -1,11 +1,16 @@
 # React Stocks Dashboard
-Aplication to create a dashboard for stocks studies.
+Aplication to create custom dashboards stocks studies.
+
+![alt text](https://github.com/Goduu/stocks-studies-dashboard/blob/main/public/images/logged_out/headerImage.jpg?raw=true)
+
 
 ## Getting Started
 
 ### Prerequisites
 
-#### Node.js 12+ (versions below could work, but are not tested)
+#### Node.js 14+ (versions below could work, but are not tested)
+#### Java 11+ (versions below could work, but are not tested)
+#### Maven 3+ (versions below could work, but are not tested)
 
 * Linux:
 
@@ -22,7 +27,7 @@ Aplication to create a dashboard for stocks studies.
 1. Clone the repository
 
    ```
-   git clone https://github.com/dunky11/react-saas-template
+   git clone https://github.com/Goduu/stocks-studies-dashboard
    ```
 2. Install dependencies, this can take a minute
 
@@ -35,8 +40,22 @@ Aplication to create a dashboard for stocks studies.
    ```
    npm start
    ```
+4. Clone the backend Java repository
+   ```
+   git clone https://github.com/Goduu/stocks-studies-java-api
+   ```
+5. Install dependencies, this can take a minute
 
-Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
+   ```
+   mvn install
+   ```
+5. Run the backend
+
+   ```
+   mvn spring-boot:run
+   ```
+
+After step 3 your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page for the frontend.
 
 ### What to do next?
 
@@ -58,18 +77,19 @@ It will create a folder named build with your compiled project inside. After tha
 
 ## Build With
 
-* [SaaS-Template] (https://github.com/dunky11/react-saas-template) - Used as Initial Template
+* [SaaS-Template](https://github.com/dunky11/react-saas-template) - Used as Initial Site Template
 * [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
 * [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
 * [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
 * [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
 * [Emoji-Mart](https://github.com/missive/emoji-mart) - Picker for the emojis
 * [React-Dropzone](https://github.com/react-dropzone/react-dropzone) - File drop component for uploads
-* [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
+* [Recharts](https://github.com/recharts/recharts) - Charting library
 * [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
 * [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
-* [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
-* [Redux] (https://github.com/reduxjs/redux) - To manage states
+* [Redux](https://github.com/reduxjs/redux) - State manager
+* [MongoDB](https://www.mongodb.com/) - As Database
+
 ## Contribute
 Show your support by ⭐ the project. Pull requests are always welcome.
 
