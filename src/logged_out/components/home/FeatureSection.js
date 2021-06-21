@@ -41,16 +41,16 @@ const features = [
   },
   {
     color: "#0091EA",
-    headline: "News",
+    headline: "SWOT Analyse",
     text:
-      "Never uninformed! See the latest news of your stocks",
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
     icon: <FiberNewIcon style={{ fontSize: iconSize }} />,
     mdDelay: "400",
     smDelay: "0"
   },
   {
     color: "#d50000",
-    headline: "Feature 4",
+    headline: "ESG Risks",
     text:
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.",
     icon: <ComputerIcon style={{ fontSize: iconSize }} />,

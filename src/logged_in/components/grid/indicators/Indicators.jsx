@@ -15,6 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import TransferList from './TransferList'
 import EditIcon from '@material-ui/icons/Edit';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 
 let init = {
     'hist': [
@@ -78,15 +79,12 @@ export default function Indicators(props) {
         transferList: {
             position: 'absolute',
             zIndex: 5,
-            
+
 
         }
     }));
     const classes = useStyles();
     const ticker = props.identifier
-    const randomId = () => {
-        return '_' + Math.random().toString(36).substr(2, 9).toString();
-    }
 
     useEffect(() => {
         fetchIndicators(ticker)
@@ -97,9 +95,9 @@ export default function Indicators(props) {
                     console.log(group)
                     ind[group] = []
                     Object.keys(res[group]).forEach((item) => {
-                        if(res[group][item]){
+                        if (res[group][item]) {
                             ind[group].push({
-                                name: item, 
+                                name: item,
                                 value: res[group][item]
                             })
                             // console.log("item", item, res[group][item])
@@ -123,18 +121,22 @@ export default function Indicators(props) {
                         <EditIcon fontSize="small" />
                     </span>
                 </span>
-                <div className={classes.title}> {t('indicators.title')} </div>
+
+                <div className={classes.title}>
+                    <Typography variant="h6">
+                        {t('indicators.title')}
+                    </Typography> </div>
                 <List className={classes.list} subheader={<li />} dense={true}>
                     {Object.keys(indicators).map((group) => (
                         <li key={`section-${group}`} className={classes.listSection}>
                             <ul className={classes.ul}>
-                                <ListSubheader>{`${t('indicators.'+group)}`}</ListSubheader>
+                                <ListSubheader>{`${t('indicators.' + group)}`}</ListSubheader>
                                 {indicators[group].map((item) => (
                                     <>
                                         {item.value &&
                                             <ListItem key={`item-${group}-${item.name}`}>
                                                 <ListItemText primary={`${item.value}`}
-                                                 secondary={t('indicators.'+item.name)} />
+                                                    secondary={t('indicators.' + item.name)} />
 
                                                 <ListItemIcon className={classes.icon} >
                                                     <Link href={t('indicators.ref.' + item.name)} target="_blank" color="inherit">
@@ -171,7 +173,7 @@ export function IndicatorsGrid(props) {
                     </span>
                 </span>
                 <div className="grid-content">
-                    <Indicators key={props.i} {...props} editIndicatorList={props.editIndicatorList}/>
+                    <Indicators key={props.i} {...props} editIndicatorList={props.editIndicatorList} />
                 </div>
 
             </div>

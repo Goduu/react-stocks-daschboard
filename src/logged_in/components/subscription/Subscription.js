@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { List, Divider, Paper, withStyles } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable2";
 import PortifolioChart from "./PortifolioChart";
+import Sankey from "./Sankey";
 import SubscriptionInfo from "./SubscriptionInfo";
 import AddOperadionDialog from "./AddOperationDialog";
 import { registerOperation } from '../../../shared/functions/requests'
@@ -108,6 +109,7 @@ function Subscription(props) {
         <SubscriptionTable transactions={transactions} delete={handleDeleteOperation} edit={openEditTransaction}  />
       </List>
       <PortifolioChart/>
+      <Sankey/>
     </Paper>
   );
 }

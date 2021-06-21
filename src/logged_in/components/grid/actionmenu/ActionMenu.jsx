@@ -30,6 +30,7 @@ const options = [
     { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
     { value: 'swot', label: 'SWOT Analysis', icon: <AssignmentIcon /> },
     { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
+    { value: 'esg', label: 'ESG Risk', icon: <LabelIcon /> },
 ];
 
 const useStyles = makeStyles((theme) => ({

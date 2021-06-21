@@ -29,6 +29,7 @@ export default function PortifolioChart() {
     const token = useSelector(state => state.auth.token)
     const [assets, setAssets] = useState(data02)
     const [sectors, setSectors] = useState(data01)
+    const [industries, setIndustries] = useState([])
     const [history, setHistory] = useState([])
 
 
@@ -46,17 +47,13 @@ export default function PortifolioChart() {
                 console.log("getCurrentPortifolio", res)
 
                 setAssets(res.portifolio.sort((el1, el2) => {
-                    return el1.sector.localeCompare(el2.sector)
+                    return el1.sector.localeCompare(el2.name)
                 }))
                 setSectors(res.sectors.sort((el1, el2) => {
-                    return el1.sector.localeCompare(el2.sector)
+                    return el1.name.localeCompare(el2.name)
                 }))
-                console.log("sort sec", res.sectors.sort((el1, el2) => {
-                    return el1.sector.localeCompare(el2.sector)
-                }))
-                console.log("sort ass", res.portifolio.sort((el1, el2) => {
-                    return el1.sector.localeCompare(el2.sector)
-                }))
+                setIndustries(res.industries)
+               
             })
     }
 
@@ -64,7 +61,7 @@ export default function PortifolioChart() {
         if (active && payload && payload.length) {
             return (
                 <div className="custom-tooltip">
-                    <p className="label">{payload[0].payload.asset || payload[0].payload.sector}: {payload[0].payload.totalValue.toFixed(2)}</p>
+                    <p className="label">{payload[0].payload.asset || payload[0].payload.name}: {payload[0].payload.totalValue.toFixed(2)}</p>
                 </div>
             );
         }
@@ -76,24 +73,25 @@ export default function PortifolioChart() {
 
     return (
         <>
-            <PieChart width={400} height={400}>
+            <PieChart width={800} height={400}>
                 <Pie
                     data={sectors}
                     dataKey="totalValue"
                     cx={200}
                     cy={200}
-                    outerRadius={60}
+                    outerRadius={40}
                     fill="#8884d8"
                 >
 
                 </Pie>
+
                 <Pie
                     data={assets}
                     dataKey="totalValue"
                     cx={200}
                     cy={200}
-                    innerRadius={70}
-                    outerRadius={90}
+                    innerRadius={50}
+                    outerRadius={70}
                     fill="#82ca9d"
                     label
                 >
@@ -101,6 +99,8 @@ export default function PortifolioChart() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
+                <Pie dataKey="totalValue" data={industries} cx={350} cy={180} innerRadius={40} outerRadius={80} fill="#82ca9d" />
+
                 <Tooltip content={<CustomTooltip />} />
             </PieChart>
             <ResponsiveContainer width={350} height={200}>  

@@ -307,7 +307,7 @@ function Grid(props) {
           {_.map(gridItems.items, el => createElement(el))}
         </ResponsiveReactGridLayout>
         <br />
-        <button onClick={() => notify("deu bom", "success")}>testfunction</button>
+        {/* <button onClick={() => notify("deu bom", "success")}>testfunction</button> */}
         {/* <News/> */}
       </div>
     )

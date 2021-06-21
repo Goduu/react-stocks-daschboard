@@ -349,6 +349,25 @@ export function fetchIndicators(tick) {
   });
 }
 
+export function fetchEsgRisk(tick, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'stocks/esg/' + tick,headers)
+      .then(res => {
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function getQuoteData(tick, token) {
 
   const headers = {

@@ -4,7 +4,8 @@ import { NoteGrid } from './note/Note';
 import { SwotGrid } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
 import LineChartCard from './LineChart/LineChartCard';
-import BarChartCard from './BarChart/BarChartCard';
+import BarChartCard from './BarChart/BarChartCard2';
+import {EsgGrid} from './esg/Esg';
 import News from './news/News';
 
 export const getCardProps = (type, functions, gridItems, ticker, id) => {
@@ -114,6 +115,19 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
             }
             component =  IndicatorsGrid(props)
             break
+        case 'esg':
+            console.log("esg")
+            props = {
+                ...props,
+                w: 5,
+                h: 3,
+                minH: 3,
+                minW: 5,
+                maxH: 3
+                // editIndicatorList: editIndicatorList
+            }
+            component =  EsgGrid(props)
+            break
 
     }
     console.log("GET card props", component, type)
@@ -194,6 +208,13 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         identifier: ticker,
       }
       gridItems_ = IndicatorsGrid(props)
+    }
+    else if (type === 'esg') {
+      props = {
+        ...props,
+        identifier: ticker,
+      }
+      gridItems_ = EsgGrid(props)
     }
     return {
         gridItems: gridItems_,
