@@ -87,11 +87,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dunky11/react-saas-template.git"
+    "url": "git+https://github.com/Goduu/stocks-studies-dashboard.git"
   },
   "author": "dunky11",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dunky11/react-saas-template/issues"
+    "url": "https://github.com/Goduu/stocks-studies-dashboard/issues"
   }
 }

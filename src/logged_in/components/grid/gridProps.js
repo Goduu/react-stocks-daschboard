@@ -4,7 +4,8 @@ import { NoteGrid } from './note/Note';
 import { SwotGrid } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
 import LineChartCard from './LineChart/LineChartCard';
-import BarChartCard from './BarChart/BarChartCard2';
+import BarChartCard from './BarChart/BarChartCard';
+import MultichartsCard from './multicharts/Multicharts';
 import {EsgGrid} from './esg/Esg';
 import News from './news/News';
 
@@ -75,6 +76,17 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
 
             }
             component =  BarChartCard(props)
+            break
+        case 'multichart':
+            console.log("multichart")
+            props = {
+                ...props,
+                w: 5,
+                h: 2,
+                params: { period: 180 },
+
+            }
+            component =  MultichartsCard(props)
             break
 
         case 'news':
@@ -186,6 +198,14 @@ export const getRestoredItems = (g, ticker, props, functions) => {
         identifier: ticker,
       }
       gridItems_ = BarChartCard(props)
+
+    }
+    else if (type === 'multichart') {
+      props = {
+        ...props,
+        identifier: ticker,
+      }
+      gridItems_ = MultichartsCard(props)
 
     }
     else if (type === 'news') {

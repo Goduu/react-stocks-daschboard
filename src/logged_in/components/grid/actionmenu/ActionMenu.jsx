@@ -31,6 +31,7 @@ const options = [
     { value: 'swot', label: 'SWOT Analysis', icon: <AssignmentIcon /> },
     { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
     { value: 'esg', label: 'ESG Risk', icon: <LabelIcon /> },
+    { value: 'multichart', label: 'Multicharts', icon: <TrendingUpIcon /> },
 ];
 
 const useStyles = makeStyles((theme) => ({

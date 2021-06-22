@@ -304,7 +304,7 @@ function Grid(props) {
           rowHeight={99}
           columnHeight={100}
         >
-          {_.map(gridItems.items, el => createElement(el))}
+          {_.map(gridItems.items, el => el.content)}
         </ResponsiveReactGridLayout>
         <br />
         {/* <button onClick={() => notify("deu bom", "success")}>testfunction</button> */}
