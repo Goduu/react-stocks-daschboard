@@ -338,9 +338,34 @@ export function fetchDividendData(ticker, period, token) {
   });
 }
 
-export function fetchIndicators(tick) {
+export function fetchIndicators(tick,token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/stats/' + tick)
+    axios.get(apiUrl + 'stocks/indic/' + tick,headers)
+      .then(res => {
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
+export function fetchStatistics(tick,token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'stocks/stats/' + tick,headers)
       .then(res => {
         resolve(res.data)
 

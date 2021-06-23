@@ -143,7 +143,6 @@ export default function AddOperadionDialog(props) {
                 type="text"
                 fullWidth
                 variant="outlined"
-                fullWidth
                 margin="none"
                 error={validationError.asset.status}
                 helperText={validationError.asset.msg}
@@ -167,7 +166,7 @@ export default function AddOperadionDialog(props) {
             <Grid item xs={4}>
               <TextField
                 required
-                disabled={operation == DIVIDEND}
+                disabled={operation === DIVIDEND}
                 value={shares}
                 onChange={(e) => setShares(e.target.value)}
                 // error={amountError ? true : false}

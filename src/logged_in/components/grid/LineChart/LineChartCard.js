@@ -52,11 +52,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const formatXAxis = (tickItem) => {
-  console.log("DATE ", tickItem)
-  return tickItem;
-}
-
 const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months", "1 Year", "Max"];
 

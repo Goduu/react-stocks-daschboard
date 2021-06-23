@@ -9,7 +9,6 @@ import {
   YAxis,
   XAxis
 } from "recharts";
-import moment from 'moment'
 import {
   Card,
   CardContent,
@@ -63,7 +62,7 @@ function DividendChart(props) {
           setChartData(res)
         }
       })
-  }, [ticker,token])
+  }, [ticker,token,selectedOption])
 
   useEffect(() => {
     firstCall()
@@ -71,8 +70,7 @@ function DividendChart(props) {
 
   const firstCall = useCallback(() => {
     selectOption(props.params.period)
-  },
-    [props.params.period]
+  }, [props.params.period]
   );
 
   const handleClick = useCallback(
@@ -139,7 +137,7 @@ function DividendChart(props) {
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })
       handleClose();
     },
-    [setSelectedOption, handleClose, props, ticker]
+    [setSelectedOption, handleClose, props, ticker,token]
   );
 
   const isOpen = Boolean(anchorEl);

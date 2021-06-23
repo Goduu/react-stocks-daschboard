@@ -16,7 +16,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 import { login } from '../../../shared/functions/requests.js';
 import { useDispatch } from 'react-redux';
-import {setToken, setUser, setRoles,setId} from '../../../shared/redux/actions/auth.actions.js'
+import {setToken, setUser} from '../../../shared/redux/actions/auth.actions.js'
 
 const styles = (theme) => ({
   forgotPassword: {

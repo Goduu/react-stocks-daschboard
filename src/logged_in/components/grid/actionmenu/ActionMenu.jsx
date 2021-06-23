@@ -32,6 +32,7 @@ const options = [
     { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
     { value: 'esg', label: 'ESG Risk', icon: <LabelIcon /> },
     { value: 'multichart', label: 'Multicharts', icon: <TrendingUpIcon /> },
+    { value: 'statistics', label: 'Statistics', icon: <TrendingUpIcon /> },
 ];
 
 const useStyles = makeStyles((theme) => ({

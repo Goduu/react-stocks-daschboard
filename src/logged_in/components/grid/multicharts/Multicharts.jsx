@@ -1,25 +1,21 @@
-import { React, useState, useEffect, useReducer, useLayoutEffect } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
+import { React, useState, useEffect} from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 
-import { useTranslation } from 'react-i18next';
 // import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
-import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import ChartSettings from './ChartSettings'
 import { fetchPriceData, fetchDividendData } from '../../../../shared/functions/requests'
 import { format, compareAsc } from "date-fns";
 import _ from 'lodash'
+import Card from '../Card'
 
 import {
     Paper,
     Grid,
     Typography,
-    IconButton,
 } from "@material-ui/core";
-import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomTooltip = props => {
-    const { active, payload,label } = props;
+    const { active, payload, label } = props;
     if (active) {
         return (
             <div>
@@ -68,16 +64,29 @@ const CustomTooltip = props => {
 
 function BarChart_(props) {
     const classes = useStyles();
-    const { t } = useTranslation();
+    // const { t } = useTranslation();
     const ticker = props.identifier
     const token = useSelector(state => state.auth.token)
-    const [configOpen, setConfigOpen] = useState(false);
+    const [configOpen, setConfigOpen] = useState(true);
     const [charts, setCharts] = useState([]);
     const [chartsData, setChartsData] = useState([]);
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
     const theme = useTheme();
 
+    const firstCall = useCallback(() => {
+        if (props.params.charts) {
+            saveSettings(props.params.charts)
+        } else {
+            setConfigOpen(!configOpen)
+        }
+    },
+        [props.params.charts]
+    );
+
+    useEffect(() => {
+        firstCall()
+    }, [])
 
 
     const saveSettings = (settings) => {
@@ -85,7 +94,7 @@ function BarChart_(props) {
         let charts_ = []
         let promises = settings.map(s => {
             setSubtitle(s.period)
-            charts_.push({ name: s.name, type: s.type, pos: s.pos, color: s.color })
+            charts_.push({ name: s.name, type: s.type, pos: s.pos, color: s.color, period: s.period })
             title_ = title_ !== '' ? title_ + ' | ' + _.capitalize(s.name) : _.capitalize(s.name)
             switch (s.name) {
                 case "price": {
@@ -127,6 +136,10 @@ function BarChart_(props) {
                 setTitle(title_)
                 setChartsData(Object.values(chartsData_).sort((c1, c2) => compareAsc(c1.date, c2.date)))
                 setCharts([...charts_])
+                props.changeParams({
+                    id: props.i,
+                    content: { charts: charts_ }
+                })
             }
             );
 
@@ -137,17 +150,7 @@ function BarChart_(props) {
     };
 
     return (
-
-        <div className={classes.root}>
-            <span className="grid-menu">
-                <IconButton size="small" onClick={() => setConfigOpen(!configOpen)} >
-                    <SettingsIcon fontSize="small" />
-
-                </IconButton>
-                <IconButton size="small" onClick={() => props.onRemoveItem(props.i)}>
-                    <CloseIcon fontSize="small" />
-                </IconButton>
-            </span>
+        <Card openSettings={() => setConfigOpen(!configOpen)} {...props}>
             <ChartSettings open={configOpen} saveSettings={saveSettings}></ChartSettings>
             <div className={classes.header}>
                 <Grid
@@ -218,7 +221,7 @@ function BarChart_(props) {
                 }
 
             </div>
-        </div>
+        </Card>
     )
 }
 
@@ -229,7 +232,7 @@ function BarChart_(props) {
 export default function MultichartsCard(props) {
 
     return ({
-        type: 'note',
+        type: 'multichart',
         i: props.i,
         content: (
             <Paper key={props.i} data-grid={props}>

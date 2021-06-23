@@ -1,4 +1,4 @@
-import { React, useState,useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
@@ -7,12 +7,14 @@ import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import EcoIcon from '@material-ui/icons/Eco';
-import { green,red,yellow } from '@material-ui/core/colors';
+import { green, red, yellow } from '@material-ui/core/colors';
 import { amber, lime, teal, orange } from '@material-ui/core/colors';
 import { useTranslation } from 'react-i18next';
 import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
+import Card from '../Card'
+import { useSnackbar } from 'notistack';
 
 let esgs = {
     performance: 'UNDER_PERF',
@@ -117,15 +119,18 @@ function EsgCard(props) {
     const [esgs, setEsgs] = useState(undefined)
     const ticker = props.identifier
     const token = useSelector(state => state.auth.token)
+    const { enqueueSnackbar } = useSnackbar();
 
 
     useEffect(() => {
-        fetchEsgRisk(ticker,token)
+        fetchEsgRisk(ticker, token)
             .then(res => {
                 console.log("fetchEsgRisk", res)
                 setEsgs(res)
             })
-    }, [ticker,token])
+            .catch((e) => enqueueSnackbar("No ESG data for This stock", { variant: 'warning' })
+            )
+    }, [ticker, token])
 
     function valuetext(value) {
         return `${value}°C`;
@@ -133,62 +138,61 @@ function EsgCard(props) {
 
     const getColor = (esg) => {
         return (
-        esg.value < 
-            (esg.peers.find(p => p.label === 'Avg').value - 0.1*esg.peers.find(p => p.label === 'Avg').value)
-            ? lime['A700'] 
-            :
-        esg.value > 
-            (esg.peers.find(p => p.label === 'Avg').value + 0.1*esg.peers.find(p => p.label === 'Avg').value)
-            ? orange['A700']
-            : amber['A700'])
+            esg.value <
+                (esg.peers.find(p => p.label === 'Avg').value - 0.1 * esg.peers.find(p => p.label === 'Avg').value)
+                ? lime['A700']
+                :
+                esg.value >
+                    (esg.peers.find(p => p.label === 'Avg').value + 0.1 * esg.peers.find(p => p.label === 'Avg').value)
+                    ? orange['A700']
+                    : amber['A700'])
 
     }
-    if(esgs){
     return (
-        <Grid container spacing={4}>
-            <Grid item xs={12}>
-                <div className={classes.header}>
-                    <Typography variant="h6" >
-                        ESG Risk
-                        <EcoIcon  style={{ color: green[500] }}/>
-                    <Chip variant="outlined" size="small" label={t('esg.'+esgs.performance)} />
-                    </Typography>
-
-                </div>
-            </Grid>
-            {esgs.scores.map(esg => {
-                return (
-                    <Grid item xs={6}>
-                        <div className={classes.slider}>
-                            <Typography gutterBottom>
-                                {t('esg.'+esg.title)}
+        <Card {...props}>
+            {esgs &&
+                <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                        <div className={classes.header}>
+                            <Typography variant="h6" >
+                                ESG Risk
+                                <EcoIcon style={{ color: green[500] }} />
+                                <Chip variant="outlined" size="small" label={t('esg.' + esgs.performance)} />
                             </Typography>
 
-                            <Slider
-                                track={false}
-                                aria-labelledby="track-false-slider"
-                                getAriaValueText={valuetext}
-                                value={esg.value}
-                                min={esg.peers.find(p => p.label === 'Min').value}
-                                step={0.1}
-                                max={esg.peers.find(p => p.label === 'Max').value}
-                                marks={esg.peers}
-                                valueLabelDisplay="auto"
-                                style={{ color: getColor(esg)  }}
-
-                            />
                         </div>
                     </Grid>
-                )
-            })}
+                    {esgs.scores.map(esg => {
+                        return (
+                            <Grid item xs={6}>
+                                <div className={classes.slider}>
+                                    <Typography gutterBottom>
+                                        {t('esg.' + esg.title)}
+                                    </Typography>
 
-        </Grid>
+                                    <Slider
+                                        track={false}
+                                        aria-labelledby="track-false-slider"
+                                        getAriaValueText={valuetext}
+                                        value={esg.value}
+                                        min={esg.peers.find(p => p.label === 'Min').value}
+                                        step={0.1}
+                                        max={esg.peers.find(p => p.label === 'Max').value}
+                                        marks={esg.peers}
+                                        valueLabelDisplay="auto"
+                                        style={{ color: getColor(esg) }}
 
+                                    />
+                                </div>
+                            </Grid>
+                        )
+                    })}
 
-    );}
-    else {
-        return null
-    }
+                </Grid>
+            }
+        </Card>
+    );
+
 }
 
 
@@ -199,18 +203,7 @@ export function EsgGrid(props) {
         i: props.i,
         content: (
             <Paper key={props.i} data-grid={props}>
-                <span className="grid-menu">
-                    <span >
-                        {/* <TableSettingMenus options={options} /> */}
-                    </span>
-                    <span onClick={() => props.onRemoveItem(props.i)}>
-                        <CloseIcon fontSize="small" />
-                    </span>
-                </span>
-                <div className="grid-content">
-                    <EsgCard key={props.i} {...props} />
-                </div>
-
+                <EsgCard key={props.i} {...props} />
             </Paper>
         )
     })

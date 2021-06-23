@@ -177,9 +177,9 @@ const getExchange = (land) => {
                     <div className={classes.wrapper}>
                         {tickers.map(t => {
                             return (
-                                <>
+                                <div key={'_' + Math.random().toString(36).substr(2, 9).toString()}>
                                     <TickerCard ticker={t} {...props} />
-                                </>
+                                </div>
                             )
                         })}
                     </div>

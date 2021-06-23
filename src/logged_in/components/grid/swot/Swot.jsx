@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
-import CloseIcon from '@material-ui/icons/Close';
-import Avatar from '@material-ui/core/Avatar';
-import Slider from '@material-ui/core/Slider';
+import { Paper, Avatar, TextField, AccordionDetails, AccordionSummary, Accordion, Typography } from '@material-ui/core';
+import Card from '../Card'
 
 import { amber, lime, teal, orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        borderRadius: '5px',
-        background: theme.palette.background.paper
+    },
+    accordionExpandIcon: {
+        marginRight: theme.spacing(1)
     },
     accordion: {
-        marginTop: '15px'
+        marginRight: theme.spacing(1),
+        boxShadow: 'none',
+        borderRadius: '4px'
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
         display: 'flex',
-        height: '20px'
 
     },
     strengths: {
@@ -59,11 +54,7 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(3),
         marginRight: theme.spacing(1)
 
-    },
-    // slider:{
-    //     height: '85px',
-    //     zIndex: 3
-    // }
+    }
 }));
 
 function Swot(props) {
@@ -92,210 +83,216 @@ function Swot(props) {
             }
         })
     }
+    const [expanded, setExpanded] = React.useState('panel1');
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
     return (
-        <div className={classes.root}>
-            <Accordion className={classes.accordion}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    onClick={() => console.log("Alcapaha")}
+        <Card {...props}>
+            <div >
+                <Accordion square expanded={expanded === 'strengths'} onChange={handleChange('strengths')} className={classes.accordion} >
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon fontSize="small" className={classes.accordionExpandIcon} />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        onClick={() => console.log("Alcapaha")}
 
-                >
-                    <Typography className={classes.heading}>
-                        <Avatar className={classes.strengths}>
-                            <b>S</b>
-                        </Avatar>
-                        Strengths
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setStr1(e.target.value)}
-                        onBlur={saveParams}
-                        value={str1}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setStr2(e.target.value)}
-                        onBlur={saveParams}
-                        value={str2}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setStr3(e.target.value)}
-                        onBlur={saveParams}
-                        value={str3}
-                    />
-                </AccordionDetails>
-            </Accordion>
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>
-                        <Avatar className={classes.weaknesses}>
-                            <b>W</b>
-                        </Avatar>
-                        Weaknesses</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setWek1(e.target.value)}
-                        onBlur={saveParams}
-                        value={wek1}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setWek2(e.target.value)}
-                        onBlur={saveParams}
-                        value={wek2}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setWek3(e.target.value)}
-                        onBlur={saveParams}
-                        value={wek3}
-                    />
-                </AccordionDetails>
-            </Accordion>
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>
-                        <Avatar className={classes.opportunities}>
-                            <b>O</b>
-                        </Avatar>
-                    Opportunities
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setOpt1(e.target.value)}
-                        onBlur={saveParams}
-                        value={opt1}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setOpt2(e.target.value)}
-                        onBlur={saveParams}
-                        value={opt2}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setOpt3(e.target.value)}
-                        onBlur={saveParams}
-                        value={opt3}
-                    />
-                </AccordionDetails>
-            </Accordion>
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
-                    <Typography className={classes.heading}>
-                        <Avatar className={classes.threats}>
-                            <b>T</b>
-                        </Avatar>
-                        Threats
+                    >
+                        <Typography className={classes.heading}>
+                            <Avatar className={classes.strengths}>
+                                <b>S</b>
+                            </Avatar>
+                            Strengths
                         </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setTrt1(e.target.value)}
-                        onBlur={saveParams}
-                        value={trt1}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setTrt2(e.target.value)}
-                        onBlur={saveParams}
-                        value={trt2}
-                    />
-                    <TextField
-                        id="standard-multiline-static"
-                        label=""
-                        multiline
-                        rows={4}
-                        onChange={(e) => setTrt3(e.target.value)}
-                        onBlur={saveParams}
-                        value={trt3}
-                    />
-                </AccordionDetails>
-            </Accordion>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setStr1(e.target.value)}
+                            onBlur={saveParams}
+                            value={str1}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setStr2(e.target.value)}
+                            onBlur={saveParams}
+                            value={str2}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setStr3(e.target.value)}
+                            onBlur={saveParams}
+                            value={str3}
+                            fullWidth
+                        />
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion square expanded={expanded === 'weaknesses'} onChange={handleChange('weaknesses')} className={classes.accordion}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon fontSize="small" className={classes.accordionExpandIcon} />}
+                        aria-controls="panel2a-content"
+                        id="panel2a-header"
+                    >
+                        <Typography className={classes.heading}>
+                            <Avatar className={classes.weaknesses}>
+                                <b>W</b>
+                            </Avatar>
+                            Weaknesses</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setWek1(e.target.value)}
+                            onBlur={saveParams}
+                            value={wek1}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setWek2(e.target.value)}
+                            onBlur={saveParams}
+                            value={wek2}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setWek3(e.target.value)}
+                            onBlur={saveParams}
+                            value={wek3}
+                            fullWidth
+                        />
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion square expanded={expanded === 'opportunities'} onChange={handleChange('opportunities')} className={classes.accordion}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon fontSize="small" className={classes.accordionExpandIcon} />}
+                        aria-controls="panel2a-content"
+                        id="panel2a-header"
+                    >
+                        <Typography className={classes.heading}>
+                            <Avatar className={classes.opportunities}>
+                                <b>O</b>
+                            </Avatar>
+                            Opportunities
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setOpt1(e.target.value)}
+                            onBlur={saveParams}
+                            value={opt1}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setOpt2(e.target.value)}
+                            onBlur={saveParams}
+                            value={opt2}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setOpt3(e.target.value)}
+                            onBlur={saveParams}
+                            value={opt3}
+                            fullWidth
+                        />
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion square expanded={expanded === 'threats'} onChange={handleChange('threats')} className={classes.accordion}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon fontSize="small" className={classes.accordionExpandIcon} />}
+                        aria-controls="panel2a-content"
+                        id="panel2a-header"
+                    >
+                        <Typography className={classes.heading}>
+                            <Avatar className={classes.threats}>
+                                <b>T</b>
+                            </Avatar>
+                            Threats
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setTrt1(e.target.value)}
+                            onBlur={saveParams}
+                            value={trt1}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setTrt2(e.target.value)}
+                            onBlur={saveParams}
+                            value={trt2}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-multiline-static"
+                            label=""
+                            multiline
+                            rows={4}
+                            onChange={(e) => setTrt3(e.target.value)}
+                            onBlur={saveParams}
+                            value={trt3}
+                            fullWidth
+                        />
+                    </AccordionDetails>
+                </Accordion>
 
-        </div>
+            </div>
+        </Card>
     );
 }
 
 
 export function SwotGrid(props) {
 
-    const handleExpand = () => {
-
-    }
-
     return ({
         type: 'note',
         i: props.i,
         content: (
-            <div key={props.i} data-grid={props}>
-                <span className="grid-menu">
-                    <span >
-                        {/* <TableSettingMenus options={options} /> */}
-                    </span>
-                    <span onClick={() => props.onRemoveItem(props.i)}>
-                        <CloseIcon fontSize="small" />
-                    </span>
-                </span>
-                <div className="grid-content">
-                    <Swot key={props.i} {...props} expand={handleExpand} />
-                </div>
-            </div>
+            <Paper key={props.i} data-grid={props}>
+                <Swot key={props.i} {...props} />
+            </Paper>
         )
     })
 

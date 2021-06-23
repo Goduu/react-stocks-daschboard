@@ -29,7 +29,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux'
-import { setAvatar, setUser } from '../../../shared/redux/actions/auth.actions.js'
+import { setAvatar } from '../../../shared/redux/actions/auth.actions.js'
 import { saveUser } from '../../../shared/functions/requests.js';
 import { useSnackbar } from 'notistack';
 
@@ -82,7 +82,7 @@ const skinOptions = ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 
 
 function AvatarSelection(props) {
   const avatar = useSelector(state => state.auth.avatar)
-  const { classes, pushMessageToSnackbar } = props;
+  const { classes } = props;
   const [isSaveLoading, setIsSaveLoading] = useState(false);
   const [isDefaultLoading] = useState(false);
   const [top, setTop] = useState('');
@@ -410,7 +410,7 @@ function AvatarSelection(props) {
             <List disablePadding>
               <Bordered disableVerticalPadding disableBorderRadius>
                 {inputs.map((element, index) => (
-                  <>
+                  <div key={element.label}>
                     <ListItem
                       className="listItemLeftPadding"
                       disableGutters
@@ -421,7 +421,7 @@ function AvatarSelection(props) {
                         <Typography variant="body2">{element.label}</Typography>
                       </ListItemText>
                       {
-                        element.colapse.length == 0 && (
+                        element.colapse.length === 0 && (
                           <FormControl variant="outlined">
                             <ListItemSecondaryAction >
                               <Select
@@ -438,7 +438,7 @@ function AvatarSelection(props) {
                                 MenuProps={{ disableScrollLock: true }}
                               >
                                 {element.options.map((innerElement) => (
-                                  <MenuItem value={innerElement} key={innerElement}>
+                                  <MenuItem value={innerElement} key={"inner"+innerElement}>
                                     {innerElement}
                                   </MenuItem>
                                 ))}
@@ -458,7 +458,7 @@ function AvatarSelection(props) {
                       <Collapse in={element.open.var} timeout="auto" unmountOnExit>
                         {
                           element.colapse.map((colEl, colIndex) => (
-                            <List component="div" disablePadding>
+                            <List key={colEl.stateName} component="div" disablePadding>
                               <ListItem divider className={classes_.nested}>
                                 <ListItemText>
                                   <Typography variant="body2">{colEl.label}</Typography>
@@ -494,7 +494,7 @@ function AvatarSelection(props) {
                       </Collapse>
                     }
 
-                  </>
+                  </div>
                 ))}
 
               </Bordered>

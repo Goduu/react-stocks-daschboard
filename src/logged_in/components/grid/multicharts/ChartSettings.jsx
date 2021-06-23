@@ -40,7 +40,7 @@ const BAR = 'bar'
 const L = 'left'
 const R = 'right'
 
-export default function ChartSettings(props) {
+export default function StatisticsSettings(props) {
     const classes = useStyles_();
     const theme = useTheme();
     const colors = [
@@ -236,4 +236,3 @@ export default function ChartSettings(props) {
         </Dialog >
     );
 }
-
