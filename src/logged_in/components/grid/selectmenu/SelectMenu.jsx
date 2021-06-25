@@ -1,45 +1,69 @@
 import { React, useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { IconButton, Paper, Grid, Typography, Tooltip } from '@material-ui/core';
 import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import DeleteIcon from '@material-ui/icons/Delete';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+// '-webkit-mask-image': 'linear-gradient(90deg, #000 96%, transparent)',
+const menuWidth = 500
+const useStyles = makeStyles((theme) => ({
 
-const useStyles = makeStyles({
-    root: {
-        width: 500,
-        overflow: 'hidden',
-        height: 150,
-        background: 'none',
-
-    },
     menuWrapper: {
         position: 'relative',
-        paddingBottom: '40px'
+        paddingBottom: theme.spacing(1),
+        display: 'flex',
+
     },
     menu: {
-        position: 'absolute',
-        top: -110,
-        left: 400
+        width: menuWidth,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        paddingLeft: theme.spacing(1),
+        scrollBehavior: 'smooth'
+        
+
     },
     itens: {
-        paddingTop: 100,
+        padding: theme.spacing(1),
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
         transition: 'all 200ms',
         width: 'auto',
         zIndex: 4,
         "&:hover": {
-            transform: 'scale(2)',
-            transition: 'all 200ms',
-            paddingBottom: 200,
-            zIndex: 3
-        }
+            transform: 'scale(1.08)',
+        },
+        cursor: 'pointer'
     },
-    plus: {
+    arrowRight: {
+        position: 'absolute',
+        transition: 'all 200ms',
+        marginLeft: -30,
+        width: 'auto',
+        zIndex: 5,
+        "&:hover": {
+            transition: 'all 200ms',
+        },
+        cursor: 'pointer'
+    },
+    arrowLeft: {
+        position: 'absolute',
+        marginLeft: menuWidth*0.99,
+        transition: 'all 200ms',
+        width: 'auto',
+        zIndex: 5,
+        "&:hover": {
+            // transform: 'scale(2)',
+            transition: 'all 200ms',
+            zIndex: 3
+        },
+        cursor: 'pointer'
     }
 
-});
+}));
 
 /*
 * Top menu of the grid with the tickers 
@@ -47,15 +71,47 @@ const useStyles = makeStyles({
 */
 export function SelectMenu(props) {
     const classes = useStyles();
-    const [value, setValue] = useState(0);
+    const [scrollArrow, setScrollArrow] = useState(true);
     const [identifiers, setIdentifiers] = useState([]);
+    const [isMaxLeft, setIsMaxLeft] = useState(false);
+    const [isMaxRight, setIsMaxRight] = useState(false);
     const myRef = useRef(null)
     const userId = useSelector(state => state.auth.id)
     const token = useSelector(state => state.auth.token)
 
     const executeScroll = (e) => {
-        myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
+        // myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
+        console.log("scrollWidth", myRef.current.scrollWidth)
+        console.log("clientWidth", myRef.current.clientWidth)
+        console.log("scrollLeft", myRef.current.scrollLeft)
     }
+    const scrollLeft = () => {
+        let sleft = myRef.current.scrollLeft + 120
+        console.log("sleft", sleft)
+        myRef.current.scrollLeft = sleft
+        setIsMaxRight((myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth)
+        setIsMaxLeft(sleft <= 0)
+
+    }
+
+    const scrollRight = () => {
+        let sleft = myRef.current.scrollLeft - 120
+        myRef.current.scrollLeft = sleft
+        setIsMaxLeft(sleft <= 0)
+        setIsMaxRight((myRef.current.scrollWidth - sleft) === myRef.current.clientWidth)
+
+    }
+
+    useEffect(() => {
+        console.log("Usou o effeito")
+    setIsMaxRight(myRef.current.scrollWidth  <= myRef.current.clientWidth)
+    }, [])
+    
+    useEffect(() => {
+        console.log("Usou o effeito")
+        setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
+        setIsMaxLeft(myRef.current.scrollLeft <= 0)
+    },)
 
     useEffect(() => {
         getGridsIdentifiers(userId, token)
@@ -65,6 +121,7 @@ export function SelectMenu(props) {
     }, [userId])
 
     useEffect(() => {
+        console.log("Getid")
         getGridsIdentifiers(userId, token)
             .then(res => {
                 setIdentifiers(res)
@@ -74,27 +131,68 @@ export function SelectMenu(props) {
 
     return (
         <div className={classes.menuWrapper}>
+
             <div className={classes.menu}>
-                <BottomNavigation
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                    showLabels
-                    className={classes.root}
-                    onMouseMove={(e) => executeScroll(e)}
-                    ref={myRef}
-                >
-                    <ArrowBackIosIcon />
+                <Grid
+                    container
+                    spacing={1}
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                    wrap="nowrap">
+                    <Grid item >
+                        <Tooltip title="Delete Dashboard">
+                            <Paper elevation={2} className={classes.itens} onClick={props.handleDeletDashboard}>
+                                <DeleteIcon />
+                            </Paper >
+                        </Tooltip>
+                    </Grid>
+                    <Grid item >
+                        <Tooltip title="Add Dashboard">
+                            <Paper elevation={2} className={classes.itens} onClick={props.handleAddDashboard}>
+                                <LibraryAddIcon />
+                            </Paper >
+                        </Tooltip>
+                    </Grid>
+                </Grid>
+
+            </div>
+            <div className={classes.menu} ref={myRef}>
+                <Grid
+                    container
+                    spacing={1}
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                    wrap="nowrap">
+                    <Grid item key={'arrback'} className={classes.arrowRight} hidden={scrollArrow || isMaxLeft} onClick={scrollRight}>
+                        <IconButton size="small" edge="start">
+                            <ArrowBackIosIcon />
+                        </IconButton>
+                    </Grid>
+
                     {identifiers.map(el => {
-                        return (
-                            <span key={el} className={classes.itens} onClick={() => props.selectDashboard(el)}>
-                                <BottomNavigationAction label="Favorites" icon={el} />
-                            </span>
-                        )
+                        if (el !== props.identifier) {
+                            return (
+                                <Grid item key={el}>
+                                    <Paper elevation={2} className={classes.itens} onClick={() => props.selectDashboard(el)}>
+                                        <Typography
+                                            variant="h6"
+                                        >
+                                            {el}
+                                        </Typography>
+                                    </Paper >
+                                </Grid>
+                            )
+                        }
                     })}
-                    <ArrowForwardIosIcon />
-                </BottomNavigation>
+
+                    <Grid item key={'arrfoward'} className={classes.arrowLeft} hidden={scrollArrow || isMaxRight} onClick={scrollLeft}>
+                        <IconButton size="small"  edge="start">
+                            <ArrowForwardIosIcon />
+                        </IconButton>
+                    </Grid>
+                </Grid>
             </div>
         </div>
     );

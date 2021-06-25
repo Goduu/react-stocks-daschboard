@@ -7,7 +7,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements, deleteGrid, fetchFinancialHistory } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 
@@ -18,6 +18,10 @@ const ResponsiveReactGridLayout = WidthProvider(RGL);
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
 function Grid(props) {
+  const {
+    selectGrid
+  } = props;
+  useEffect(selectGrid, [selectGrid]);
 
   let initialGridItems = {
     items: []
@@ -28,6 +32,7 @@ function Grid(props) {
   const [layout, setLayout] = useState([])
   const [identifier, setIdentifier] = useState(undefined)
   const [gridId, setGridId] = useState(undefined)
+  const [gridStartup, setGridStartup] = useState({ id: undefined, identifier: undefined, newGridElements: undefined })
   const userId = useSelector(state => state.auth.id)
   const token = useSelector(state => state.auth.token)
   const [firstSave, setFirstSave] = useState(true)
@@ -45,23 +50,28 @@ function Grid(props) {
             return r.active === true
           })
           if (toBeRestored) {
-            console.log("TOBERRESTORED", toBeRestored)
 
             setGridId(toBeRestored.id)
             setIdentifier(toBeRestored.identifier)
-            restoreItems(
-              toBeRestored.gridElements,
-              toBeRestored.identifier
-            )
+            setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements })
           }
         }
       })
   }, [userId, token])
 
+  /**
+   * Triggers the restauration process whenn all states for startup are setted
+   */
+  useEffect(() => {
+    console.log("STARTANDO", gridStartup.identifier, gridStartup.newGridElements)
+    if (typeof gridStartup.identifier !== 'undefined' && typeof gridStartup.newGridElements !== 'undefined') {
+      restoreItems(gridStartup.newGridElements, gridStartup.identifier)
+    }
+  }, [gridStartup])
+
   const restoreItems = useCallback((newGridElements, newIdentifier) => {
 
     let newLayout = []
-    setGridItems(initialGridItems)
     setGridElements([])
     newGridElements.forEach(g => {
       onRestauringItems(g, newIdentifier, g.layout)
@@ -90,8 +100,8 @@ function Grid(props) {
     );
 
 
-  }, [ gridId, identifier])
-  
+  }, [gridId, identifier])
+
   /**
    * Save on Layoutchange
    */
@@ -232,8 +242,9 @@ function Grid(props) {
   }
 
   const selectDashboard = (el) => {
-    // setGridItems(initialGridItems)
-    // setGridElements([])
+    setGridItems(initialGridItems)
+    setGridElements([])
+    setLayout([])
     let selectedDashboard
     allDashboards.map(d => {
       if (d.identifier === el) {
@@ -244,11 +255,14 @@ function Grid(props) {
       }
       return
     })
-    setGridId(selectedDashboard.id)
     if (selectedDashboard) {
+      console.log("selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements", selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
+      // setGridStartup(selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
       restoreItems(
         selectedDashboard.gridElements,
         selectedDashboard.identifier)
+      setGridId(selectedDashboard.id)
+      setIdentifier(selectedDashboard.identifier)
     }
   }
 
@@ -293,20 +307,23 @@ function Grid(props) {
   if (identifier) {
     return (
       <div>
-        <SelectMenu selectDashboard={selectDashboard} identifier={identifier} />
         <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
-        <ResponsiveReactGridLayout
-          onLayoutChange={onLayoutChange}
-          onBreakpointChange={onBreakpointChange}
-          {...props}
-          rowHeight={99}
-          columnHeight={100}
-        >
-          {_.map(gridItems.items, el => { return el.content })}
-        </ResponsiveReactGridLayout>
-        <br />
-        <button onClick={() => console.log("things", gridId)}>testfunction</button>
-        {/* <News/> */}
+          <SelectMenu selectDashboard={selectDashboard} identifier={identifier} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
+          <ResponsiveReactGridLayout
+            onLayoutChange={onLayoutChange}
+            onBreakpointChange={onBreakpointChange}
+            {...props}
+            rowHeight={99}
+            columnHeight={100}
+          >
+            {_.map(gridItems.items, el => { return el.content })}
+          </ResponsiveReactGridLayout>
+          <br />
+          {/* <button onClick={() => {
+            fetchFinancialHistory(identifier, token)
+              .then(res => console.log("alcpaah deu", res))
+          }}>testfunction</button> */}
+          {/* <News/> */}
       </div>
     )
   } else {

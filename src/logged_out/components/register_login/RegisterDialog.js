@@ -13,7 +13,10 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import { addUser } from '../../../shared/functions/requests.js';
+import { addUser, login } from '../../../shared/functions/requests.js';
+import { useDispatch } from 'react-redux';
+import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
+import { withRouter } from "react-router-dom";
 
 const styles = (theme) => ({
   link: {
@@ -32,8 +35,10 @@ const styles = (theme) => ({
   },
 });
 
+
 function RegisterDialog(props) {
-  const { setStatus, theme, onClose, openTermsDialog, status, classes } = props;
+  const dispatch = useDispatch();
+  const { setStatus, theme, onClose, openTermsDialog, status, classes, history } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [hasTermsOfServiceError, setHasTermsOfServiceError] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -57,11 +62,15 @@ function RegisterDialog(props) {
     setIsLoading(true);
     addUser(registerEmail.current.value, registerPassword.current.value)
       .then((res) => {
+        console.log("Reposta register :", res)
         setIsLoading(false);
+        dispatch(setToken(res.authToken))
+        dispatch(setUser(res.info))
+        setIsLoading(false);
+        history.push("/c/dashboard");
+
       })
-    // setTimeout(() => {
-    //   
-    // }, 1500);
+    setIsLoading(false);
   }, [
     setIsLoading,
     setStatus,
@@ -249,6 +258,8 @@ RegisterDialog.propTypes = {
   status: PropTypes.string,
   setStatus: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(RegisterDialog);
+export default withRouter(withStyles(styles, { withTheme: true })(RegisterDialog));
+// export default withRouter(withStyles(styles)(LoginDialog));

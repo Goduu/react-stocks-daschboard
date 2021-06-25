@@ -1,4 +1,4 @@
-import { React, useState, useEffect} from 'react';
+import { React, useState, useEffect } from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 
 // import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import ChartSettings from './ChartSettings'
-import { fetchPriceData, fetchDividendData } from '../../../../shared/functions/requests'
+import { fetchPriceData, fetchDividendData, fetchFinancialHistory } from '../../../../shared/functions/requests'
 import { format, compareAsc } from "date-fns";
 import _ from 'lodash'
 import Card from '../Card'
@@ -49,7 +49,7 @@ const CustomTooltip = props => {
                 <div>
                     {payload && payload.map(pld => {
                         return (
-                            <p>{pld.dataKey}:
+                            <p key={pld.dataKey}>{pld.dataKey}:
                                 {pld ? pld.payload[pld.dataKey].toFixed(2) : " -- "}</p>)
                     })
                     }
@@ -103,10 +103,14 @@ function BarChart_(props) {
                 case "dividend": {
                     return fetchDividendData(ticker, s.period, token)
                 }
+                case "financial": {
+                    return fetchFinancialHistory(ticker, token)
+                }
             }
         })
         Promise.allSettled(promises).
             then((results) => {
+                console.log("Results", results)
                 let chartsData_ = {}
                 results.forEach(r => {
                     if (r.status === "fulfilled") {
@@ -127,6 +131,19 @@ function BarChart_(props) {
                                     data.dividend = p.adjDividend
                                     chartsData_[date.getTime()] = data
                                 })
+                                break
+
+                            }
+                            case "financial": {
+                                console.log("Alcpahaha doida",r)
+                                r.value.values.filter(el => el.period === "yearly")
+                                    .forEach(p => {
+                                        let date = new Date(p.dateEpoch)
+                                        let data = chartsData_[date.getTime()] || { date: date }
+                                        data.financial = p.value
+                                        chartsData_[date.getTime()] = data
+                                    })
+                                    console.log("Chartdata",chartsData_)
                                 break
 
                             }

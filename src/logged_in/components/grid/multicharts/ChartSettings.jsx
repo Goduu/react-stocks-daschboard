@@ -59,6 +59,10 @@ export default function StatisticsSettings(props) {
     const [dividendPos, setDividendPos] = useState(R);
     const [dividendActive, setDividendActive] = useState(false);
     const [dividendColor, setDividendColor] = useState(colors[1].color);
+    const [financialType, setFinancialType] = useState(BAR);
+    const [financialActive, setFinancialActive] = useState(false);
+    const [financialPos, setFinancialPos] = useState(L);
+    const [financialColor, setFinancialColor] = useState(colors[0].color);
     const [period, setPeriod] = useState(7);
     const [open, setOpen] = React.useState(props.open);
 
@@ -107,6 +111,18 @@ export default function StatisticsSettings(props) {
             setter: setDividendType,
             activate: setDividendActive,
             setColor: setDividendColor,
+        },
+        {
+            label: 'Financial',
+            name: 'financial',
+            type: financialType,
+            active: financialActive,
+            pos: financialPos,
+            color: financialColor,
+            setPos: setFinancialPos,
+            setter: setFinancialType,
+            activate: setFinancialActive,
+            setColor: setFinancialColor,
         },
 
     ]

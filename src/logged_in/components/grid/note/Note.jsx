@@ -1,9 +1,8 @@
-import {React, useState} from 'react';
-import TextField from '@material-ui/core/TextField';
+import { React, useState } from 'react';
+import { TextField, Paper, CardContent, Card } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import CardWrapper from '../Card'
 
 const NoteTextField = withStyles({
     root: {
@@ -25,7 +24,7 @@ const NoteTextField = withStyles({
                 display: 'flex',
                 margin: '-15px',
                 border: 'none',
-                
+
             }
         },
     },
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1),
+        spellcheck: "false"
     },
 }));
 
@@ -46,27 +46,26 @@ function NoteCard(props) {
     const classes = useStyles();
     const [text, setText] = useState(props.params.text)
 
-    const changeParams = (e) =>{
+    const changeParams = (e) => {
         setText(e.target.value)
     }
-    const saveParams = (e) =>{
-        props.changeParams({id: props.i, content:{text: e.target.value}})
+    const saveParams = (e) => {
+        props.changeParams({ id: props.i, content: { text: e.target.value } })
     }
     return (
-        <Card className={classes.root} variant="outlined">
-            <CardContent>
-                <NoteTextField
-                    className={classes.margin}
-                    label="Note"
-                    variant="outlined"
-                    id="custom-css-outlined-input"
-                    multiline
-                    onChange={changeParams}
-                    onBlur={saveParams}
-                    value={text}
-                />
-            </CardContent>
-        </Card>
+        <CardWrapper {...props}>
+                <CardContent>
+                    <NoteTextField
+                        className={classes.margin}
+                        label="Note"
+                        variant="outlined"
+                        multiline
+                        onChange={changeParams}
+                        onBlur={saveParams}
+                        value={text}
+                    />
+                </CardContent>
+        </CardWrapper>
 
 
     );
@@ -74,25 +73,16 @@ function NoteCard(props) {
 
 
 export function NoteGrid(props) {
-    
+
     return ({
         type: 'note',
         i: props.i,
         content: (
-            <div key={props.i} data-grid={props}>
-                <span className="grid-menu">
-                    <span >
-                        {/* <TableSettingMenus options={options} /> */}
-                    </span>
-                    <span onClick={() => props.onRemoveItem(props.i)}>
-                        <CloseIcon fontSize="small" />
-                    </span>
-                </span>
-                <div className="grid-content">
-                    <NoteCard key={props.i} {...props} />
-                </div>
+            <Paper key={props.i} data-grid={props}>
 
-            </div>
+                <NoteCard key={props.i} {...props} />
+
+            </Paper>
         )
     })
 

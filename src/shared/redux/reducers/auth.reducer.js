@@ -3,7 +3,8 @@ import { SET_USER,SET_TOKEN,SET_EMAIL,SET_ROLES, SET_ID, SET_AVATAR } from '../a
 const initialState = {
   token: '',
   email: '', 
-  roles: []
+  roles: [],
+  
 };
 
 let stateTemp

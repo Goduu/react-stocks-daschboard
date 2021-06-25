@@ -38,7 +38,7 @@ const features = [
   },
   {
     color: "#0091EA",
-    headline: "SWOT Analyse",
+    headline: "SWOT Analysis",
     text:
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
     icon: <FiberNewIcon style={{ fontSize: iconSize }} />,

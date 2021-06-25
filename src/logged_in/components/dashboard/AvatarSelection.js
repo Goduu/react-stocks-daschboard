@@ -109,31 +109,35 @@ function AvatarSelection(props) {
 
   const firstCall = useCallback(() => {
     console.log("alcpaha fist", avatar)
-    setTop(avatar.topType);
-    setAccessories(avatar.accessoriesType);
-    setHairColor(avatar.hairColor);
-    setHatColor(avatar.hatColor);
-    setFacialHair(avatar.facialHairType);
-    setFacialHairColor(avatar.facialHairColor);
-    setClothes(avatar.clotheType);
-    setGraphic(avatar.graphicType);
-    setFabricColor(avatar.clotheColor);
-    setEyes(avatar.eyeType);
-    setEyebrow(avatar.eyebrowType);
-    setMouth(avatar.mouthType);
-    setSkin(avatar.skinColor);
+    if (avatar) {
+      setTop(avatar.topType);
+      setAccessories(avatar.accessoriesType);
+      setHairColor(avatar.hairColor);
+      setHatColor(avatar.hatColor);
+      setFacialHair(avatar.facialHairType);
+      setFacialHairColor(avatar.facialHairColor);
+      setClothes(avatar.clotheType);
+      setGraphic(avatar.graphicType);
+      setFabricColor(avatar.clotheColor);
+      setEyes(avatar.eyeType);
+      setEyebrow(avatar.eyebrowType);
+      setMouth(avatar.mouthType);
+      setSkin(avatar.skinColor);
+    } else {
+      onSetRandom()
+    }
   }, [avatar])
 
   useEffect(() => {
     firstCall()
   }, [])
 
-  const notify = (msg,variant) => {
+  const notify = (msg, variant) => {
     // variant could be success, error, warning, info, or default
     console.log('notify')
     enqueueSnackbar(msg, { variant });
   };
-  
+
   const handleChange = useCallback(
     (event) => {
       const { name, value } = event.target;
@@ -223,7 +227,7 @@ function AvatarSelection(props) {
 
   const saveAvatar = useCallback(() => {
     return saveUser(auth.id, auth, auth.token)
-    }, [auth]);
+  }, [auth]);
 
 
   const onSubmit = useCallback(() => {
@@ -248,11 +252,11 @@ function AvatarSelection(props) {
     auth.avatar = avatar_
     saveAvatar(auth.id, auth, auth.token).then(res => {
       setIsSaveLoading(false);
-      notify('Avatar saved', 'success' )
+      notify('Avatar saved', 'success')
     }
     )
-    .catch(e => {
-        notify('Something went wrong', 'error' )
+      .catch(e => {
+        notify('Something went wrong', 'error')
         setIsSaveLoading(false);
 
       })
@@ -438,7 +442,7 @@ function AvatarSelection(props) {
                                 MenuProps={{ disableScrollLock: true }}
                               >
                                 {element.options.map((innerElement) => (
-                                  <MenuItem value={innerElement} key={"inner"+innerElement}>
+                                  <MenuItem value={innerElement} key={"inner" + innerElement}>
                                     {innerElement}
                                   </MenuItem>
                                 ))}

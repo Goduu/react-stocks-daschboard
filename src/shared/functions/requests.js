@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiUrl = 'http://127.0.0.1:8080/api/';
-// const apiUrl = 'https://stocks-studies-api.herokuapp.com/api/';
+// const apiUrl = 'https://stocks-studies-java.herokuapp.com/api/';
 
 export function login(credentials) {
   const headers = { headers: { 'Content-Type': 'application/json' } }
@@ -312,6 +312,25 @@ export function getStocksPrices(tickers, token) {
   });
 }
 
+export function fetchFinancialHistory(ticker, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'stocks/getFinancialHistory/' + ticker, headers)
+      .then(res => {
+        console.log("getFinancialHistory", res)
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function fetchDividendData(ticker, period, token) {
 
   const data = {
@@ -464,7 +483,7 @@ export function addUser(email, password) {
   return new Promise((resolve, reject) => {
     axios.post(apiUrl + 'user/register', { name: email.split("@")[0], email: email, password: password, avatar: avatar }, headers)
       .then(res => {
-        resolve(res)
+        resolve(res.data)
       })
   })
 }

@@ -84,7 +84,7 @@ const styles = (theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.primary.main,
   },
   smBordered: {
     [theme.breakpoints.down("xs")]: {
@@ -93,7 +93,7 @@ const styles = (theme) => ({
   },
   menuLink: {
     textDecoration: "none",
-    color: theme.palette.text.primary.light,
+    color: theme.palette.background.default,
   },
   iconListItem: {
     width: "auto",
@@ -107,7 +107,7 @@ const styles = (theme) => ({
     color: theme.palette.primary.main,
   },
   mobileItemSelected: {
-    backgroundColor: `${theme.palette.primary.main} !important`,
+    backgroundColor: theme.palette.primary.main,
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
@@ -287,12 +287,12 @@ function NavBar(props) {
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
               <div className={classes.accountAvatar}>
-                
-              <Avatar
-                avatarStyle='Circle'
-                style={{width: '35px', height: '35px'}}
-                {...avatar}
-              />
+
+                <Avatar
+                  avatarStyle='Circle'
+                  style={{ width: '35px', height: '35px' }}
+                  {...avatar}
+                />
               </div>
               {isWidthUp("sm", width) && (
                 <ListItemText

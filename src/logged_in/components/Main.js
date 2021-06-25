@@ -250,7 +250,7 @@ function Main(props) {
     smoothScrollTop();
     document.title = "Nexit - Grid";
     setSelectedTab("Grid");
-  }, []);
+  }, [setSelectedTab]);
 
   const selectPosts = useCallback(() => {
     smoothScrollTop();
