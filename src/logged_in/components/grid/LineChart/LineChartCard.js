@@ -151,7 +151,6 @@ function PriceChart(props) {
           res = res.PriceHistory.map(p => {
             return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
           })
-          console.log('fetched', res, token)
           setChartData(res)
         })
       props.changeParams({ id: props.i, content: { period: selectedOption_ } })

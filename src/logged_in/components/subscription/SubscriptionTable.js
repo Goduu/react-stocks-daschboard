@@ -110,7 +110,6 @@ function SubscriptionTable(props) {
   const refreshOperations = useCallback(() => {
     getAllOperations(userId, token)
       .then(transactions => {
-        console.log("transactions", transactions)
         setTransactions(transactions)
 
       })

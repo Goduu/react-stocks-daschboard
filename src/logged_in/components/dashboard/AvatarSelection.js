@@ -108,7 +108,6 @@ function AvatarSelection(props) {
   const dispatch = useDispatch()
 
   const firstCall = useCallback(() => {
-    console.log("alcpaha fist", avatar)
     if (avatar) {
       setTop(avatar.topType);
       setAccessories(avatar.accessoriesType);
@@ -134,7 +133,6 @@ function AvatarSelection(props) {
 
   const notify = (msg, variant) => {
     // variant could be success, error, warning, info, or default
-    console.log('notify')
     enqueueSnackbar(msg, { variant });
   };
 
@@ -247,7 +245,6 @@ function AvatarSelection(props) {
       mouthType: mouth,
       skinColor: skin
     }
-    console.log("AV save", auth.id, avatar_)
     dispatch(setAvatar(avatar_))
     auth.avatar = avatar_
     saveAvatar(auth.id, auth, auth.token).then(res => {

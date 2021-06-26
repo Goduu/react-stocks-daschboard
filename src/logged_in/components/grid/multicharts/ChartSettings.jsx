@@ -64,7 +64,7 @@ export default function StatisticsSettings(props) {
     const [financialPos, setFinancialPos] = useState(L);
     const [financialColor, setFinancialColor] = useState(colors[0].color);
     const [period, setPeriod] = useState(7);
-    const [open, setOpen] = React.useState(props.open);
+    const [open, setOpen] = useState(props.open);
 
     
 

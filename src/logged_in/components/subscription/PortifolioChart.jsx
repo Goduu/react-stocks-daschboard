@@ -36,7 +36,6 @@ export default function PortifolioChart() {
     const test = () => {
         getCurrentPortifolioHistorical(userId, token)
             .then(res => {
-                console.log("getCurrentPortifolioHistorical", res)
                 res = res.map(p => {
                     return { value: p.close, date: new Date(p.date.year, p.date.month, p.date.dayOfMonth).toLocaleDateString() }
                 })
@@ -44,7 +43,6 @@ export default function PortifolioChart() {
             })
         getCurrentPortifolio(userId, token)
             .then(res => {
-                console.log("getCurrentPortifolio", res)
 
                 setAssets(res.portifolio.sort((el1, el2) => {
                     return el1.sector.localeCompare(el2.name)

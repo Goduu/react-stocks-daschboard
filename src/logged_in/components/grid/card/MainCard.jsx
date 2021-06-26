@@ -40,7 +40,6 @@ function OutlinedCard(props) {
     useEffect(() => {
         getQuoteData(ticker, token)
             .then(res => {
-                console.log("Alcapaha data", res)
                 setData(res)
             })
     }, [ticker])

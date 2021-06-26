@@ -22,7 +22,7 @@ function App() {
           <Pace color={theme.palette.primary.dark} />
           <Suspense fallback={<Fragment />}>
             <Switch>
-              <PrivateRoute path="/c" roles={['user']} component={LoggedInComponent} />
+              <PrivateRoute path="/c" roles={['user', 'tour']} component={LoggedInComponent} />
               {/* <Route path="/c">
               <LoggedInComponent />
             </Route> */}

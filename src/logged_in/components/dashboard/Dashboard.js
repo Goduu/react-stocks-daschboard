@@ -4,6 +4,7 @@ import { Typography, Box } from "@material-ui/core";
 import SettingsArea from "./SettingsArea";
 import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
+import Badges from "./Badges";
 import StatisticsArea from "./StatisticsArea";
 import AvatarSelection from "./AvatarSelection";
 
@@ -29,6 +30,7 @@ function Dashboard(props) {
           Your Account
         </Typography>
       </Box>
+      <Badges/>
       <AccountInformationArea
         isAccountActivated={isAccountActivated}
         toggleAccountActivation={toggleAccountActivation}

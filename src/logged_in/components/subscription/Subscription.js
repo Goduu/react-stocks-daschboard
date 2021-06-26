@@ -68,7 +68,6 @@ function Subscription(props) {
   const refreshOperations = useCallback(() => {
     getAllOperations(userId, token)
       .then(transactions => {
-        console.log("transactions", transactions)
         setTransactions(transactions)
 
       })
@@ -79,7 +78,6 @@ function Subscription(props) {
   }, [refreshOperations])
 
   const handleDeleteOperation = (id) => {
-    console.log("Handle delete", id)
     deleteOperation(id, token)
       .then(() => {
         enqueueSnackbar('Operation Deleted', { variant: 'success' })

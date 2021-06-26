@@ -14,6 +14,10 @@ import {
 } from "@material-ui/core";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
+import {login} from "../../../shared/functions/requests"
+import { useDispatch } from 'react-redux';
+import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
+import { withRouter } from "react-router-dom";
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -99,7 +103,18 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme, width } = props;
+  const { classes, theme, width,history } = props;
+  const dispatch = useDispatch();
+
+  const loginTour = () => {
+    login({ email: 'guide@tour.com', password: 'xL1ZuT9vPVb' })
+      .then(res => {
+        dispatch(setToken(res.authToken))
+        dispatch(setUser(res.info))
+        history.push("/c/grid");
+      })
+
+  }
   return (
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
@@ -142,6 +157,7 @@ function HeadSection(props) {
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
+                          onClick={loginTour}
                         >
                           Start now!
                         </Button>
@@ -177,8 +193,9 @@ HeadSection.propTypes = {
   classes: PropTypes.object,
   width: PropTypes.string,
   theme: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
 export default withWidth()(
-  withStyles(styles, { withTheme: true })(HeadSection)
+  withRouter(withStyles(styles, { withTheme: true })(HeadSection))
 );

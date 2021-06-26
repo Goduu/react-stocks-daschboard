@@ -89,10 +89,8 @@ export default function Indicators(props) {
     useEffect(() => {
         fetchIndicators(ticker)
             .then(res => {
-                console.log("Fetch indicators", res)
                 let ind = {}
                 Object.keys(res).forEach((group) => {
-                    console.log(group)
                     ind[group] = []
                     Object.keys(res[group]).forEach((item) => {
                         if (res[group][item]) {
@@ -100,7 +98,6 @@ export default function Indicators(props) {
                                 name: item,
                                 value: res[group][item]
                             })
-                            // console.log("item", item, res[group][item])
                         }
                     })
                 })

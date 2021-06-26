@@ -91,7 +91,6 @@ function Content(props) {
 
             } else if (type === 'number') {
                 if (v > 1000000000) {
-                    console.log("maior v", v, (v / 1000000).toFixed(2) + 'B')
                     return (v / 1000000000).toFixed(2) + 'B'
                 } else if (v > 1000000) {
                     return (v / 1000000).toFixed(2) + 'M'

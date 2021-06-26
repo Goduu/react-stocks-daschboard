@@ -125,7 +125,6 @@ function EsgCard(props) {
     useEffect(() => {
         fetchEsgRisk(ticker, token)
             .then(res => {
-                console.log("fetchEsgRisk", res)
                 setEsgs(res)
             })
             .catch((e) => enqueueSnackbar("No ESG data for This stock", { variant: 'warning' })

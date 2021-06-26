@@ -1,11 +1,9 @@
 import { React, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
+import {IconButton,} from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 
-import {
-    IconButton,
-} from "@material-ui/core";
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({

@@ -16,7 +16,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 import { login } from '../../../shared/functions/requests.js';
 import { useDispatch } from 'react-redux';
-import {setToken, setUser} from '../../../shared/redux/actions/auth.actions.js'
+import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -42,11 +42,11 @@ const styles = (theme) => ({
 
 function loginUser(user, password) {
   return new Promise((resolve, reject) => {
-     
-    login({email: user, password: password})
+
+    login({ email: user, password: password })
       .then(res => {
-        resolve(res.data)
-      }).catch( e =>reject(e))
+        resolve(res)
+      }).catch(e => reject(e))
   });
 
 }
@@ -71,18 +71,17 @@ function LoginDialog(props) {
     setStatusMessage(null);
     loginUser(loginEmail.current.value, loginPassword.current.value)
       .then(res => {
-        console.log("FINISHED",res)
         dispatch(setToken(res.authToken))
         dispatch(setUser(res.info))
         setIsLoading(false);
         history.push("/c/dashboard");
       })
-      .catch( (e) => {
+      .catch((e) => {
         setStatusMessage("invalidPassword")
         setIsLoading(false);
       })
-//     setStatusMessage("invalidEmail");
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage,dispatch]);
+    //     setStatusMessage("invalidEmail");
+  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage, dispatch]);
 
   return (
     <Fragment>

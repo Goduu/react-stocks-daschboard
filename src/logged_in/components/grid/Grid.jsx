@@ -7,10 +7,10 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid, fetchFinancialHistory } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements, deleteGrid, getTrendingTickers } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
-
+import GuideTour from '../../../shared/components/GuideTour'
 
 
 const ResponsiveReactGridLayout = WidthProvider(RGL);
@@ -34,6 +34,7 @@ function Grid(props) {
   const [gridId, setGridId] = useState(undefined)
   const [gridStartup, setGridStartup] = useState({ id: undefined, identifier: undefined, newGridElements: undefined })
   const userId = useSelector(state => state.auth.id)
+  const userRoles = useSelector(state => state.auth.roles)
   const token = useSelector(state => state.auth.token)
   const [firstSave, setFirstSave] = useState(true)
   const { enqueueSnackbar } = useSnackbar();
@@ -63,7 +64,6 @@ function Grid(props) {
    * Triggers the restauration process whenn all states for startup are setted
    */
   useEffect(() => {
-    console.log("STARTANDO", gridStartup.identifier, gridStartup.newGridElements)
     if (typeof gridStartup.identifier !== 'undefined' && typeof gridStartup.newGridElements !== 'undefined') {
       restoreItems(gridStartup.newGridElements, gridStartup.identifier)
     }
@@ -107,7 +107,6 @@ function Grid(props) {
    */
   useEffect(() => {
 
-    console.log("first s, gridid", firstSave, gridId)
     if (firstSave || gridId != undefined) {
       if (gridElements && layout && gridElements.length == layout.length) {
         if (identifier && gridElements && layout.length !== 0) {
@@ -163,7 +162,6 @@ function Grid(props) {
   }
 
   const onLayoutChange = useCallback((layout_) => {
-    console.log("LAYOUT CHANGE")
 
     setGridElements(prev => {
       if (prev) {
@@ -187,7 +185,6 @@ function Grid(props) {
 
     }
     );
-    console.log("CHange params", gridId, identifier, userId, newGridEl, token)
     if (typeof identifier !== 'undefined' && typeof gridId !== 'undefined' && token && typeof newGridEl !== 'undefined') {
       saveGridElements(gridId, identifier, userId, newGridEl, token)
     }
@@ -256,7 +253,6 @@ function Grid(props) {
       return
     })
     if (selectedDashboard) {
-      console.log("selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements", selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
       // setGridStartup(selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
       restoreItems(
         selectedDashboard.gridElements,
@@ -299,42 +295,39 @@ function Grid(props) {
 
   const notify = (msg, variant) => {
     // variant could be success, error, warning, info, or default
-    console.log('notify')
     enqueueSnackbar(msg, { variant });
   };
 
 
-  if (identifier) {
-    return (
-      <div>
-        <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
-          <SelectMenu selectDashboard={selectDashboard} identifier={identifier} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
-          <ResponsiveReactGridLayout
-            onLayoutChange={onLayoutChange}
-            onBreakpointChange={onBreakpointChange}
-            {...props}
-            rowHeight={99}
-            columnHeight={100}
-          >
-            {_.map(gridItems.items, el => { return el.content })}
-          </ResponsiveReactGridLayout>
-          <br />
-          {/* <button onClick={() => {
-            fetchFinancialHistory(identifier, token)
-              .then(res => console.log("alcpaah deu", res))
-          }}>testfunction</button> */}
-          {/* <News/> */}
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        {/* <NewGridDialog chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} /> */}
-        <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
-      </div>
+  return (
+    <GuideTour active={userRoles.includes('tour')} gridItems={gridItems} identifier={identifier}>
+      {
+        identifier ? (
+          <div>
+            <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
+            <SelectMenu selectDashboard={selectDashboard} identifier={identifier} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
+            <ResponsiveReactGridLayout
+              onLayoutChange={onLayoutChange}
+              onBreakpointChange={onBreakpointChange}
+              {...props}
+              rowHeight={99}
+              columnHeight={100}
+            >
+              {_.map(gridItems.items, el => { return el.content })}
+            </ResponsiveReactGridLayout>
+            <br />
+          </div>
 
-    )
-  }
+        ) : (
+
+          <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
+
+        )
+      }
+      <button onClick={() => getTrendingTickers('US', token)}>ads</button>
+    </GuideTour>
+  )
+
 
 
 

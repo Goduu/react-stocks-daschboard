@@ -62,7 +62,6 @@ function RegisterDialog(props) {
     setIsLoading(true);
     addUser(registerEmail.current.value, registerPassword.current.value)
       .then((res) => {
-        console.log("Reposta register :", res)
         setIsLoading(false);
         dispatch(setToken(res.authToken))
         dispatch(setUser(res.info))

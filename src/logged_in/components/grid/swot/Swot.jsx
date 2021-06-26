@@ -97,8 +97,6 @@ function Swot(props) {
                         expandIcon={<ExpandMoreIcon fontSize="small" className={classes.accordionExpandIcon} />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
-                        onClick={() => console.log("Alcapaha")}
-
                     >
                         <Typography className={classes.heading}>
                             <Avatar className={classes.strengths}>

@@ -12,7 +12,6 @@ import News from './news/News';
 
 
 export const getCardProps = (type, functions, gridItems, ticker, id) => {
-  console.log("Get card prop incio", type)
   let props = {
     params: {},
     i: id,
@@ -159,7 +158,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       break
 
   }
-  console.log("GET card props", component, type)
   return component
 }
 

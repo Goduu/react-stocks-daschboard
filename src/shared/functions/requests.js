@@ -10,7 +10,7 @@ export function login(credentials) {
     axios.post(apiUrl + 'user/login', credentials, headers)
       .then(res => {
         console.log("RES LOGIN", res.data)
-        resolve(res)
+        resolve(res.data)
       })
       .catch(e => {
         reject(e)
@@ -442,6 +442,24 @@ export function getTickers(page, search, exchange, token) {
 
   return new Promise((resolve, reject) => {
     axios.get(apiUrl + 'ticker/' + exchange + '/' + search, headers)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(error => reject(error))
+  });
+}
+
+export function getTrendingTickers(exchange, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'ticker/trending/' + exchange , headers)
       .then(res => {
         resolve(res.data)
       })

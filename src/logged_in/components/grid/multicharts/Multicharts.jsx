@@ -110,7 +110,6 @@ function BarChart_(props) {
         })
         Promise.allSettled(promises).
             then((results) => {
-                console.log("Results", results)
                 let chartsData_ = {}
                 results.forEach(r => {
                     if (r.status === "fulfilled") {
@@ -135,7 +134,6 @@ function BarChart_(props) {
 
                             }
                             case "financial": {
-                                console.log("Alcpahaha doida",r)
                                 r.value.values.filter(el => el.period === "yearly")
                                     .forEach(p => {
                                         let date = new Date(p.dateEpoch)
@@ -143,7 +141,6 @@ function BarChart_(props) {
                                         data.financial = p.value
                                         chartsData_[date.getTime()] = data
                                     })
-                                    console.log("Chartdata",chartsData_)
                                 break
 
                             }

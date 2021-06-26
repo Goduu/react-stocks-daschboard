@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         whiteSpace: 'nowrap',
         paddingLeft: theme.spacing(1),
         scrollBehavior: 'smooth'
-        
+
 
     },
     itens: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
     arrowLeft: {
         position: 'absolute',
-        marginLeft: menuWidth*0.99,
+        marginLeft: menuWidth * 0.99,
         transition: 'all 200ms',
         width: 'auto',
         zIndex: 5,
@@ -103,15 +103,17 @@ export function SelectMenu(props) {
     }
 
     useEffect(() => {
-        console.log("Usou o effeito")
-    setIsMaxRight(myRef.current.scrollWidth  <= myRef.current.clientWidth)
-    }, [])
-    
-    useEffect(() => {
-        console.log("Usou o effeito")
+        console.log("Usou o effeito", myRef.current.scrollWidth, myRef.current.clientWidth,
+         myRef.current.scrollLeft,myRef.current.scrollWidth <= myRef.current.clientWidth,myRef.current.clientWidth >= myRef.current.scrollWidth)
         setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
         setIsMaxLeft(myRef.current.scrollLeft <= 0)
-    },)
+        setIsMaxRight(myRef.current.scrollWidth <= myRef.current.clientWidth)
+    }, [])
+
+    useEffect(() => {
+        setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
+        setIsMaxLeft(myRef.current.scrollLeft <= 0)
+    })
 
     useEffect(() => {
         getGridsIdentifiers(userId, token)
@@ -131,7 +133,7 @@ export function SelectMenu(props) {
 
     return (
         <div className={classes.menuWrapper}>
-
+            <button onClick={executeScroll}>exec</button>
             <div className={classes.menu}>
                 <Grid
                     container
@@ -174,7 +176,7 @@ export function SelectMenu(props) {
                     {identifiers.map(el => {
                         if (el !== props.identifier) {
                             return (
-                                <Grid item key={el}>
+                                <Grid item key={el} xs>
                                     <Paper elevation={2} className={classes.itens} onClick={() => props.selectDashboard(el)}>
                                         <Typography
                                             variant="h6"
@@ -188,7 +190,7 @@ export function SelectMenu(props) {
                     })}
 
                     <Grid item key={'arrfoward'} className={classes.arrowLeft} hidden={scrollArrow || isMaxRight} onClick={scrollLeft}>
-                        <IconButton size="small"  edge="start">
+                        <IconButton size="small" edge="start">
                             <ArrowForwardIosIcon />
                         </IconButton>
                     </Grid>
