@@ -149,6 +149,8 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LabelIcon from '@material-ui/icons/Label';
+import MultilineChartIcon from '@material-ui/icons/MultilineChart';
+import EcoIcon from '@material-ui/icons/Eco';
 
 const useStyles = makeStyles((theme) => ({
     speedDial: {
@@ -186,8 +188,8 @@ const options = [
     { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
     { value: 'swot', label: 'SWOT-Analysis', icon: <AssignmentIcon /> },
     { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
-    { value: 'esg', label: 'ESG Risk', icon: <LabelIcon /> },
-    { value: 'multichart', label: 'Multicharts', icon: <TrendingUpIcon /> },
+    { value: 'esg', label: 'ESG Risk', icon: <EcoIcon /> },
+    { value: 'multichart', label: 'Multicharts', icon: <MultilineChartIcon /> },
     { value: 'statistics', label: 'Statistics', icon: <TrendingUpIcon /> },
 ];
 

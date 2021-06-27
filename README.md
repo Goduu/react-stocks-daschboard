@@ -32,7 +32,7 @@ Aplication to create custom dashboards stocks studies.
 2. Install dependencies, this can take a minute
 
    ```
-   cd react-saas-template
+   cd stocks-studies-ui
    npm install
    ```
 3. Start the local server

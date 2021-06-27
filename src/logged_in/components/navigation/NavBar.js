@@ -39,6 +39,7 @@ const styles = (theme) => ({
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.background.paper,
+    zIndex: 2,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -84,7 +85,8 @@ const styles = (theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.paper,
+    zIndex: 0
   },
   smBordered: {
     [theme.breakpoints.down("xs")]: {

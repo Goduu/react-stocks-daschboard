@@ -324,7 +324,7 @@ function Grid(props) {
 
         )
       }
-      <button onClick={() => getTrendingTickers('US', token)}>ads</button>
+      {/* <button onClick={() => getTrendingTickers('US', token)}>ads</button> */}
     </GuideTour>
   )
 

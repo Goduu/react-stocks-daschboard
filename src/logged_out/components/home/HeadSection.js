@@ -14,10 +14,11 @@ import {
 } from "@material-ui/core";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
-import {login} from "../../../shared/functions/requests"
+import { login } from "../../../shared/functions/requests"
 import { useDispatch } from 'react-redux';
 import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
 import { withRouter } from "react-router-dom";
+import ParticlesMain from "../../../shared/components/Particles"
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -103,7 +104,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme, width,history } = props;
+  const { classes, theme, width, history } = props;
   const dispatch = useDispatch();
 
   const loginTour = () => {
@@ -118,6 +119,10 @@ function HeadSection(props) {
   return (
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
+      <div style={{ position: 'absolute', width: '100vw',marginTop: '-100px' }}>
+
+        <ParticlesMain />
+      </div>
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="center" className="row">
             <Card

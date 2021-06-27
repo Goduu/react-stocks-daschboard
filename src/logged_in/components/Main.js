@@ -11,7 +11,7 @@ import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
 const styles = (theme) => ({
   main: {
-    marginLeft: theme.spacing(9),
+    marginLeft: theme.spacing(1),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

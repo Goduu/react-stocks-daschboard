@@ -1,9 +1,9 @@
 {
-  "name": "react-saas-template",
+  "name": "stocks-studies-ui",
   "version": "1.0.0",
   "private": true,
   "homepage": "",
-  "description": "Template for building an SaaS/admin application using React + Material-UI",
+  "description": "Stocks Studies UI",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.11.4",
@@ -42,6 +42,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
+    "react-tsparticles": "^1.29.2",
     "recharts": "^2.0.9",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",

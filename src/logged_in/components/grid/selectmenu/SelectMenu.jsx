@@ -133,7 +133,7 @@ export function SelectMenu(props) {
 
     return (
         <div className={classes.menuWrapper}>
-            <button onClick={executeScroll}>exec</button>
+            {/* <button onClick={executeScroll}>exec</button> */}
             <div className={classes.menu}>
                 <Grid
                     container
