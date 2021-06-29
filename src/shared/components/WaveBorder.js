@@ -7,8 +7,8 @@ const styles = {
     position: "relative",
     width: "100%",
     marginBottom: -7,
-    height: "7vw",
-    minHeight: "7vw"
+    height: "9vw",
+    minHeight: "9vw"
   },
   "@keyframes moveForever": {
     from: { transform: "translate3d(-90px, 0, 0)" },

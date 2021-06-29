@@ -11,6 +11,7 @@ import { saveGridElements, fetchGridElements, deleteGrid, getTrendingTickers } f
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
+import ParticlesMain from "../../../shared/components/Particles"
 
 
 const ResponsiveReactGridLayout = WidthProvider(RGL);
@@ -37,6 +38,7 @@ function Grid(props) {
   const userRoles = useSelector(state => state.auth.roles)
   const token = useSelector(state => state.auth.token)
   const [firstSave, setFirstSave] = useState(true)
+  const [review, setReview] = useState(false)
   const { enqueueSnackbar } = useSnackbar();
 
   /**
@@ -57,6 +59,10 @@ function Grid(props) {
             setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements })
           }
         }
+      })
+      .catch(() => {
+        notify('Something went restoring the cards', 'error')
+
       })
   }, [userId, token])
 
@@ -269,26 +275,29 @@ function Grid(props) {
    */
   const deleteDashboard = () => {
     let next
+    try {
+      allDashboards.forEach(d => {
+        if (d.identifier !== identifier) {
+          next = d.identifier;
+          return
+        }
+      })
 
-    allDashboards.forEach(d => {
-      if (d.identifier !== identifier) {
-        next = d.identifier;
-        return
+      setAllDashboards(prev => {
+        return prev.filter(d => d.identifier !== identifier)
+      })
+      deleteGrid(gridId, token).then(() => {
+        notify('Dashboard Deleted', 'success')
+      }).catch(e => {
+        notify('Something went wrong', 'error')
+      })
+      if (next) {
+        selectDashboard(next)
+      } else {
+        newDashboard()
       }
-    })
-
-    setAllDashboards(prev => {
-      return prev.filter(d => d.identifier !== identifier)
-    })
-    deleteGrid(gridId, token).then(() => {
-      notify('Dashboard Deleted', 'success')
-    }).catch(e => {
-      notify(e, 'error')
-    })
-    if (next) {
-      selectDashboard(next)
-    } else {
-      newDashboard()
+    } catch (e) {
+      notify('Something went wrong', 'error')
     }
 
   }
@@ -300,12 +309,19 @@ function Grid(props) {
 
 
   return (
-    <GuideTour active={userRoles.includes('tour')} gridItems={gridItems} identifier={identifier}>
+    <GuideTour active={review} gridItems={gridItems} identifier={identifier}>
       {
         identifier ? (
           <div>
-            <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
-            <SelectMenu selectDashboard={selectDashboard} identifier={identifier} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} />
+           
+              <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} hidden={review} />
+              <SelectMenu
+                selectDashboard={selectDashboard}
+                identifier={identifier}
+                handleDeletDashboard={deleteDashboard}
+                handleAddDashboard={newDashboard}
+                hidden={review} />
+          
             <ResponsiveReactGridLayout
               onLayoutChange={onLayoutChange}
               onBreakpointChange={onBreakpointChange}
@@ -315,6 +331,7 @@ function Grid(props) {
             >
               {_.map(gridItems.items, el => { return el.content })}
             </ResponsiveReactGridLayout>
+            {/* <ParticlesMain density={100}/> */}
             <br />
           </div>
 
@@ -324,7 +341,7 @@ function Grid(props) {
 
         )
       }
-      {/* <button onClick={() => getTrendingTickers('US', token)}>ads</button> */}
+      <button onClick={() => setReview(!review)}>ads</button>
     </GuideTour>
   )
 
