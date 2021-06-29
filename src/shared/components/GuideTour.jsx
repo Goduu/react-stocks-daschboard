@@ -1,20 +1,129 @@
-import React from 'react';
+import { React, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import { Button, StepButton, Tooltip } from '@material-ui/core';
+import { Popover, ClickAwayListener, TextField, Paper, Avatar, Grid, IconButton,InputAdornment } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useEffect } from 'react';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+import MessageIcon from '@material-ui/icons/Message';
+import { useDispatch } from 'react-redux';
+import { isSidedrawerOpen } from '../redux/actions/ui.actions.js'
+import SendIcon from '@material-ui/icons/Send';
 
+const labels = {
+    0.5: 'Useless',
+    1: 'Useless+',
+    1.5: 'Poor',
+    2: 'Poor+',
+    2.5: 'Ok',
+    3: 'Ok+',
+    3.5: 'Good',
+    4: 'Good+',
+    4.5: 'Excellent',
+    5: 'Excellent+',
+};
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+    },
+    comments: {
+        cursor: 'pointer'
+    },
+    commentBox: {
+        padding: theme.spacing(2)
+    },
+    iconButton: {
+        height: '55px'
+    }
+}));
+
+function HoverRating() {
+    const [value, setValue] = useState(2);
+    const [hover, setHover] = useState(-1);
+    const [reviewOpen, setReviewOpen] = useState(false);
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    const [anchorReview, setAnchorReview] = useState(null);
+    const reviewRef = useRef(null)
+
+
+    const handleReview = (event, newValue) => {
+        console.log("Review", reviewOpen)
+        setValue(newValue)
+        setAnchorReview(reviewRef.current)
+        setReviewOpen(true)
+
+    }
+
+
+    return (
+        <ClickAwayListener onClickAway={() => console.log("asdsadsad")} >
+            <Grid container spacing={2} className={classes.root} ref={reviewRef}>
+                <Grid item>
+                    <Rating
+                        name="hover-feedback"
+                        value={value}
+                        precision={0.5}
+                        onChange={(event, newValue) =>
+                            handleReview(event, newValue)
+                        }
+                        onChangeActive={(event, newHover) => {
+                            setHover(newHover);
+                        }}
+                    />
+                
+                <Popover
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                    }}
+                    anchorEl={anchorReview}
+                    open={reviewOpen}
+                >
+                    <Paper elevation={1} className={classes.commentBox}>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Review"
+                            variant="outlined"
+                            multiline
+                            rows={5}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        className={classes.iconButton}
+                                        onClick={() => {
+                                            console.log("send");
+                                        }}>
+                                        <SendIcon />
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </Paper>
+                </Popover>
+                </Grid>
+                <Grid item className={classes.comments}>
+                    <Avatar onClick={() => dispatch(isSidedrawerOpen(true))}><MessageIcon /></Avatar>
+                </Grid>
+            </Grid>
+        </ClickAwayListener>
+    );
+}
 
 
 let initialSteps =
     [{ label: 'Select a stock', complete: false },
-    { label: 'Select a visual', complete: false },
-    { label: 'Select a secound visual', complete: false },
-    { label: 'Add another stock', complete: false },
-    { label: 'Delete the stock dashboard', complete: false },
     ];
 
 function getStepContent(stepIndex) {
@@ -31,8 +140,8 @@ function getStepContent(stepIndex) {
 }
 
 export default function GuideTour(props) {
-    const [zindex, setZindex] = React.useState(5);
-    const [steps, setSteps] = React.useState(initialSteps);
+    const [zindex, setZindex] = useState(5);
+    const [steps, setSteps] = useState(initialSteps);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -46,10 +155,12 @@ export default function GuideTour(props) {
         },
         stepperwrapper: {
             position: 'fixed',
-            bottom: theme.spacing(3),
+            bottom: theme.spacing(5),
             display: 'flex',
-            width: '100vw',
-            zIndex: zindex
+            height: '80px',
+            zIndex: zindex,
+            padding: theme.spacing(3),
+            right: theme.spacing(10),
 
         },
         button: {
@@ -62,8 +173,8 @@ export default function GuideTour(props) {
         },
     }));
     const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [tourActive, tougleTourActive] = React.useState(false);
+    const [activeStep, setActiveStep] = useState(0);
+    const [tourActive, tougleTourActive] = useState(false);
 
 
     const handleNext = () => {
@@ -96,8 +207,8 @@ export default function GuideTour(props) {
             </div>
             {props.children}
             {tourActive &&
-                <div className={classes.stepperwrapper}>
-                    <Button
+                <Paper className={classes.stepperwrapper} elevation={3}>
+                    {/* <Button
                         disabled={activeStep === 0}
                         onClick={handleBack}
                         className={classes.button}
@@ -115,16 +226,18 @@ export default function GuideTour(props) {
                                 </Step>
                             </Tooltip>
                         ))}
-                    </Stepper>
-                    <Button
+                    </Stepper> 
+                     <Button
                         variant="contained"
                         color="primary"
                         onClick={handleNext}
                         disabled={activeStep === steps.length}
                         className={classes.button}>
                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                    </Button>
-                </div>
+                    </Button> */}
+                    <HoverRating />
+
+                </Paper >
             }
         </div>
     );

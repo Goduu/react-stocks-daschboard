@@ -103,7 +103,8 @@ const features = [
 
 const useStyles = makeStyles((theme) => ({
   main: {
-      background: theme.palette.background.default
+      background: theme.palette.background.default,
+      paddingTop: theme.spacing(15)
   }
 }))
 

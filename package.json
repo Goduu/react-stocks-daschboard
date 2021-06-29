@@ -31,6 +31,7 @@
     "moment": "^2.29.1",
     "notistack": "^1.0.9",
     "path": "^0.12.7",
+    "pathseg": "^1.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-cropper": "^2.1.7",
