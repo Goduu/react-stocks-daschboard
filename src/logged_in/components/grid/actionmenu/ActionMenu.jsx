@@ -213,7 +213,7 @@ export default function SpeedDialTooltipOpen(props) {
     }
 
     return (
-        <div className={classes.speedDial}>
+        <div className={classes.speedDial} hidden={props.hidden}>
             <div className={classes.wrapper}>
                 {/* <Tooltip title="Delete Dashboard">
                     <Fab aria-label='Delete Dashboard' className={classes.small} onClick={props.handleDeletDashboard}>

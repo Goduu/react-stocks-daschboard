@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         marginLeft: menuWidth * 0.99,
         transition: 'all 200ms',
-        width: 'auto',
         zIndex: 5,
         "&:hover": {
             // transform: 'scale(2)',
@@ -71,10 +70,10 @@ const useStyles = makeStyles((theme) => ({
 */
 export function SelectMenu(props) {
     const classes = useStyles();
-    const [scrollArrow, setScrollArrow] = useState(true);
+    const [scrollArrow, setScrollArrow] = useState(false);
     const [identifiers, setIdentifiers] = useState([]);
-    const [isMaxLeft, setIsMaxLeft] = useState(false);
-    const [isMaxRight, setIsMaxRight] = useState(false);
+    const [isMaxLeft, setIsMaxLeft] = useState(true);
+    const [isMaxRight, setIsMaxRight] = useState(true);
     const myRef = useRef(null)
     const userId = useSelector(state => state.auth.id)
     const token = useSelector(state => state.auth.token)
@@ -85,20 +84,22 @@ export function SelectMenu(props) {
         console.log("clientWidth", myRef.current.clientWidth)
         console.log("scrollLeft", myRef.current.scrollLeft)
     }
-    const scrollLeft = () => {
+    const scrollRight = () => {
         let sleft = myRef.current.scrollLeft + 120
         console.log("sleft", sleft)
         myRef.current.scrollLeft = sleft
+        let test = (myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth
+        console.log("test", test)
         setIsMaxRight((myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth)
         setIsMaxLeft(sleft <= 0)
 
     }
 
-    const scrollRight = () => {
+    const scrollLeft = () => {
         let sleft = myRef.current.scrollLeft - 120
         myRef.current.scrollLeft = sleft
+        setIsMaxRight((myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth)
         setIsMaxLeft(sleft <= 0)
-        setIsMaxRight((myRef.current.scrollWidth - sleft) === myRef.current.clientWidth)
 
     }
 
@@ -111,9 +112,13 @@ export function SelectMenu(props) {
     }, [])
 
     useEffect(() => {
+        console.log("--myRef.current.clientWidth,myRef.current.scrollWidth,myRef.current.scrollLeft",myRef.current.clientWidth,myRef.current.scrollWidth,myRef.current.scrollLeft)
+        console.log("--",myRef.current.clientWidth >= myRef.current.scrollWidth,myRef.current.scrollLeft <= 0)
         setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
-        setIsMaxLeft(myRef.current.scrollLeft <= 0)
-    })
+        // setIsMaxLeft(myRef.current.scrollLeft <= 0)
+        setIsMaxRight(myRef.current.scrollWidth <= myRef.current.clientWidth + 4)
+
+    },[myRef.current && myRef.current.scrollWidth])
 
     useEffect(() => {
         getGridsIdentifiers(userId, token)
@@ -130,14 +135,13 @@ export function SelectMenu(props) {
             })
     }, [props.identifier, userId])
 
-
     return (
-        <div className={classes.menuWrapper}>
+        <div className={classes.menuWrapper} >
             {/* <button onClick={executeScroll}>exec</button> */}
-            <div className={classes.menu}>
+            <div className={classes.menu} hidden={props.hidden}>
                 <Grid
                     container
-                    spacing={1}
+                    spacing={3}
                     direction="row"
                     justify="flex-start"
                     alignItems="center"
@@ -159,7 +163,7 @@ export function SelectMenu(props) {
                 </Grid>
 
             </div>
-            <div className={classes.menu} ref={myRef}>
+            <div className={classes.menu} ref={myRef} hidden={props.hidden}>
                 <Grid
                     container
                     spacing={1}
@@ -167,7 +171,7 @@ export function SelectMenu(props) {
                     justify="flex-start"
                     alignItems="center"
                     wrap="nowrap">
-                    <Grid item key={'arrback'} className={classes.arrowRight} hidden={scrollArrow || isMaxLeft} onClick={scrollRight}>
+                    <Grid item key={'arrback'} className={classes.arrowRight} hidden={isMaxLeft} onClick={scrollLeft}>
                         <IconButton size="small" edge="start">
                             <ArrowBackIosIcon />
                         </IconButton>
@@ -176,7 +180,7 @@ export function SelectMenu(props) {
                     {identifiers.map(el => {
                         if (el !== props.identifier) {
                             return (
-                                <Grid item key={el} xs>
+                                <Grid item key={el} >
                                     <Paper elevation={2} className={classes.itens} onClick={() => props.selectDashboard(el)}>
                                         <Typography
                                             variant="h6"
@@ -189,7 +193,7 @@ export function SelectMenu(props) {
                         }
                     })}
 
-                    <Grid item key={'arrfoward'} className={classes.arrowLeft} hidden={scrollArrow || isMaxRight} onClick={scrollLeft}>
+                    <Grid item key={'arrfoward'} className={classes.arrowLeft} hidden={isMaxRight} onClick={scrollRight}>
                         <IconButton size="small" edge="start">
                             <ArrowForwardIosIcon />
                         </IconButton>
