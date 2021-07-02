@@ -1,100 +1,105 @@
-import * as React from 'react';
-import { DataGrid, GridToolbar } from '@material-ui/data-grid';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import CloseIcon from '@material-ui/icons/Close';
+import _ from 'lodash';
+import { Paper, Button } from '@material-ui/core';
+import { useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
+import CardWrapper from '../Card'
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import { DataGrid } from '@material-ui/data-grid';
+import {
+  randomCreatedDate,
+  randomTraderName,
+  randomUpdatedDate,
+} from '@material-ui/x-grid-data-generator';
+
+const gridStyle = { height: '100%' }
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: 10,
         display: 'flex',
+        flexWrap: 'wrap',
+        height: '100%'
     },
-    connected: {
-        marginRight: 2,
-    },
-    disconnected: {
-        marginRight: 2,
-    },
-    form: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-    input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
-    },
-    iconButton: {
-        padding: 10,
-    },
-    divider: {
-        height: 28,
-        margin: 3,
-    },
-    selectType: {
-        marginLeft: '0.5em'
-    },
+    table: {
+        paddingTop: '30px',
+        height: '95%',
+        margin: '8px',
+        overflow: 'hidden',
+    }
 }));
 
-export default function ToolbarGrid() {
-    const { data } = useDemoData({
-        dataSet: 'Commodity',
-        rowLength: 3,
-        maxColumns: 4,
-    });
+const columns = [
+    { field: 'name', headerName: 'Name', width: 180, editable: true },
+    { field: 'age', headerName: 'Age',width: 120, type: 'number', editable: true },
+    {
+        field: 'dateCreated',
+        headerName: 'Date Created',
+        type: 'date',
+        width: 180,
+        editable: true,
+    },
+    {
+        field: 'lastLogin',
+        headerName: 'Last Login',
+        type: 'dateTime',
+        width: 220,
+        editable: true,
+    },
+];
 
-    const addRow = () => {
-        //   rowsTemp = [...state.rows]
-        //         rowsTemp
-        //         .push({
-        //             id: state.rowNumber + 1,
-        //             h1: '',
-        //             h2: '',
-        //             h3: ''
-        //         });
+const rows = [
+    {
+        id: 1,
+        name: randomTraderName(),
+        age: 25,
+        dateCreated: randomCreatedDate(),
+        lastLogin: randomUpdatedDate(),
+    },
+    {
+        id: 2,
+        name: randomTraderName(),
+        age: 36,
+        dateCreated: randomCreatedDate(),
+        lastLogin: randomUpdatedDate(),
+    },
+]
+
+const Table = (props) => {
+    const [config, toggleConfig] = useState(false);
+    const classes = useStyles();
+
+    const addLinesMenu = {
+        action: () => addLine(),
+        icon: PlaylistAddIcon
     }
 
-    const AddRowFooter = (props) => {
-        const classes = useStyles();
-
-        return (
-            <div className={classes.root} >
-                <AddCircleOutlineIcon fontSize="small" onClick={addRow} />
-          Add Row
-            </div>
-        );
+    const addLine = () => {
+        
     }
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
-            <DataGrid
-                {...data}
-                components={{
-                    Toolbar: GridToolbar,
-                    Footer: AddRowFooter
-                }}
-            />
-        </div>
-    );
+        <CardWrapper extraMenu={addLinesMenu} {...props} openSettings={() => toggleConfig(!config)}>
+            <div className={classes.table}>
+                <div style={{ height: '100%', width: '100%' }}>
+                    <DataGrid rows={rows} columns={columns} />
+                </div>
+            </div>
+        </CardWrapper>
+
+    )
 }
 
-
-
 export function TableGrid(props) {
+
     return ({
-        type: 'table',
+        type: 'note',
         i: props.i,
         content: (
-            <div key={props.i} data-grid={props} className="MuiPaper-elevation1">
-                <span className="grid-menu">
-                    <span onClick={props.onRemoveItem}>
-                        <CloseIcon fontSize="small" />
-                    </span>
-                </span>
-                <ToolbarGrid />
-            </div>)
-    }
-    );
+            <Paper key={props.i} data-grid={props}>
+
+                <Table key={props.i} {...props} />
+
+            </Paper>
+        )
+    })
+
 }
