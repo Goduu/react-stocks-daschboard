@@ -13,7 +13,7 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import GradeIcon from '@material-ui/icons/Grade';
-import { lime, teal, orange } from '@material-ui/core/colors';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 function Content(props) {
     const { t } = useTranslation();
@@ -163,7 +163,7 @@ function Content(props) {
             <StatisticsSettings anchorEl={[anchorSettings, setAnchorSettings]} open={settingsOpen} saveSettings={saveSettings} statistics={statistics}></StatisticsSettings>
             <div className={classes.root}>
                 <Grid container spacing={0} >
-                    {statisticSelected &&
+                    {statisticSelected ?
                         <Grid item xs key={statisticSelected.label}>
                             <Typography
                                 variant="h5"
@@ -224,6 +224,10 @@ function Content(props) {
                                 </Tooltip>
                             </Link>
                         </Grid>
+                        :
+                        <>
+                            <Skeleton animation="wave" height={50} width="50%" style={{ marginBottom: 3 }} />
+                        </>
                     }
                 </Grid>
             </div>

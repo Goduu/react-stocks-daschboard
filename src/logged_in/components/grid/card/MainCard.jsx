@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Paper, CardContent, CardActions, Typography, LinearProgress } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { Button, Paper, Typography, LinearProgress } from '@material-ui/core';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
 import Stockinfos from './StockInfos';
 import { useSelector } from 'react-redux';
 import Card from '../Card'
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,22 +35,35 @@ function OutlinedCard(props) {
     let ticker = props.identifier
     const [data, setData] = useState(undefined)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
     const token = useSelector(state => state.auth.token)
 
     useEffect(() => {
+        setLoading(true)
         getQuoteData(ticker, token)
             .then(res => {
                 setData(res)
+                setLoading(false)
             })
     }, [ticker])
 
-    if (data) {
-        return (
-            <Card {...props} close={false}>
-                {dialogOpen &&
-                    <Stockinfos onClose={() => setDialogOpen(false)} data={data} />}
-                
-                    <div className={classes.content}>
+
+    return (
+        <Card {...props} close={false}>
+            {dialogOpen &&
+                <Stockinfos onClose={() => setDialogOpen(false)} data={data} />}
+            <div className={classes.content}>
+                {(loading || typeof data == 'undefined') ?
+                    (<>
+                        <Skeleton animation="wave" height={20} width="30%" style={{ marginBottom: 3 }} />
+                        <Skeleton animation="wave" height={40} width="45%" style={{ marginBottom: 3 }} />
+                        <Skeleton animation="wave" height={20} width="30%" style={{ marginBottom: 3 }} />
+                        <Skeleton animation="wave" height={15} width="30%" />
+                        <Skeleton width="45%" height={70} />
+
+                    </>)
+                    :
+                    (<>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {data.longName ? data.longName : <LinearProgress />}
                         </Typography>
@@ -67,13 +80,13 @@ function OutlinedCard(props) {
                         <div className={classes.button}>
                             <Button size="small" onClick={() => setDialogOpen(true)}>Learn More</Button>
                         </div>
+                    </>)
+                }
 
-                    </div>
-                </Card>
-        );
-    } else {
-        return null
-    }
+            </div>
+        </Card>
+    );
+
 
 }
 
