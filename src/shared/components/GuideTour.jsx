@@ -63,7 +63,7 @@ function HoverRating() {
 
 
     return (
-        <ClickAwayListener onClickAway={() => console.log("asdsadsad")} >
+        <ClickAwayListener onClickAway={() => setReviewOpen(false)} >
             <Grid container spacing={2} className={classes.root} ref={reviewRef}>
                 <Grid item>
                     <Rating

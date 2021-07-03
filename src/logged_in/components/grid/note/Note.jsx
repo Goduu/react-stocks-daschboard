@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { TextField, Paper, CardContent, Card } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import CardWrapper from '../Card'
 
@@ -8,21 +7,21 @@ const NoteTextField = withStyles({
     root: {
         border: 'none',
         '& label.Mui-focused': {
-            margin: '-10px',
             border: 'none',
+            marginTop: '10px'
         },
         '& label': {
-            margin: '-10px',
             border: 'none',
+            marginTop: '10px'
+
         },
         '& .MuiInput-underline:after': {
         },
         '& .MuiOutlinedInput-root': {
-            width: '260px',
+            width: '100%',
             height: '100%',
             '& fieldset': {
                 display: 'flex',
-                margin: '-15px',
                 border: 'none',
 
             }
@@ -31,14 +30,10 @@ const NoteTextField = withStyles({
 })(TextField);
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        height: '100%'
-    },
     margin: {
         margin: theme.spacing(1),
-        spellcheck: "false"
+        width: '96%'
+
     },
 }));
 
@@ -54,17 +49,15 @@ function NoteCard(props) {
     }
     return (
         <CardWrapper {...props}>
-                <CardContent>
-                    <NoteTextField
-                        className={classes.margin}
-                        label="Note"
-                        variant="outlined"
-                        multiline
-                        onChange={changeParams}
-                        onBlur={saveParams}
-                        value={text}
-                    />
-                </CardContent>
+            <NoteTextField
+                className={classes.margin}
+                label="Note"
+                variant="outlined"
+                multiline
+                onChange={changeParams}
+                onBlur={saveParams}
+                value={text}
+            />
         </CardWrapper>
 
 

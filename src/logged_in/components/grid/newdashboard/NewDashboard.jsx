@@ -1,18 +1,10 @@
 import { React, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import { getTickers, getTrendingTickers } from '../../../../shared/functions/requests.js';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Avatar from '@material-ui/core/Avatar';
-import Tooltip from '@material-ui/core/Tooltip';
+import { TextField, InputLabel, MenuItem, FormControl, Select, Avatar, Button, Tooltip, Typography, CardContent, Card } from '@material-ui/core';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import { useSelector } from 'react-redux';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import {
     LineChart,
     Line,
@@ -100,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
     },
     trendingwrapper: {
         position: 'relative'
+    },
+    backButtom: {
+        margin: theme.spacing(2)
     }
 }));
 
@@ -164,7 +159,9 @@ export default function NewDashboard(props) {
     const [trendingOrig, setTrendingOrig] = useState(undefined)
     const [exchange, setExchange] = useState('US')
     const [search, setSearch] = useState('-all-')
+    const [closed, setClosed] = useState(props.closed)
     const token = useSelector(state => state.auth.token)
+    const { handleBack } = props
 
 
     useEffect(() => {
@@ -179,10 +176,15 @@ export default function NewDashboard(props) {
             })
     }, [])
 
+    useEffect(() => {
+        setClosed(props.closed)
+    }, [props.closed])
+
     const filter = (e) => {
         let search_ = e.target.value === "" ? "-all-" : e.target.value
         setSearch(search_)
-        setTrending(trendingOrig.filter(t => (t.description.includes(search_) || t.ticker.includes(search_) || search_ === '')))
+        trendingOrig &&
+            setTrending(trendingOrig.filter(t => (t.description.includes(search_) || t.ticker.includes(search_) || search_ === '')))
         getTickers(0, search_, getExchange(exchange), token)
             .then(res => {
                 setTickers(res)
@@ -199,8 +201,9 @@ export default function NewDashboard(props) {
     const imgUrl = `${process.env.PUBLIC_URL}/images/flags/`
     if (tickers) {
         return (
-            <>
+            <div hidden={closed}>
                 <div className={classes.filter}>
+
                     <TextField id="standard-basic" label="Search" onChange={filter} className={classes.searchFilter} />
                     <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-label">Exchange</InputLabel>
@@ -235,23 +238,27 @@ export default function NewDashboard(props) {
                         </Select>
                     </FormControl>
                 </div>
-                <div className={classes.wrapper}>
-                    {trending && trending.map(t => {
-                        return (
-                            <div key={'_' + Math.random().toString(36).substr(2, 9).toString()}>
-                                <TrendingCard ticker={t} {...props} />
-                            </div>
-                        )
-                    })}
-                    {tickers.map(t => {
-                        return (
-                            <div key={'_' + Math.random().toString(36).substr(2, 9).toString()}>
-                                <TickerCard ticker={t} {...props} />
-                            </div>
-                        )
-                    })}
-                </div>
-            </>
+                {!closed &&
+                    <div className={classes.wrapper} >
+                        {trending && trending.map(t => {
+                            return (
+                                <div key={t.description +"T"}>
+                                    <TrendingCard ticker={t} {...props} />
+                                </div>
+                            )
+                        })}
+                        {tickers.map(t => {
+                            return (
+                                <div key={t.description}>
+                                    <TickerCard ticker={t} {...props} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                }
+                <Button className={classes.backButtom} onClick={handleBack}><ArrowBackIosIcon /> Back</Button>
+
+            </div>
         )
     } else {
 

@@ -163,7 +163,7 @@ function EsgCard(props) {
                     </Grid>
                     {esgs.scores.map(esg => {
                         return (
-                            <Grid item xs={6}>
+                            <Grid item xs={6} key={esg.title}>
                                 <div className={classes.slider}>
                                     <Typography gutterBottom>
                                         {t('esg.' + esg.title)}

@@ -31,7 +31,7 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         w: 3,
         h: 2,
         minH: 2,
-        maxW: 3,
+        maxW: 5,
         minW: 2,
       }
       component = NoteGrid(props)
@@ -39,6 +39,7 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
     case 'card':
       props = {
         ...props,
+        onRemoveItem: undefined,
         w: 3,
         h: 2,
         minW: 2,

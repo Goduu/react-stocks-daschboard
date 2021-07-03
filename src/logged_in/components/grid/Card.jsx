@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import {IconButton,} from "@material-ui/core";
+import { IconButton, } from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 
@@ -19,12 +19,19 @@ export default function MainCard(props) {
     const classes = useStyles();
     const [menuActive, isMenuActive] = useState(false);
     const theme = useTheme();
-
+    const {extraMenu} = props
 
     return (
         <div className={classes.root} onMouseEnter={() => isMenuActive(true)} onMouseLeave={() => isMenuActive(false)}>
             <span className="grid-menu">
-
+                {extraMenu &&
+                    <Fade in={menuActive} timeout={600}>
+                        <IconButton size="small" onClick={extraMenu.action}
+                            style={menuActive ? { color: theme.palette.text.primary } : { color: theme.palette.background.paper }} >
+                            <extraMenu.icon fontSize="small" />
+                        </IconButton>
+                    </Fade>
+                }
                 {props.openSettings &&
                     <Fade in={menuActive} timeout={600}>
                         <IconButton size="small" onClick={props.openSettings}

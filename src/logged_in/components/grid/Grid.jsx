@@ -29,6 +29,7 @@ function Grid(props) {
   };
   const [gridItems, setGridItems] = useState(initialGridItems)
   const [gridElements, setGridElements] = useState([])
+  const [newDashboardClosed, setNewDashboardClosed] = useState(false)
   const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
   const [identifier, setIdentifier] = useState(undefined)
@@ -37,9 +38,9 @@ function Grid(props) {
   const userId = useSelector(state => state.auth.id)
   const userRoles = useSelector(state => state.auth.roles)
   const token = useSelector(state => state.auth.token)
-  const [firstSave, setFirstSave] = useState(true)
   const [review, setReview] = useState(false)
   const { enqueueSnackbar } = useSnackbar();
+  let firstSave= true
 
   /**
    * Restoure cards when starting
@@ -52,6 +53,7 @@ function Grid(props) {
           let toBeRestored = dashboards.find(r => {
             return r.active === true
           })
+          setNewDashboardClosed(true)
           if (toBeRestored) {
 
             setGridId(toBeRestored.id)
@@ -61,7 +63,7 @@ function Grid(props) {
         }
       })
       .catch(() => {
-        notify('Something went restoring the cards', 'error')
+        notify('Something went wrong restoring the cards', 'error')
 
       })
   }, [userId, token])
@@ -112,24 +114,37 @@ function Grid(props) {
    * Save on Layoutchange
    */
   useEffect(() => {
+    console.log("save layout change")
+    saveGrid()
+  }, [layout,identifier])
+  
+  // useEffect(() => {
+  //   console.log("save identifier change")
+  //   saveGrid()
+  // }, [identifier])
 
+  const saveGrid = () => {
     if (firstSave || gridId != undefined) {
       if (gridElements && layout && gridElements.length == layout.length) {
         if (identifier && gridElements && layout.length !== 0) {
           saveGridElements(gridId, identifier, userId, gridElements, token)
             .then(res => {
               setGridId(res)
+              setAllDashboards(prev => {
+                prev.find(el => { return el.identifier === identifier }).id = res
+                return prev
+              })
             })
           setAllDashboards(prev => {
             prev.find(el => { return el.active === true }).gridElements = gridElements
             prev.find(el => { return el.active === true }).layout = layout
-            setFirstSave(false)
+            firstSave = false
             return prev
           })
         }
       }
     }
-  }, [layout])
+  }
 
   /**
    * Math.random should be unique because of its seeding algorithm.
@@ -217,6 +232,7 @@ function Grid(props) {
 
 
   const chooseIdentifier = (ticker) => {
+    setNewDashboardClosed(true)
     setAllDashboards(prev => {
       prev.map(d => {
         if (d.active === true) {
@@ -224,14 +240,14 @@ function Grid(props) {
         }
         return d
       })
-      prev.push({ active: true, gridElements: [], identifier: ticker, layout: [] })
+      prev.push({ active: true, gridElements: [], identifier: ticker, layout: [], userId: userId })
       return prev
     })
     setGridItems(initialGridItems)
     setGridElements([])
     setIdentifier(ticker)
-    setFirstSave(true)
-
+    // setLayout([])
+    firstSave = true
     onAddItem('card', ticker)
   }
 
@@ -240,7 +256,8 @@ function Grid(props) {
     setGridItems(initialGridItems)
     setGridElements([])
     setLayout([])
-    setIdentifier(undefined)
+    // setIdentifier(undefined)
+    setNewDashboardClosed(false)
 
   }
 
@@ -259,6 +276,9 @@ function Grid(props) {
       return
     })
     if (selectedDashboard) {
+      console.log("gRIDID", selectedDashboard.id)
+      console.log("selectedDashboard", selectedDashboard)
+      console.log("allDashboards", allDashboards)
       // setGridStartup(selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
       restoreItems(
         selectedDashboard.gridElements,
@@ -282,6 +302,7 @@ function Grid(props) {
           return
         }
       })
+      console.log("Next", next)
 
       setAllDashboards(prev => {
         return prev.filter(d => d.identifier !== identifier)
@@ -310,38 +331,39 @@ function Grid(props) {
 
   return (
     <GuideTour active={review} gridItems={gridItems} identifier={identifier}>
-      {
-        identifier ? (
-          <div>
-           
-              <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} handleAddDashboard={newDashboard} hidden={review} />
-              <SelectMenu
-                selectDashboard={selectDashboard}
-                identifier={identifier}
-                handleDeletDashboard={deleteDashboard}
-                handleAddDashboard={newDashboard}
-                hidden={review} />
-          
-            <ResponsiveReactGridLayout
-              onLayoutChange={onLayoutChange}
-              onBreakpointChange={onBreakpointChange}
-              {...props}
-              rowHeight={99}
-              columnHeight={100}
-            >
-              {_.map(gridItems.items, el => { return el.content })}
-            </ResponsiveReactGridLayout>
-            {/* <ParticlesMain density={100}/> */}
-            <br />
-          </div>
+      <div hidden={!newDashboardClosed}>
+        {identifier && <>
+          <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} hidden={review} />
+          <SelectMenu
+            selectDashboard={selectDashboard}
+            identifier={identifier}
+            handleDeletDashboard={deleteDashboard}
+            handleAddDashboard={newDashboard}
+            hidden={review} />
 
-        ) : (
+          <ResponsiveReactGridLayout
+            onLayoutChange={onLayoutChange}
+            onBreakpointChange={onBreakpointChange}
+            {...props}
+            rowHeight={99}
+            columnHeight={100}
+          >
+            {_.map(gridItems.items, el => { return el.content })}
+          </ResponsiveReactGridLayout>
+        </>
+        }
+        {/* <ParticlesMain density={100}/> */}
+        <br />
+      </div>
 
-          <NewDashboard chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }} />
 
-        )
-      }
-      <button onClick={() => setReview(!review)}>ads</button>
+      < NewDashboard
+        handleBack={() => setNewDashboardClosed(true)}
+        chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }}
+        closed={newDashboardClosed} />
+
+
+      {/* <button onClick={() => setReview(!review)}>ads</button> */}
     </GuideTour>
   )
 
