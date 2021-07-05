@@ -46,12 +46,14 @@ function Content(props) {
         }
     }
 
-    const firstCall = useCallback(() => {
+    const firstCall = useCallback((stats) => {
         if (props.params.statisticSelected) {
             setStatisticSelected(props.params.statisticSelected)
             setColor(selectColor(props.params.feedback))
             setFeedback(props.params.feedback)
         } else {
+            console.log("----,stats", stats)
+            setStatisticSelected(stats[0].label)
             setSettingsOpen(!settingsOpen)
         }
     },
@@ -76,7 +78,7 @@ function Content(props) {
         link: {
             marginTop: '3px',
             overflow: 'visible'
-        }
+        },
     }));
     const classes = useStyles();
     const ticker = props.identifier
@@ -108,7 +110,7 @@ function Content(props) {
                     return { ...r, value: formatType(r) }
                 })
                 setStatistics(formated)
-                firstCall()
+                firstCall(formated)
 
             })
     }, [ticker, token])
@@ -152,77 +154,77 @@ function Content(props) {
             setFeedbackOpen(true)
             setAnchorFeedback(event.currentTarget)
         }
+
     }
-    const handleMouseOutFeedback = () => {
-        setFeedbackOpen(false)
-        setAnchorFeedback(null)
+    const handleMouseOutFeedback = (event) => {
+        console.log("leave")
+        // if(event.currentTarget != anchorFeedback){
+        //     setFeedbackOpen(false)
+        //     setAnchorFeedback(null)
+        // }
     }
 
     return (
-        <CardWrapper {...props} openSettings={handleClickListItem}>
+        <CardWrapper {...props} openSettings={handleClickListItem} >
             <StatisticsSettings anchorEl={[anchorSettings, setAnchorSettings]} open={settingsOpen} saveSettings={saveSettings} statistics={statistics}></StatisticsSettings>
-            <div className={classes.root}>
+            <div className={classes.root} >
                 <Grid container spacing={0} >
                     {statisticSelected ?
-                        <Grid item xs key={statisticSelected.label}>
+                        <Grid item xs key={statisticSelected.label} >
                             <Typography
                                 variant="h5"
                                 style={{ color: color }}
 
-                            // onMouseOut={handleMouseOutFeedback}
                             >
-                                <b onMouseOver={handleMouseOverFeedback}
-
-                                    style={{ cursor: feedback && 'pointer' }}
-                                    onClick={feedback && (() => handleFeedback(undefined))}>
+                                <b
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={feedback ? (() => handleFeedback(undefined)) : handleMouseOverFeedback}>
                                     {statistics.find(s => s.label === statisticSelected)
                                         && statistics.find(s => s.label === statisticSelected).value}
                                 </b>
-                                <ClickAwayListener onClickAway={handleMouseOutFeedback}>
-                                    <Popover
-                                        anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'center',
-                                        }}
-                                        transformOrigin={{
-                                            vertical: 'bottom',
-                                            horizontal: 'center',
-                                        }}
-                                        anchorEl={anchorFeedback}
-                                        open={feedbackOpen}
-                                    >
-                                        <Paper elevation={0} className={classes.feedback}>
+                                <Popover
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'center',
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'center',
+                                    }}
+                                    anchorEl={anchorFeedback}
+                                    open={feedbackOpen}
+                                >
+                                    <Paper elevation={0} className={classes.feedback}>
 
-                                            <Radio className={classes.checkbox} value='star'
-                                                style={{ color: feedback === 'star' ? color : theme.palette.text.hint }}
-                                                checked={feedback === 'star'} onClick={(e) => handleFeedback(e.target.value)}
-                                                size="small" icon={<GradeOutlinedIcon size="small" />}
-                                                checkedIcon={<GradeIcon size="small" />} name="checkedH" />
+                                        <Radio className={classes.checkbox} value='star'
+                                            style={{ color: feedback === 'star' ? color : theme.palette.text.hint }}
+                                            checked={feedback === 'star'} onClick={(e) => handleFeedback(e.target.value)}
+                                            size="small" icon={<GradeOutlinedIcon size="small" />}
+                                            checkedIcon={<GradeIcon size="small" />} name="checkedH" />
 
-                                            <Radio className={classes.checkbox} value='like'
-                                                style={{ color: feedback === 'like' ? color : theme.palette.text.hint }}
-                                                checked={feedback === 'like'} onClick={(e) => handleFeedback(e.target.value)}
-                                                size="small" icon={<ThumbUpOutlinedIcon size="small" />}
-                                                checkedIcon={<ThumbUpIcon size="small" />} name="checkedH" />
+                                        <Radio className={classes.checkbox} value='like'
+                                            style={{ color: feedback === 'like' ? color : theme.palette.text.hint }}
+                                            checked={feedback === 'like'} onClick={(e) => handleFeedback(e.target.value)}
+                                            size="small" icon={<ThumbUpOutlinedIcon size="small" />}
+                                            checkedIcon={<ThumbUpIcon size="small" />} name="checkedH" />
 
-                                            <Radio className={classes.checkbox} value='dislike'
-                                                style={{ color: feedback === 'dislike' ? color : theme.palette.text.hint }}
-                                                checked={feedback === 'dislike'} onClick={(e) => handleFeedback(e.target.value)}
-                                                size="small" icon={<ThumbDownOutlinedIcon size="small" />}
-                                                checkedIcon={<ThumbDownIcon size="small" />} name="checkedH" />
+                                        <Radio className={classes.checkbox} value='dislike'
+                                            style={{ color: feedback === 'dislike' ? color : theme.palette.text.hint }}
+                                            checked={feedback === 'dislike'} onClick={(e) => handleFeedback(e.target.value)}
+                                            size="small" icon={<ThumbDownOutlinedIcon size="small" />}
+                                            checkedIcon={<ThumbDownIcon size="small" />} name="checkedH" />
 
-                                        </Paper>
+                                    </Paper>
 
-                                    </Popover>
-                                </ClickAwayListener>
+                                </Popover>
                             </Typography>
-                            <Link href={t('indicators.ref.' + statisticSelected)} target="_blank" color="inherit" >
+                            <Typography variant="body2" color="textSecondary" noWrap className={classes.link}>
                                 <Tooltip title={t('indicators.info.' + statisticSelected)}>
-                                    <Typography variant="body2" color="textSecondary" noWrap className={classes.link}>
+                                    <Link href={t('indicators.ref.' + statisticSelected)} target="_blank" color="inherit" >
                                         {t('indicators.' + statisticSelected)}
-                                    </Typography>
+                                    </Link>
                                 </Tooltip>
-                            </Link>
+                            </Typography>
                         </Grid>
                         :
                         <>

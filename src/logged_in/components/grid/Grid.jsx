@@ -384,11 +384,6 @@ function Grid(props) {
     </GuideTour>
   )
 
-
-
-
-
-
 }
 
 Grid.propTypes = {
