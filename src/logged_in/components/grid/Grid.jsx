@@ -7,7 +7,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid, getTrendingTickers } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
@@ -40,7 +40,7 @@ function Grid(props) {
   const token = useSelector(state => state.auth.token)
   const [review, setReview] = useState(false)
   const { enqueueSnackbar } = useSnackbar();
-  let firstSave= true
+  let firstSave = true
 
   /**
    * Restoure cards when starting
@@ -116,8 +116,8 @@ function Grid(props) {
   useEffect(() => {
     console.log("save layout change")
     saveGrid()
-  }, [layout,identifier])
-  
+  }, [layout, identifier])
+
   // useEffect(() => {
   //   console.log("save identifier change")
   //   saveGrid()
@@ -231,7 +231,13 @@ function Grid(props) {
   }
 
 
+  /**
+   *  function to be called when choosing a new identifier
+   * @param {*} ticker 
+   */
   const chooseIdentifier = (ticker) => {
+    deactivateGrid(userId, identifier, token)
+      .then(() => console.log("alcpaah pronto"));
     setNewDashboardClosed(true)
     setAllDashboards(prev => {
       prev.map(d => {
@@ -262,6 +268,8 @@ function Grid(props) {
   }
 
   const selectDashboard = (el) => {
+    deactivateGrid(userId, identifier, token)
+      .then(() => console.log("alcpaah pronto"));
     setGridItems(initialGridItems)
     setGridElements([])
     setLayout([])
@@ -276,9 +284,6 @@ function Grid(props) {
       return
     })
     if (selectedDashboard) {
-      console.log("gRIDID", selectedDashboard.id)
-      console.log("selectedDashboard", selectedDashboard)
-      console.log("allDashboards", allDashboards)
       // setGridStartup(selectedDashboard.id, selectedDashboard.identifier, selectedDashboard.gridElements)
       restoreItems(
         selectedDashboard.gridElements,
@@ -328,6 +333,18 @@ function Grid(props) {
     enqueueSnackbar(msg, { variant });
   };
 
+  const handleBack = () => {
+    setNewDashboardClosed(true)
+    console.log("allDashboards", allDashboards)
+    let toBeRestored = allDashboards.find(r => {
+      return r.identifier === identifier
+    })
+    if (toBeRestored) {
+      setGridId(toBeRestored.id)
+      setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements })
+    }
+  }
+
 
   return (
     <GuideTour active={review} gridItems={gridItems} identifier={identifier}>
@@ -358,7 +375,7 @@ function Grid(props) {
 
 
       < NewDashboard
-        handleBack={() => setNewDashboardClosed(true)}
+        handleBack={handleBack}
         chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }}
         closed={newDashboardClosed} />
 

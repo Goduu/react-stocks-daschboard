@@ -41,6 +41,29 @@ export function saveGridElements(gridId, identifier, userId, gridElements, token
   });
 }
 
+export function deactivateGrid( userId,identifier, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  const data =
+    { identifier: identifier, userId: userId }
+
+  return new Promise((resolve, reject) => {
+    axios.put(apiUrl + 'grid/deactivateGrid', data, headers)
+      .then(res => {
+        console.log("Res save grid", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
 export function saveUser(userId, user, token) {
   const headers = {
     headers: {
