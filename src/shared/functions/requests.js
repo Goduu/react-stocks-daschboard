@@ -271,6 +271,25 @@ export function deleteGrid(gridId, token) {
   });
 }
 
+export function fetchWatchlistData(tickerList, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl + 'stocks/getWatchlistData', tickerList, headers)
+      .then(res => {
+        console.log("getWatchlistData", res)
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function test(listStrings, token) {
 
   const headers = {

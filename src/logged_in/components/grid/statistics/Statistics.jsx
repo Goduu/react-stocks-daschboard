@@ -5,7 +5,6 @@ import { fetchStatistics } from '../../../../shared/functions/requests.js';
 import { Paper, Grid, Typography, Radio, Tooltip, Link, Popover, ClickAwayListener } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import CardWrapper from '../Card'
-import { format } from "date-fns";
 import StatisticsSettings from './StatisticsSettings'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
@@ -14,6 +13,7 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import GradeIcon from '@material-ui/icons/Grade';
 import Skeleton from '@material-ui/lab/Skeleton';
+import {formatValueByType} from '../../../../shared/functions/formatValueByType'
 
 function Content(props) {
     const { t } = useTranslation();
@@ -83,31 +83,12 @@ function Content(props) {
     const classes = useStyles();
     const ticker = props.identifier
 
-    const formatType = (obj) => {
-        const type = obj.dataType
-        let v = obj.value
-        if (v) {
-            if (type === 'date') {
-
-                return format(new Date(v.year, v.month, v.dayOfMonth), "yyyy-MM-dd");
-
-            } else if (type === 'number') {
-                if (v > 1000000000) {
-                    return (v / 1000000000).toFixed(2) + 'B'
-                } else if (v > 1000000) {
-                    return (v / 1000000).toFixed(2) + 'M'
-                }
-                return v.toFixed(2)
-
-            }
-        }
-        return null
-    }
+    
     useEffect(() => {
         fetchStatistics(ticker, token)
             .then(res => {
                 let formated = res.map(r => {
-                    return { ...r, value: formatType(r) }
+                    return { ...r, value: formatValueByType(r) }
                 })
                 setStatistics(formated)
                 firstCall(formated)

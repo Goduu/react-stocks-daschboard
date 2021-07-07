@@ -4,12 +4,14 @@ import {
 } from '@material-ui/core/';
 import { useEffect } from 'react';
 import _ from 'lodash'
+import { useTranslation } from 'react-i18next';
 
 export default function StatisticsSettings(props) {
     const { saveSettings } = props;
     // const [open, setOpen] = useState(props.open);
     const [statistics, setStatistics] = useState(props.statistics);
     const [open, setOpen] = React.useState(props.open);
+    const { t } = useTranslation();
 
 
     useEffect(() => {
@@ -45,7 +47,7 @@ export default function StatisticsSettings(props) {
                         value={value.label}
                         onClick={() => handleSave(value.label)}
                     >
-                        {_.capitalize(value.label)}
+                        {t('indicators.'+value.label)}
 
                     </MenuItem>
                 );

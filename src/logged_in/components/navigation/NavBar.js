@@ -22,6 +22,7 @@ import {
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import ImageIcon from "@material-ui/icons/Image";
+import ReorderIcon from '@material-ui/icons/Reorder';
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -173,6 +174,22 @@ function NavBar(props) {
           />
         ),
         mobile: <DashboardIcon className="text-white" />,
+      },
+    },
+    {
+      link: "/c/watchlist",
+      name: "Watchlist",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <ReorderIcon
+            className={
+              selectedTab === "Watchlist" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <ReorderIcon className="text-white" />,
       },
     },
     {

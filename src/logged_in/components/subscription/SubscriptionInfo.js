@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ListItemText, Button, Toolbar, withStyles } from "@material-ui/core";
+import { InDevelopment } from '../../../shared/components/InDevelopment';
 
 const styles = {
   toolbar: {
@@ -11,8 +12,8 @@ const styles = {
 function SubscriptionInfo(props) {
   const { classes, openAddBalanceDialog } = props;
   return (
-    <Toolbar className={classes.toolbar}>
-      <ListItemText primary="Status" secondary="Premium Account" />
+    <Toolbar className={classes.toolbar}><InDevelopment/>
+      <ListItemText primary="Status" secondary="Premium Account" /> 
       <Button
         variant="contained"
         color="secondary"

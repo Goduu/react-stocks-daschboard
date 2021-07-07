@@ -246,6 +246,12 @@ function Main(props) {
     setHasFetchedCardChart,
   ]);
   
+  const selectWatchlist = useCallback(() => {
+    smoothScrollTop();
+    document.title = "Nexit - Watchlist";
+    setSelectedTab("Watchlist");
+  }, [setSelectedTab]);
+
   const selectGrid = useCallback(() => {
     smoothScrollTop();
     document.title = "Nexit - Grid";
@@ -353,6 +359,7 @@ function Main(props) {
           posts={posts}
           targets={targets}
           selectDashboard={selectDashboard}
+          selectWatchlist={selectWatchlist}
           selectGrid={selectGrid}
           selectPosts={selectPosts}
           selectSubscription={selectSubscription}

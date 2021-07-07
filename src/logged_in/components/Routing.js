@@ -4,6 +4,7 @@ import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import Grid from "./grid/Grid";
+import Watchlist from "./watchlist/Watchlist";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import PropsRoute from "../../shared/components/PropsRoute";
@@ -69,6 +70,7 @@ function Routing(props) {
     setPosts,
     isAccountActivated,
     selectDashboard,
+    selectWatchlist,
     selectGrid,
     selectPosts,
     selectSubscription,
@@ -83,6 +85,12 @@ function Routing(props) {
           component={Grid}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectGrid={selectGrid}
+        />
+        <PropsRoute
+          path="/c/watchlist"
+          component={Watchlist}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          selectWatchlist={selectWatchlist}
         />
         <PropsRoute
           path="/c/posts"
@@ -138,6 +146,7 @@ Routing.propTypes = {
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired,
+  selectWatchlist: PropTypes.func.isRequired,
   selectGrid: PropTypes.func.isRequired,
   selectPosts: PropTypes.func.isRequired,
   selectSubscription: PropTypes.func.isRequired,
