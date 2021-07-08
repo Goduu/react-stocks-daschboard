@@ -1,28 +1,12 @@
-import React, { useEffect, useState, useCallback } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import RGL, { WidthProvider } from "react-grid-layout";
-import _ from "lodash";
 import { useSelector } from 'react-redux';
 import { fetchWatchlistData } from '../../../shared/functions/requests.js';
-import { useSnackbar } from 'notistack';
-import { TableHead, Paper, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { getTickers, getTrendingTickers } from '../../../shared/functions/requests.js';
-import { InDevelopment } from '../../../shared/components/InDevelopment';
+import {  makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import BuildIcon from '@material-ui/icons/Build';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 
-import {
-    LineChart,
-    Line,
-    ResponsiveContainer,
-    YAxis,
-    XAxis
-} from "recharts";
 import { formatValueByType } from '../../../shared/functions/formatValueByType'
-
-const ResponsiveReactGridLayout = WidthProvider(RGL);
+import WatchlistInterface from './WatchlistInterface'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,20 +25,9 @@ const useStyles = makeStyles((theme) => ({
             minHeight: '24px',
             borderRadius: '8px',
             backgroundColor: '#585859'
-        }
+        },
 
-    },
-    paper: {
-        height: '75px',
-        width: '200px',
-        padding: theme.spacing(2),
 
-    },
-    stats: {
-        height: '75px',
-        width: 'auto',
-        paddingTop: theme.spacing(2),
-        padding: theme.spacing(2),
     },
     title: {
         textOverflow: 'ellipsis',
@@ -62,24 +35,34 @@ const useStyles = makeStyles((theme) => ({
         width: '96%',
         whiteSpace: 'nowrap'
     },
-    cell2: {
-        margin: 0
-    }
+    mainCell: {
+        borderLeftColor: theme.palette.action.disabled,
+        borderLeftStyle: 'solid',
+        borderLeftWidth: '15px',
+        borderLeftHeight: '15px',
+        padding: theme.spacing(1),
+        maxWidth: '200px'
+    },
+    ticker: {
+        paddingBottom: theme.spacing(1),
+    },
+    chart: {
+        height: '70px',
+        maxWidth: '300px'
+    },
 
 }));
 
 const headCells = [
-    { id: 'name',  disablePadding: true, label: 'Ticker' },
-    { id: 'price',  disablePadding: true, label: 'Price' },
-    { id: 'priceChart',  disablePadding: true, label: 'Price Chart' },
-    { id: 'eps',  disablePadding: true, label: 'eps' },
-    { id: 'pe',  disablePadding: true, label: 'pe' },
-    { id: 'beta',  disablePadding: false, label: 'beta' },
-    { id: 'marketCap',  disablePadding: false, label: 'marketCap' },
-    { id: 'profitMargins',  disablePadding: false, label: 'profitMargins' },
-    { id: 'earningsQuarterlyGrowth',  disablePadding: false, label: 'earningsQuarterlyGrowth' },
-  ];
-  
+    { id: 'name', disablePadding: true, label: 'Ticker' },
+    { id: 'chart', disablePadding: true, label: '' },
+    { id: 'price', disablePadding: true, label: 'Price' },
+    { id: 'volatility', disablePadding: true, label: 'Volatility' },
+    { id: 'profit', disablePadding: true, label: 'Profit' },
+    { id: 'dividend', disablePadding: true, label: 'Dividend' },
+    { id: 'book', disablePadding: true, label: 'Book' },
+];
+
 function Watchlist(props) {
     const {
         selectWatchlist
@@ -88,9 +71,13 @@ function Watchlist(props) {
     const classes = useStyles();
 
     const { t } = useTranslation();
-    const [tickers, setTickers] = useState(['IBM', 'WEGE3.SA', 'SU.PA', 'BMW.DE'])
+    const [tickers, setTickers] = useState(['IBM', 'WEGE3.SA', 'SU.PA', 'BMW.DE', 'FRT','VVAR3.SA', 'BBAS3.SA','ATVI','FB','OR.PA'])
     const [tickersData, setTickersData] = useState([])
-    const [statistics, setStatistics] = useState(['eps', 'pe', 'beta', 'marketCap', 'profitMargins', 'earningsQuarterlyGrowth'])
+    const statistics = ['eps', 'beta']
+    const finance = ['profitMargins', 'earningsQuarterlyGrowth']
+    const book = ['bookValuePerShare', 'priceBook']
+    const dividend = ['lastDividendValue', 'lastDividendDate']
+    const columns = [statistics, finance, dividend, book]
     const token = useSelector(state => state.auth.token)
 
     useEffect(() => {
@@ -111,106 +98,9 @@ function Watchlist(props) {
 
 
     return (
-        <div>
-
-            <Typography variant="h5">
-                Watchlist
-                <InDevelopment />
-            </Typography>
-            <TableContainer className={classes.root}>
-                <Table className={classes.table} size="small">
-                    <TableHead>
-                        <TableRow>
-                            {headCells.map((headCell) => (
-                                <TableCell
-                                    key={headCell.id}
-                                    align={'left'}
-                                    // padding={headCell.disablePadding ? 'none' : 'normal'}
-                                    // sortDirection={orderBy === headCell.id ? order : false}
-                                >
-                                    <TableSortLabel
-                                        // active={orderBy === headCell.id}
-                                        // direction={orderBy === headCell.id ? order : 'asc'}
-                                        // onClick={createSortHandler(headCell.id)}
-                                    >
-                                        {headCell.label}
-                                        {/* {orderBy === headCell.id ? ( */}
-                                            {/* <span className={classes.visuallyHidden}> */}
-                                                {/* {order === 'desc' ? 'sorted descending' : 'sorted ascending'} */}
-                                            {/* </span> */}
-                                        {/* ) : null} */}
-                                    </TableSortLabel>
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {tickersData.map(tick => {
-                            return (
-                                <TableRow key={tick.longName}>
-                                    <TableCell padding='none'>
-                                        <Paper className={classes.paper}>
-                                            <Typography color="textSecondary" variant="h9" noWrap={true}>
-                                                <div className={classes.title}>
-                                                    {tick.data.longName}
-                                                </div>
-                                            </Typography>
-                                            <Typography variant="h5" component="h2">
-                                                {tick.data.ticker}
-                                            </Typography>
-
-
-                                        </Paper>
-                                    </TableCell>
-                                    <TableCell padding='default' >
-                                        <Paper className={classes.stats}>
-                                            <Typography
-                                                variant="h5"
-                                            >
-                                                <b>  {tick.data.price}</b>
-                                            </Typography>
-                                            <Typography variant="body2" color="textSecondary" noWrap>
-                                                {tick.data.currency}
-                                            </Typography>
-                                        </Paper>
-                                    </TableCell>
-                                    <TableCell padding='default'>
-                                        <Paper className={classes.paper}>
-                                            < ResponsiveContainer width="95%" height="95%">
-                                                <LineChart data={tick.priceChart.values} type="number" >
-                                                    <Line dataKey="value" type="monotone" stroke="#8884d8" strokeWidth={1} dot={false} />
-                                                    <YAxis domain={['dataMin', 'dataMax']} hide />
-                                                </LineChart>
-                                            </ResponsiveContainer>
-                                        </Paper>
-                                    </TableCell>
-                                    {
-                                        statistics.map(st => {
-                                            return (
-                                                <TableCell padding='default' key={st} >
-                                                    <Paper className={classes.stats}>
-                                                        <Typography
-                                                            variant="h5"
-                                                        >
-                                                            <b> {tick.statistics.find(el => el.label === st).value}</b>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" noWrap>
-                                                            {t('indicators.' + st)}
-                                                        </Typography>
-                                                    </Paper>
-                                                </TableCell>
-                                            )
-                                        })
-                                    }
-                                    <br />
-                                </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
-        </div>
+        <WatchlistInterface
+            classes={classes} headCells={headCells} tickersData={tickersData} columns = {columns} t={t}
+        />
 
     )
 

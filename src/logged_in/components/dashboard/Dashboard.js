@@ -6,6 +6,7 @@ import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
 import AvatarSelection from "./AvatarSelection";
+import { InDevelopment } from '../../../shared/components/InDevelopment';
 
 function Dashboard(props) {
   const {
@@ -23,6 +24,7 @@ function Dashboard(props) {
 
   return (
     <Fragment>
+      <InDevelopment/>
       <StatisticsArea CardChart={CardChart} data={statistics} />
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>

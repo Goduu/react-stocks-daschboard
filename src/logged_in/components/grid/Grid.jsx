@@ -11,8 +11,7 @@ import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid } from 
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
-import ParticlesMain from "../../../shared/components/Particles"
-
+import { GridInterface } from './GridInterface'
 
 const ResponsiveReactGridLayout = WidthProvider(RGL);
 /**
@@ -46,12 +45,14 @@ function Grid(props) {
    * Restoure cards when starting
    */
   useEffect(() => {
+    const routeTicker = props.match.params.ticker;
+    console.log("ROuteticker", props.match)
     fetchGridElements(userId, token)
       .then(dashboards => {
         if (dashboards.length > 0) {
           setAllDashboards(dashboards)
           let toBeRestored = dashboards.find(r => {
-            return r.active === true
+            return routeTicker ? r.identifier === routeTicker : r.active === true
           })
           setNewDashboardClosed(true)
           if (toBeRestored) {
@@ -59,6 +60,9 @@ function Grid(props) {
             setGridId(toBeRestored.id)
             setIdentifier(toBeRestored.identifier)
             setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements })
+          } else if (routeTicker) {
+            chooseIdentifier(routeTicker)
+            notify("New Dashboard for '" + routeTicker + "' created", 'info')
           }
         }
       })
@@ -347,41 +351,10 @@ function Grid(props) {
 
 
   return (
-    <GuideTour active={review} gridItems={gridItems} identifier={identifier}>
-      <div hidden={!newDashboardClosed}>
-        {identifier && <>
-          <ActionMenu onClose={onAddItem} handleDeletDashboard={deleteDashboard} hidden={review} />
-          <SelectMenu
-            selectDashboard={selectDashboard}
-            identifier={identifier}
-            handleDeletDashboard={deleteDashboard}
-            handleAddDashboard={newDashboard}
-            hidden={review} />
-
-          <ResponsiveReactGridLayout
-            onLayoutChange={onLayoutChange}
-            onBreakpointChange={onBreakpointChange}
-            {...props}
-            rowHeight={99}
-            columnHeight={100}
-          >
-            {_.map(gridItems.items, el => { return el.content })}
-          </ResponsiveReactGridLayout>
-        </>
-        }
-        {/* <ParticlesMain density={100}/> */}
-        <br />
-      </div>
-
-
-      < NewDashboard
-        handleBack={handleBack}
-        chooseIdentifier={(ticker) => { chooseIdentifier(ticker) }}
-        closed={newDashboardClosed} />
-
-
-      {/* <button onClick={() => setReview(!review)}>ads</button> */}
-    </GuideTour>
+    <GridInterface
+      review={review} gridItems={gridItems} identifier={identifier} newDashboardClosed={newDashboardClosed}
+      onAddItem={onAddItem} deleteDashboard={deleteDashboard} selectDashboard={selectDashboard} newDashboard={newDashboard}
+      onLayoutChange={onLayoutChange} onBreakpointChange={onBreakpointChange} handleBack={handleBack} chooseIdentifier={chooseIdentifier} />
   )
 
 }

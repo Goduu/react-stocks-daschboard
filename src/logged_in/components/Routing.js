@@ -81,7 +81,7 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          path="/c/grid"
+          path="/c/grid/:ticker?"
           component={Grid}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectGrid={selectGrid}

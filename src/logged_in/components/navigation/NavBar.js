@@ -208,22 +208,22 @@ function NavBar(props) {
         mobile: <InsertChartIcon className="text-white" />,
       },
     },
-    {
-      link: "/c/posts",
-      name: "Posts",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <ImageIcon
-            className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />,
-      },
-    },
+    // {
+    //   link: "/c/posts",
+    //   name: "Posts",
+    //   onClick: closeMobileDrawer,
+    //   icon: {
+    //     desktop: (
+    //       <ImageIcon
+    //         className={
+    //           selectedTab === "Posts" ? classes.textPrimary : "text-white"
+    //         }
+    //         fontSize="small"
+    //       />
+    //     ),
+    //     mobile: <ImageIcon className="text-white" />,
+    //   },
+    // },
     {
       link: "/c/subscription",
       name: "Subscription",
