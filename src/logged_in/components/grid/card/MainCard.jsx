@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function OutlinedCard(props) {
+function MainCard(props) {
     const classes = useStyles();
     let ticker = props.identifier
     const [data, setData] = useState(undefined)
@@ -49,7 +49,7 @@ function OutlinedCard(props) {
 
 
     return (
-        <Card {...props} close={false}>
+        <Card {...props} close={true} >
             {dialogOpen &&
                 <Stockinfos onClose={() => setDialogOpen(false)} data={data} />}
             <div className={classes.content}>
@@ -90,16 +90,4 @@ function OutlinedCard(props) {
 
 }
 
-export function MainCardGrid(props) {
-
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-                <OutlinedCard {...props} />
-            </Paper>)
-    }
-    );
-}
+export {MainCard}

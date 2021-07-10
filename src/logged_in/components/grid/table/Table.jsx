@@ -11,7 +11,7 @@ import {
     randomUpdatedDate,
 } from '@material-ui/x-grid-data-generator';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {TableSetting} from './TableSettings'
+import { TableSetting } from './TableSettings'
 
 const gridStyle = { height: '100%' }
 
@@ -140,7 +140,7 @@ const Table = (props) => {
 
     return (
         <CardWrapper extraMenu={addLinesMenu} {...props} openSettings={() => toggleConfig(!config)}>
-            <TableSetting open={config} headers={columns}/>
+            <TableSetting open={config} headers={columns} />
             <div className={classes.table}>
                 <div style={{ height: '100%', width: '100%' }}>
                     {(rows && columns) &&
@@ -166,16 +166,4 @@ const Table = (props) => {
     )
 }
 
-export function TableGrid(props) {
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-                <Table key={props.i} {...props} />
-            </Paper>
-        )
-    })
-
-}
+export { Table }

@@ -7,34 +7,40 @@ import Pace from "./shared/components/Pace";
 import PrivateRoute from './PrivateRoute'
 import NotificationBar from './shared/components/NotificationBar'
 import { SnackbarProvider } from 'notistack';
-
+import { Provider } from 'react-redux'
+import { store, persistedStore } from './shared/redux/store/store'
+import { PersistGate } from 'redux-persist/integration/react'
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 function App() {
   return (
-    <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
-        <SnackbarProvider maxSnack={3}>
-          <CssBaseline />
-          <GlobalStyles />
-          <Pace color={theme.palette.primary.dark} />
-          <Suspense fallback={<Fragment />}>
-            <Switch>
-              <PrivateRoute path="/c" roles={['user', 'tour']} component={LoggedInComponent} />
-              {/* <Route path="/c">
+    <Provider store={store}>
+      <PersistGate persistor={persistedStore}>
+        <BrowserRouter>
+          <MuiThemeProvider theme={theme}>
+            <SnackbarProvider maxSnack={3}>
+              <CssBaseline />
+              <GlobalStyles />
+              <NotificationBar />
+              <Pace color={theme.palette.primary.dark} />
+              <Suspense fallback={<Fragment />}>
+                <Switch>
+                  <PrivateRoute path="/c" roles={['user', 'tour']} component={LoggedInComponent} />
+                  {/* <Route path="/c">
               <LoggedInComponent />
             </Route> */}
-              <Route>
-                <LoggedOutComponent />
-              </Route>
-            </Switch>
-          </Suspense>
-        </SnackbarProvider>
-      </MuiThemeProvider>
-      <NotificationBar />
-    </BrowserRouter>
+                  <Route>
+                    <LoggedOutComponent />
+                  </Route>
+                </Switch>
+              </Suspense>
+            </SnackbarProvider>
+          </MuiThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 }
 

@@ -15,7 +15,7 @@ import GradeIcon from '@material-ui/icons/Grade';
 import Skeleton from '@material-ui/lab/Skeleton';
 import {formatValueByType} from '../../../../shared/functions/formatValueByType'
 
-function Content(props) {
+function Statistics(props) {
     const { t } = useTranslation();
     const [statistics, setStatistics] = useState([])
     const [statisticSelected, setStatisticSelected] = useState()
@@ -219,16 +219,4 @@ function Content(props) {
 }
 
 
-export function Statistics(props) {
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props} style={{ overflow: 'hidden' }}>
-                <Content key={props.i} {...props} />
-            </Paper>
-        )
-    })
-
-}
+export {Statistics}

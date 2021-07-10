@@ -41,7 +41,50 @@ export function saveGridElements(gridId, identifier, userId, gridElements, token
   });
 }
 
-export function deactivateGrid( userId,identifier, token) {
+export function findWatchlist(userId, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'watchlist/fetch/' + userId, headers)
+      .then(res => {
+        console.log("Res findWatchlist", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function updateWatchlist(id, userId, list, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  const data =
+    { id: id, userId: userId, list: list }
+
+  return new Promise((resolve, reject) => {
+    axios.put(apiUrl + 'watchlist/update/' + id, headers)
+      .then(res => {
+        console.log("Res updateWatchlist", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+
+export function deactivateGrid(userId, identifier, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -152,9 +195,9 @@ export function deleteOperation(id, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.delete(apiUrl + 'operation/delete/' +  id, headers)
+    axios.delete(apiUrl + 'operation/delete/' + id, headers)
       .then((res) => {
-        
+
         resolve(res)
       })
       .catch(e => {
@@ -172,9 +215,9 @@ export function editOperation(operation, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.put(apiUrl + 'operation/update/',operation, headers)
+    axios.put(apiUrl + 'operation/update/', operation, headers)
       .then((res) => {
-        
+
         resolve(res)
       })
       .catch(e => {
@@ -399,7 +442,7 @@ export function fetchDividendData(ticker, period, token) {
   });
 }
 
-export function fetchIndicators(tick,token) {
+export function fetchIndicators(tick, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -408,7 +451,7 @@ export function fetchIndicators(tick,token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/indic/' + tick,headers)
+    axios.get(apiUrl + 'stocks/indic/' + tick, headers)
       .then(res => {
         resolve(res.data)
 
@@ -417,7 +460,7 @@ export function fetchIndicators(tick,token) {
   });
 }
 
-export function fetchStatistics(tick,token) {
+export function fetchStatistics(tick, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -426,7 +469,7 @@ export function fetchStatistics(tick,token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/stats/' + tick,headers)
+    axios.get(apiUrl + 'stocks/stats/' + tick, headers)
       .then(res => {
         resolve(res.data)
 
@@ -445,7 +488,7 @@ export function fetchEsgRisk(tick, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'stocks/esg/' + tick,headers)
+    axios.get(apiUrl + 'stocks/esg/' + tick, headers)
       .then(res => {
         resolve(res.data)
 
@@ -472,6 +515,24 @@ export function getQuoteData(tick, token) {
   });
 }
 
+
+export function fetchTickersBySearch(search, token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'ticker/search/' + search, headers)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(error => reject(error))
+  });
+}
 
 export function getTickers(page, search, exchange, token) {
 
@@ -501,7 +562,7 @@ export function getTrendingTickers(exchange, token) {
   }
 
   return new Promise((resolve, reject) => {
-    axios.get(apiUrl + 'ticker/trending/' + exchange , headers)
+    axios.get(apiUrl + 'ticker/trending/' + exchange, headers)
       .then(res => {
         resolve(res.data)
       })
@@ -573,6 +634,7 @@ export function get_user_data(email) {
       })
   });
 }
+
 
 
 

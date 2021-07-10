@@ -158,10 +158,7 @@ export default function Indicators(props) {
 
 export function IndicatorsGrid(props) {
 
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
+    return (
             <div key={props.i} data-grid={props}>
                 <span className="grid-menu">
 
@@ -175,6 +172,5 @@ export function IndicatorsGrid(props) {
 
             </div>
         )
-    })
 
 }

@@ -1,10 +1,12 @@
 import { React, useState } from 'react';
-import { TextField, Paper, CardContent, Card } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import CardWrapper from '../Card'
+import {  makeStyles } from '@material-ui/core/styles';
+import {NoteInterface} from './NoteInterface'
 
-const NoteTextField = withStyles({
-    root: {
+
+const useStyles = makeStyles((theme) => ({
+    margin: {
+        margin: theme.spacing(1),
+        width: '96%',
         border: 'none',
         '& label.Mui-focused': {
             border: 'none',
@@ -26,18 +28,11 @@ const NoteTextField = withStyles({
 
             }
         },
-    },
-})(TextField);
-
-const useStyles = makeStyles((theme) => ({
-    margin: {
-        margin: theme.spacing(1),
-        width: '96%'
 
     },
 }));
 
-function NoteCard(props) {
+function Note(props) {
     const classes = useStyles();
     const [text, setText] = useState(props.params.text)
 
@@ -48,35 +43,13 @@ function NoteCard(props) {
         props.changeParams({ id: props.i, content: { text: e.target.value } })
     }
     return (
-        <CardWrapper {...props}>
-            <NoteTextField
-                className={classes.margin}
-                label="Note"
-                variant="outlined"
-                multiline
-                onChange={changeParams}
-                onBlur={saveParams}
-                value={text}
-            />
-        </CardWrapper>
-
-
+        <NoteInterface 
+        text={text}
+        saveParams={saveParams}
+        changeParams={changeParams}
+        classes={classes} />
     );
 }
 
 
-export function NoteGrid(props) {
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-
-                <NoteCard key={props.i} {...props} />
-
-            </Paper>
-        )
-    })
-
-}
+export {Note}

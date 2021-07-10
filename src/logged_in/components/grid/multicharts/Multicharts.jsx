@@ -62,7 +62,7 @@ const CustomTooltip = props => {
 };
 
 
-function BarChart_(props) {
+function Multichart(props) {
     const classes = useStyles();
     // const { t } = useTranslation();
     const ticker = props.identifier
@@ -243,16 +243,4 @@ function BarChart_(props) {
 
 
 
-export default function MultichartsCard(props) {
-
-    return ({
-        type: 'multichart',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-                <BarChart_ key={props.i} {...props} />
-            </Paper>
-        )
-    })
-
-}
+export {Multichart} 

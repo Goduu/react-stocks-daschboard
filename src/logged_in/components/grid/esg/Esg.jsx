@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function EsgCard(props) {
+function Esg(props) {
     const classes = useStyles();
     const { t } = useTranslation();
     const [esgs, setEsgs] = useState(undefined)
@@ -195,16 +195,4 @@ function EsgCard(props) {
 }
 
 
-export function EsgGrid(props) {
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-                <EsgCard key={props.i} {...props} />
-            </Paper>
-        )
-    })
-
-}
+export {Esg}

@@ -187,7 +187,6 @@ function Grid(props) {
   }
 
   const onLayoutChange = useCallback((layout_) => {
-
     setGridElements(prev => {
       if (prev) {
         prev.forEach(g => {
@@ -219,7 +218,7 @@ function Grid(props) {
     setGridItems(prev => {
       return {
         ...prev,
-        items: prev.items.filter((el) => el.i !== rId)
+        items: prev.items.filter((el) => el.key !== rId)
       }
     }
     );
@@ -241,7 +240,7 @@ function Grid(props) {
    */
   const chooseIdentifier = (ticker) => {
     deactivateGrid(userId, identifier, token)
-      .then(() => console.log("alcpaah pronto"));
+      .then(() => {});
     setNewDashboardClosed(true)
     setAllDashboards(prev => {
       prev.map(d => {

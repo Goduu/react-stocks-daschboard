@@ -12,6 +12,7 @@ import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
 import ParticlesMain from "../../../shared/components/Particles"
+import { Paper } from '@material-ui/core';
 
 
 const ResponsiveReactGridLayout = WidthProvider(RGL);
@@ -41,10 +42,18 @@ function GridInterface(props) {
             onLayoutChange={onLayoutChange}
             onBreakpointChange={onBreakpointChange}
             {...props}
+            margin={[5, 5]}
             rowHeight={99}
             columnHeight={100}
           >
-            {_.map(gridItems.items, el => { return el.content })}
+            {gridItems.items.map(el => {
+              console.log("elzera",el)
+              return (
+                <Paper key={el.key} data-grid={el.dataGrid}>
+                  {el.component}
+                </Paper>
+              )
+            })}
           </ResponsiveReactGridLayout>
         </>
         }

@@ -250,10 +250,7 @@ PriceChart.propTypes = {
 
 export default function LineChartCard(props) {
 
-  return ({
-    type: 'chart',
-    i: props.i,
-    content: (
+  return (
       <div key={props.i} data-grid={props} className="MuiPaper-elevation1">
         <span className="grid-menu">
           <span onClick={() => props.onRemoveItem(props.i)}>
@@ -266,7 +263,5 @@ export default function LineChartCard(props) {
           height="100px"
           title="Price" />
       </div>
-    )
-  }
-  );
+  )
 }

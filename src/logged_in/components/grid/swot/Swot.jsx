@@ -282,16 +282,4 @@ function Swot(props) {
 }
 
 
-export function SwotGrid(props) {
-
-    return ({
-        type: 'note',
-        i: props.i,
-        content: (
-            <Paper key={props.i} data-grid={props}>
-                <Swot key={props.i} {...props} />
-            </Paper>
-        )
-    })
-
-}
+export {Swot}

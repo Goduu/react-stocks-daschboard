@@ -1,7 +1,10 @@
 import React from "react";
-import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell,Paper } from '@material-ui/core';
 import { InDevelopment } from '../../../shared/components/InDevelopment';
 import { Link } from 'react-router-dom';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import IconButton from '@material-ui/core/IconButton';
+import TickerSelector from './TickerSelector'
 
 import {
     LineChart,
@@ -12,8 +15,8 @@ import {
 
 
 function Watchlist(props) {
-    let {classes,headCells,tickersData,columns} = props
-    let {t} = props
+    let { classes, headCells, tickersData, columns } = props
+    let { t } = props
 
 
     return (
@@ -23,6 +26,12 @@ function Watchlist(props) {
                 Watchlist
                 <InDevelopment />
             </Typography>
+            <Tooltip title="Add Dashboard">
+                {/* <IconButton >
+                    <LibraryAddIcon />
+                </IconButton > */}
+                <TickerSelector/>
+            </Tooltip>
             <TableContainer className={classes.root}>
                 <Table className={classes.table} padding='normal'>
                     <TableHead>
@@ -45,7 +54,7 @@ function Watchlist(props) {
                                 <TableRow key={tick.longName}>
                                     <TableCell padding='none' className={classes.mainCell}>
                                         <Link to={`/c/grid/${tick.data.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Typography color="textSecondary" variant="h9" noWrap={true}>
+                                            <Typography color="textSecondary" variant="subtitle1" noWrap={true}>
                                                 <div className={classes.title}>
                                                     {tick.data.longName}
                                                 </div>
@@ -88,8 +97,8 @@ function Watchlist(props) {
                                                             <Typography
                                                                 variant="h6"
                                                             >
-                                                                <b> {tick.statistics.find(el => el.label === c) ? 
-                                                                tick.statistics.find(el => el.label === c).value : '-'}</b>
+                                                                <b> {tick.statistics.find(el => el.label === c) ?
+                                                                    tick.statistics.find(el => el.label === c).value : '-'}</b>
                                                             </Typography>
                                                             <Typography variant="body2" color="textSecondary" noWrap>
                                                                 {t('indicators.' + c)}

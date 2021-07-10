@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'fixed',
         right: theme.spacing(4),
         bottom: theme.spacing(4),
+        zIndex: 3
     },
     small: {
         // width: theme.spacing(3),
@@ -49,13 +50,13 @@ const actions = [
 ];
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
-    // { value: 'card', label: 'Card', icon: <ViewDayIcon /> },
-    { value: 'table', label: 'Table', icon: <TableChartIcon /> },
+    // { value: 'card', label: 'Card', icon: <TextFieldsIcon /> },
+    // { value: 'table', label: 'Table', icon: <TableChartIcon /> },
     // { value: 'news', label: 'News', icon: <RssFeedIcon /> },
-    { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon /> },
-    { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
+    // { value: 'pricechart', label: 'Price Chart', icon: <TrendingUpIcon /> },
+    // { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
     { value: 'swot', label: 'SWOT-Analysis', icon: <AssignmentIcon /> },
-    { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
+    // { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
     { value: 'esg', label: 'ESG Risk', icon: <EcoIcon /> },
     { value: 'multichart', label: 'Multicharts', icon: <MultilineChartIcon /> },
     { value: 'statistics', label: 'Statistics', icon: <TrendingUpIcon /> },
@@ -115,7 +116,7 @@ export default function SpeedDialTooltipOpen(props) {
                             icon={action.icon}
                             tooltipTitle={action.label}
                             tooltipOpen
-                            tooltipClasses={classes.tooltip}
+                            tooltipclasses={classes.tooltip}
                             onClick={() => chooseComponent(action.value)}
                         />
                     ))}

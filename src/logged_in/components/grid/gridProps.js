@@ -1,12 +1,12 @@
-import { TableGrid } from './table/Table';
-import { MainCardGrid } from './card/MainCard';
-import { NoteGrid } from './note/Note';
-import { SwotGrid } from './swot/Swot';
+import { Table } from './table/Table';
+import { MainCard } from './card/MainCard';
+import { Note } from './note/Note';
+import { Swot } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
 import LineChartCard from './LineChart/LineChartCard';
 import BarChartCard from './BarChart/BarChartCard';
-import MultichartsCard from './multicharts/Multicharts';
-import { EsgGrid } from './esg/Esg';
+import {Multichart} from './multicharts/Multicharts';
+import { Esg } from './esg/Esg';
 import { Statistics } from './statistics/Statistics';
 import News from './news/News';
 
@@ -16,7 +16,7 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
     params: {},
     i: id,
     x: (gridItems.items.length * 2) % (gridItems.cols || 12),
-    y: -99, // puts it at the bottom
+    y: 99, // puts it at the bottom
     identifier: ticker,
     type: type,
     onRemoveItem: (id) => functions.onRemoveItem(id),
@@ -34,7 +34,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         maxW: 5,
         minW: 2,
       }
-      component = NoteGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Note  {...props} />,
+      }
       break
     case 'card':
       props = {
@@ -47,7 +51,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         minH: 2,
         maxH: 2,
       }
-      component = MainCardGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <MainCard  {...props} />,
+      }
       break
     case 'table':
       console.log("TABLE")
@@ -56,7 +64,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         w: 6,
         h: 2,
       }
-      component = TableGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Table  {...props} />,
+      }
       break
     case 'pricechart':
       console.log("pricechart")
@@ -66,7 +78,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         h: 2,
         params: { period: "1 Month" },
       }
-      component = LineChartCard(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <LineChartCard  {...props} />,
+      }
       break
 
     case 'dividendchart':
@@ -78,7 +94,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         params: { period: "6 Months" },
 
       }
-      component = BarChartCard(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <BarChartCard  {...props} />,
+      }
       break
     case 'multichart':
       console.log("multichart")
@@ -89,7 +109,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         params: { period: 180 },
 
       }
-      component = MultichartsCard(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Multichart  {...props} />,
+      }
       break
 
     case 'news':
@@ -102,7 +126,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         maxH: 2,
         minW: 3,
       }
-      component = News(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <News  {...props} />,
+      }
       break
 
     case 'swot':
@@ -115,7 +143,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         minH: 2,
         minW: 4,
       }
-      component = SwotGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Swot  {...props} />,
+      }
       break
 
     case 'indicators':
@@ -128,7 +160,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         minW: 2,
         // editIndicatorList: editIndicatorList
       }
-      component = IndicatorsGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <IndicatorsGrid  {...props} />,
+      }
       break
     case 'esg':
       console.log("esg")
@@ -141,7 +177,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         maxH: 3
         // editIndicatorList: editIndicatorList
       }
-      component = EsgGrid(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Esg  {...props} />,
+      }
       break
     case 'statistics':
       console.log("statistics")
@@ -155,7 +195,11 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         maxW: 3,
         // editIndicatorList: editIndicatorList
       }
-      component = Statistics(props)
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Statistics  {...props} />,
+      }
       break
 
   }
@@ -166,13 +210,17 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
 export const getRestoredItems = (g, ticker, props, functions) => {
   let gridItems_
   let type = g.type
-  let iTemp = g.id
+  let id = g.id
   let params = g.params
   props = {
     ...props,
     params: params,
     onRemoveItem: (i) => functions.onRemoveItem(i),
     changeParams: (p) => functions.changeParams(p)
+  }
+  const componentProps = {
+    key: id,
+    dataGrid: props
   }
 
   if (type === 'card') {
@@ -181,7 +229,10 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       identifier: ticker,
       onRemoveItem: null
     }
-    gridItems_ = MainCardGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <MainCard  {...props} />,
+    }
 
 
 
@@ -190,14 +241,20 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       ...props,
 
     }
-    gridItems_ = NoteGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Note  {...props} />,
+    }
 
   } else if (type === 'table') {
 
     props = {
       ...props,
     }
-    gridItems_ = TableGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Table  {...props} />,
+    }
 
 
   } else if (type === 'pricechart') {
@@ -205,7 +262,10 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = LineChartCard(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <LineChartCard  {...props} />,
+    }
 
   }
 
@@ -214,7 +274,10 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = BarChartCard(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <BarChartCard  {...props} />,
+    }
 
   }
   else if (type === 'multichart') {
@@ -222,7 +285,10 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = MultichartsCard(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Multichart  {...props} />,
+    }
 
   }
   else if (type === 'news') {
@@ -230,38 +296,53 @@ export const getRestoredItems = (g, ticker, props, functions) => {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = News(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <News  {...props} />,
+    }
   }
   else if (type === 'swot') {
     props = {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = SwotGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Swot  {...props} />,
+    }
   }
   else if (type === 'indicators') {
     props = {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = IndicatorsGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <IndicatorsGrid  {...props} />,
+    }
   }
   else if (type === 'esg') {
     props = {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = EsgGrid(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Esg  {...props} />,
+    }
   }
   else if (type === 'statistics') {
     props = {
       ...props,
       identifier: ticker,
     }
-    gridItems_ = Statistics(props)
+    gridItems_ = {
+      ...componentProps,
+      component: <Statistics  {...props} />,
+    }
   }
   return {
     gridItems: gridItems_,
-    gridElements: { id: iTemp, type: type, params: params }
+    gridElements: { id: id, type: type, params: params }
   }
 }

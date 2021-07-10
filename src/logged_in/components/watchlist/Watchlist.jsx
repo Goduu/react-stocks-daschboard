@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RGL, { WidthProvider } from "react-grid-layout";
 import { useSelector } from 'react-redux';
-import { fetchWatchlistData } from '../../../shared/functions/requests.js';
+import { fetchWatchlistData,findWatchlist,updateWatchlist } from '../../../shared/functions/requests.js';
 import {  makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 
@@ -79,27 +79,33 @@ function Watchlist(props) {
     const dividend = ['lastDividendValue', 'lastDividendDate']
     const columns = [statistics, finance, dividend, book]
     const token = useSelector(state => state.auth.token)
+    const userId = useSelector(state => state.auth.id)
 
     useEffect(() => {
-        fetchWatchlistData(tickers, token)
-            .then(res => {
-                setTickersData(res.map(el => {
-                    el.statistics = el.statistics.map(r => {
-                        return { ...r, value: formatValueByType(r) }
-                    })
-                    el.priceChart.values = el.priceChart.values.map(r => {
-                        return { value: r }
-                    })
-                    return el
-                }
-                ))
-            })
+        findWatchlist(userId, token)
+        // fetchWatchlistData(tickers, token)
+        //     .then(res => {
+        //         setTickersData(res.map(el => {
+        //             el.statistics = el.statistics.map(r => {
+        //                 return { ...r, value: formatValueByType(r) }
+        //             })
+        //             el.priceChart.values = el.priceChart.values.map(r => {
+        //                 return { value: r }
+        //             })
+        //             return el
+        //         }
+        //         ))
+        //     })
     }, [])
 
 
     return (
         <WatchlistInterface
-            classes={classes} headCells={headCells} tickersData={tickersData} columns = {columns} t={t}
+            classes={classes}
+            headCells={headCells}
+            tickersData={tickersData}
+            columns={columns}
+            t={t}
         />
 
     )
