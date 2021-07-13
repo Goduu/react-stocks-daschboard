@@ -25,7 +25,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
   let component
   switch (type) {
     case 'note':
-      console.log("note")
       props = {
         ...props,
         w: 3,
@@ -58,7 +57,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       }
       break
     case 'table':
-      console.log("TABLE")
       props = {
         ...props,
         w: 6,
@@ -71,7 +69,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       }
       break
     case 'pricechart':
-      console.log("pricechart")
       props = {
         ...props,
         w: 5,
@@ -86,7 +83,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       break
 
     case 'dividendchart':
-      console.log("dividendchart")
       props = {
         ...props,
         w: 5,
@@ -101,7 +97,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       }
       break
     case 'multichart':
-      console.log("multichart")
       props = {
         ...props,
         w: 5,
@@ -117,7 +112,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       break
 
     case 'news':
-      console.log("news")
       props = {
         ...props,
         w: 3,
@@ -134,8 +128,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       break
 
     case 'swot':
-      console.log("swot")
-
       props = {
         ...props,
         w: 4,
@@ -151,7 +143,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       break
 
     case 'indicators':
-      console.log("indicators")
       props = {
         ...props,
         w: 4,
@@ -167,7 +158,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       }
       break
     case 'esg':
-      console.log("esg")
       props = {
         ...props,
         w: 5,
@@ -184,7 +174,6 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
       }
       break
     case 'statistics':
-      console.log("statistics")
       props = {
         ...props,
         w: 2,

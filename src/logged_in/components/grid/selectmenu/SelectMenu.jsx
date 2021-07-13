@@ -1,12 +1,9 @@
 import { React, useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Paper, Grid, Typography, Tooltip } from '@material-ui/core';
 import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import DeleteIcon from '@material-ui/icons/Delete';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import {SelectMenuInterface} from './SelectMenuInterface'
+
 // '-webkit-mask-image': 'linear-gradient(90deg, #000 96%, transparent)',
 const menuWidth = 500
 const useStyles = makeStyles((theme) => ({
@@ -80,16 +77,11 @@ export function SelectMenu(props) {
 
     const executeScroll = (e) => {
         // myRef.current.scrollLeft = myRef.current.scrollLeft + 5 * e.movementX//myRef.current.scrollLeft -e.offsetX + "px";
-        console.log("scrollWidth", myRef.current.scrollWidth)
-        console.log("clientWidth", myRef.current.clientWidth)
-        console.log("scrollLeft", myRef.current.scrollLeft)
     }
     const scrollRight = () => {
         let sleft = myRef.current.scrollLeft + 120
-        console.log("sleft", sleft)
         myRef.current.scrollLeft = sleft
         let test = (myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth
-        console.log("test", test)
         setIsMaxRight((myRef.current.scrollWidth - sleft) <= myRef.current.clientWidth)
         setIsMaxLeft(sleft <= 0)
 
@@ -104,16 +96,12 @@ export function SelectMenu(props) {
     }
 
     useEffect(() => {
-        console.log("Usou o effeito", myRef.current.scrollWidth, myRef.current.clientWidth,
-         myRef.current.scrollLeft,myRef.current.scrollWidth <= myRef.current.clientWidth,myRef.current.clientWidth >= myRef.current.scrollWidth)
         setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
         setIsMaxLeft(myRef.current.scrollLeft <= 0)
         setIsMaxRight(myRef.current.scrollWidth <= myRef.current.clientWidth)
     }, [])
 
     useEffect(() => {
-        console.log("--myRef.current.clientWidth,myRef.current.scrollWidth,myRef.current.scrollLeft",myRef.current.clientWidth,myRef.current.scrollWidth,myRef.current.scrollLeft)
-        console.log("--",myRef.current.clientWidth >= myRef.current.scrollWidth,myRef.current.scrollLeft <= 0)
         setScrollArrow(myRef.current.clientWidth >= myRef.current.scrollWidth)
         // setIsMaxLeft(myRef.current.scrollLeft <= 0)
         setIsMaxRight(myRef.current.scrollWidth <= myRef.current.clientWidth + 4)
@@ -128,7 +116,6 @@ export function SelectMenu(props) {
     }, [userId])
 
     useEffect(() => {
-        console.log("Getid")
         getGridsIdentifiers(userId, token)
             .then(res => {
                 setIdentifiers(res)
@@ -136,71 +123,14 @@ export function SelectMenu(props) {
     }, [props.identifier, userId])
 
     return (
-        <div className={classes.menuWrapper} >
-            {/* <button onClick={executeScroll}>exec</button> */}
-            <div className={classes.menu} hidden={props.hidden}>
-                <Grid
-                    container
-                    spacing={3}
-                    direction="row"
-                    justify="flex-start"
-                    alignItems="center"
-                    wrap="nowrap">
-                    <Grid item >
-                        <Tooltip title="Delete Dashboard">
-                            <Paper elevation={2} className={classes.itens} onClick={props.handleDeletDashboard}>
-                                <DeleteIcon />
-                            </Paper >
-                        </Tooltip>
-                    </Grid>
-                    <Grid item >
-                        <Tooltip title="Add Dashboard">
-                            <Paper elevation={2} className={classes.itens} onClick={props.handleAddDashboard}>
-                                <LibraryAddIcon />
-                            </Paper >
-                        </Tooltip>
-                    </Grid>
-                </Grid>
-
-            </div>
-            <div className={classes.menu} ref={myRef} hidden={props.hidden}>
-                <Grid
-                    container
-                    spacing={1}
-                    direction="row"
-                    justify="flex-start"
-                    alignItems="center"
-                    wrap="nowrap">
-                    <Grid item key={'arrback'} className={classes.arrowRight} hidden={isMaxLeft} onClick={scrollLeft}>
-                        <IconButton size="small" edge="start">
-                            <ArrowBackIosIcon />
-                        </IconButton>
-                    </Grid>
-
-                    {identifiers.map(el => {
-                        if (el !== props.identifier) {
-                            return (
-                                <Grid item key={el} >
-                                    <Paper elevation={2} className={classes.itens} onClick={() => props.selectDashboard(el)}>
-                                        <Typography
-                                            variant="h6"
-                                        >
-                                            {el}
-                                        </Typography>
-                                    </Paper >
-                                </Grid>
-                            )
-                        }
-                    })}
-
-                    <Grid item key={'arrfoward'} className={classes.arrowLeft} hidden={isMaxRight} onClick={scrollRight}>
-                        <IconButton size="small" edge="start">
-                            <ArrowForwardIosIcon />
-                        </IconButton>
-                    </Grid>
-                </Grid>
-            </div>
-        </div>
+        <SelectMenuInterface
+        classes={classes}
+        isMaxLeft={isMaxLeft}
+        scrollRight={scrollRight}
+        scrollLeft={scrollLeft}
+        isMaxRight={isMaxRight}
+        identifiers={identifiers}
+        myRef={myRef} />
     );
 }
 

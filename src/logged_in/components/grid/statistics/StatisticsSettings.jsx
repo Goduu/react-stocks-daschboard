@@ -20,7 +20,6 @@ export default function StatisticsSettings(props) {
 
     useEffect(() => {
         setStatistics(props.statistics)
-        console.log("Stats", props.statistics)
     }, [props.statistics])
 
     const handleSave = (value) => {

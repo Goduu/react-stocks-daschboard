@@ -49,24 +49,29 @@ export default function StatisticsSettings(props) {
         { name: 'Gray', color: theme.palette.grey[500] }
     ]
 
-    const { onClose, selectedValue, saveSettings } = props;
+    const { settings, saveSettings } = props;
+    const price = settings.find(s => s.name === 'price')
+    const dividend = settings.find(s => s.name === 'dividend')
+    const financial = settings.find(s => s.name === 'financial')
+    console.log("Settings chart", settings)
     // const [open, setOpen] = useState(props.open);
-    const [priceType, setPriceType] = useState(BAR);
-    const [priceActive, setPriceActive] = useState(false);
-    const [pricePos, setPricePos] = useState(L);
-    const [priceColor, setPriceColor] = useState(colors[0].color);
-    const [dividendType, setDividendType] = useState(BAR);
-    const [dividendPos, setDividendPos] = useState(R);
-    const [dividendActive, setDividendActive] = useState(false);
-    const [dividendColor, setDividendColor] = useState(colors[1].color);
-    const [financialType, setFinancialType] = useState(BAR);
-    const [financialActive, setFinancialActive] = useState(false);
-    const [financialPos, setFinancialPos] = useState(L);
-    const [financialColor, setFinancialColor] = useState(colors[0].color);
-    const [period, setPeriod] = useState(7);
+    const [priceType, setPriceType] = useState(price && price.type || BAR);
+    const [priceActive, setPriceActive] = useState(price !== undefined);
+    const [pricePos, setPricePos] = useState(price && price.pos || L);
+    const [priceColor, setPriceColor] = useState(price && price.color || colors[0].color);
+    const [dividendType, setDividendType] = useState(dividend && dividend.type || BAR);
+    const [dividendPos, setDividendPos] = useState(dividend && dividend.pos || R);
+    const [dividendActive, setDividendActive] = useState(dividend !== undefined);
+    const [dividendColor, setDividendColor] = useState(dividend && dividend.color || colors[1].color);
+    const [financialType, setFinancialType] = useState(financial && financial.type || BAR);
+    const [financialActive, setFinancialActive] = useState(financial !== undefined);
+    const [financialPos, setFinancialPos] = useState(financial && financial.pos || L);
+    const [financialColor, setFinancialColor] = useState(financial && financial.color || colors[0].color);
+    const [period, setPeriod] = useState(settings[0].period || 7);
     const [open, setOpen] = useState(props.open);
 
-    
+
+
 
     useEffect(() => {
         setOpen(!open)
@@ -195,11 +200,11 @@ export default function StatisticsSettings(props) {
                                             value={value.color}
                                             onChange={e => value.setColor(e.target.value)}
                                             variant="standard"
-                                            renderValue={(selected) => <StopRoundedIcon style={{ color: selected }}  />}
+                                            renderValue={(selected) => <StopRoundedIcon style={{ color: selected }} />}
                                         >
                                             {colors.map((c) => {
                                                 return <MenuItem value={c.color}>
-                                                    <StopRoundedIcon style={{ color: c.color }}  />
+                                                    <StopRoundedIcon style={{ color: c.color }} />
                                                     {c.name}
                                                 </MenuItem >
                                             })}

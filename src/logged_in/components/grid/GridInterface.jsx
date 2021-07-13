@@ -1,17 +1,12 @@
 import './Grid.css'
-import React, { useEffect, useState, useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import RGL, { WidthProvider } from "react-grid-layout";
 import _ from "lodash";
 import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
-import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid } from '../../../shared/functions/requests.js';
-import { getCardProps, getRestoredItems } from './gridProps'
-import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
-import ParticlesMain from "../../../shared/components/Particles"
 import { Paper } from '@material-ui/core';
 
 
@@ -59,6 +54,7 @@ function GridInterface(props) {
         }
         {/* <ParticlesMain density={100}/> */}
         <br />
+      <button onClick={() => console.log(gridItems)}>ads</button>
       </div>
 
 
@@ -68,7 +64,6 @@ function GridInterface(props) {
         closed={newDashboardClosed} />
 
 
-      {/* <button onClick={() => setReview(!review)}>ads</button> */}
     </GuideTour>
   )
 

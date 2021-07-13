@@ -42,7 +42,6 @@ export default function CountrySelect() {
         fetchTickersBySearch(e.target.value, token)
             .then(r => {
                 setTickers(r)
-                console.log("tickers", r)
             })
     }
     const handleListItemClick = (item) => {

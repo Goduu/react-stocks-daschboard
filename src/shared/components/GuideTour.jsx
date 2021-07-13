@@ -1,30 +1,13 @@
 import { React, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
 import { Popover, ClickAwayListener, TextField, Paper, Avatar, Grid, IconButton,InputAdornment } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import { useEffect } from 'react';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
 import MessageIcon from '@material-ui/icons/Message';
 import { useDispatch } from 'react-redux';
 import { isSidedrawerOpen } from '../redux/actions/ui.actions.js'
 import SendIcon from '@material-ui/icons/Send';
 
-const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
-};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +37,6 @@ function HoverRating() {
 
 
     const handleReview = (event, newValue) => {
-        console.log("Review", reviewOpen)
         setValue(newValue)
         setAnchorReview(reviewRef.current)
         setReviewOpen(true)
@@ -103,7 +85,6 @@ function HoverRating() {
                                     <IconButton
                                         className={classes.iconButton}
                                         onClick={() => {
-                                            console.log("send");
                                         }}>
                                         <SendIcon />
                                     </IconButton>

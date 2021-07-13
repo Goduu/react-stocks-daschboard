@@ -1,9 +1,5 @@
-import { React, useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { fetchStatistics } from '../../../../shared/functions/requests.js';
-import { Paper, Grid, Typography, Radio, Tooltip, Link, Popover, ClickAwayListener } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
+import { React } from 'react';
+import { Paper, Grid, Typography, Radio, Tooltip, Link, Popover } from '@material-ui/core';
 import CardWrapper from '../Card'
 import StatisticsSettings from './StatisticsSettings'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -13,7 +9,6 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import GradeIcon from '@material-ui/icons/Grade';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { formatValueByType } from '../../../../shared/functions/formatValueByType'
 
 function StatisticsInterface(props) {
 

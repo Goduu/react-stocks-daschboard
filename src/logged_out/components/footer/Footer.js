@@ -133,7 +133,8 @@ const socialIcons = [
       </svg>
     ),
     label: "LinkedIn",
-    href: "https://www.linkedin.com/"
+    href: "https://www.linkedin.com/in/igor-cangussu/",
+    target:"_blank"
   },
   {
     icon: (

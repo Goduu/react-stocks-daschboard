@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
-import {  makeStyles } from '@material-ui/core/styles';
-import {NoteInterface} from './NoteInterface'
+import { makeStyles } from '@material-ui/core/styles';
+import { NoteInterface } from './NoteInterface'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,20 +36,21 @@ function Note(props) {
     const classes = useStyles();
     const [text, setText] = useState(props.params.text)
 
-    const changeParams = (e) => {
+    const changeText = (e) => {
         setText(e.target.value)
     }
     const saveParams = (e) => {
         props.changeParams({ id: props.i, content: { text: e.target.value } })
     }
     return (
-        <NoteInterface 
-        text={text}
-        saveParams={saveParams}
-        changeParams={changeParams}
-        classes={classes} />
+        <NoteInterface
+            text={text}
+            saveParams={saveParams}
+            changeText={changeText}
+            classes={classes}
+            {...props} />
     );
 }
 
 
-export {Note}
+export { Note }

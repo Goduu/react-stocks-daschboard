@@ -1,99 +1,11 @@
 import { React, useState, useEffect } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import EcoIcon from '@material-ui/icons/Eco';
-import { green, red, yellow } from '@material-ui/core/colors';
-import { amber, lime, teal, orange } from '@material-ui/core/colors';
+import {  makeStyles } from '@material-ui/core/styles';
+import { amber, lime,  orange } from '@material-ui/core/colors';
 import { useTranslation } from 'react-i18next';
 import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
 import { useSelector } from 'react-redux'
-import { useCallback } from 'react';
-import Card from '../Card'
 import { useSnackbar } from 'notistack';
-
-let esgs = {
-    performance: 'UNDER_PERF',
-    scores: [
-        {
-            title: 'EsgScore',
-            value: 17.37,
-            peers: [
-                {
-                    value: 13.41,
-                    label: 'Min',
-                },
-                {
-                    value: 22.23,
-                    label: 'Avg',
-                },
-                {
-                    value: 36.78,
-                    label: 'Max',
-                },
-            ]
-        },
-        {
-            title: 'Governance',
-            value: 6.5,
-            peers: [
-                {
-                    value: 3.81,
-                    label: 'Min',
-                },
-                {
-                    value: 7.21,
-                    label: 'Avg',
-                },
-                {
-                    value: 9.79,
-                    label: 'Max',
-                },
-            ]
-        },
-        {
-            title: 'Social',
-            value: 10.42,
-            peers: [
-                {
-                    value: 4.29,
-                    label: 'Min',
-                },
-                {
-                    value: 8.60,
-                    label: 'Avg',
-                },
-                {
-                    value: 11.45,
-                    label: 'Max',
-                },
-            ]
-
-        },
-        {
-            title: 'Environment',
-            value: 2.45,
-            peers: [
-                {
-                    value: 2.05,
-                    label: 'Min',
-                },
-                {
-                    value: 5.60,
-                    label: 'Avg',
-                },
-                {
-                    value: 9.17,
-                    label: 'Max',
-                },
-            ]
-        },
-    ]
-}
+import { EsgInterface } from './EsgInterface'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -148,51 +60,17 @@ function Esg(props) {
 
     }
     return (
-        <Card {...props}>
-            {esgs &&
-                <Grid container spacing={4}>
-                    <Grid item xs={12}>
-                        <div className={classes.header}>
-                            <Typography variant="h6" >
-                                ESG Risk
-                                <EcoIcon style={{ color: green[500] }} />
-                                <Chip variant="outlined" size="small" label={t('esg.' + esgs.performance)} />
-                            </Typography>
-
-                        </div>
-                    </Grid>
-                    {esgs.scores.map(esg => {
-                        return (
-                            <Grid item xs={6} key={esg.title}>
-                                <div className={classes.slider}>
-                                    <Typography gutterBottom>
-                                        {t('esg.' + esg.title)}
-                                    </Typography>
-
-                                    <Slider
-                                        track={false}
-                                        aria-labelledby="track-false-slider"
-                                        getAriaValueText={valuetext}
-                                        value={esg.value}
-                                        min={esg.peers.find(p => p.label === 'Min').value}
-                                        step={0.1}
-                                        max={esg.peers.find(p => p.label === 'Max').value}
-                                        marks={esg.peers}
-                                        valueLabelDisplay="auto"
-                                        style={{ color: getColor(esg) }}
-
-                                    />
-                                </div>
-                            </Grid>
-                        )
-                    })}
-
-                </Grid>
-            }
-        </Card>
+        <EsgInterface
+            classes={classes}
+            t={t}
+            esgs={esgs}
+            valuetext={valuetext}
+            getColor={getColor}
+            {...props}
+        />
     );
 
 }
 
 
-export {Esg}
+export { Esg }

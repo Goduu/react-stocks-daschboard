@@ -20,7 +20,6 @@ function Statistics(props) {
     const [anchorSettings, setAnchorSettings] = useState(null);
     const [anchorFeedback, setAnchorFeedback] = useState(null);
     
-    console.log("STAT Props", props)
 
     const selectColor = (val) => {
         switch (val) {
@@ -45,7 +44,6 @@ function Statistics(props) {
             setColor(selectColor(props.params.feedback))
             setFeedback(props.params.feedback)
         } else {
-            console.log("----,stats", stats)
             setStatisticSelected(stats[0].label)
             setSettingsOpen(!settingsOpen)
         }
@@ -80,7 +78,6 @@ function Statistics(props) {
     useEffect(() => {
         fetchStatistics(ticker, token)
             .then(res => {
-                console.log("setats fetch", res)
                 let formated = res.map(r => {
                     return { ...r, value: formatValueByType(r) }
                 })
@@ -150,6 +147,7 @@ function Statistics(props) {
             handleClickListItem={handleClickListItem}
             handleMouseOverFeedback={handleMouseOverFeedback}
             t={t}
+            {...props}
         />
     );
 }

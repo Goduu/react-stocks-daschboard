@@ -21,19 +21,15 @@ const getExchange = (land) => {
     switch (land) {
         case "BR": {
             return BR;
-            break;
         }
         case "US": {
             return US;
-            break;
         }
         case "FR": {
             return FR;
-            break;
         }
         case "DE": {
             return DE;
-            break;
         }
     }
 }
@@ -242,7 +238,7 @@ export default function NewDashboard(props) {
                     <div className={classes.wrapper} >
                         {trending && trending.map(t => {
                             return (
-                                <div key={t.description +"T"}>
+                                <div key={t.description + "T"}>
                                     <TrendingCard ticker={t} {...props} />
                                 </div>
                             )

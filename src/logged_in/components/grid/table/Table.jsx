@@ -96,12 +96,8 @@ const Table = (props) => {
         })
     }
     const deleteRows = () => {
-        console.log("reows", rows, rowsSelected)
         setRows(prev => {
             return prev.filter(p => {
-                console.log("prev.indexOf(p) + 1", prev.indexOf(p) + 1)
-                console.log("!rowsSelected.includes(prev.indexOf(p) + 1)", !rowsSelected.includes(prev.indexOf(p) + 1))
-
                 return !rowsSelected.includes(prev.indexOf(p) + 1)
             })
         })
@@ -133,7 +129,6 @@ const Table = (props) => {
     }
 
     const test = (as) => {
-        console.log("teeeesst", as)
     }
 
 
@@ -151,7 +146,6 @@ const Table = (props) => {
                             checkboxSelection
                             disableColumnMenu
                             onSelectionModelChange={(newSelection) => {
-                                console.log("alcapaha", rowsSelected)
                                 setRowsSelected(newSelection.selectionModel);
                             }}
                             selectionModel={rowsSelected}

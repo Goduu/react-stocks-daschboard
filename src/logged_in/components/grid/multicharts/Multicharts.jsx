@@ -1,21 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
-
-// import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
-import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import ChartSettings from './ChartSettings'
 import { fetchPriceData, fetchDividendData, fetchFinancialHistory } from '../../../../shared/functions/requests'
 import { format, compareAsc } from "date-fns";
 import _ from 'lodash'
-import Card from '../Card'
+import {MultichartInterface} from './MultichartsInterface'
 
-import {
-    Paper,
-    Grid,
-    Typography,
-} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,30 +28,6 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
-
-const CustomTooltip = props => {
-    const { active, payload, label } = props;
-    if (active) {
-        return (
-            <div>
-                <p>
-                    {label ? format(label, "yyyy-MM-dd") : " -- "}
-                </p>
-                <div>
-                    {payload && payload.map(pld => {
-                        return (
-                            <p key={pld.dataKey}>{pld.dataKey}:
-                                {pld ? pld.payload[pld.dataKey].toFixed(2) : " -- "}</p>)
-                    })
-                    }
-                </div>
-            </div>
-        );
-    }
-
-    return null;
-};
-
 
 function Multichart(props) {
     const classes = useStyles();
@@ -152,7 +119,7 @@ function Multichart(props) {
                 setCharts([...charts_])
                 props.changeParams({
                     id: props.i,
-                    content: { charts: charts_ }
+                    content: { charts: charts_  }
                 })
             }
             );
@@ -164,78 +131,18 @@ function Multichart(props) {
     };
 
     return (
-        <Card openSettings={() => setConfigOpen(!configOpen)} {...props}>
-            <ChartSettings open={configOpen} saveSettings={saveSettings}></ChartSettings>
-            <div className={classes.header}>
-                <Grid
-                    justify="space-between"
-                    alignItems="flex-start"
-                    container spacing={1}>
-                    <Grid xs={6} >
-                        <Typography variant="subtitle1">
-                            {title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            Last {subtitle} Days
-                        </Typography>
-
-                    </Grid>
-
-                </Grid>
-            </div>
-
-            <div className={classes.chart}>
-                {(chartsData.length > 0 && charts.length > 0) &&
-                    <ResponsiveContainer width="100%" height="100%">
-                        <ComposedChart
-                            width={500}
-                            height={300}
-                            data={chartsData}
-                            type="number"
-                        >
-                            {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                            <XAxis dataKey="date" tickFormatter={dateFormatter} hide />
-                            <YAxis
-                                domain={[dataMin => (0.95 * dataMin), dataMax => (1.05 * dataMax)]}
-                                yAxisId="right"
-                                orientation="right"
-                                hide
-                            />
-                            <YAxis
-                                domain={[dataMin => (0.95 * dataMin), dataMax => (1.05 * dataMax)]}
-                                yAxisId="left"
-                                orientation="left"
-                                hide
-                            />
-                            <Tooltip content={<CustomTooltip />} />
-                            {/* <Legend /> */}
-                            {charts.map(el => {
-                                if (el.type === 'bar') {
-                                    return <Bar
-                                        key={el.name}
-                                        dataKey={el.name}
-                                        barSize={300}
-                                        fill={el.color}
-                                        yAxisId={el.pos}
-                                        name={el.name} />
-                                } else if (el.type === 'line') {
-                                    return <Line
-                                        key={el.name}
-                                        dataKey={el.name}
-                                        stroke={el.color}
-                                        strokeWidth={2}
-                                        dot={false}
-                                        yAxisId={el.pos}
-                                        connectNulls />
-                                }
-                            })}
-
-                        </ComposedChart>
-                    </ResponsiveContainer>
-                }
-
-            </div>
-        </Card>
+        <MultichartInterface
+            classes={classes}
+            configOpen={configOpen}
+            charts={charts}
+            chartsData={chartsData}
+            title={title}
+            subtitle={subtitle}
+            saveSettings={saveSettings}
+            dateFormatter={dateFormatter}
+            setConfigOpen={setConfigOpen}
+            {...props}
+        />
     )
 }
 
@@ -243,4 +150,4 @@ function Multichart(props) {
 
 
 
-export {Multichart} 
+export { Multichart }

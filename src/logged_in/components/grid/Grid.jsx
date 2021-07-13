@@ -46,7 +46,6 @@ function Grid(props) {
    */
   useEffect(() => {
     const routeTicker = props.match.params.ticker;
-    console.log("ROuteticker", props.match)
     fetchGridElements(userId, token)
       .then(dashboards => {
         if (dashboards.length > 0) {
@@ -118,7 +117,6 @@ function Grid(props) {
    * Save on Layoutchange
    */
   useEffect(() => {
-    console.log("save layout change")
     saveGrid()
   }, [layout, identifier])
 
@@ -272,7 +270,7 @@ function Grid(props) {
 
   const selectDashboard = (el) => {
     deactivateGrid(userId, identifier, token)
-      .then(() => console.log("alcpaah pronto"));
+      .then(() => console.log("ok"));
     setGridItems(initialGridItems)
     setGridElements([])
     setLayout([])
@@ -310,7 +308,6 @@ function Grid(props) {
           return
         }
       })
-      console.log("Next", next)
 
       setAllDashboards(prev => {
         return prev.filter(d => d.identifier !== identifier)
@@ -338,7 +335,6 @@ function Grid(props) {
 
   const handleBack = () => {
     setNewDashboardClosed(true)
-    console.log("allDashboards", allDashboards)
     let toBeRestored = allDashboards.find(r => {
       return r.identifier === identifier
     })

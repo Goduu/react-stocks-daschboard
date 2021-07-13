@@ -1,9 +1,7 @@
 import React from "react";
-import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell,Paper } from '@material-ui/core';
+import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { InDevelopment } from '../../../shared/components/InDevelopment';
 import { Link } from 'react-router-dom';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import IconButton from '@material-ui/core/IconButton';
 import TickerSelector from './TickerSelector'
 
 import {

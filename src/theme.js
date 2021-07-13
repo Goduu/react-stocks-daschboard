@@ -1,10 +1,11 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
+import { responsiveFontSizes } from "@material-ui/core";
+import { createTheme } from '@material-ui/core/styles'
 
 // border
 const borderWidth = 2;
 const borderColor = "rgba(0, 0, 0, 0.13)!important";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: 'dark',
     primary: { main: '#7467ef' },

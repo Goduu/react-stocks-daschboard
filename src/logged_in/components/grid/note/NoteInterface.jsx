@@ -1,10 +1,11 @@
 import { React } from 'react';
 import { TextField } from '@material-ui/core';
 import CardWrapper from '../Card'
+import PropTypes from "prop-types";
 
 
 function NoteInterface(props) {
-    const {text, classes,saveParams,changeParams} = props
+    const {text, classes,saveParams,changeText} = props
 
     
     return (
@@ -14,7 +15,7 @@ function NoteInterface(props) {
                 label="Note"
                 variant="outlined"
                 multiline
-                onChange={changeParams}
+                onChange={changeText}
                 onBlur={saveParams}
                 value={text}
                 data-testid="textField"
@@ -25,5 +26,11 @@ function NoteInterface(props) {
     );
 }
 
+NoteInterface.propTypes = {
+    text: PropTypes.string,
+    classes: PropTypes.object.isRequired,
+    saveParams: PropTypes.func.isRequired,
+    changeText: PropTypes.func.isRequired,
+  };
 
 export {NoteInterface}

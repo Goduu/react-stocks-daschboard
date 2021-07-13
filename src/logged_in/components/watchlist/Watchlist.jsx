@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import RGL, { WidthProvider } from "react-grid-layout";
 import { useSelector } from 'react-redux';
-import { fetchWatchlistData,findWatchlist,updateWatchlist } from '../../../shared/functions/requests.js';
+import { findWatchlist } from '../../../shared/functions/requests.js';
 import {  makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 
-import { formatValueByType } from '../../../shared/functions/formatValueByType'
 import WatchlistInterface from './WatchlistInterface'
 
 
