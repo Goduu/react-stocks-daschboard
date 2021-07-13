@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense, lazy } from "react";
-import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+import { ThemeProvider , CssBaseline } from "@material-ui/core";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
@@ -10,6 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import { Provider } from 'react-redux'
 import { store, persistedStore } from './shared/redux/store/store'
 import { PersistGate } from 'redux-persist/integration/react'
+
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
@@ -19,7 +20,7 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
         <BrowserRouter>
-          <MuiThemeProvider theme={theme}>
+          <ThemeProvider  theme={theme}>
             <SnackbarProvider maxSnack={3}>
               <CssBaseline />
               <GlobalStyles />
@@ -37,8 +38,9 @@ function App() {
                 </Switch>
               </Suspense>
             </SnackbarProvider>
-          </MuiThemeProvider>
+          </ThemeProvider >
         </BrowserRouter>
+
       </PersistGate>
     </Provider>
   );
