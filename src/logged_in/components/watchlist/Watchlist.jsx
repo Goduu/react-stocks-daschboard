@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { findWatchlist } from '../../../shared/functions/requests.js';
-import {  makeStyles } from '@material-ui/core/styles';
+import { findWatchlist, fetchWatchlistData } from '../../../shared/functions/requests.js';
+import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
+import { formatValueByType } from '../../../shared/functions/formatValueByType'
+import { useSnackbar } from 'notistack';
+
 
 import WatchlistInterface from './WatchlistInterface'
 
@@ -67,9 +70,10 @@ function Watchlist(props) {
     } = props;
     useEffect(selectWatchlist, [selectWatchlist]);
     const classes = useStyles();
+    const { enqueueSnackbar } = useSnackbar();
 
     const { t } = useTranslation();
-    const [tickers, setTickers] = useState(['IBM', 'WEGE3.SA', 'SU.PA', 'BMW.DE', 'FRT','VVAR3.SA', 'BBAS3.SA','ATVI','FB','OR.PA'])
+    const [tickers, setTickers] = useState([])
     const [tickersData, setTickersData] = useState([])
     const statistics = ['eps', 'beta']
     const finance = ['profitMargins', 'earningsQuarterlyGrowth']
@@ -81,20 +85,46 @@ function Watchlist(props) {
 
     useEffect(() => {
         findWatchlist(userId, token)
-        // fetchWatchlistData(tickers, token)
-        //     .then(res => {
-        //         setTickersData(res.map(el => {
-        //             el.statistics = el.statistics.map(r => {
-        //                 return { ...r, value: formatValueByType(r) }
-        //             })
-        //             el.priceChart.values = el.priceChart.values.map(r => {
-        //                 return { value: r }
-        //             })
-        //             return el
-        //         }
-        //         ))
-        //     })
+        fetchData([])
     }, [])
+
+    const fetchData = (tickers_) => {
+        console.log("fetch")
+        if(tickers_.length > 0){
+            fetchWatchlistData(tickers_, token)
+                .then(res => {
+                    setTickersData(res.map(el => {
+                        el.statistics = el.statistics.map(r => {
+                            return { ...r, value: formatValueByType(r) }
+                        })
+                        el.priceChart.values = el.priceChart.values.map(r => {
+                            return { value: r }
+                        })
+                        return el
+                    }
+                    ))
+                })
+        }
+    }
+
+    // useEffect(() => {
+    //     console.log("useeffect")
+    //     fetchData()
+    //  }, [tickers])
+
+    const selectNewTicker = (ticker) => {
+        console.log("Select",ticker, tickers)
+        setTickers(prev => {
+            if(!prev.includes(ticker) ){
+                prev.push(ticker)
+                fetchData(prev)
+            }
+            else {
+                enqueueSnackbar(ticker + " already in watchlist", {variant: 'info'} );
+            }
+            return prev
+        })
+    }
 
 
     return (
@@ -103,6 +133,7 @@ function Watchlist(props) {
             headCells={headCells}
             tickersData={tickersData}
             columns={columns}
+            selectNewTicker={selectNewTicker}
             t={t}
         />
 

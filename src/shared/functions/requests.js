@@ -516,7 +516,7 @@ export function getQuoteData(tick, token) {
 }
 
 
-export function fetchTickersBySearch(search, token) {
+export function fetchTickersBySearch(search, token, requestId) {
 
   const headers = {
     headers: {
@@ -528,7 +528,7 @@ export function fetchTickersBySearch(search, token) {
   return new Promise((resolve, reject) => {
     axios.get(apiUrl + 'ticker/search/' + search, headers)
       .then(res => {
-        resolve(res.data)
+        resolve({data: res.data, requestId: requestId})
       })
       .catch(error => reject(error))
   });

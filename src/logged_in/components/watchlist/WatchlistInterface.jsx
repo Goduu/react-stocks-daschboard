@@ -14,7 +14,7 @@ import {
 
 function Watchlist(props) {
     let { classes, headCells, tickersData, columns } = props
-    let { t } = props
+    let { t, selectNewTicker } = props
 
 
     return (
@@ -24,12 +24,7 @@ function Watchlist(props) {
                 Watchlist
                 <InDevelopment />
             </Typography>
-            <Tooltip title="Add Dashboard">
-                {/* <IconButton >
-                    <LibraryAddIcon />
-                </IconButton > */}
-                <TickerSelector/>
-            </Tooltip>
+
             <TableContainer className={classes.root}>
                 <Table className={classes.table} padding='normal'>
                     <TableHead>
@@ -114,7 +109,12 @@ function Watchlist(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-
+            <Tooltip title="Add Dashboard">
+                {/* <IconButton >
+                    <LibraryAddIcon />
+                </IconButton > */}
+                <TickerSelector selectNewTicker={selectNewTicker} />
+            </Tooltip>
         </div>
 
     )

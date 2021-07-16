@@ -9,6 +9,9 @@ import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
+    wrapper: {
+        margin: theme.spacing(3)
+    },
     option: {
         fontSize: 15,
         '& > span': {
@@ -25,41 +28,61 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         zIndex: 2,
         cursor: 'pointer',
-        '&:hover':{
+        '&:hover': {
             opacity: 0.7
         }
     }
 }));
 
 
-export default function CountrySelect() {
+export default function TickerSelector(props) {
     const classes = useStyles();
     const token = useSelector(state => state.auth.token)
     const userId = useSelector(state => state.auth.id)
-    const [tickers, setTickers] = useState(countries)
+    const [tickers, setTickers] = useState([])
+    const [listOpen, setListOpen] = useState(false)
+    let requestId = 0 // grant that the last call is set to tickers
+    const { selectNewTicker } = props
 
     const filterResults = (e) => {
-        fetchTickersBySearch(e.target.value, token)
+        let search = e.target.value === '' ? '-all-' : e.target.value
+        fetchTickersBySearch(search, token, requestId)
             .then(r => {
-                setTickers(r)
+                if (r.requestId === requestId - 1) {
+                    setTickers(r.data)
+                }
             })
+        requestId += 1
+
     }
     const handleListItemClick = (item) => {
-
+        console.log("selectNewTicker", item)
+        selectNewTicker(item)
+        handleClose()
+    }
+    const handleClose = () => {
+        setListOpen(false)
+    }
+    const handleOpen = () => {
+        setListOpen(true)
     }
 
     return (
-        <>
+        <div className={classes.wrapper}>
             <TextField
-                label="Choose a country"
+                label="Add a ticker"
                 variant="outlined"
                 onChange={filterResults}
+                onClick={handleOpen}
+                onBlur={() => setTimeout(() => {
+                    handleClose()
+                }, 200)}
             />
-            <List component="nav" className={classes.list}>
+            <List component="nav" className={classes.list} hidden={!listOpen}>
                 {tickers.map(t => {
                     return (
                         <ListItem
-                            onClick={(event) => handleListItemClick(event)}
+                            onClick={() => { console.log("Alcapaha"); handleListItemClick(t.ticker) }}
                             key={t.ticker}
                             className={classes.listItem}
                         >
@@ -74,15 +97,8 @@ export default function CountrySelect() {
                 })}
             </List>
 
-        </>
+        </div>
 
     );
 }
 
-// From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries = [
-    { ticker: 'AD', description: 'Andorra' },
-    { ticker: 'AE', description: 'United Arab Emirates' },
-    { ticker: 'AF', description: 'Afghanistan' },
-
-];
