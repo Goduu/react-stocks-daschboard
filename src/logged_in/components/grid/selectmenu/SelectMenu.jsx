@@ -130,7 +130,8 @@ export function SelectMenu(props) {
         scrollLeft={scrollLeft}
         isMaxRight={isMaxRight}
         identifiers={identifiers}
-        myRef={myRef} />
+        myRef={myRef}
+        {...props} />
     );
 }
 

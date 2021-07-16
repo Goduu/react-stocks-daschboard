@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { findWatchlist, fetchWatchlistData } from '../../../shared/functions/requests.js';
+import { findWatchlist, fetchWatchlistData, updateWatchlist } from '../../../shared/functions/requests.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { formatValueByType } from '../../../shared/functions/formatValueByType'
@@ -75,6 +75,7 @@ function Watchlist(props) {
     const { t } = useTranslation();
     const [tickers, setTickers] = useState([])
     const [tickersData, setTickersData] = useState([])
+    const [watchlistId, setWatchlistId] = useState(null)
     const statistics = ['eps', 'beta']
     const finance = ['profitMargins', 'earningsQuarterlyGrowth']
     const book = ['bookValuePerShare', 'priceBook']
@@ -83,14 +84,20 @@ function Watchlist(props) {
     const token = useSelector(state => state.auth.token)
     const userId = useSelector(state => state.auth.id)
 
+
     useEffect(() => {
-        findWatchlist(userId, token)
-        fetchData([])
+        findWatchlist(userId, token).then(res => {
+            if(res){
+                setTickers(res.list)
+                setWatchlistId(res.id)
+                fetchData(res.list)
+            }
+        })
     }, [])
 
     const fetchData = (tickers_) => {
         console.log("fetch")
-        if(tickers_.length > 0){
+        if (tickers_.length > 0) {
             fetchWatchlistData(tickers_, token)
                 .then(res => {
                     setTickersData(res.map(el => {
@@ -113,14 +120,16 @@ function Watchlist(props) {
     //  }, [tickers])
 
     const selectNewTicker = (ticker) => {
-        console.log("Select",ticker, tickers)
+        console.log("Select", ticker, tickers)
         setTickers(prev => {
-            if(!prev.includes(ticker) ){
+            if (!prev.includes(ticker)) {
                 prev.push(ticker)
                 fetchData(prev)
+                updateWatchlist(watchlistId, tickers, userId, token)
+                    .then(res => setWatchlistId(res))
             }
             else {
-                enqueueSnackbar(ticker + " already in watchlist", {variant: 'info'} );
+                enqueueSnackbar(ticker + " already in watchlist", { variant: 'info' });
             }
             return prev
         })

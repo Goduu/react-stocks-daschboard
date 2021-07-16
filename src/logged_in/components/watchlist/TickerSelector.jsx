@@ -48,7 +48,7 @@ export default function TickerSelector(props) {
         let search = e.target.value === '' ? '-all-' : e.target.value
         fetchTickersBySearch(search, token, requestId)
             .then(r => {
-                if (r.requestId === requestId - 1) {
+                if (r.requestId === requestId - 1 && r.data.length > 0) {
                     setTickers(r.data)
                 }
             })

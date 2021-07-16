@@ -61,7 +61,7 @@ export function findWatchlist(userId, token) {
   });
 }
 
-export function updateWatchlist(id, userId, list, token) {
+export function updateWatchlist(id, list,userId, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export function updateWatchlist(id, userId, list, token) {
     { id: id, userId: userId, list: list }
 
   return new Promise((resolve, reject) => {
-    axios.put(apiUrl + 'watchlist/update/' + id, headers)
+    axios.put(apiUrl + 'watchlist/update', data, headers)
       .then(res => {
         console.log("Res updateWatchlist", res)
         resolve(res.data)
@@ -332,6 +332,7 @@ export function fetchWatchlistData(tickerList, token) {
       .catch(error => reject(error))
   });
 }
+
 
 export function test(listStrings, token) {
 
