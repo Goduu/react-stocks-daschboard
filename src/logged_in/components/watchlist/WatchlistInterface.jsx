@@ -1,8 +1,10 @@
 import React from "react";
-import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell, Button,TableFooter, TablePagination } from '@material-ui/core';
 import { InDevelopment } from '../../../shared/components/InDevelopment';
 import { Link } from 'react-router-dom';
 import TickerSelector from './TickerSelector'
+import DeleteIcon from '@material-ui/icons/Delete';
+import { IconButton } from '@material-ui/core';
 
 import {
     LineChart,
@@ -13,8 +15,8 @@ import {
 
 
 function Watchlist(props) {
-    let { classes, headCells, tickersData, columns } = props
-    let { t, selectNewTicker } = props
+    let { classes, headCells,tickers, tickersData, columns,page } = props
+    let { t, selectNewTicker, handleFetchTickersInfosByList,handleChangePage, removeTicker } = props
 
 
     return (
@@ -44,16 +46,16 @@ function Watchlist(props) {
                     <TableBody>
                         {tickersData.map(tick => {
                             return (
-                                <TableRow key={tick.longName}>
+                                <TableRow key={tick.ticker.ticker}>
                                     <TableCell padding='none' className={classes.mainCell}>
-                                        <Link to={`/c/grid/${tick.data.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/c/grid/${tick.ticker.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Typography color="textSecondary" variant="subtitle1" noWrap={true}>
                                                 <div className={classes.title}>
-                                                    {tick.data.longName}
+                                                    {tick.ticker.description}
                                                 </div>
                                             </Typography>
                                             <Typography variant="h5" component="h2" className={classes.ticker}>
-                                                {tick.data.ticker}
+                                                {tick.ticker.ticker}
                                             </Typography>
                                         </Link>
 
@@ -74,10 +76,10 @@ function Watchlist(props) {
                                         <Typography
                                             variant="h6"
                                         >
-                                            <b>  {tick.data.price}</b>
+                                            <b>  {tick.price}</b>
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" noWrap>
-                                            {tick.data.currency}
+                                            {tick.ticker.currency}
                                         </Typography>
                                     </TableCell>
 
@@ -102,11 +104,34 @@ function Watchlist(props) {
                                             </TableCell>
                                         })
                                     }
+                                    <TableCell padding='default'>
+                                        <IconButton onClick={() => removeTicker(tick.ticker.ticker)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </TableCell>
 
                                 </TableRow>
                             )
                         })}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                // rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                colSpan={8}
+                                count={tickers.length}
+                                rowsPerPage={10}
+                                page={page}
+                                SelectProps={{
+                                    inputProps: { 'aria-label': 'rows per page' },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                // onRowsPerPageChange={handleChangeRowsPerPage}
+                                // ActionsComponent={TablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
             <Tooltip title="Add Dashboard">
@@ -115,6 +140,9 @@ function Watchlist(props) {
                 </IconButton > */}
                 <TickerSelector selectNewTicker={selectNewTicker} />
             </Tooltip>
+            <Button onClick={handleFetchTickersInfosByList}>
+                fetchTickersInfosByList
+            </Button>
         </div>
 
     )

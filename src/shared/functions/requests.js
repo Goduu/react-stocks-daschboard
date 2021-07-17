@@ -61,7 +61,7 @@ export function findWatchlist(userId, token) {
   });
 }
 
-export function updateWatchlist(id, list,userId, token) {
+export function updateWatchlist(id, list, userId, token) {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
@@ -74,6 +74,25 @@ export function updateWatchlist(id, list,userId, token) {
 
   return new Promise((resolve, reject) => {
     axios.put(apiUrl + 'watchlist/update', data, headers)
+      .then(res => {
+        console.log("Res updateWatchlist", res)
+        resolve(res.data)
+      })
+      .catch(e => {
+        reject(e)
+      })
+  });
+}
+export function fetchTickersInfosByList(list, token) {
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    axios.post(apiUrl + 'ticker/fetchTickersInfosByList  ', list, headers)
       .then(res => {
         console.log("Res updateWatchlist", res)
         resolve(res.data)
@@ -314,7 +333,7 @@ export function deleteGrid(gridId, token) {
   });
 }
 
-export function fetchWatchlistData(tickerList, token) {
+export function fetchWatchlistData(tickerList,page, token) {
 
   const headers = {
     headers: {
@@ -323,11 +342,11 @@ export function fetchWatchlistData(tickerList, token) {
     }
   }
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'stocks/getWatchlistData', tickerList, headers)
+    axios.post(apiUrl + 'stocks/getWatchlistData/'+ page, tickerList, headers)
       .then(res => {
         console.log("getWatchlistData", res)
         resolve(res.data)
-
+        
       })
       .catch(error => reject(error))
   });
@@ -529,7 +548,7 @@ export function fetchTickersBySearch(search, token, requestId) {
   return new Promise((resolve, reject) => {
     axios.get(apiUrl + 'ticker/search/' + search, headers)
       .then(res => {
-        resolve({data: res.data, requestId: requestId})
+        resolve({ data: res.data, requestId: requestId })
       })
       .catch(error => reject(error))
   });

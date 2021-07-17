@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { findWatchlist, fetchWatchlistData, updateWatchlist } from '../../../shared/functions/requests.js';
+import { findWatchlist, fetchWatchlistData, updateWatchlist, fetchTickersInfosByList } from '../../../shared/functions/requests.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { formatValueByType } from '../../../shared/functions/formatValueByType'
@@ -62,6 +62,7 @@ const headCells = [
     { id: 'profit', disablePadding: true, label: 'Profit' },
     { id: 'dividend', disablePadding: true, label: 'Dividend' },
     { id: 'book', disablePadding: true, label: 'Book' },
+    { id: 'actions', disablePadding: true, label: 'Actions' },
 ];
 
 function Watchlist(props) {
@@ -76,9 +77,10 @@ function Watchlist(props) {
     const [tickers, setTickers] = useState([])
     const [tickersData, setTickersData] = useState([])
     const [watchlistId, setWatchlistId] = useState(null)
+    const [page, setPage] = useState(0)
     const statistics = ['eps', 'beta']
     const finance = ['profitMargins', 'earningsQuarterlyGrowth']
-    const book = ['bookValuePerShare', 'priceBook']
+    const book = ['bookValue', 'priceToBook']
     const dividend = ['lastDividendValue', 'lastDividendDate']
     const columns = [statistics, finance, dividend, book]
     const token = useSelector(state => state.auth.token)
@@ -87,26 +89,36 @@ function Watchlist(props) {
 
     useEffect(() => {
         findWatchlist(userId, token).then(res => {
-            if(res){
+            if (res) {
                 setTickers(res.list)
                 setWatchlistId(res.id)
-                fetchData(res.list)
+                fetchData(res.list, page)
             }
         })
     }, [])
 
-    const fetchData = (tickers_) => {
+    const fetchData = (tickers_, page_) => {
         console.log("fetch")
         if (tickers_.length > 0) {
-            fetchWatchlistData(tickers_, token)
+            fetchWatchlistData(tickers_, page_, token)
                 .then(res => {
+                    console.log("Res data watch", res)
                     setTickersData(res.map(el => {
-                        el.statistics = el.statistics.map(r => {
-                            return { ...r, value: formatValueByType(r) }
-                        })
+                        el.statistics = [
+                            { label: 'beta', value: el.ticker.keyStatistics.beta || '-' },
+                            { label: 'eps', value: el.ticker.keyStatistics.trailingEps || '-' },
+                            { label: 'profitMargins', value: el.ticker.keyStatistics.beta || '-' },
+                            { label: 'earningsQuarterlyGrowth', value: el.ticker.financialData.profitMargins || '-' },
+                            { label: 'bookValue', value: el.ticker.keyStatistics.bookValue || '-' },
+                            { label: 'priceToBook', value: el.ticker.keyStatistics.priceToBook || '-' },
+                            { label: 'lastDividendValue', value: el.ticker.keyStatistics.lastDividendValue || '-' },
+                            { label: 'lastDividendDate', value: el.ticker.keyStatistics.lastDividendDate || '-' },
+                        ]
                         el.priceChart.values = el.priceChart.values.map(r => {
                             return { value: r }
                         })
+                        el.price = el.priceChart.values.slice(-1)[0].value
+                        console.log("eaelalea", el)
                         return el
                     }
                     ))
@@ -124,7 +136,7 @@ function Watchlist(props) {
         setTickers(prev => {
             if (!prev.includes(ticker)) {
                 prev.push(ticker)
-                fetchData(prev)
+                fetchData(prev, page)
                 updateWatchlist(watchlistId, tickers, userId, token)
                     .then(res => setWatchlistId(res))
             }
@@ -135,14 +147,47 @@ function Watchlist(props) {
         })
     }
 
+    const removeTicker = (ticker) => {
+        console.log("Select", ticker, tickers)
+        setTickers(prev => {
+            console.log("prev remove", prev, ticker)
+            prev = prev.filter(t => t !== ticker)
+            updateWatchlist(watchlistId, tickers, userId, token)
+            .then(res => {
+                setWatchlistId(res)
+                enqueueSnackbar(ticker + " removed", { variant: 'success' });
+            })
+            
+            console.log("final remove", prev, ticker)
+            return prev
+        })
+        setTickersData(prev => {
+            return prev.filter(el => el.ticker.ticker !== ticker)
+        })
+        
+    }
+    const handleFetchTickersInfosByList = () => {
+        fetchTickersInfosByList(tickers, token).then(r => console.log("res", r))
+    }
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+        fetchData(tickers, newPage)
+    };
+
 
     return (
         <WatchlistInterface
             classes={classes}
             headCells={headCells}
             tickersData={tickersData}
+            tickers={tickers}
             columns={columns}
+            page={page}
             selectNewTicker={selectNewTicker}
+            handleFetchTickersInfosByList={handleFetchTickersInfosByList}
+            handleChangePage={handleChangePage}
+            removeTicker={removeTicker}
             t={t}
         />
 
