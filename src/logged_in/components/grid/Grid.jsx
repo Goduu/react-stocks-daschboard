@@ -7,7 +7,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid, fetchTickerData } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
@@ -31,6 +31,7 @@ function Grid(props) {
   const [newDashboardClosed, setNewDashboardClosed] = useState(false)
   const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
+  const [tickerData, setTickerData] = useState({})
   const [identifier, setIdentifier] = useState(undefined)
   const [gridId, setGridId] = useState(undefined)
   const [gridStartup, setGridStartup] = useState({ id: undefined, identifier: undefined, newGridElements: undefined })
@@ -52,13 +53,20 @@ function Grid(props) {
           setAllDashboards(dashboards)
           let toBeRestored = dashboards.find(r => {
             return routeTicker ? r.identifier === routeTicker : r.active === true
+
           })
           setNewDashboardClosed(true)
           if (toBeRestored) {
+            fetchTickerData(toBeRestored.identifier, token)
+              .then(res => {
+                console.log("alcapaha", res)
+                setTickerData(res)
+                setGridId(toBeRestored.id)
+                setIdentifier(toBeRestored.identifier)
+                setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements, tickerData: res })
 
-            setGridId(toBeRestored.id)
-            setIdentifier(toBeRestored.identifier)
-            setGridStartup({ id: toBeRestored.id, identifier: toBeRestored.identifier, newGridElements: toBeRestored.gridElements })
+              })
+
           } else if (routeTicker) {
             chooseIdentifier(routeTicker)
             notify("New Dashboard for '" + routeTicker + "' created", 'info')
@@ -76,29 +84,29 @@ function Grid(props) {
    */
   useEffect(() => {
     if (typeof gridStartup.identifier !== 'undefined' && typeof gridStartup.newGridElements !== 'undefined') {
-      restoreItems(gridStartup.newGridElements, gridStartup.identifier)
+      restoreItems(gridStartup.newGridElements, gridStartup.identifier, gridStartup.tickerData)
     }
   }, [gridStartup])
 
-  const restoreItems = useCallback((newGridElements, newIdentifier) => {
+  const restoreItems = useCallback((newGridElements, newIdentifier, tickerData) => {
 
     let newLayout = []
     setGridElements([])
     newGridElements.forEach(g => {
-      onRestauringItems(g, newIdentifier, g.layout)
+      onRestauringItems(g, newIdentifier, g.layout, tickerData)
       newLayout.push(g.layout)
     })
     setLayout(newLayout)
   }, [gridItems, gridElements, layout, identifier, userId, gridId])
 
-  const onRestauringItems = useCallback((g, ticker, props) => {
+  const onRestauringItems = useCallback((g, ticker, props, tickerData) => {
 
     const functions = {
       onRemoveItem: onRemoveItem,
       changeParams: changeParams
     }
 
-    let res = getRestoredItems(g, ticker, props, functions)
+    let res = getRestoredItems(g, ticker, props, functions, tickerData)
 
     setGridElements(prev => {
       prev.push(res.gridElements)
@@ -238,7 +246,7 @@ function Grid(props) {
    */
   const chooseIdentifier = (ticker) => {
     deactivateGrid(userId, identifier, token)
-      .then(() => {});
+      .then(() => { });
     setNewDashboardClosed(true)
     setAllDashboards(prev => {
       prev.map(d => {

@@ -352,6 +352,25 @@ export function fetchWatchlistData(tickerList,page, token) {
   });
 }
 
+export function fetchTickerData(ticker, token) {
+
+  const headers = {
+    headers: {  
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'ticker/fetchTickerData/' + ticker, headers)
+      .then(res => {
+        console.log("getWatchlistData", res)
+        resolve(res.data)
+        
+      })
+      .catch(error => reject(error))
+  });
+}
+
 
 export function test(listStrings, token) {
 

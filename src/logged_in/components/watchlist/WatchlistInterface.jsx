@@ -96,7 +96,7 @@ function Watchlist(props) {
                                                                     tick.statistics.find(el => el.label === c).value : '-'}</b>
                                                             </Typography>
                                                             <Typography variant="body2" color="textSecondary" noWrap>
-                                                                {t('indicators.' + c)}
+                                                                {t(c)}
                                                             </Typography>
                                                         </TableRow >
                                                     )

@@ -78,10 +78,10 @@ function Watchlist(props) {
     const [tickersData, setTickersData] = useState([])
     const [watchlistId, setWatchlistId] = useState(null)
     const [page, setPage] = useState(0)
-    const statistics = ['eps', 'beta']
-    const finance = ['profitMargins', 'earningsQuarterlyGrowth']
-    const book = ['bookValue', 'priceToBook']
-    const dividend = ['lastDividendValue', 'lastDividendDate']
+    const statistics = ['keyStatistics.trailingEps', 'keyStatistics.beta']
+    const finance = ['financialData.profitMargins', 'keyStatistics.earningsQuarterlyGrowth']
+    const book = ['keyStatistics.bookValue', 'keyStatistics.priceToBook']
+    const dividend = ['keyStatistics.lastDividendValue', 'keyStatistics.lastDividendDate']
     const columns = [statistics, finance, dividend, book]
     const token = useSelector(state => state.auth.token)
     const userId = useSelector(state => state.auth.id)
@@ -105,14 +105,14 @@ function Watchlist(props) {
                     console.log("Res data watch", res)
                     setTickersData(res.map(el => {
                         el.statistics = [
-                            { label: 'beta', value: el.ticker.keyStatistics.beta || '-' },
-                            { label: 'eps', value: el.ticker.keyStatistics.trailingEps || '-' },
-                            { label: 'profitMargins', value: el.ticker.keyStatistics.beta || '-' },
-                            { label: 'earningsQuarterlyGrowth', value: el.ticker.financialData.profitMargins || '-' },
-                            { label: 'bookValue', value: el.ticker.keyStatistics.bookValue || '-' },
-                            { label: 'priceToBook', value: el.ticker.keyStatistics.priceToBook || '-' },
-                            { label: 'lastDividendValue', value: el.ticker.keyStatistics.lastDividendValue || '-' },
-                            { label: 'lastDividendDate', value: el.ticker.keyStatistics.lastDividendDate || '-' },
+                            { label: 'keyStatistics.beta', value: el.ticker.keyStatistics.beta || '-' },
+                            { label: 'keyStatistics.trailingEps', value: el.ticker.keyStatistics.trailingEps || '-' },
+                            { label: 'financialData.profitMargins', value: el.ticker.financialData.profitMargins || '-' },
+                            { label: 'keyStatistics.earningsQuarterlyGrowth', value: el.ticker.keyStatistics.earningsQuarterlyGrowth || '-' },
+                            { label: 'keyStatistics.bookValue', value: el.ticker.keyStatistics.bookValue || '-' },
+                            { label: 'keyStatistics.priceToBook', value: el.ticker.keyStatistics.priceToBook || '-' },
+                            { label: 'keyStatistics.lastDividendValue', value: el.ticker.keyStatistics.lastDividendValue || '-' },
+                            { label: 'keyStatistics.lastDividendDate', value: el.ticker.keyStatistics.lastDividendDate || '-' },
                         ]
                         el.priceChart.values = el.priceChart.values.map(r => {
                             return { value: r }
@@ -152,7 +152,7 @@ function Watchlist(props) {
         setTickers(prev => {
             console.log("prev remove", prev, ticker)
             prev = prev.filter(t => t !== ticker)
-            updateWatchlist(watchlistId, tickers, userId, token)
+            updateWatchlist(watchlistId, prev, userId, token)
             .then(res => {
                 setWatchlistId(res)
                 enqueueSnackbar(ticker + " removed", { variant: 'success' });

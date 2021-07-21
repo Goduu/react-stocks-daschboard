@@ -42,7 +42,6 @@ function GridInterface(props) {
             columnHeight={100}
           >
             {gridItems.items.map(el => {
-              console.log("elzera",el)
               return (
                 <Paper key={el.key} data-grid={el.dataGrid}>
                   {el.component}
