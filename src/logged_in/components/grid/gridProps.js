@@ -1,6 +1,7 @@
 import { Table } from './table/Table';
 import { MainCard } from './card/MainCard';
 import { Note } from './note/Note';
+import { Title } from './title/Title';
 import { Swot } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
 import LineChartCard from './LineChart/LineChartCard';
@@ -190,13 +191,30 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
         component: <Statistics  {...props} />,
       }
       break
+    case 'title':
+      props = {
+        ...props,
+        w: 2,
+        h: 1,
+        minH: 1,
+        minW: 1,
+        maxH: 1,
+        maxW: 6,
+        // editIndicatorList: editIndicatorList
+      }
+      component = {
+        key: id,
+        dataGrid: props,
+        component: <Title  {...props} />,
+      }
+      break
 
   }
   return component
 }
 
 
-export const getRestoredItems = (g, ticker, props, functions) => {
+export const getRestoredItems = (g, ticker, props, functions, tickerData) => {
   let gridItems_
   let type = g.type
   let id = g.id
@@ -204,6 +222,7 @@ export const getRestoredItems = (g, ticker, props, functions) => {
   props = {
     ...props,
     params: params,
+    tickerData: tickerData,
     onRemoveItem: (i) => functions.onRemoveItem(i),
     changeParams: (p) => functions.changeParams(p)
   }
@@ -328,6 +347,16 @@ export const getRestoredItems = (g, ticker, props, functions) => {
     gridItems_ = {
       ...componentProps,
       component: <Statistics  {...props} />,
+    }
+  }
+  else if (type === 'title') {
+    props = {
+      ...props,
+      identifier: ticker,
+    }
+    gridItems_ = {
+      ...componentProps,
+      component: <Title  {...props} />,
     }
   }
   return {

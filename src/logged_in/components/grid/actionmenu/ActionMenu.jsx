@@ -41,13 +41,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const actions = [
-    { icon: <FileCopyIcon />, name: 'Copy' },
-    { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print' },
-    { icon: <ShareIcon />, name: 'Share' },
-    { icon: <FavoriteIcon />, name: 'Like' },
-];
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },
     // { value: 'card', label: 'Card', icon: <TextFieldsIcon /> },
@@ -60,6 +53,7 @@ const options = [
     { value: 'esg', label: 'ESG Risk', icon: <EcoIcon /> },
     { value: 'multichart', label: 'Multicharts', icon: <MultilineChartIcon /> },
     { value: 'statistics', label: 'Statistics', icon: <TrendingUpIcon /> },
+    { value: 'title', label: 'Title', icon: <TrendingUpIcon /> },
 ];
 
 export default function SpeedDialTooltipOpen(props) {
