@@ -333,7 +333,7 @@ export function deleteGrid(gridId, token) {
   });
 }
 
-export function fetchWatchlistData(tickerList,page, token) {
+export function fetchWatchlistData(tickerList, sortedBy, page, token) {
 
   const headers = {
     headers: {
@@ -342,11 +342,11 @@ export function fetchWatchlistData(tickerList,page, token) {
     }
   }
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'stocks/getWatchlistData/'+ page, tickerList, headers)
+    axios.post(apiUrl + 'stocks/getWatchlistData/' + sortedBy + '/' + page, tickerList, headers)
       .then(res => {
         console.log("getWatchlistData", res)
         resolve(res.data)
-        
+
       })
       .catch(error => reject(error))
   });
@@ -355,7 +355,7 @@ export function fetchWatchlistData(tickerList,page, token) {
 export function fetchTickerData(ticker, token) {
 
   const headers = {
-    headers: {  
+    headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer " + token
     }
@@ -365,7 +365,7 @@ export function fetchTickerData(ticker, token) {
       .then(res => {
         console.log("getWatchlistData", res)
         resolve(res.data)
-        
+
       })
       .catch(error => reject(error))
   });

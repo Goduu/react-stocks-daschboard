@@ -1,6 +1,7 @@
 import React from "react";
-import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell, Button,TableFooter, TablePagination } from '@material-ui/core';
+import { TableHead, Typography, Tooltip, TableContainer, Table, TableBody, TableRow, TableCell, Button, TableFooter, TablePagination } from '@material-ui/core';
 import { InDevelopment } from '../../../shared/components/InDevelopment';
+import formatStatistics from '../../../shared/functions/formatStatistics';
 import { Link } from 'react-router-dom';
 import TickerSelector from './TickerSelector'
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,8 +16,8 @@ import {
 
 
 function Watchlist(props) {
-    let { classes, headCells,tickers, tickersData, columns,page } = props
-    let { t, selectNewTicker, handleFetchTickersInfosByList,handleChangePage, removeTicker } = props
+    let { classes, headCells, tickers, tickersData, columns, page } = props
+    let { t, selectNewTicker, handleFetchTickersInfosByList, handleChangePage, removeTicker, setSortedBy } = props
 
 
     return (
@@ -93,9 +94,10 @@ function Watchlist(props) {
                                                                 variant="h6"
                                                             >
                                                                 <b> {tick.statistics.find(el => el.label === c) ?
-                                                                    tick.statistics.find(el => el.label === c).value : '-'}</b>
+                                                                    formatStatistics(c,
+                                                                        tick.statistics.find(el => el.label === c).value) : '-'}</b>
                                                             </Typography>
-                                                            <Typography variant="body2" color="textSecondary" noWrap>
+                                                            <Typography variant="body2" color="textSecondary" noWrap className={classes.sort} onClick={() => setSortedBy(c)}>
                                                                 {t(c)}
                                                             </Typography>
                                                         </TableRow >
@@ -127,8 +129,8 @@ function Watchlist(props) {
                                     native: true,
                                 }}
                                 onPageChange={handleChangePage}
-                                // onRowsPerPageChange={handleChangeRowsPerPage}
-                                // ActionsComponent={TablePaginationActions}
+                            // onRowsPerPageChange={handleChangeRowsPerPage}
+                            // ActionsComponent={TablePaginationActions}
                             />
                         </TableRow>
                     </TableFooter>

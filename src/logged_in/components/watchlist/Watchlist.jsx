@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
         height: '70px',
         maxWidth: '300px'
     },
+    sort: {
+        cursor: 'pointer'
+    }
 
 }));
 
@@ -77,6 +80,7 @@ function Watchlist(props) {
     const [tickers, setTickers] = useState([])
     const [tickersData, setTickersData] = useState([])
     const [watchlistId, setWatchlistId] = useState(null)
+    const [sortedBy, setSortedBy] = useState('ticker')
     const [page, setPage] = useState(0)
     const statistics = ['keyStatistics.trailingEps', 'keyStatistics.beta']
     const finance = ['financialData.profitMargins', 'keyStatistics.earningsQuarterlyGrowth']
@@ -92,15 +96,19 @@ function Watchlist(props) {
             if (res) {
                 setTickers(res.list)
                 setWatchlistId(res.id)
-                fetchData(res.list, page)
+                fetchData(res.list, sortedBy, page)
             }
         })
     }, [])
 
-    const fetchData = (tickers_, page_) => {
+    useEffect(() => {
+        fetchData(tickers, sortedBy, page)
+    }, [sortedBy])
+
+    const fetchData = (tickers_, sortedBy_, page_) => {
         console.log("fetch")
         if (tickers_.length > 0) {
-            fetchWatchlistData(tickers_, page_, token)
+            fetchWatchlistData(tickers_, sortedBy_, page_, token)
                 .then(res => {
                     console.log("Res data watch", res)
                     setTickersData(res.map(el => {
@@ -153,18 +161,18 @@ function Watchlist(props) {
             console.log("prev remove", prev, ticker)
             prev = prev.filter(t => t !== ticker)
             updateWatchlist(watchlistId, prev, userId, token)
-            .then(res => {
-                setWatchlistId(res)
-                enqueueSnackbar(ticker + " removed", { variant: 'success' });
-            })
-            
+                .then(res => {
+                    setWatchlistId(res)
+                    enqueueSnackbar(ticker + " removed", { variant: 'success' });
+                })
+
             console.log("final remove", prev, ticker)
             return prev
         })
         setTickersData(prev => {
             return prev.filter(el => el.ticker.ticker !== ticker)
         })
-        
+
     }
     const handleFetchTickersInfosByList = () => {
         fetchTickersInfosByList(tickers, token).then(r => console.log("res", r))
@@ -184,10 +192,12 @@ function Watchlist(props) {
             tickers={tickers}
             columns={columns}
             page={page}
+            sortedBy={sortedBy}
             selectNewTicker={selectNewTicker}
             handleFetchTickersInfosByList={handleFetchTickersInfosByList}
             handleChangePage={handleChangePage}
             removeTicker={removeTicker}
+            setSortedBy={setSortedBy}
             t={t}
         />
 

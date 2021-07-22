@@ -5,7 +5,9 @@ import { TitleInterface } from './TitleInterface'
 
 const useStyles = makeStyles((theme) => ({
     margin: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
+        marginLeft: theme.spacing(1),
+        marginBottom: theme.spacing(0),
         width: '96%',
         fontSize: '1.5em',
         fontWeight: 700,
@@ -24,8 +26,7 @@ function Title(props) {
     const classes = useStyles();
     const [title, setTitle] = useState(props.params.title)
     const [subtitle, setSubtitle] = useState(props.params.subtitle)
-    const inputRef = createRef()
-    const changeText = (e) => {
+    const changeTitle = (e) => {
         setTitle(e.target.value)
     }
     const changeSubtitle = (e) => {
@@ -46,9 +47,8 @@ function Title(props) {
             title={title}
             subtitle={subtitle}
             saveParams={saveParams}
-            changeText={changeText}
+            changeTitle={changeTitle}
             classes={classes}
-            inputRef={inputRef}
             saveSubtitle={saveSubtitle}
             changeSubtitle={changeSubtitle}
             {...props} />

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { InputBase, ClickAwayListener } from '@material-ui/core';
 
 function TitleInterface(props) {
-    const { title, classes, inputRef, subtitle } = props
+    const { title, classes, subtitle } = props
     const { saveParams, changeTitle, saveSubtitle, changeSubtitle } = props
 
 
@@ -17,7 +17,6 @@ function TitleInterface(props) {
                 onBlur={saveParams}
                 value={title}
                 data-testid="textField"
-                inputRef={inputRef}
             />
             <InputBase
                 className={classes.subtitle}
@@ -25,7 +24,6 @@ function TitleInterface(props) {
                 onBlur={saveSubtitle}
                 value={subtitle}
                 data-testid="textField"
-                inputRef={inputRef}
             />
         </CardWrapper>
 
