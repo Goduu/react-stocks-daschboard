@@ -292,6 +292,7 @@ export const getRestoredItems = (g, ticker, props, functions, tickerData) => {
     props = {
       ...props,
       identifier: ticker,
+      params: 
     }
     gridItems_ = {
       ...componentProps,
