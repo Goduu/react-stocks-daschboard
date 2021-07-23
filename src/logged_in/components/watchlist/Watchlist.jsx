@@ -81,6 +81,7 @@ function Watchlist(props) {
     const [tickersData, setTickersData] = useState([])
     const [watchlistId, setWatchlistId] = useState(null)
     const [sortedBy, setSortedBy] = useState('ticker')
+    const [direction, setDirection] = useState('ASC')
     const [page, setPage] = useState(0)
     const statistics = ['keyStatistics.trailingEps', 'keyStatistics.beta']
     const finance = ['financialData.profitMargins', 'keyStatistics.earningsQuarterlyGrowth']
@@ -96,19 +97,32 @@ function Watchlist(props) {
             if (res) {
                 setTickers(res.list)
                 setWatchlistId(res.id)
-                fetchData(res.list, sortedBy, page)
+                fetchData(res.list, page, sortedBy, 'ASC')
             }
         })
     }, [])
 
     useEffect(() => {
-        fetchData(tickers, sortedBy, page)
+        fetchData(tickers, page, sortedBy, 'ASC')
     }, [sortedBy])
 
-    const fetchData = (tickers_, sortedBy_, page_) => {
+    const handleSorting = (sort) => {
+        console.log("sooort", sort)
+        if (sort === sortedBy) {
+            let dir = direction === 'ASC' ? 'DESC' : 'ASC'
+            setDirection(dir)
+            fetchData(tickers, page, sortedBy, dir)
+        } else {
+            setDirection('ASC')
+            setSortedBy(sort)
+            fetchData(tickers, page, sort, 'ASC')
+        }
+    }
+
+    const fetchData = (tickers_, page_, sortedBy_, dir) => {
         console.log("fetch")
         if (tickers_.length > 0) {
-            fetchWatchlistData(tickers_, sortedBy_, page_, token)
+            fetchWatchlistData(tickers_, page_, sortedBy_, dir, token)
                 .then(res => {
                     console.log("Res data watch", res)
                     setTickersData(res.map(el => {
@@ -126,7 +140,6 @@ function Watchlist(props) {
                             return { value: r }
                         })
                         el.price = el.priceChart.values.slice(-1)[0].value
-                        console.log("eaelalea", el)
                         return el
                     }
                     ))
@@ -193,11 +206,12 @@ function Watchlist(props) {
             columns={columns}
             page={page}
             sortedBy={sortedBy}
+            direction={direction}
             selectNewTicker={selectNewTicker}
             handleFetchTickersInfosByList={handleFetchTickersInfosByList}
             handleChangePage={handleChangePage}
             removeTicker={removeTicker}
-            setSortedBy={setSortedBy}
+            handleSorting={handleSorting}
             t={t}
         />
 

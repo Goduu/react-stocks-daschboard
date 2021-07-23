@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import TickerSelector from './TickerSelector'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
-
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import {
     LineChart,
     Line,
@@ -16,8 +17,8 @@ import {
 
 
 function Watchlist(props) {
-    let { classes, headCells, tickers, tickersData, columns, page } = props
-    let { t, selectNewTicker, handleFetchTickersInfosByList, handleChangePage, removeTicker, setSortedBy } = props
+    let { classes, headCells, tickers, tickersData, columns, page, sortedBy, direction } = props
+    let { t, selectNewTicker, handleFetchTickersInfosByList, handleChangePage, removeTicker, handleSorting } = props
 
 
     return (
@@ -59,6 +60,22 @@ function Watchlist(props) {
                                                 {tick.ticker.ticker}
                                             </Typography>
                                         </Link>
+                                        <Typography variant="body2" className={classes.sort} onClick={() => handleSorting('summaryProfile.sector')}>
+                                            {tick.ticker.summaryProfile.sector}
+                                            {sortedBy === 'summaryProfile.sector' &&
+                                                (direction === 'ASC' ?
+                                                    <ArrowDownwardIcon fontSize='inherit' /> :
+                                                    <ArrowUpwardIcon fontSize='inherit' />)
+                                            }
+                                        </Typography>
+                                        <Typography variant="body2" className={classes.sort} onClick={() => handleSorting('summaryProfile.industry')}>
+                                            {tick.ticker.summaryProfile.industry}
+                                            {sortedBy === 'summaryProfile.industry' &&
+                                                (direction === 'ASC' ?
+                                                    <ArrowDownwardIcon fontSize='inherit' /> :
+                                                    <ArrowUpwardIcon fontSize='inherit' />)
+                                            }
+                                        </Typography>
 
                                     </TableCell>
                                     <TableCell padding='default' >
@@ -97,8 +114,13 @@ function Watchlist(props) {
                                                                     formatStatistics(c,
                                                                         tick.statistics.find(el => el.label === c).value) : '-'}</b>
                                                             </Typography>
-                                                            <Typography variant="body2" color="textSecondary" noWrap className={classes.sort} onClick={() => setSortedBy(c)}>
+                                                            <Typography variant="body2" color="textSecondary" noWrap className={classes.sort} onClick={() => handleSorting(c)}>
                                                                 {t(c)}
+                                                                {sortedBy === c &&
+                                                                    (direction === 'ASC' ?
+                                                                        <ArrowDownwardIcon fontSize='inherit' /> :
+                                                                        <ArrowUpwardIcon fontSize='inherit' />)
+                                                                }
                                                             </Typography>
                                                         </TableRow >
                                                     )

@@ -333,7 +333,7 @@ export function deleteGrid(gridId, token) {
   });
 }
 
-export function fetchWatchlistData(tickerList, sortedBy, page, token) {
+export function fetchWatchlistData(tickerList, page, sortedBy, direction, token) {
 
   const headers = {
     headers: {
@@ -342,7 +342,7 @@ export function fetchWatchlistData(tickerList, sortedBy, page, token) {
     }
   }
   return new Promise((resolve, reject) => {
-    axios.post(apiUrl + 'stocks/getWatchlistData/' + sortedBy + '/' + page, tickerList, headers)
+    axios.post(apiUrl + 'stocks/getWatchlistData/' + page + '/' + sortedBy + '/' + direction, tickerList, headers)
       .then(res => {
         console.log("getWatchlistData", res)
         resolve(res.data)

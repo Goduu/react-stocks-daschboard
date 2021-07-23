@@ -129,7 +129,6 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'financialData.profitMargins': {
-            console.log("Profit", value, minifier(value, 2) + '%')
             return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.profitMargins': {
