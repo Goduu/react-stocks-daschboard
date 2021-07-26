@@ -352,6 +352,25 @@ export function fetchWatchlistData(tickerList, page, sortedBy, direction, token)
   });
 }
 
+export function testpaha(token) {
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + token
+    }
+  }
+  return new Promise((resolve, reject) => {
+    axios.get(apiUrl + 'stocks/testpaha', headers)
+      .then(res => {
+        console.log("testpaha", res)
+        resolve(res.data)
+
+      })
+      .catch(error => reject(error))
+  });
+}
+
 export function fetchTickerData(ticker, token) {
 
   const headers = {

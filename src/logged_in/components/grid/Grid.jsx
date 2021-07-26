@@ -7,7 +7,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
-import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid, fetchTickerData } from '../../../shared/functions/requests.js';
+import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid, fetchTickerData,testpaha } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems } from './gridProps'
 import { useSnackbar } from 'notistack';
 import GuideTour from '../../../shared/components/GuideTour'
@@ -173,7 +173,7 @@ function Grid(props) {
       changeParams: changeParams
     }
     setGridItems(prev => {
-      prev.items.push(getCardProps(type, functions, gridItems, ticker, iTemp))
+      prev.items.push(getCardProps(type, functions, gridItems, ticker, iTemp,tickerData))
       return prev
     });
     setGridElements(gridElements.concat({ id: iTemp, type: type, params: {} }))
@@ -357,7 +357,8 @@ function Grid(props) {
     <GridInterface
       review={review} gridItems={gridItems} identifier={identifier} newDashboardClosed={newDashboardClosed}
       onAddItem={onAddItem} deleteDashboard={deleteDashboard} selectDashboard={selectDashboard} newDashboard={newDashboard}
-      onLayoutChange={onLayoutChange} onBreakpointChange={onBreakpointChange} handleBack={handleBack} chooseIdentifier={chooseIdentifier} />
+      onLayoutChange={onLayoutChange} onBreakpointChange={onBreakpointChange} handleBack={handleBack} chooseIdentifier={chooseIdentifier}
+      testpaha={() => testpaha(token)} />
   )
 
 }

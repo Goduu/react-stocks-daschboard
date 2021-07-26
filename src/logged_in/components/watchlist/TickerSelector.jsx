@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
-        margin: theme.spacing(3)
+        margin: theme.spacing(-1)
     },
     option: {
         fontSize: 15,
@@ -71,7 +71,6 @@ export default function TickerSelector(props) {
         <div className={classes.wrapper}>
             <TextField
                 label="Add a ticker"
-                variant="outlined"
                 onChange={filterResults}
                 onClick={handleOpen}
                 onBlur={() => setTimeout(() => {

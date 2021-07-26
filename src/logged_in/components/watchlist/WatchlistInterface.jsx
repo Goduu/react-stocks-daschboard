@@ -20,7 +20,7 @@ function Watchlist(props) {
     let { classes, headCells, tickers, tickersData, columns, page, sortedBy, direction } = props
     let { t, selectNewTicker, handleFetchTickersInfosByList, handleChangePage, removeTicker, handleSorting } = props
 
-
+    console.log("tickersData",tickersData)
     return (
         <div>
 
@@ -48,20 +48,20 @@ function Watchlist(props) {
                     <TableBody>
                         {tickersData.map(tick => {
                             return (
-                                <TableRow key={tick.ticker.ticker}>
+                                <TableRow key={tick.ticker}>
                                     <TableCell padding='none' className={classes.mainCell}>
-                                        <Link to={`/c/grid/${tick.ticker.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/c/grid/${tick.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Typography color="textSecondary" variant="subtitle1" noWrap={true}>
                                                 <div className={classes.title}>
-                                                    {tick.ticker.description}
+                                                    {tick.description}
                                                 </div>
                                             </Typography>
                                             <Typography variant="h5" component="h2" className={classes.ticker}>
-                                                {tick.ticker.ticker}
+                                                {tick.ticker}
                                             </Typography>
                                         </Link>
                                         <Typography variant="body2" className={classes.sort} onClick={() => handleSorting('summaryProfile.sector')}>
-                                            {tick.ticker.summaryProfile.sector}
+                                            {tick.summaryProfile.sector}
                                             {sortedBy === 'summaryProfile.sector' &&
                                                 (direction === 'ASC' ?
                                                     <ArrowDownwardIcon fontSize='inherit' /> :
@@ -69,7 +69,7 @@ function Watchlist(props) {
                                             }
                                         </Typography>
                                         <Typography variant="body2" className={classes.sort} onClick={() => handleSorting('summaryProfile.industry')}>
-                                            {tick.ticker.summaryProfile.industry}
+                                            {tick.summaryProfile.industry}
                                             {sortedBy === 'summaryProfile.industry' &&
                                                 (direction === 'ASC' ?
                                                     <ArrowDownwardIcon fontSize='inherit' /> :
@@ -97,7 +97,7 @@ function Watchlist(props) {
                                             <b>  {tick.price}</b>
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" noWrap>
-                                            {tick.ticker.currency}
+                                            {tick.currency}
                                         </Typography>
                                     </TableCell>
 
@@ -106,13 +106,13 @@ function Watchlist(props) {
                                             return <TableCell padding='default' key={col}>
                                                 {col.map(c => {
                                                     return (
-                                                        <TableRow key={c}>
+                                                        <div style={{ display: 'flex', flexDirection: 'column' }} key={c}>
                                                             <Typography
                                                                 variant="h6"
                                                             >
-                                                                <b> {tick.statistics.find(el => el.label === c) ?
+                                                                <strong> {tick.statistics.find(el => el.label === c) ?
                                                                     formatStatistics(c,
-                                                                        tick.statistics.find(el => el.label === c).value) : '-'}</b>
+                                                                        tick.statistics.find(el => el.label === c).value.raw) : '-'}</strong>
                                                             </Typography>
                                                             <Typography variant="body2" color="textSecondary" noWrap className={classes.sort} onClick={() => handleSorting(c)}>
                                                                 {t(c)}
@@ -122,14 +122,14 @@ function Watchlist(props) {
                                                                         <ArrowUpwardIcon fontSize='inherit' />)
                                                                 }
                                                             </Typography>
-                                                        </TableRow >
+                                                        </div >
                                                     )
                                                 })}
                                             </TableCell>
                                         })
                                     }
                                     <TableCell padding='default'>
-                                        <IconButton onClick={() => removeTicker(tick.ticker.ticker)}>
+                                        <IconButton onClick={() => removeTicker(tick.ticker)}>
                                             <DeleteIcon />
                                         </IconButton>
                                     </TableCell>
@@ -140,6 +140,12 @@ function Watchlist(props) {
                     </TableBody>
                     <TableFooter>
                         <TableRow>
+                            <TableCell>
+                                <Tooltip title="Add Dashboard">
+                                    <TickerSelector selectNewTicker={selectNewTicker} />
+                                </Tooltip>
+
+                            </TableCell>
                             <TablePagination
                                 // rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                                 colSpan={8}
@@ -158,15 +164,7 @@ function Watchlist(props) {
                     </TableFooter>
                 </Table>
             </TableContainer>
-            <Tooltip title="Add Dashboard">
-                {/* <IconButton >
-                    <LibraryAddIcon />
-                </IconButton > */}
-                <TickerSelector selectNewTicker={selectNewTicker} />
-            </Tooltip>
-            <Button onClick={handleFetchTickersInfosByList}>
-                fetchTickersInfosByList
-            </Button>
+
         </div>
 
     )

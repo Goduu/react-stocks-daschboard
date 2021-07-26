@@ -8,18 +8,7 @@ import { formatValueByType } from '../../../../shared/functions/formatValueByTyp
 import { StatisticsInterface } from './StatisticsInterface'
 
 function Statistics(props) {
-    const { t } = useTranslation();
-    const [statistics, setStatistics] = useState([])
-    const [statisticSelected, setStatisticSelected] = useState()
-    const token = useSelector(state => state.auth.token)
-    const [settingsOpen, setSettingsOpen] = useState(true);
-    const [feedbackOpen, setFeedbackOpen] = useState(false);
-    const [feedback, setFeedback] = useState();
-    const [color, setColor] = useState();
     const theme = useTheme();
-    const [anchorSettings, setAnchorSettings] = useState(null);
-    const [anchorFeedback, setAnchorFeedback] = useState(null);
-    
 
     const selectColor = (val) => {
         switch (val) {
@@ -38,18 +27,18 @@ function Statistics(props) {
         }
     }
 
-    const firstCall = useCallback((stats) => {
-        if (props.params.statisticSelected) {
-            setStatisticSelected(props.params.statisticSelected)
-            setColor(selectColor(props.params.feedback))
-            setFeedback(props.params.feedback)
-        } else {
-            setStatisticSelected(stats[0].label)
-            setSettingsOpen(!settingsOpen)
-        }
-    },
-        [props.params, selectColor, settingsOpen, setColor]
-    );
+    const { t } = useTranslation();
+    // const [statistics, setStatistics] = useState([])
+    const [statistics, setStatistics] = useState(props.tickerData)
+    const [statisticSelected, setStatisticSelected] = useState(props.params.statisticSelected || 'beta')
+    const token = useSelector(state => state.auth.token)
+    const [settingsOpen, setSettingsOpen] = useState(false);
+    const [feedbackOpen, setFeedbackOpen] = useState(false);
+    const [feedback, setFeedback] = useState(props.params.feedback);
+    const [color, setColor] = useState(selectColor(props.params.feedback));
+    const [openSettings, setOpenSettings] = useState(false);
+    const [anchorFeedback, setAnchorFeedback] = useState(null);
+    const [type, setType] = useState(props.params.type || 'keyStatistics');
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -74,25 +63,12 @@ function Statistics(props) {
     const classes = useStyles();
     const ticker = props.identifier
 
-
-    useEffect(() => {
-        fetchStatistics(ticker, token)
-            .then(res => {
-                let formated = res.map(r => {
-                    return { ...r, value: formatValueByType(r) }
-                })
-                setStatistics(formated)
-                firstCall(formated)
-
-            })
-    }, [ticker, token])
-
     const saveSettings = (value) => {
         setStatisticSelected(value)
         setFeedback(undefined)
         props.changeParams({
             id: props.i,
-            content: { statisticSelected: value, feedback: undefined }
+            content: { type: type, statisticSelected: value, feedback: undefined }
         })
 
     }
@@ -112,15 +88,13 @@ function Statistics(props) {
 
         props.changeParams({
             id: props.i,
-            content: { statisticSelected: statisticSelected, feedback: newFeedback }
+            content: { type: type, statisticSelected: statisticSelected, feedback: newFeedback }
         })
         setFeedbackOpen(false)
 
     }
 
-    const handleClickListItem = (event) => {
-        setAnchorSettings(event.currentTarget);
-    };
+
     const handleMouseOverFeedback = (event) => {
         if (feedback == undefined) {
             setFeedbackOpen(true)
@@ -129,22 +103,24 @@ function Statistics(props) {
 
     }
 
+
+
     return (
         <StatisticsInterface
             classes={classes}
-            anchorSettings={anchorSettings}
             anchorFeedback={anchorFeedback}
             theme={theme}
             color={color}
             feedback={feedback}
             feedbackOpen={feedbackOpen}
             settingsOpen={settingsOpen}
+            type={type}
             statisticSelected={statisticSelected}
             statistics={statistics}
-            setAnchorSettings={setAnchorSettings}
+            setSettingsOpen={setSettingsOpen}
             saveSettings={saveSettings}
+            setType={setType}
             handleFeedback={handleFeedback}
-            handleClickListItem={handleClickListItem}
             handleMouseOverFeedback={handleMouseOverFeedback}
             t={t}
             {...props}

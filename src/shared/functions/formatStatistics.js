@@ -2,7 +2,7 @@
 
 const formatStatistic = (statistic, value) => {
     switch (statistic) {
-        case 'summaryDetails.averageDailyVolume10Day': {
+        case 'summaryDetail.averageDailyVolume10Day': {
             return minifier(value, 2)
         }
         case 'keyStatistics.beta': {
@@ -18,12 +18,12 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.dateShortInterest': {
-            return new Date(value * 1000).toLocaleDateString()
+            return minifierDate(value)
         }
         case 'financialData.debtToEquity': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.dividendYield': {
+        case 'summaryDetail.dividendYield': {
             return minifier(value, 2)
         }
         case 'financialData.earningsGrowth': {
@@ -47,16 +47,16 @@ const formatStatistic = (statistic, value) => {
         case 'keyStatistics.enterpriseValue': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.fiftyDayAverage': {
+        case 'summaryDetail.fiftyDayAverage': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.fiftyTwoWeekHigh': {
+        case 'summaryDetail.fiftyTwoWeekHigh': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.fiftyTwoWeekLow': {
+        case 'summaryDetail.fiftyTwoWeekLow': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.fiveYearAvgDividendYield': {
+        case 'summaryDetail.fiveYearAvgDividendYield': {
             return minifier(value, 2)
         }
         case 'keyStatistics.floatShares': {
@@ -81,7 +81,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2) + '%'
         }
         case 'keyStatistics.lastDividendDate': {
-            return value === '-' ? value : new Date(value * 1000).toLocaleDateString()
+            return minifierDate(value)
         }
         case 'keyStatistics.lastDividendValue': {
             return value === '-' ? value : minifier(value, 2)
@@ -90,12 +90,12 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.lastSplitDate': {
-            return new Date(value * 1000).toLocaleDateString()
+            return minifierDate(value)
         }
         case 'keyStatistics.lastSplitFactor': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.marketCap': {
+        case 'summaryDetail.marketCap': {
             return minifier(value, 2)
         }
         case 'keyStatistics.mostRecentQuarter': {
@@ -116,7 +116,7 @@ const formatStatistic = (statistic, value) => {
         case 'financialData.operatingMargins': {
             return minifier(value, 2, 100) + '%'
         }
-        case 'summaryDetails.payoutRatio': {
+        case 'summaryDetail.payoutRatio': {
             return minifier(value, 2) + '%'
         }
         case 'keyStatistics.pegRatio': {
@@ -125,7 +125,7 @@ const formatStatistic = (statistic, value) => {
         case 'keyStatistics.priceToBook': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.priceToSalesTrailing12Months': {
+        case 'summaryDetail.priceToSalesTrailing12Months': {
             return minifier(value, 2)
         }
         case 'financialData.profitMargins': {
@@ -168,7 +168,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.sharesShortPreviousMonthDate': {
-            return new Date(value * 1000).toLocaleDateString()
+            return minifierDate(value)
         }
         case 'keyStatistics.sharesShortPriorMonth': {
             return minifier(value, 2)
@@ -203,25 +203,29 @@ const formatStatistic = (statistic, value) => {
         case 'financialData.totalRevenue': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.trailingAnnualDividendRate': {
+        case 'summaryDetail.trailingAnnualDividendRate': {
             return minifier(value, 2) + '%'
         }
-        case 'summaryDetails.trailingAnnualDividendYield': {
+        case 'summaryDetail.trailingAnnualDividendYield': {
             return minifier(value, 2) + '%'
         }
         case 'keyStatistics.trailingEps': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.trailingPE': {
+        case 'summaryDetail.trailingPE': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.twoHundredDayAverage': {
+        case 'summaryDetail.twoHundredDayAverage': {
             return minifier(value, 2)
         }
-        case 'summaryDetails.volume': {
+        case 'summaryDetail.volume': {
             return minifier(value, 2)
         }
     }
+}
+function minifierDate(val) {
+    let date = new Date(val * 1000).toLocaleDateString()
+    return date !== 'Invalid Date' ? date : '-'
 }
 
 function minifier(num, digits, percent = 1) {
@@ -238,7 +242,9 @@ function minifier(num, digits, percent = 1) {
     var item = lookup.slice().reverse().find(function (item) {
         return num >= item.value;
     });
-    return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num * percent).toFixed(digits);
+    let result = (item ) ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : (num * percent).toFixed(digits);
+    return result
+    // return (result && !isNaN(result)) ? result : '-'
 }
 
 export default formatStatistic

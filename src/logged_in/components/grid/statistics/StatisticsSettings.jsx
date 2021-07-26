@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    List,
+    ListItem,
+    ListSubheader,
+    makeStyles,
     Menu, MenuItem
 } from '@material-ui/core/';
 import { useEffect } from 'react';
@@ -7,54 +17,102 @@ import _ from 'lodash'
 import { useTranslation } from 'react-i18next';
 
 export default function StatisticsSettings(props) {
-    const { saveSettings } = props;
+    const { saveSettings, setType, type, handleClose, setOpen, open } = props;
     // const [open, setOpen] = useState(props.open);
     const [statistics, setStatistics] = useState(props.statistics);
-    const [open, setOpen] = React.useState(props.open);
     const { t } = useTranslation();
 
+    const statisticsKeys = ['keyStatistics', 'summaryDetail', 'financialData']
 
-    useEffect(() => {
-        setOpen(!open)
-    }, [props.anchorEl])
-
-    useEffect(() => {
-        setStatistics(props.statistics)
-    }, [props.statistics])
+    // useEffect(() => {
+    //     setStatistics(props.statistics)
+    // }, [props.statistics])
 
     const handleSave = (value) => {
         saveSettings(value);
-        props.anchorEl[1](null)
         setOpen(false);
         // setSelectedValue(value);
     };
 
+    const useStyles = makeStyles((theme) => ({
+        list: {
+            maxHeight: '400px',
+            overflow: 'scroll',
+            overflowX: 'hidden',
+            width: '100%'
+        },
+        dialog: {
+            overflowX: 'hidden',
+            width: '100%'
+
+        }
+
+    }));
+    const classes = useStyles();
+
+
+
 
     return (
-        <Menu
-            id="simple-menu"
-            keepMounted
-            open={Boolean(props.anchorEl[0])}
-            onClose={() => props.anchorEl[1](null)}
-            anchorEl={props.anchorEl[0]}
-        >
+        <Dialog className={classes.dialog} onClose={handleClose} fullWidth open={open}>
+            <DialogTitle >Select your Statistic</DialogTitle>
 
-            {statistics && statistics.map((value) => {
-                return (
-                    <MenuItem
-                        key={value.label}
-                        value={value.label}
-                        onClick={() => handleSave(value.label)}
-                    >
-                        {t('indicators.'+value.label)}
+            <DialogContent>
+                <Button onClick={() => {console.log(type)}}> asd</Button>
 
-                    </MenuItem>
-                );
-            }
-            )}
+                <Grid container spacing={1} direction="row" justifyContent="center">
+                    <Grid container item xs={6} >
+                        <List>
+                            <ListSubheader >
+                                Groups
+                            </ListSubheader>
+                            {statisticsKeys && statisticsKeys.map((key) => {
+                                return (
+                                    <ListItem button
+                                        key={key}
+                                        value={key}
+                                        onClick={() => setType(key)}
+                                    >
+                                        {key}
+                                    </ListItem >
+                                );
+                            }
+                            )}
+                        </List>
+                    </Grid>
+                    <Grid container item xs={6} >
+                        <div className={classes.list}>
+                            <List component="div">
+                                <ListSubheader >
+                                    Statistics
+                                </ListSubheader>
+                                {statistics[type] && Object.keys(statistics[type]).map((key) => {
+                                    return (
+                                        <ListItem button
+                                            key={key}
+                                            value={key}
+                                            onClick={() => handleSave(key)}
+                                        >
+                                            {t(type + '.' + key)}
 
 
-        </Menu >
+                                        </ListItem >
+                                    );
+                                }
+                                )}
+                            </List>
+                        </div>
+                    </Grid>
+
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button autoFocus onClick={handleClose} color="primary">
+                    Cancel
+                </Button>
+            </DialogActions>
+
+        </Dialog>
 
     );
 }

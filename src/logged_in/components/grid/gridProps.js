@@ -12,7 +12,7 @@ import { Statistics } from './statistics/Statistics';
 import News from './news/News';
 
 
-export const getCardProps = (type, functions, gridItems, ticker, id) => {
+export const getCardProps = (type, functions, gridItems, ticker, id,tickerData) => {
   let props = {
     params: {},
     i: id,
@@ -20,6 +20,7 @@ export const getCardProps = (type, functions, gridItems, ticker, id) => {
     y: 99, // puts it at the bottom
     identifier: ticker,
     type: type,
+    tickerData: tickerData,
     onRemoveItem: (id) => functions.onRemoveItem(id),
     changeParams: (p) => functions.changeParams(p)
   }

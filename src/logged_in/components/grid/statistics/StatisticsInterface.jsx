@@ -9,16 +9,26 @@ import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
 import GradeIcon from '@material-ui/icons/Grade';
 import Skeleton from '@material-ui/lab/Skeleton';
+import formatStatistics from '../../../../shared/functions/formatStatistics';
 
 function StatisticsInterface(props) {
 
-    const {classes, anchorSettings, anchorFeedback, theme, color, feedback, feedbackOpen, settingsOpen, statisticSelected, statistics } = props
-    const { setAnchorSettings, saveSettings, handleFeedback, handleClickListItem, handleMouseOverFeedback, t } = props
+    const { classes, anchorFeedback, theme, color, feedback,
+        feedbackOpen, settingsOpen, statisticSelected, statistics, type } = props
+    const { saveSettings, handleFeedback,
+        handleMouseOverFeedback, t, setType, setSettingsOpen } = props
 
 
     return (
-        <CardWrapper {...props} openSettings={handleClickListItem} >
-            <StatisticsSettings anchorEl={[anchorSettings, setAnchorSettings]} open={settingsOpen} saveSettings={saveSettings} statistics={statistics}></StatisticsSettings>
+        <CardWrapper {...props} openSettings={() => setSettingsOpen(true)} >
+            <StatisticsSettings
+                open={settingsOpen}
+                handleClose={() => setSettingsOpen(false)}
+                setOpen={setSettingsOpen}
+                saveSettings={saveSettings}
+                statistics={statistics}
+                setType={setType}
+                type={type}></StatisticsSettings>
             <div className={classes.root} >
                 <Grid container spacing={0} >
                     {statisticSelected ?
@@ -31,8 +41,8 @@ function StatisticsInterface(props) {
                                 <b
                                     style={{ cursor: 'pointer' }}
                                     onClick={feedback ? (() => handleFeedback(undefined)) : handleMouseOverFeedback}>
-                                    {statistics.find(s => s.label === statisticSelected)
-                                        && statistics.find(s => s.label === statisticSelected).value}
+                                    {statistics[type] && statistics[type][statisticSelected]
+                                        && formatStatistics(type + '.' + statisticSelected, statistics[type][statisticSelected].raw)}
                                 </b>
                                 <Popover
                                     anchorOrigin={{
@@ -73,7 +83,7 @@ function StatisticsInterface(props) {
                             <Typography variant="body2" color="textSecondary" noWrap className={classes.link}>
                                 <Tooltip title={t('indicators.info.' + statisticSelected)}>
                                     <Link href={t('indicators.ref.' + statisticSelected)} target="_blank" color="inherit" >
-                                        {t('indicators.' + statisticSelected)}
+                                        {t(type + '.' + statisticSelected)}
                                     </Link>
                                 </Tooltip>
                             </Typography>

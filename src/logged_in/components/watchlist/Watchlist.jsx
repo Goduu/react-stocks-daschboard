@@ -127,19 +127,22 @@ function Watchlist(props) {
                     console.log("Res data watch", res)
                     setTickersData(res.map(el => {
                         el.statistics = [
-                            { label: 'keyStatistics.beta', value: el.ticker.keyStatistics.beta || '-' },
-                            { label: 'keyStatistics.trailingEps', value: el.ticker.keyStatistics.trailingEps || '-' },
-                            { label: 'financialData.profitMargins', value: el.ticker.financialData.profitMargins || '-' },
-                            { label: 'keyStatistics.earningsQuarterlyGrowth', value: el.ticker.keyStatistics.earningsQuarterlyGrowth || '-' },
-                            { label: 'keyStatistics.bookValue', value: el.ticker.keyStatistics.bookValue || '-' },
-                            { label: 'keyStatistics.priceToBook', value: el.ticker.keyStatistics.priceToBook || '-' },
-                            { label: 'keyStatistics.lastDividendValue', value: el.ticker.keyStatistics.lastDividendValue || '-' },
-                            { label: 'keyStatistics.lastDividendDate', value: el.ticker.keyStatistics.lastDividendDate || '-' },
+                            { label: 'keyStatistics.beta', value: el.keyStatistics.beta || '-' },
+                            { label: 'keyStatistics.trailingEps', value: el.keyStatistics.trailingEps || '-' },
+                            { label: 'financialData.profitMargins', value: el.financialData.profitMargins || '-' },
+                            { label: 'keyStatistics.earningsQuarterlyGrowth', value: el.keyStatistics.earningsQuarterlyGrowth || '-' },
+                            { label: 'keyStatistics.bookValue', value: el.keyStatistics.bookValue || '-' },
+                            { label: 'keyStatistics.priceToBook', value: el.keyStatistics.priceToBook || '-' },
+                            { label: 'keyStatistics.lastDividendValue', value: el.keyStatistics.lastDividendValue || '-' },
+                            { label: 'keyStatistics.lastDividendDate', value: el.keyStatistics.lastDividendDate || '-' },
                         ]
-                        el.priceChart.values = el.priceChart.values.map(r => {
-                            return { value: r }
+                        el.priceChart = []
+                        el.priceChart.values = el.chart.indicators.quote[0].close
+                        .filter(r => r !== null)
+                        .map(r => {
+                            return { value: r.toFixed(2) }
                         })
-                        el.price = el.priceChart.values.slice(-1)[0].value
+                        el.price = el.chart.indicators.quote[0].close.slice(-1)[0] && el.chart.indicators.quote[0].close.slice(-1)[0].toFixed(2)
                         return el
                     }
                     ))

@@ -9,7 +9,6 @@ import NewDashboard from './newdashboard/NewDashboard';
 import GuideTour from '../../../shared/components/GuideTour'
 import { Paper } from '@material-ui/core';
 
-
 const ResponsiveReactGridLayout = WidthProvider(RGL);
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
@@ -19,7 +18,7 @@ function GridInterface(props) {
   let { review, gridItems, identifier, newDashboardClosed } = props
   // Functions
   let { onAddItem, deleteDashboard, selectDashboard, newDashboard,
-    onLayoutChange, onBreakpointChange, handleBack, chooseIdentifier } = props
+    onLayoutChange, onBreakpointChange, handleBack, chooseIdentifier,testpaha } = props
 
   return (
     <GuideTour active={review} gridItems={gridItems} identifier={identifier}>
@@ -53,7 +52,6 @@ function GridInterface(props) {
         }
         {/* <ParticlesMain density={100}/> */}
         <br />
-      <button onClick={() => console.log(gridItems)}>ads</button>
       </div>
 
 
