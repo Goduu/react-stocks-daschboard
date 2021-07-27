@@ -13,6 +13,8 @@ import News from './news/News';
 
 
 export const getCardProps = (type, functions, gridItems, ticker, id,tickerData) => {
+  console.log("TICKER DATA getCardProps", tickerData)
+
   let props = {
     params: {},
     i: id,

@@ -383,7 +383,7 @@ function AvatarSelection(props) {
       <AccordionDetails className={classes.dBlock}>
         <Grid container
           spacing={2}
-          justify="center"
+          justifyContent="center"
           alignItems="center">
           <Grid item xs={4}>
             <div className={classes_.avatar}>

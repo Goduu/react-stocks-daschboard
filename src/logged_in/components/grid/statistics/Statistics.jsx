@@ -8,6 +8,7 @@ import { formatValueByType } from '../../../../shared/functions/formatValueByTyp
 import { StatisticsInterface } from './StatisticsInterface'
 
 function Statistics(props) {
+    console.log("Statistics props -----", props)
     const theme = useTheme();
 
     const selectColor = (val) => {
@@ -38,7 +39,12 @@ function Statistics(props) {
     const [color, setColor] = useState(selectColor(props.params.feedback));
     const [openSettings, setOpenSettings] = useState(false);
     const [anchorFeedback, setAnchorFeedback] = useState(null);
-    const [type, setType] = useState(props.params.type || 'keyStatistics');
+    const [statisticGroup, setStatisticGroup] = useState(props.params.statisticGroup || 'keyStatistics');
+
+    useEffect(() => {
+        console.log("changed-------------------------------------------",props.tickerData)
+        setStatistics(props.tickerData)
+    }, [props.tickerData])
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -57,7 +63,7 @@ function Statistics(props) {
         },
         link: {
             marginTop: '3px',
-            overflow: 'visible'
+            overflow: 'hidden'
         },
     }));
     const classes = useStyles();
@@ -68,7 +74,7 @@ function Statistics(props) {
         setFeedback(undefined)
         props.changeParams({
             id: props.i,
-            content: { type: type, statisticSelected: value, feedback: undefined }
+            content: { statisticGroup: statisticGroup, statisticSelected: value, feedback: undefined }
         })
 
     }
@@ -88,7 +94,7 @@ function Statistics(props) {
 
         props.changeParams({
             id: props.i,
-            content: { type: type, statisticSelected: statisticSelected, feedback: newFeedback }
+            content: { statisticGroup: statisticGroup, statisticSelected: statisticSelected, feedback: newFeedback }
         })
         setFeedbackOpen(false)
 
@@ -114,18 +120,19 @@ function Statistics(props) {
             feedback={feedback}
             feedbackOpen={feedbackOpen}
             settingsOpen={settingsOpen}
-            type={type}
+            statisticGroup={statisticGroup}
             statisticSelected={statisticSelected}
             statistics={statistics}
             setSettingsOpen={setSettingsOpen}
             saveSettings={saveSettings}
-            setType={setType}
+            setStatisticGroup={setStatisticGroup}
             handleFeedback={handleFeedback}
             handleMouseOverFeedback={handleMouseOverFeedback}
             t={t}
             {...props}
         />
     );
+
 }
 
 

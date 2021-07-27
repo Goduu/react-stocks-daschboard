@@ -6,7 +6,7 @@ import ChartSettings from './ChartSettings'
 import { format } from "date-fns";
 import _ from 'lodash'
 import Card from '../Card'
-
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import {
     Paper,
     Grid,
@@ -20,7 +20,7 @@ const CustomTooltip = props => {
         return (
             <div>
                 <p>
-                    {label ? format(label, "yyyy-MM-dd") : " -- "}
+                    {/* {label ? format(label, "yyyy-MM-dd") : " -- "} */}
                 </p>
                 <div>
                     {payload && payload.map(pld => {
@@ -39,16 +39,20 @@ const CustomTooltip = props => {
 
 
 function MultichartInterface(props) {
-    const { classes, configOpen, charts, chartsData, title, subtitle, params } = props
+    const { classes, configOpen, charts, chartsData, title, subtitle, params, timestamp, fullScreen } = props
 
-    const { saveSettings, dateFormatter, setConfigOpen } = props
+    const { saveSettings, dateFormatter, setConfigOpen, handleFullScreen } = props
+    const extraMenu = {
+        icon: FullscreenIcon,
+        action: handleFullScreen
+    }
 
     return (
-        <Card openSettings={() => setConfigOpen(!configOpen)} {...props}>
-            <ChartSettings open={configOpen} saveSettings={saveSettings} settings={params.charts}></ChartSettings>
+        <Card openSettings={() => setConfigOpen(!configOpen)} {...props} extraMenu={extraMenu} >
+            <ChartSettings open={configOpen} saveSettings={saveSettings} settings={params}></ChartSettings>
             <div className={classes.header}>
                 <Grid
-                    justify="space-between"
+                    justifyContent="space-between"
                     alignItems="flex-start"
                     container spacing={1}>
                     <Grid xs={6} >
@@ -65,7 +69,7 @@ function MultichartInterface(props) {
             </div>
 
             <div className={classes.chart}>
-                {(chartsData.length > 0 && charts.length > 0) &&
+                {(chartsData.length > 0) &&
                     <ResponsiveContainer width="100%" height="100%">
                         <ComposedChart
                             width={500}
@@ -74,7 +78,7 @@ function MultichartInterface(props) {
                             type="number"
                         >
                             {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                            <XAxis dataKey="date" tickFormatter={dateFormatter} hide />
+                            <XAxis dataKey="timestamp" tickFormatter={dateFormatter} hide />
                             <YAxis
                                 domain={[dataMin => (0.95 * dataMin), dataMax => (1.05 * dataMax)]}
                                 yAxisId="right"
@@ -115,7 +119,7 @@ function MultichartInterface(props) {
                 }
 
             </div>
-        </Card>
+        </Card >
     )
 }
 

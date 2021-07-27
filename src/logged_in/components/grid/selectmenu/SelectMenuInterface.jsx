@@ -22,7 +22,7 @@ export function SelectMenuInterface(props) {
                     container
                     spacing={3}
                     direction="row"
-                    justify="flex-start"
+                    justifyContent="flex-start"
                     alignItems="center"
                     wrap="nowrap">
                     <Grid item >
@@ -47,7 +47,7 @@ export function SelectMenuInterface(props) {
                     container
                     spacing={1}
                     direction="row"
-                    justify="flex-start"
+                    justifyContent="flex-start"
                     alignItems="center"
                     wrap="nowrap">
                     <Grid item key={'arrback'} className={classes.arrowRight} hidden={isMaxLeft} onClick={scrollLeft}>

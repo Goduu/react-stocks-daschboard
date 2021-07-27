@@ -48,12 +48,12 @@ export default function StatisticsSettings(props) {
         { name: 'Secondary', color: theme.palette.secondary.main },
         { name: 'Gray', color: theme.palette.grey[500] }
     ]
-
     const { settings, saveSettings } = props;
-    const price = settings.find(s => s.name === 'price')
-    const dividend = settings.find(s => s.name === 'dividend')
-    const financial = settings.find(s => s.name === 'financial')
-    console.log("Settings chart", settings)
+    const chartsSettings = settings ? settings.charts : null
+    const price = chartsSettings ? chartsSettings.find(s => s.name === 'close') : null
+    const dividend = chartsSettings ? chartsSettings.find(s => s.name === 'volume') : null
+    const financial = chartsSettings ? chartsSettings.find(s => s.name === 'financial') : null
+    console.log("Settings chart", chartsSettings)
     // const [open, setOpen] = useState(props.open);
     const [priceType, setPriceType] = useState(price && price.type || BAR);
     const [priceActive, setPriceActive] = useState(price !== undefined);
@@ -67,7 +67,7 @@ export default function StatisticsSettings(props) {
     const [financialActive, setFinancialActive] = useState(financial !== undefined);
     const [financialPos, setFinancialPos] = useState(financial && financial.pos || L);
     const [financialColor, setFinancialColor] = useState(financial && financial.color || colors[0].color);
-    const [period, setPeriod] = useState(settings[0].period || 7);
+    const [period, setPeriod] = useState(settings ? settings.period : 7);
     const [open, setOpen] = useState(props.open);
 
 
@@ -78,13 +78,13 @@ export default function StatisticsSettings(props) {
     }, [props.open])
 
     const handleSave = (value) => {
-        const settings = []
+        const chartsSettings_ = []
         charts.forEach(c => {
             if (c.active) {
-                settings.push({ name: c.name, type: c.type, pos: c.pos, color: c.color, period: period })
+                chartsSettings_.push({ name: c.name, type: c.type, pos: c.pos, color: c.color, period: period })
             }
         })
-        saveSettings(settings);
+        saveSettings({period: period, charts: chartsSettings_});
         setOpen(false);
         // setSelectedValue(value);
     };
@@ -95,7 +95,7 @@ export default function StatisticsSettings(props) {
     const charts = [
         {
             label: 'Price',
-            name: 'price',
+            name: 'close',
             type: priceType,
             active: priceActive,
             pos: pricePos,
@@ -106,8 +106,8 @@ export default function StatisticsSettings(props) {
             setColor: setPriceColor,
         },
         {
-            label: 'Dividend',
-            name: 'dividend',
+            label: 'Volume',
+            name: 'volume',
             type: dividendType,
             active: dividendActive,
             pos: dividendPos,
@@ -117,18 +117,18 @@ export default function StatisticsSettings(props) {
             activate: setDividendActive,
             setColor: setDividendColor,
         },
-        {
-            label: 'Financial',
-            name: 'financial',
-            type: financialType,
-            active: financialActive,
-            pos: financialPos,
-            color: financialColor,
-            setPos: setFinancialPos,
-            setter: setFinancialType,
-            activate: setFinancialActive,
-            setColor: setFinancialColor,
-        },
+        // {
+        //     label: 'Financial',
+        //     name: 'financial',
+        //     type: financialType,
+        //     active: financialActive,
+        //     pos: financialPos,
+        //     color: financialColor,
+        //     setPos: setFinancialPos,
+        //     setter: setFinancialType,
+        //     activate: setFinancialActive,
+        //     setColor: setFinancialColor,
+        // },
 
     ]
 

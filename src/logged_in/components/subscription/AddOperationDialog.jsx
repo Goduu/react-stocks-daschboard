@@ -102,7 +102,7 @@ export default function AddOperadionDialog(props) {
           <Grid
             container
             direction="row"
-            justify="center"
+            justifyContent="center"
             alignItems="flex-start"
           >
             <Grid>

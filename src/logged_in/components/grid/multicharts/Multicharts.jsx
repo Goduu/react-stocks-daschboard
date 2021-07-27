@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { fetchPriceData, fetchDividendData, fetchFinancialHistory } from '../../../../shared/functions/requests'
 import { format, compareAsc } from "date-fns";
 import _ from 'lodash'
-import {MultichartInterface} from './MultichartsInterface'
+import { MultichartInterface } from './MultichartsInterface'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         height: '30%',
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
     },
     chart: {
         padding: theme.spacing(1),
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Multichart(props) {
+    console.log("props",props)
     const classes = useStyles();
     // const { t } = useTranslation();
     const ticker = props.identifier
@@ -37,13 +38,19 @@ function Multichart(props) {
     const [configOpen, setConfigOpen] = useState(true);
     const [charts, setCharts] = useState([]);
     const [chartsData, setChartsData] = useState([]);
+    const [timestamp, setTimestamp] = useState(props.tickerData ? props.tickerData.chart.timestamp : [])
+    const [chartQuotes, setChartQuotes] = useState(props.tickerData ? props.tickerData.chart.indicators.quote[0] : [])
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
+    const [fullScreen, setFullScreen] = useState(false);
     const theme = useTheme();
 
     const firstCall = useCallback(() => {
+        // setTimestamp(props.tickerData.chart.timestamp)
+        // setChartQuotes(props.tickerData.chart.indicators.quote[0])
+        console.log("firstCall---", props.params.charts)
         if (props.params.charts) {
-            saveSettings(props.params.charts)
+            saveSettings({ period: props.params.period, charts: props.params.charts })
         } else {
             setConfigOpen(!configOpen)
         }
@@ -52,6 +59,7 @@ function Multichart(props) {
     );
 
     useEffect(() => {
+        console.log("fisrt call")
         firstCall()
     }, [])
 
@@ -59,75 +67,47 @@ function Multichart(props) {
     const saveSettings = (settings) => {
         let title_ = ''
         let charts_ = []
-        let promises = settings.map(s => {
-            setSubtitle(s.period)
-            charts_.push({ name: s.name, type: s.type, pos: s.pos, color: s.color, period: s.period })
+        let period = settings.period
+        settings.charts.forEach(s => {
+            charts_.push({ name: s.name, type: s.type, pos: s.pos, color: s.color })
             title_ = title_ !== '' ? title_ + ' | ' + _.capitalize(s.name) : _.capitalize(s.name)
-            switch (s.name) {
-                case "price": {
-                    return fetchPriceData(ticker, s.period, token)
-                }
-                case "dividend": {
-                    return fetchDividendData(ticker, s.period, token)
-                }
-                case "financial": {
-                    return fetchFinancialHistory(ticker, token)
+        })
+        setCharts([...charts_])
+        setTitle(title_)
+        let now = new Date().getTime() / 1000
+        let oneDay = 86400
+        let chartData_ = Object.entries(timestamp).map(([key, value]) => {
+            if (chartQuotes.close[key]) {
+                return {
+                    timestamp: value,
+                    close: chartQuotes.close[key],
+                    volume: chartQuotes.volume[key],
                 }
             }
         })
-        Promise.allSettled(promises).
-            then((results) => {
-                let chartsData_ = {}
-                results.forEach(r => {
-                    if (r.status === "fulfilled") {
-                        switch (r.value.type) {
-                            case "price": {
-                                r.value.PriceHistory.forEach(p => {
-                                    let date = new Date(p.date.year, p.date.month, p.date.dayOfMonth)
-                                    let data = chartsData_[date.getTime()] || { date: date }
-                                    data.price = p.close
-                                    chartsData_[date.getTime()] = data
-                                })
-                                break
-                            }
-                            case "dividend": {
-                                r.value.PriceHistory.forEach(p => {
-                                    let date = new Date(p.date.year, p.date.month, p.date.dayOfMonth)
-                                    let data = chartsData_[date.getTime()] || { date: date }
-                                    data.dividend = p.adjDividend
-                                    chartsData_[date.getTime()] = data
-                                })
-                                break
+        console.log("chartdata", chartData_, oneDay * settings.period)
+        chartData_ = chartData_.filter(el => el && el.timestamp >= (now - (oneDay * period)))
+        console.log("chartdata", chartData_)
+        setChartsData(chartData_)
+        setSubtitle(period)
 
-                            }
-                            case "financial": {
-                                r.value.values.filter(el => el.period === "yearly")
-                                    .forEach(p => {
-                                        let date = new Date(p.dateEpoch)
-                                        let data = chartsData_[date.getTime()] || { date: date }
-                                        data.financial = p.value
-                                        chartsData_[date.getTime()] = data
-                                    })
-                                break
+        props.changeParams({
+            id: props.i,
+            content: { charts: charts_, period: period }
+        })
 
-                            }
-                        }
-                    }
-                })
-                setTitle(title_)
-                setChartsData(Object.values(chartsData_).sort((c1, c2) => compareAsc(c1.date, c2.date)))
-                setCharts([...charts_])
-                props.changeParams({
-                    id: props.i,
-                    content: { charts: charts_  }
-                })
-            }
-            );
 
     }
 
+    const handleFullScreen = () => {
+        console.log("full")
+        setFullScreen(true)
+    }
+
     const dateFormatter = date => {
-        return format(new Date(date), "yyyy-MM-dd");
+        console.log("-------------", date)
+        // return format(new Date(date), "yyyy-MM-dd");
+        return '10/12/2121'
     };
 
     return (
@@ -138,9 +118,13 @@ function Multichart(props) {
             chartsData={chartsData}
             title={title}
             subtitle={subtitle}
+            timestamp={timestamp}
+            chartQuotes={chartQuotes}
+            fullScreen={fullScreen}
             saveSettings={saveSettings}
             dateFormatter={dateFormatter}
             setConfigOpen={setConfigOpen}
+            handleFullScreen={handleFullScreen}
             {...props}
         />
     )

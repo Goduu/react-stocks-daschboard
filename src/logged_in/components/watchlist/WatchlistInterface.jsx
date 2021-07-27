@@ -115,7 +115,7 @@ function Watchlist(props) {
                                                                         tick.statistics.find(el => el.label === c).value.raw) : '-'}</strong>
                                                             </Typography>
                                                             <Typography variant="body2" color="textSecondary" noWrap className={classes.sort} onClick={() => handleSorting(c)}>
-                                                                {t(c)}
+                                                                {t(c+'.label')}
                                                                 {sortedBy === c &&
                                                                     (direction === 'ASC' ?
                                                                         <ArrowDownwardIcon fontSize='inherit' /> :

@@ -14,9 +14,9 @@ import formatStatistics from '../../../../shared/functions/formatStatistics';
 function StatisticsInterface(props) {
 
     const { classes, anchorFeedback, theme, color, feedback,
-        feedbackOpen, settingsOpen, statisticSelected, statistics, type } = props
+        feedbackOpen, settingsOpen, statisticSelected, statistics, statisticGroup } = props
     const { saveSettings, handleFeedback,
-        handleMouseOverFeedback, t, setType, setSettingsOpen } = props
+        handleMouseOverFeedback, t, setStatisticGroup, setSettingsOpen } = props
 
 
     return (
@@ -26,9 +26,9 @@ function StatisticsInterface(props) {
                 handleClose={() => setSettingsOpen(false)}
                 setOpen={setSettingsOpen}
                 saveSettings={saveSettings}
-                statistics={statistics}
-                setType={setType}
-                type={type}></StatisticsSettings>
+                statistics={props.statistics}
+                setStatisticGroup={setStatisticGroup}
+                statisticGroup={statisticGroup}></StatisticsSettings>
             <div className={classes.root} >
                 <Grid container spacing={0} >
                     {statisticSelected ?
@@ -41,8 +41,8 @@ function StatisticsInterface(props) {
                                 <b
                                     style={{ cursor: 'pointer' }}
                                     onClick={feedback ? (() => handleFeedback(undefined)) : handleMouseOverFeedback}>
-                                    {statistics[type] && statistics[type][statisticSelected]
-                                        && formatStatistics(type + '.' + statisticSelected, statistics[type][statisticSelected].raw)}
+                                    {statistics && statistics[statisticGroup] && statistics[statisticGroup][statisticSelected]
+                                        && formatStatistics(statisticGroup + '.' + statisticSelected, statistics[statisticGroup][statisticSelected].raw)}
                                 </b>
                                 <Popover
                                     anchorOrigin={{
@@ -81,9 +81,9 @@ function StatisticsInterface(props) {
                                 </Popover>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" noWrap className={classes.link}>
-                                <Tooltip title={t('indicators.info.' + statisticSelected)}>
-                                    <Link href={t('indicators.ref.' + statisticSelected)} target="_blank" color="inherit" >
-                                        {t(type + '.' + statisticSelected)}
+                                <Tooltip title={t(statisticGroup + '.' + statisticSelected+ ".long")}>
+                                    <Link href={t(statisticGroup + '.' + statisticSelected+ ".ref")} target="_blank" color="inherit" >
+                                        {t(statisticGroup + '.' + statisticSelected+ ".label")}
                                     </Link>
                                 </Tooltip>
                             </Typography>

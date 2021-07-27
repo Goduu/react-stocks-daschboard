@@ -17,10 +17,11 @@ import _ from 'lodash'
 import { useTranslation } from 'react-i18next';
 
 export default function StatisticsSettings(props) {
-    const { saveSettings, setType, type, handleClose, setOpen, open } = props;
+    const { saveSettings,statistics, setStatisticGroup, statisticGroup, handleClose, setOpen, open } = props;
     // const [open, setOpen] = useState(props.open);
-    const [statistics, setStatistics] = useState(props.statistics);
     const { t } = useTranslation();
+    console.log("TICKER DATA StatisticsSettings", statistics)
+
 
     const statisticsKeys = ['keyStatistics', 'summaryDetail', 'financialData']
 
@@ -50,15 +51,12 @@ export default function StatisticsSettings(props) {
     }));
     const classes = useStyles();
 
-
-
-
     return (
         <Dialog className={classes.dialog} onClose={handleClose} fullWidth open={open}>
             <DialogTitle >Select your Statistic</DialogTitle>
 
             <DialogContent>
-                <Button onClick={() => {console.log(type)}}> asd</Button>
+                <Button onClick={() => { console.log(statistics) }}> asd</Button>
 
                 <Grid container spacing={1} direction="row" justifyContent="center">
                     <Grid container item xs={6} >
@@ -71,7 +69,7 @@ export default function StatisticsSettings(props) {
                                     <ListItem button
                                         key={key}
                                         value={key}
-                                        onClick={() => setType(key)}
+                                        onClick={() => setStatisticGroup(key)}
                                     >
                                         {key}
                                     </ListItem >
@@ -86,14 +84,14 @@ export default function StatisticsSettings(props) {
                                 <ListSubheader >
                                     Statistics
                                 </ListSubheader>
-                                {statistics[type] && Object.keys(statistics[type]).map((key) => {
+                                {statistics && statistics[statisticGroup] && Object.keys(statistics[statisticGroup]).map((key) => {
                                     return (
                                         <ListItem button
-                                            key={key}
+                                            key={statisticGroup + key}
                                             value={key}
                                             onClick={() => handleSave(key)}
                                         >
-                                            {t(type + '.' + key)}
+                                            {t(statisticGroup + '.' + key+'.label')}
 
 
                                         </ListItem >
