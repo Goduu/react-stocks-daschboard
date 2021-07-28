@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         marginTop: theme.spacing(-1),
         fontSize: '0.875rem',
-        fontWeight: 400
+        fontWeight: 400,
+        width: '96%'
     }
 }));
 
@@ -36,7 +37,6 @@ function Title(props) {
         props.changeParams({ id: props.i, content: { title: e.target.value, subtitle: subtitle } })
     }   
     const saveSubtitle = (e) => {
-        console.log('save paha', e.target.value)
         props.changeParams({ id: props.i, content: { title: title , subtitle: e.target.value } })
     }
 

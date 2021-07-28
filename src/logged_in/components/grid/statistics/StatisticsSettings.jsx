@@ -20,7 +20,6 @@ export default function StatisticsSettings(props) {
     const { saveSettings,statistics, setStatisticGroup, statisticGroup, handleClose, setOpen, open } = props;
     // const [open, setOpen] = useState(props.open);
     const { t } = useTranslation();
-    console.log("TICKER DATA StatisticsSettings", statistics)
 
 
     const statisticsKeys = ['keyStatistics', 'summaryDetail', 'financialData']
@@ -56,8 +55,6 @@ export default function StatisticsSettings(props) {
             <DialogTitle >Select your Statistic</DialogTitle>
 
             <DialogContent>
-                <Button onClick={() => { console.log(statistics) }}> asd</Button>
-
                 <Grid container spacing={1} direction="row" justifyContent="center">
                     <Grid container item xs={6} >
                         <List>

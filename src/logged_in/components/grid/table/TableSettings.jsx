@@ -26,7 +26,6 @@ const NameField = (props) => {
     // }, [props.headersIni])
 
     const handleChange = (field, value) => {
-        console.log("field value", field,value)
         setHeaders(prev => {
             const temp =  prev.map(p => {
                 p.field = p.field === field ? _.camelCase(value) : p.field

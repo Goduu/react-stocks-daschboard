@@ -81,7 +81,7 @@ export default function TickerSelector(props) {
                 {tickers.map(t => {
                     return (
                         <ListItem
-                            onClick={() => { console.log("Alcapaha"); handleListItemClick(t.ticker) }}
+                            onClick={() => handleListItemClick(t.ticker) }
                             key={t.ticker}
                             className={classes.listItem}
                         >

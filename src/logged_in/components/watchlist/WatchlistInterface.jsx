@@ -20,7 +20,6 @@ function Watchlist(props) {
     let { classes, headCells, tickers, tickersData, columns, page, sortedBy, direction } = props
     let { t, selectNewTicker, handleFetchTickersInfosByList, handleChangePage, removeTicker, handleSorting } = props
 
-    console.log("tickersData",tickersData)
     return (
         <div>
 

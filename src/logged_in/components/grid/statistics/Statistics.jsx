@@ -8,7 +8,6 @@ import { formatValueByType } from '../../../../shared/functions/formatValueByTyp
 import { StatisticsInterface } from './StatisticsInterface'
 
 function Statistics(props) {
-    console.log("Statistics props -----", props)
     const theme = useTheme();
 
     const selectColor = (val) => {
@@ -42,7 +41,6 @@ function Statistics(props) {
     const [statisticGroup, setStatisticGroup] = useState(props.params.statisticGroup || 'keyStatistics');
 
     useEffect(() => {
-        console.log("changed-------------------------------------------",props.tickerData)
         setStatistics(props.tickerData)
     }, [props.tickerData])
 

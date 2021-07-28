@@ -12,7 +12,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.change52Week': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'financialData.currentRatio': {
             return minifier(value, 2)
@@ -27,7 +27,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'financialData.earningsGrowth': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.earningsQuarterlyGrowth': {
             return minifier(value, 2)
@@ -78,7 +78,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.heldPercentInstitutions': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.lastDividendDate': {
             return minifierDate(value)
@@ -117,7 +117,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2, 100) + '%'
         }
         case 'summaryDetail.payoutRatio': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.pegRatio': {
             return minifier(value, 2)
@@ -132,7 +132,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.profitMargins': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'financialData.quickRatio': {
             return minifier(value, 2)
@@ -144,25 +144,25 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'financialData.returnOnAssets': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'financialData.returnOnEquity': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'financialData.revenueGrowth': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'financialData.revenuePerShare': {
             return minifier(value, 2)
         }
         case 'keyStatistics.sandP52WeekChange': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.sharesOutstanding': {
             return minifier(value, 2)
         }
         case 'keyStatistics.sharesPercentSharesOut': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.sharesShort': {
             return minifier(value, 2)
@@ -174,7 +174,7 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'keyStatistics.shortPercentOfFloat': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.shortRatio': {
             return minifier(value, 2)
@@ -204,10 +204,10 @@ const formatStatistic = (statistic, value) => {
             return minifier(value, 2)
         }
         case 'summaryDetail.trailingAnnualDividendRate': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'summaryDetail.trailingAnnualDividendYield': {
-            return minifier(value, 2) + '%'
+            return minifier(value, 2, 100) + '%'
         }
         case 'keyStatistics.trailingEps': {
             return minifier(value, 2)

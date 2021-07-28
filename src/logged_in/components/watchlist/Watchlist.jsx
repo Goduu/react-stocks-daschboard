@@ -107,7 +107,6 @@ function Watchlist(props) {
     }, [sortedBy])
 
     const handleSorting = (sort) => {
-        console.log("sooort", sort)
         if (sort === sortedBy) {
             let dir = direction === 'ASC' ? 'DESC' : 'ASC'
             setDirection(dir)
@@ -120,11 +119,9 @@ function Watchlist(props) {
     }
 
     const fetchData = (tickers_, page_, sortedBy_, dir) => {
-        console.log("fetch")
         if (tickers_.length > 0) {
             fetchWatchlistData(tickers_, page_, sortedBy_, dir, token)
                 .then(res => {
-                    console.log("Res data watch", res)
                     setTickersData(res.map(el => {
                         el.statistics = [
                             { label: 'keyStatistics.beta', value: el.keyStatistics.beta || '-' },
@@ -156,7 +153,6 @@ function Watchlist(props) {
     //  }, [tickers])
 
     const selectNewTicker = (ticker) => {
-        console.log("Select", ticker, tickers)
         setTickers(prev => {
             if (!prev.includes(ticker)) {
                 prev.push(ticker)
@@ -172,9 +168,7 @@ function Watchlist(props) {
     }
 
     const removeTicker = (ticker) => {
-        console.log("Select", ticker, tickers)
         setTickers(prev => {
-            console.log("prev remove", prev, ticker)
             prev = prev.filter(t => t !== ticker)
             updateWatchlist(watchlistId, prev, userId, token)
                 .then(res => {
@@ -182,7 +176,6 @@ function Watchlist(props) {
                     enqueueSnackbar(ticker + " removed", { variant: 'success' });
                 })
 
-            console.log("final remove", prev, ticker)
             return prev
         })
         setTickersData(prev => {
