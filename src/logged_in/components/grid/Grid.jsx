@@ -1,19 +1,25 @@
 import './Grid.css'
 import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import RGL, { WidthProvider } from "react-grid-layout";
 import _ from "lodash";
-import { SelectMenu } from './selectmenu/SelectMenu';
-import ActionMenu from './actionmenu/ActionMenu';
-import NewDashboard from './newdashboard/NewDashboard';
 import { useSelector } from 'react-redux';
 import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid, fetchTickerData } from '../../../shared/functions/requests.js';
-import { getCardProps, getRestoredItems } from './gridProps'
+import { getCardProps, getRestoredItems, getFullScreenCard } from './gridProps'
 import { useSnackbar } from 'notistack';
-import GuideTour from '../../../shared/components/GuideTour'
 import { GridInterface } from './GridInterface'
+import { makeStyles } from '@material-ui/core';
 
-const ResponsiveReactGridLayout = WidthProvider(RGL);
+const useStyles = makeStyles((theme) => ({
+  fullScreen: {
+    width: '94%',
+    height: '90vh',
+    position: 'absolute',
+    zIndex: 4,
+    top: theme.spacing(9),
+    left: theme.spacing(10),
+  },
+}))
+
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
@@ -31,16 +37,20 @@ function Grid(props) {
   const [newDashboardClosed, setNewDashboardClosed] = useState(false)
   const [allDashboards, setAllDashboards] = useState([])
   const [layout, setLayout] = useState([])
+  const [layouts, setLayouts] = useState([])
   const [tickerData, setTickerData] = useState({})
   const [identifier, setIdentifier] = useState(undefined)
   const [gridId, setGridId] = useState(undefined)
+  const [currentBreakpoint, setCurrentBreakpoint] = useState('lg')
+  const [fullScreen, setFullScreen] = useState(false)
+  const [fullScreenItem, setFullScreenItem] = useState(null)
   const [gridStartup, setGridStartup] = useState({ id: undefined, identifier: undefined, newGridElements: undefined })
   const userId = useSelector(state => state.auth.id)
-  const userRoles = useSelector(state => state.auth.roles)
   const token = useSelector(state => state.auth.token)
   const [review, setReview] = useState(false)
   const { enqueueSnackbar } = useSnackbar();
   let firstSave = true
+  const classes = useStyles();
 
   /**
    * Restoure cards when starting
@@ -49,7 +59,6 @@ function Grid(props) {
     const routeTicker = props.match.params.ticker;
     fetchGridElements(userId, token)
       .then(dashboards => {
-        console.log("GRIIID", dashboards)
         if (dashboards.length > 0) {
           setAllDashboards(dashboards)
           let toBeRestored = dashboards.find(r => {
@@ -60,7 +69,7 @@ function Grid(props) {
           if (toBeRestored) {
             fetchTickerData(toBeRestored.identifier, token)
               .then(res => {
-                console.log("alcapaha", res)
+                console.log("ticker data", res)
                 setTickerData(res)
                 setGridId(toBeRestored.id)
                 setIdentifier(toBeRestored.identifier)
@@ -108,7 +117,9 @@ function Grid(props) {
 
     const functions = {
       onRemoveItem: onRemoveItem,
-      changeParams: changeParams
+      changeParams: changeParams,
+      handleFullScreen: handleFullScreen
+
     }
 
     let res = getRestoredItems(g, ticker, props, functions, tickerData)
@@ -175,7 +186,16 @@ function Grid(props) {
     ticker = ticker ? ticker : identifier
     const functions = {
       onRemoveItem: onRemoveItem,
-      changeParams: changeParams
+      changeParams: changeParams,
+      handleFullScreen: handleFullScreen
+    }
+
+    if (type === 'card') {
+      fetchTickerData(ticker, token)
+        .then(res => {
+          setTickerData(res)
+
+        })
     }
     setGridItems(prev => {
       prev.items.push(getCardProps(type, functions, gridItems, ticker, iTemp, tickerData))
@@ -195,9 +215,11 @@ function Grid(props) {
     //   breakpoint: breakpoint,
     //   cols: cols
     // });
+    setCurrentBreakpoint(breakpoint)
+
   }
 
-  const onLayoutChange = useCallback((layout_) => {
+  const onLayoutChange = useCallback((layout_, layouts) => {
     setGridElements(prev => {
       if (prev) {
         prev.forEach(g => {
@@ -207,6 +229,7 @@ function Grid(props) {
       return prev
     })
     setLayout(layout_)
+    setLayouts(layouts)
   }, [gridElements, layout])
 
 
@@ -358,12 +381,21 @@ function Grid(props) {
   }
 
 
+  const handleFullScreen = (card) => {
+    console.log("fullscreen", card)
+    setFullScreen(prev => !prev)
+    setFullScreenItem(getFullScreenCard(card, tickerData))
+  }
+
+
   return (
+    // <NewGrid/>
     <GridInterface
       review={review} gridItems={gridItems} identifier={identifier} newDashboardClosed={newDashboardClosed}
       onAddItem={onAddItem} deleteDashboard={deleteDashboard} selectDashboard={selectDashboard} newDashboard={newDashboard}
-      onLayoutChange={onLayoutChange} onBreakpointChange={onBreakpointChange} handleBack={handleBack} chooseIdentifier={chooseIdentifier}
-       />
+      onLayoutChange={onLayoutChange} onBreakpointChange={onBreakpointChange} currentBreakpoint={currentBreakpoint} handleBack={handleBack} chooseIdentifier={chooseIdentifier}
+      classes={classes} fullScreen={fullScreen} handleFullScreen={handleFullScreen} fullScreenItem={fullScreenItem} layouts={layouts}
+    />
   )
 
 }

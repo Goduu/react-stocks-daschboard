@@ -134,7 +134,6 @@ function CookieRulesDialog(props) {
         <ColoredButton
           onClick={onClose}
           variant="contained"
-          color={theme.palette.common.black}
         >
           <ArrowBackIcon className={classes.backIcon} />
           Back
