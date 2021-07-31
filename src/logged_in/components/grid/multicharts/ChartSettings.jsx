@@ -53,7 +53,6 @@ export default function StatisticsSettings(props) {
     const price = chartsSettings ? chartsSettings.find(s => s.name === 'close') : null
     const dividend = chartsSettings ? chartsSettings.find(s => s.name === 'volume') : null
     const financial = chartsSettings ? chartsSettings.find(s => s.name === 'financial') : null
-    console.log("Settings chart", chartsSettings)
     // const [open, setOpen] = useState(props.open);
     const [priceType, setPriceType] = useState(price && price.type || BAR);
     const [priceActive, setPriceActive] = useState(price !== undefined);

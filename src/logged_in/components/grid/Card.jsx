@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { IconButton, } from "@material-ui/core";
+import { IconButton, isWidthDown, } from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Fade } from '@material-ui/core';
 
@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
         padding: theme.spacing(1),
+        [theme.breakpoints.down("xs")]: {
+            marginLeft: 0,
+          },
     },
 
 }));
@@ -25,7 +28,7 @@ export default function MainCard(props) {
         <div className={classes.root} onMouseEnter={() => isMenuActive(true)} onMouseLeave={() => isMenuActive(false)}>
             <span className="grid-menu">
                 {extraMenu &&
-                    <Fade in={menuActive} timeout={600}>
+                    <Fade in={menuActive || isWidthDown('xs', props.width)} timeout={600}>
                         <IconButton size="small" onClick={extraMenu.action}
                             style={menuActive ? { color: theme.palette.text.primary } : { color: theme.palette.background.paper }} >
                             <extraMenu.icon fontSize="small" />
@@ -33,7 +36,7 @@ export default function MainCard(props) {
                     </Fade>
                 }
                 {openSettings &&
-                    <Fade in={menuActive} timeout={600}>
+                    <Fade in={menuActive || isWidthDown('xs', props.width)} timeout={600}>
                         <IconButton size="small" onClick={openSettings}
                             style={menuActive ? { color: theme.palette.text.primary } : { color: theme.palette.background.paper }} >
                             <SettingsIcon fontSize="small" />
@@ -42,7 +45,7 @@ export default function MainCard(props) {
 
                 }
                 {onRemoveItem &&
-                    <Fade in={menuActive} timeout={600}>
+                    <Fade in={menuActive || isWidthDown('sm', props.width)} timeout={600}>
                         < IconButton size="small" onClick={() => onRemoveItem(i)}
                             style={menuActive ? { color: theme.palette.text.primary } : { color: theme.palette.background.paper }}>
                             <CloseIcon fontSize="small" />

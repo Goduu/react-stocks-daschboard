@@ -3,7 +3,6 @@ import { React, useState, useEffect } from 'react';
 // import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
 import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import ChartSettings from './ChartSettings'
-import { format } from "date-fns";
 import _ from 'lodash'
 import Card from '../Card'
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
@@ -25,7 +24,7 @@ const CustomTooltip = props => {
                 <div>
                     {payload && payload.map(pld => {
                         return (
-                            <p key={pld.dataKey}>{pld.dataKey}:
+                            <p key={pld.dataKey+'full'}>{pld.dataKey}:
                                 {pld ? pld.payload[pld.dataKey].toFixed(2) : " -- "}</p>)
                     })
                     }
@@ -38,18 +37,18 @@ const CustomTooltip = props => {
 };
 
 
-function MultichartInterface(props) {
-    const { classes, configOpen, charts, chartsData, title, subtitle, params, timestamp } = props
+function MultichartsFullscreenInterface(props) {
+    const { classes, configOpen, charts, chartsData, title, subtitle, params,  } = props
 
-    const { saveSettings, dateFormatter, setConfigOpen, handleFullScreen } = props
+    const { saveSettings, dateFormatter, handleFullScreen } = props
     const extraMenu = {
         icon: FullscreenIcon,
-        action: () => handleFullScreen('multichart')
+        action: handleFullScreen
     }
-    console.log("props2",props)
+    console.log("props2 MultichartsFullscreenInterface", props)
 
     return (
-        <Card openSettings={() => setConfigOpen(!configOpen)} {...props} extraMenu={extraMenu} >
+        <Card {...props} >
             <ChartSettings open={configOpen} saveSettings={saveSettings} settings={params}></ChartSettings>
             <div className={classes.header}>
                 <Grid
@@ -65,7 +64,6 @@ function MultichartInterface(props) {
                         </Typography>
 
                     </Grid>
-
                 </Grid>
             </div>
 
@@ -98,7 +96,7 @@ function MultichartInterface(props) {
                             {charts.map(el => {
                                 if (el.type === 'bar') {
                                     return <Bar
-                                        key={el.name}
+                                        key={el.name+'full'}
                                         dataKey={el.name}
                                         barSize={300}
                                         fill={el.color}
@@ -106,7 +104,7 @@ function MultichartInterface(props) {
                                         name={el.name} />
                                 } else if (el.type === 'line') {
                                     return <Line
-                                        key={el.name}
+                                        key={el.name+'full'}
                                         dataKey={el.name}
                                         stroke={el.color}
                                         strokeWidth={2}
@@ -117,7 +115,7 @@ function MultichartInterface(props) {
                             })}
 
                         </ComposedChart>
-                        
+
                     </ResponsiveContainer>
                 }
 
@@ -130,4 +128,4 @@ function MultichartInterface(props) {
 
 
 
-export { MultichartInterface }
+export { MultichartsFullscreenInterface }

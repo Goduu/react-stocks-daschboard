@@ -10,7 +10,7 @@ const theme = createTheme({
     type: 'dark',
     primary: { main: '#7467ef' },
     secondary: { main: '#ff9e43' },
-    background: { default: '#1a2038', paper:'#222A45'},
+    background: { default: '#222A45', paper:'#1a2038'},
     text: {primary: '#fff'},
     triad: {
       red: '#FF3D57',

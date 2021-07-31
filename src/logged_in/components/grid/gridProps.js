@@ -6,13 +6,14 @@ import { Swot } from './swot/Swot';
 import { IndicatorsGrid } from './indicators/Indicators';
 import LineChartCard from './LineChart/LineChartCard';
 import BarChartCard from './BarChart/BarChartCard';
-import {Multichart} from './multicharts/Multicharts';
+import { Multichart } from './multicharts/Multicharts';
+import { MultichartsFullscreen } from './multicharts/MultichartsFullscreen';
 import { Esg } from './esg/Esg';
 import { Statistics } from './statistics/Statistics';
 import News from './news/News';
 
 
-export const getCardProps = (type, functions, gridItems, ticker, id,tickerData) => {
+export const getCardProps = (type, functions, gridItems, ticker, id, tickerData) => {
   console.log("TICKER DATA getCardProps", tickerData)
 
   let props = {
@@ -24,7 +25,8 @@ export const getCardProps = (type, functions, gridItems, ticker, id,tickerData) 
     type: type,
     tickerData: tickerData,
     onRemoveItem: (id) => functions.onRemoveItem(id),
-    changeParams: (p) => functions.changeParams(p)
+    changeParams: (p) => functions.changeParams(p),
+    handleFullScreen: (card) => functions.handleFullScreen(card)
   }
   let component
   switch (type) {
@@ -227,7 +229,9 @@ export const getRestoredItems = (g, ticker, props, functions, tickerData) => {
     params: params,
     tickerData: tickerData,
     onRemoveItem: (i) => functions.onRemoveItem(i),
-    changeParams: (p) => functions.changeParams(p)
+    changeParams: (p) => functions.changeParams(p),
+    handleFullScreen: (card) => functions.handleFullScreen(card)
+
   }
   const componentProps = {
     key: id,
@@ -366,4 +370,20 @@ export const getRestoredItems = (g, ticker, props, functions, tickerData) => {
     gridItems: gridItems_,
     gridElements: { id: id, type: type, params: params }
   }
+}
+
+
+
+export const getFullScreenCard = (type, props) => {
+  console.log("TICKER DATA getFullScreenCard", props)
+
+  let component
+  switch (type) {
+    case 'multichart':
+      component = <MultichartsFullscreen  {...props} />
+
+      break
+  }
+  console.log("RETURN FULL", component,type)
+  return component
 }
