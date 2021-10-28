@@ -71,6 +71,7 @@ function NavBar(props) {
       icon: <LockOpenIcon className="text-white" />
     }
   ];
+  console.log('--------------------------',classes)
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>

@@ -1,0 +1,4082 @@
+[{
+        "currency": "BRL",
+        "description": "GAFISA SA",
+        "displaySymbol": "GFSA3.SA",
+        "figi": "BBG000BG74H7",
+        "exchange": "BVMF",
+        "ticker": "GFSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "D1000 VAREJO FARMA PARTICIPA",
+        "displaySymbol": "DMVF3.SA",
+        "figi": "BBG00W7CWNP2",
+        "exchange": "BVMF",
+        "ticker": "DMVF3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MINUPAR PARTICIPACOES SA",
+        "displaySymbol": "MNPR3.SA",
+        "figi": "BBG000BZCRQ8",
+        "exchange": "BVMF",
+        "ticker": "MNPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI USA SIZE FACTOR",
+        "displaySymbol": "BSIZ39.SA",
+        "figi": "BBG010QDYRF8",
+        "exchange": "BVMF",
+        "ticker": "BSIZ39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "OSX BRASIL SA",
+        "displaySymbol": "OSXB3.SA",
+        "figi": "BBG000QK8WS7",
+        "exchange": "BVMF",
+        "ticker": "OSXB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CSU CARDSYSTEM SA",
+        "displaySymbol": "CARD3.SA",
+        "figi": "BBG000P19LN8",
+        "exchange": "BVMF",
+        "ticker": "CARD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "OMEGA GERACAO SA",
+        "displaySymbol": "OMGE3.SA",
+        "figi": "BBG00H3TFW99",
+        "exchange": "BVMF",
+        "ticker": "OMGE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AFLUENTE TRANSMISSAO DE",
+        "displaySymbol": "AFLT3.SA",
+        "figi": "BBG001816L76",
+        "exchange": "BVMF",
+        "ticker": "AFLT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "STATKRAFT ENERGIAS RENOVAVEI",
+        "displaySymbol": "STKF3.SA",
+        "figi": "BBG0024TM3V2",
+        "exchange": "BVMF",
+        "ticker": "STKF3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DISTRIBUIDORA DE GAS",
+        "displaySymbol": "CEGR3.SA",
+        "figi": "BBG000BFPX03",
+        "exchange": "BVMF",
+        "ticker": "CEGR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INEPAR SA INDUSTRIA E CONSTR",
+        "displaySymbol": "INEP3.SA",
+        "figi": "BBG000BXY2C9",
+        "exchange": "BVMF",
+        "ticker": "INEP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MANGELS INDUSTRIAL SA",
+        "displaySymbol": "MGEL3.SA",
+        "figi": "BBG000BZ7P88",
+        "exchange": "BVMF",
+        "ticker": "MGEL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "JSL SA",
+        "displaySymbol": "JSLG3.SA",
+        "figi": "BBG00X2VLDB2",
+        "exchange": "BVMF",
+        "ticker": "JSLG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RENOVA ENERGIA SA-UNITS",
+        "displaySymbol": "RNEW11.SA",
+        "figi": "BBG000QDTRD7",
+        "exchange": "BVMF",
+        "ticker": "RNEW11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IB5M",
+        "displaySymbol": "IB5M11.SA",
+        "figi": "BBG00QB956V7",
+        "exchange": "BVMF",
+        "ticker": "IB5M11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO ESTADO RIO GRANDE SUL",
+        "displaySymbol": "BRSR3.SA",
+        "figi": "BBG000BKD7S2",
+        "exchange": "BVMF",
+        "ticker": "BRSR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CAMIL ALIMENTOS SA",
+        "displaySymbol": "CAML3.SA",
+        "figi": "BBG001K7MQP0",
+        "exchange": "BVMF",
+        "ticker": "CAML3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ATMA PARTICIPACOES SA",
+        "displaySymbol": "ATMP3.SA",
+        "figi": "BBG000L3NN03",
+        "exchange": "BVMF",
+        "ticker": "ATMP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES S\u0026P 500 FIC FI IE",
+        "displaySymbol": "IVVB11.SA",
+        "figi": "BBG006BLRRL5",
+        "exchange": "BVMF",
+        "ticker": "IVVB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CAIXA ETF IBOVESPA FI",
+        "displaySymbol": "XBOV11.SA",
+        "figi": "BBG003MKSF28",
+        "exchange": "BVMF",
+        "ticker": "XBOV11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "COGNA EDUCACAO",
+        "displaySymbol": "COGN3.SA",
+        "figi": "BBG000DN7Z36",
+        "exchange": "BVMF",
+        "ticker": "COGN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI USA VALUE FACTO",
+        "displaySymbol": "BVLU39.SA",
+        "figi": "BBG010QDZ8H7",
+        "exchange": "BVMF",
+        "ticker": "BVLU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO MODAL SA - ON",
+        "displaySymbol": "MODL3.SA",
+        "figi": "BBG010LQRPH4",
+        "exchange": "BVMF",
+        "ticker": "MODL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW PIBB IBRX-50 FI",
+        "displaySymbol": "PIBB11.SA",
+        "figi": "BBG000Q42W27",
+        "exchange": "BVMF",
+        "ticker": "PIBB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FERBASA-FERRO LIGAS DA BAHIA",
+        "displaySymbol": "FESA3.SA",
+        "figi": "BBG000BW1YJ0",
+        "exchange": "BVMF",
+        "ticker": "FESA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MINERVA SA",
+        "displaySymbol": "BEEF3.SA",
+        "figi": "BBG000Q6CGJ8",
+        "exchange": "BVMF",
+        "ticker": "BEEF3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOCALIZA RENT A CAR",
+        "displaySymbol": "RENT3.SA",
+        "figi": "BBG000BJ9ZQ0",
+        "exchange": "BVMF",
+        "ticker": "RENT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES U.S. AEROSPACE \u0026 DEF",
+        "displaySymbol": "BAER39.SA",
+        "figi": "BBG00YCTZN81",
+        "exchange": "BVMF",
+        "ticker": "BAER39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TEXTIL RENAUXVIEW SA",
+        "displaySymbol": "TXRX3.SA",
+        "figi": "BBG000C25Y01",
+        "exchange": "BVMF",
+        "ticker": "TXRX3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALUPAR INVESTIMENTO SA-UNIT",
+        "displaySymbol": "ALUP11.SA",
+        "figi": "BBG00470HYY3",
+        "exchange": "BVMF",
+        "ticker": "ALUP11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "INDUSTRIAS ROMI SA",
+        "displaySymbol": "ROMI3.SA",
+        "figi": "BBG000C0NVB9",
+        "exchange": "BVMF",
+        "ticker": "ROMI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MANUF BRINQUEDOS ESTRELA SA",
+        "displaySymbol": "ESTR3.SA",
+        "figi": "BBG000BVQG04",
+        "exchange": "BVMF",
+        "ticker": "ESTR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES GOLD TRUST",
+        "displaySymbol": "BIAU39.SA",
+        "figi": "BBG00YCPJS59",
+        "exchange": "BVMF",
+        "ticker": "BIAU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TAURUS ARMAS",
+        "displaySymbol": "TASA3.SA",
+        "figi": "BBG000BW8BR4",
+        "exchange": "BVMF",
+        "ticker": "TASA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DE PERNAMBUCO",
+        "displaySymbol": "CEPE3.SA",
+        "figi": "BBG000C121X2",
+        "exchange": "BVMF",
+        "ticker": "CEPE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "FLEURY SA",
+        "displaySymbol": "FLRY3.SA",
+        "figi": "BBG000PRR0C9",
+        "exchange": "BVMF",
+        "ticker": "FLRY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MOSAICO TECNOLOGIA AO CONSUM",
+        "displaySymbol": "MOSI3.SA",
+        "figi": "BBG00YXSS9J7",
+        "exchange": "BVMF",
+        "ticker": "MOSI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BEMOBI MOBILE TECH SA",
+        "displaySymbol": "BMOB3.SA",
+        "figi": "BBG00XZ59YV9",
+        "exchange": "BVMF",
+        "ticker": "BMOB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENGIE BRASIL ENERGIA SA",
+        "displaySymbol": "EGIE3.SA",
+        "figi": "BBG000BFV5B5",
+        "exchange": "BVMF",
+        "ticker": "EGIE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOJAS RENNER S.A.",
+        "displaySymbol": "LREN3.SA",
+        "figi": "BBG000BYX0Z7",
+        "exchange": "BVMF",
+        "ticker": "LREN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NATURA \u0026CO HOLDING SA",
+        "displaySymbol": "NTCO3.SA",
+        "figi": "BBG00PSSR2R9",
+        "exchange": "BVMF",
+        "ticker": "NTCO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CYRELA COMMERCIAL PROPERTIES",
+        "displaySymbol": "CCPR3.SA",
+        "figi": "BBG000Q5SLP5",
+        "exchange": "BVMF",
+        "ticker": "CCPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES RUSSELL 2000 ETF",
+        "displaySymbol": "BIWM39.SA",
+        "figi": "BBG00YCPRYK0",
+        "exchange": "BVMF",
+        "ticker": "BIWM39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CTC - CENTRO DE TECNOLOGIA C",
+        "displaySymbol": "CTCA3.SA",
+        "figi": "BBG00DQHC699",
+        "exchange": "BVMF",
+        "ticker": "CTCA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "METISA METALURGICA TIMBOENSE",
+        "displaySymbol": "MTSA3.SA",
+        "figi": "BBG000BZLT20",
+        "exchange": "BVMF",
+        "ticker": "MTSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TRANSMISSORA ALIANCA DE - ON",
+        "displaySymbol": "TAEE3.SA",
+        "figi": "BBG000PC7R53",
+        "exchange": "BVMF",
+        "ticker": "TAEE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IFNC FUNDO DE INDICE",
+        "displaySymbol": "FIND11.SA",
+        "figi": "BBG001M85X25",
+        "exchange": "BVMF",
+        "ticker": "FIND11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI USA MOMENTUM FA",
+        "displaySymbol": "BMTU39.SA",
+        "figi": "BBG010QD2CH4",
+        "exchange": "BVMF",
+        "ticker": "BMTU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ELETRICIDADE DA BAHIA",
+        "displaySymbol": "CEEB3.SA",
+        "figi": "BBG000BN92Z4",
+        "exchange": "BVMF",
+        "ticker": "CEEB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "POLPAR SA",
+        "displaySymbol": "PPAR3.SA",
+        "figi": "BBG000C0F5M3",
+        "exchange": "BVMF",
+        "ticker": "PPAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MARISA LOJAS SA",
+        "displaySymbol": "AMAR3.SA",
+        "figi": "BBG000R3STV5",
+        "exchange": "BVMF",
+        "ticker": "AMAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MUNDIAL SA PROD DE CONSUMO",
+        "displaySymbol": "MNDL3.SA",
+        "figi": "BBG000PLDT07",
+        "exchange": "BVMF",
+        "ticker": "MNDL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PDG REALTY SA",
+        "displaySymbol": "PDGR3.SA",
+        "figi": "BBG000QSCML4",
+        "exchange": "BVMF",
+        "ticker": "PDGR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MILLS ESTRUTURAS E SERVICOS",
+        "displaySymbol": "MILS3.SA",
+        "figi": "BBG000QBGBM0",
+        "exchange": "BVMF",
+        "ticker": "MILS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HORTIGIL HORTIFRUTI S/A",
+        "displaySymbol": "0199901D.SA",
+        "figi": "BBG010BZXVK1",
+        "exchange": "BVMF",
+        "ticker": "0199901D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "2W ENERGIA SA",
+        "displaySymbol": "1817582D.SA",
+        "figi": "BBG00W9LMQ74",
+        "exchange": "BVMF",
+        "ticker": "1817582D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ETERNIT SA -RCT",
+        "displaySymbol": "ETER9.SA",
+        "figi": "BBG00VDFKMP5",
+        "exchange": "BVMF",
+        "ticker": "ETER9.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENERGISA S.A.",
+        "displaySymbol": "ENGI3.SA",
+        "figi": "BBG000D3Q1B5",
+        "exchange": "BVMF",
+        "ticker": "ENGI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ATACADAO SA",
+        "displaySymbol": "CRFB3.SA",
+        "figi": "BBG00H2D22F8",
+        "exchange": "BVMF",
+        "ticker": "CRFB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PROFARMA DISTRIBUIDORA",
+        "displaySymbol": "PFRM3.SA",
+        "figi": "BBG000Q7N9J0",
+        "exchange": "BVMF",
+        "ticker": "PFRM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES GLOBAL INFRASTRUCTUR",
+        "displaySymbol": "BIGF39.SA",
+        "figi": "BBG00YCTZPW9",
+        "exchange": "BVMF",
+        "ticker": "BIGF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SEQUOIA LOGISTICA E TRANSPOR",
+        "displaySymbol": "SEQL3.SA",
+        "figi": "BBG00WXXGZN0",
+        "exchange": "BVMF",
+        "ticker": "SEQL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALIANSCE SONAE SHOPPING CENT",
+        "displaySymbol": "ALSO3.SA",
+        "figi": "BBG001DGPGX8",
+        "exchange": "BVMF",
+        "ticker": "ALSO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BR PROPERTIES SA",
+        "displaySymbol": "BRPR3.SA",
+        "figi": "BBG000H525J5",
+        "exchange": "BVMF",
+        "ticker": "BRPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TREVISA INVESTIMENTOS SA",
+        "displaySymbol": "LUXM3.SA",
+        "figi": "BBG000BYYTN6",
+        "exchange": "BVMF",
+        "ticker": "LUXM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SUZANO HOLDING SA",
+        "displaySymbol": "NEMO3.SA",
+        "figi": "BBG000BZTRL5",
+        "exchange": "BVMF",
+        "ticker": "NEMO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ELEKTRO REDES SA",
+        "displaySymbol": "EKTR3.SA",
+        "figi": "BBG000C445Y4",
+        "exchange": "BVMF",
+        "ticker": "EKTR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PPLA PARTICIPATIONS LTD",
+        "displaySymbol": "PPLA11.SA",
+        "figi": "BBG00FZW9T31",
+        "exchange": "BVMF",
+        "ticker": "PPLA11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "EGRA INCORPORADORA SA",
+        "displaySymbol": "TEGA3.SA",
+        "figi": "BBG0116RBND3",
+        "exchange": "BVMF",
+        "ticker": "TEGA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GRUPO DE MODA SOMA SA",
+        "displaySymbol": "SOMA3.SA",
+        "figi": "BBG00S2K1PN9",
+        "exchange": "BVMF",
+        "ticker": "SOMA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TEKNO SA INDUSTRIA E COMERCI",
+        "displaySymbol": "TKNO3.SA",
+        "figi": "BBG000BGW1V9",
+        "exchange": "BVMF",
+        "ticker": "TKNO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CENTRO DE IMAGEM DIAGNOSTICO",
+        "displaySymbol": "AALR3.SA",
+        "figi": "BBG00F37NXB7",
+        "exchange": "BVMF",
+        "ticker": "AALR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "QUALICORP CONS E CORR SEG SA",
+        "displaySymbol": "QUAL3.SA",
+        "figi": "BBG001P89253",
+        "exchange": "BVMF",
+        "ticker": "QUAL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "KLABIN SA",
+        "displaySymbol": "KLBN3.SA",
+        "figi": "BBG000MD5RT0",
+        "exchange": "BVMF",
+        "ticker": "KLBN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MOBLY SA",
+        "displaySymbol": "MBLY3.SA",
+        "figi": "BBG00YVT3G80",
+        "exchange": "BVMF",
+        "ticker": "MBLY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IMAT FUNDO DE INDICE",
+        "displaySymbol": "MATB11.SA",
+        "figi": "BBG002GKRDJ5",
+        "exchange": "BVMF",
+        "ticker": "MATB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO ESTADO DE SERGIPE S.A.",
+        "displaySymbol": "BGIP3.SA",
+        "figi": "BBG000BHF3M2",
+        "exchange": "BVMF",
+        "ticker": "BGIP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SAO CARLOS EMPREENDIMENTOS",
+        "displaySymbol": "SCAR3.SA",
+        "figi": "BBG000DBXTG3",
+        "exchange": "BVMF",
+        "ticker": "SCAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ELETROMIDIA SA",
+        "displaySymbol": "ELMD3.SA",
+        "figi": "BBG00Z0XSJG0",
+        "exchange": "BVMF",
+        "ticker": "ELMD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TECNISA SA",
+        "displaySymbol": "TCSA3.SA",
+        "figi": "BBG000PG0JZ6",
+        "exchange": "BVMF",
+        "ticker": "TCSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CCX CARVAO DA COLOMBIA SA",
+        "displaySymbol": "0927042D.SA",
+        "figi": "BBG0032FX6B5",
+        "exchange": "BVMF",
+        "ticker": "0927042D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "VIA VAREJO SA",
+        "displaySymbol": "VVAR3.SA",
+        "figi": "BBG000BWXYR6",
+        "exchange": "BVMF",
+        "ticker": "VVAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI FRANCE ETF",
+        "displaySymbol": "BEWQ39.SA",
+        "figi": "BBG010QF0PK8",
+        "exchange": "BVMF",
+        "ticker": "BEWQ39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SINQIA SA",
+        "displaySymbol": "SQIA3.SA",
+        "figi": "BBG002Z37RS3",
+        "exchange": "BVMF",
+        "ticker": "SQIA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES BM\u0026FBOVESPA SM CAP",
+        "displaySymbol": "SMAL11.SA",
+        "figi": "BBG000DR8CK8",
+        "exchange": "BVMF",
+        "ticker": "SMAL11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "MERCANTIL BRASIL FINANCEIRA",
+        "displaySymbol": "MERC3.SA",
+        "figi": "BBG000BZ6MW9",
+        "exchange": "BVMF",
+        "ticker": "MERC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HAGA SA INDUSTRIA E COMERCIO",
+        "displaySymbol": "HAGA3.SA",
+        "figi": "BBG000BX8D52",
+        "exchange": "BVMF",
+        "ticker": "HAGA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TS AGRO SA",
+        "displaySymbol": "1881958D.SA",
+        "figi": "BBG010408MH8",
+        "exchange": "BVMF",
+        "ticker": "1881958D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "UNICASA INDUSTRIA DE MOVEIS",
+        "displaySymbol": "UCAS3.SA",
+        "figi": "BBG002QH6BJ8",
+        "exchange": "BVMF",
+        "ticker": "UCAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO NORDESTE DO BRASIL SA",
+        "displaySymbol": "BNBR3.SA",
+        "figi": "BBG000BJ67X7",
+        "exchange": "BVMF",
+        "ticker": "BNBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "C\u0026A MODAS LTDA",
+        "displaySymbol": "CEAB3.SA",
+        "figi": "BBG00QJ13M43",
+        "exchange": "BVMF",
+        "ticker": "CEAB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GRUPO AVENIDA SA",
+        "displaySymbol": "1870308D.SA",
+        "figi": "BBG00ZHG36N6",
+        "exchange": "BVMF",
+        "ticker": "1870308D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENAUTA PARTICIPACOES SA",
+        "displaySymbol": "ENAT3.SA",
+        "figi": "BBG001DL7RF3",
+        "exchange": "BVMF",
+        "ticker": "ENAT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IRB BRASIL RESSEGUROS SA",
+        "displaySymbol": "IRBR3.SA",
+        "figi": "BBG00H438QP8",
+        "exchange": "BVMF",
+        "ticker": "IRBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PLASCAR PARTICIPACOES SA",
+        "displaySymbol": "PLAS3.SA",
+        "figi": "BBG000C00MV2",
+        "exchange": "BVMF",
+        "ticker": "PLAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PORTOBELLO SA",
+        "displaySymbol": "PTBL3.SA",
+        "figi": "BBG000C0H3C7",
+        "exchange": "BVMF",
+        "ticker": "PTBL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CONST ADOLPHO LINDENBERG SA",
+        "displaySymbol": "CALI3.SA",
+        "figi": "BBG000BM3SD9",
+        "exchange": "BVMF",
+        "ticker": "CALI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENJOEI.COM.BR ATIVIDADES DE",
+        "displaySymbol": "ENJU3.SA",
+        "figi": "BBG00XV3Z8Q2",
+        "exchange": "BVMF",
+        "ticker": "ENJU3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SENDAS DISTRIBUIDORA SA",
+        "displaySymbol": "ASAI3.SA",
+        "figi": "BBG00ZF1KN91",
+        "exchange": "BVMF",
+        "ticker": "ASAI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MITRE REALTY EMPREENDIMENTOS",
+        "displaySymbol": "MTRE3.SA",
+        "figi": "BBG00R296H22",
+        "exchange": "BVMF",
+        "ticker": "MTRE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EAFE MIN VOL FA",
+        "displaySymbol": "BFAV39.SA",
+        "figi": "BBG010MLJFB1",
+        "exchange": "BVMF",
+        "ticker": "BFAV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "DEXXOS PARTICIPACOES SA - ON",
+        "displaySymbol": "DEXP3.SA",
+        "figi": "BBG000C4WTC5",
+        "exchange": "BVMF",
+        "ticker": "DEXP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA INVEST LATINOAMER-DVD CM",
+        "displaySymbol": "LTAM11.SA",
+        "figi": "BBG002HS3KV3",
+        "exchange": "BVMF",
+        "ticker": "LTAM11.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CAIXA SEGURIDADE PARTICIPACO",
+        "displaySymbol": "CXSE3.SA",
+        "figi": "BBG009WP3DG0",
+        "exchange": "BVMF",
+        "ticker": "CXSE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TEGMA GESTAO LOGISTICA",
+        "displaySymbol": "TGMA3.SA",
+        "figi": "BBG000KLPR12",
+        "exchange": "BVMF",
+        "ticker": "TGMA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "1REND ETF EUROPA",
+        "displaySymbol": "EURP11.SA",
+        "figi": "BBG00YZ0N7H7",
+        "exchange": "BVMF",
+        "ticker": "EURP11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "RENOVA ENERGIA SA",
+        "displaySymbol": "RNEW3.SA",
+        "figi": "BBG0036PCPR3",
+        "exchange": "BVMF",
+        "ticker": "RNEW3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES S\u0026P 500 GROWTH ETF",
+        "displaySymbol": "BIVW39.SA",
+        "figi": "BBG010Q54FP3",
+        "exchange": "BVMF",
+        "ticker": "BIVW39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW S\u0026P500 TRN FI",
+        "displaySymbol": "SPXI11.SA",
+        "figi": "BBG0081FXZ12",
+        "exchange": "BVMF",
+        "ticker": "SPXI11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "POSITIVO TECNOLOGIA SA",
+        "displaySymbol": "POSI3.SA",
+        "figi": "BBG000GZ3GZ7",
+        "exchange": "BVMF",
+        "ticker": "POSI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TOTVS SA",
+        "displaySymbol": "TOTS3.SA",
+        "figi": "BBG000KZWKJ9",
+        "exchange": "BVMF",
+        "ticker": "TOTS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PETTENATI SA INDUSTRIA TEXTI",
+        "displaySymbol": "PTNT3.SA",
+        "figi": "BBG000C0HMH0",
+        "exchange": "BVMF",
+        "ticker": "PTNT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INTELBRAS SA INDUSTRIA DE TE",
+        "displaySymbol": "INTB3.SA",
+        "figi": "BBG00YXT9Y56",
+        "exchange": "BVMF",
+        "ticker": "INTB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RUMO SA",
+        "displaySymbol": "RAIL3.SA",
+        "figi": "BBG00G6D37N5",
+        "exchange": "BVMF",
+        "ticker": "RAIL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "WIZ SOLUCOES E CORRETAGEM DE",
+        "displaySymbol": "WIZS3.SA",
+        "figi": "BBG007B66V12",
+        "exchange": "BVMF",
+        "ticker": "WIZS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI ACWI ETF",
+        "displaySymbol": "BACW39.SA",
+        "figi": "BBG00YCTZNR0",
+        "exchange": "BVMF",
+        "ticker": "BACW39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IBOVESPA FUNDO INDICE",
+        "displaySymbol": "BOVV11.SA",
+        "figi": "BBG00DJ1G9P4",
+        "exchange": "BVMF",
+        "ticker": "BOVV11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "NORDON INDUS METALURGICA SA",
+        "displaySymbol": "NORD3.SA",
+        "figi": "BBG000BZXCS6",
+        "exchange": "BVMF",
+        "ticker": "NORD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI HONG KONG ETF",
+        "displaySymbol": "BEWH39.SA",
+        "figi": "BBG00YCTZRF4",
+        "exchange": "BVMF",
+        "ticker": "BEWH39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "GUARARAPES CONFECCOES SA",
+        "displaySymbol": "GUAR3.SA",
+        "figi": "BBG000BX7WS6",
+        "exchange": "BVMF",
+        "ticker": "GUAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INTERNATIONAL MEAL COMPANY A",
+        "displaySymbol": "MEAL3.SA",
+        "figi": "BBG001JY8BR0",
+        "exchange": "BVMF",
+        "ticker": "MEAL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALLIED TECNOLOGIA SA",
+        "displaySymbol": "ALLD3.SA",
+        "figi": "BBG00ZZMS861",
+        "exchange": "BVMF",
+        "ticker": "ALLD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BATTISTELLA ADM PART SA",
+        "displaySymbol": "BTTL3.SA",
+        "figi": "BBG000BLS7P7",
+        "exchange": "BVMF",
+        "ticker": "BTTL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EAFE VALUE ETF",
+        "displaySymbol": "BEFV39.SA",
+        "figi": "BBG010QDZYM4",
+        "exchange": "BVMF",
+        "ticker": "BEFV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES TRUST ISHARES ESG AW",
+        "displaySymbol": "BEGD39.SA",
+        "figi": "BBG00YCTZQ66",
+        "exchange": "BVMF",
+        "ticker": "BEGD39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "IGB ELETRONICA SA",
+        "displaySymbol": "IGBR3.SA",
+        "figi": "BBG000BXPH45",
+        "exchange": "BVMF",
+        "ticker": "IGBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO MERCANTIL DO BRASIL SA",
+        "displaySymbol": "BMEB3.SA",
+        "figi": "BBG000BJ49M7",
+        "exchange": "BVMF",
+        "ticker": "BMEB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SCHULZ SA",
+        "displaySymbol": "SHUL3.SA",
+        "figi": "BBG000C109X7",
+        "exchange": "BVMF",
+        "ticker": "SHUL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GRAZZIOTIN SA",
+        "displaySymbol": "CGRA3.SA",
+        "figi": "BBG000BNPNF2",
+        "exchange": "BVMF",
+        "ticker": "CGRA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI USA QUALITY FAC",
+        "displaySymbol": "BQUA39.SA",
+        "figi": "BBG010QDYPR9",
+        "exchange": "BVMF",
+        "ticker": "BQUA39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ALUPAR INVESTIMENTO SA",
+        "displaySymbol": "ALUP3.SA",
+        "figi": "BBG004DW19C2",
+        "exchange": "BVMF",
+        "ticker": "ALUP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRASKEM SA",
+        "displaySymbol": "BRKM3.SA",
+        "figi": "BBG000BS9Z17",
+        "exchange": "BVMF",
+        "ticker": "BRKM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TREND ETF NASDAQ 100 INDEX",
+        "displaySymbol": "NASD11.SA",
+        "figi": "BBG0116S7MD8",
+        "exchange": "BVMF",
+        "ticker": "NASD11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SANTOS BRASIL PARTICIPACOES",
+        "displaySymbol": "STBP3.SA",
+        "figi": "BBG000FPLW12",
+        "exchange": "BVMF",
+        "ticker": "STBP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO DA AMAZONIA SA",
+        "displaySymbol": "BAZA3.SA",
+        "figi": "BBG000BG5933",
+        "exchange": "BVMF",
+        "ticker": "BAZA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "OI SA",
+        "displaySymbol": "OIBR3.SA",
+        "figi": "BBG000PJXJW7",
+        "exchange": "BVMF",
+        "ticker": "OIBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW ETF SMLL",
+        "displaySymbol": "SMAC11.SA",
+        "figi": "BBG00RM5FBS3",
+        "exchange": "BVMF",
+        "ticker": "SMAC11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FII BTG PACTUAL CORP OFFICE",
+        "displaySymbol": "BRCR11.SA",
+        "figi": "BBG001CVT0P6",
+        "exchange": "BVMF",
+        "ticker": "BRCR11.SA",
+        "type": "REIT"
+    }, {
+        "currency": "BRL",
+        "description": "CENTRAIS ELETRICAS BRASILIER",
+        "displaySymbol": "ELET3.SA",
+        "figi": "BBG000BDG4N7",
+        "exchange": "BVMF",
+        "ticker": "ELET3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CVC BRASIL OPERADORA E AGENC",
+        "displaySymbol": "CVCB3.SA",
+        "figi": "BBG001Z53K90",
+        "exchange": "BVMF",
+        "ticker": "CVCB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TRANSMISSORA ALIANCA DE-UNIT",
+        "displaySymbol": "TAEE11.SA",
+        "figi": "BBG000PC6JL4",
+        "exchange": "BVMF",
+        "ticker": "TAEE11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI JAPAN ETF",
+        "displaySymbol": "BEWJ39.SA",
+        "figi": "BBG00YCTZPD0",
+        "exchange": "BVMF",
+        "ticker": "BEWJ39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "HOSPITAL MATER DEI SA",
+        "displaySymbol": "MATD3.SA",
+        "figi": "BBG0104073X3",
+        "exchange": "BVMF",
+        "ticker": "MATD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NEOGRID PARTICIPACOES SA",
+        "displaySymbol": "NGRD3.SA",
+        "figi": "BBG00YCJM6D8",
+        "exchange": "BVMF",
+        "ticker": "NGRD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO BRADESCO S.A.",
+        "displaySymbol": "BBDC3.SA",
+        "figi": "BBG000BBKNT8",
+        "exchange": "BVMF",
+        "ticker": "BBDC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EZ TEC EMPREENDIMENTOS E PAR",
+        "displaySymbol": "EZTC3.SA",
+        "figi": "BBG000RCQFG4",
+        "exchange": "BVMF",
+        "ticker": "EZTC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MELNICK EVEN DESENVOLVIMENTO",
+        "displaySymbol": "MELK3.SA",
+        "figi": "BBG00XLX85T0",
+        "exchange": "BVMF",
+        "ticker": "MELK3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SUL AMERICA SA",
+        "displaySymbol": "SULA3.SA",
+        "figi": "BBG000TDRPQ6",
+        "exchange": "BVMF",
+        "ticker": "SULA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DE BRASILIA",
+        "displaySymbol": "CEBR3.SA",
+        "figi": "BBG000BG5274",
+        "exchange": "BVMF",
+        "ticker": "CEBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO PINE SA",
+        "displaySymbol": "PINE3.SA",
+        "figi": "BBG000J9SW53",
+        "exchange": "BVMF",
+        "ticker": "PINE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MULTIPLAN EMPREENDIMENTOS",
+        "displaySymbol": "MULT3.SA",
+        "figi": "BBG000PZW794",
+        "exchange": "BVMF",
+        "ticker": "MULT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RAIA DROGASIL SA",
+        "displaySymbol": "RADL3.SA",
+        "figi": "BBG000BTXKM8",
+        "exchange": "BVMF",
+        "ticker": "RADL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AREZZO INDUSTRIA E COMERCIO",
+        "displaySymbol": "ARZZ3.SA",
+        "figi": "BBG001DGXZX7",
+        "exchange": "BVMF",
+        "ticker": "ARZZ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CORREA RIBEIRO S.A.",
+        "displaySymbol": "CORR3.SA",
+        "figi": "BBG000BRCVP8",
+        "exchange": "BVMF",
+        "ticker": "CORR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE MSCI EUROPE",
+        "displaySymbol": "BIEU39.SA",
+        "figi": "BBG00YCTZS99",
+        "exchange": "BVMF",
+        "ticker": "BIEU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "LPS BRASIL CONS DE IMOVEIS",
+        "displaySymbol": "LPSB3.SA",
+        "figi": "BBG000QF7C21",
+        "exchange": "BVMF",
+        "ticker": "LPSB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "UNIPAR CARBOCLORO SA-ORD",
+        "displaySymbol": "UNIP3.SA",
+        "figi": "BBG000C29D49",
+        "exchange": "BVMF",
+        "ticker": "UNIP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES IBOVESPA",
+        "displaySymbol": "BOVA11.SA",
+        "figi": "BBG000CL1B67",
+        "exchange": "BVMF",
+        "ticker": "BOVA11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE S\u0026P TOTAL U.S.",
+        "displaySymbol": "BITO39.SA",
+        "figi": "BBG00YCPS2R2",
+        "exchange": "BVMF",
+        "ticker": "BITO39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "HAPVIDA PARTICIPACOES E INVE",
+        "displaySymbol": "HAPV3.SA",
+        "figi": "BBG00K8GZYJ8",
+        "exchange": "BVMF",
+        "ticker": "HAPV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BK BRASIL OPERACAO E ASSESSO",
+        "displaySymbol": "BKBR3.SA",
+        "figi": "BBG00J2D3VP8",
+        "exchange": "BVMF",
+        "ticker": "BKBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "B2W CIA DIGITAL",
+        "displaySymbol": "BTOW3.SA",
+        "figi": "BBG000BP7BY2",
+        "exchange": "BVMF",
+        "ticker": "BTOW3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NUTRIPLANT INDUSTRIA E COMER",
+        "displaySymbol": "NUTR3.SA",
+        "figi": "BBG000TWNBS7",
+        "exchange": "BVMF",
+        "ticker": "NUTR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CCR SA",
+        "displaySymbol": "CCRO3.SA",
+        "figi": "BBG000LVHT23",
+        "exchange": "BVMF",
+        "ticker": "CCRO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EQUATORIAL ENERGIA SA - ORD",
+        "displaySymbol": "EQTL3.SA",
+        "figi": "BBG000N4TYQ1",
+        "exchange": "BVMF",
+        "ticker": "EQTL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LAVVI EMPREENDIMENTOS IMOBIL",
+        "displaySymbol": "LAVV3.SA",
+        "figi": "BBG00WNPM3B5",
+        "exchange": "BVMF",
+        "ticker": "LAVV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO DO BRASIL S.A.",
+        "displaySymbol": "BBAS3.SA",
+        "figi": "BBG000BG5W05",
+        "exchange": "BVMF",
+        "ticker": "BBAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LIGHT SA",
+        "displaySymbol": "LIGT3.SA",
+        "figi": "BBG000BND4B1",
+        "exchange": "BVMF",
+        "ticker": "LIGT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PETROBRAS DISTRIBUIDORA SA",
+        "displaySymbol": "BRDT3.SA",
+        "figi": "BBG00JC2B383",
+        "exchange": "BVMF",
+        "ticker": "BRDT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES LATIN AMERICA 40 ETF",
+        "displaySymbol": "BILF39.SA",
+        "figi": "BBG00YCTZNF3",
+        "exchange": "BVMF",
+        "ticker": "BILF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "OURO FINO SAUDE ANIMAL PARTI",
+        "displaySymbol": "OFSA3.SA",
+        "figi": "BBG0077WZXT4",
+        "exchange": "BVMF",
+        "ticker": "OFSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES RUSSELL 1000 GROWTH",
+        "displaySymbol": "BIWF39.SA",
+        "figi": "BBG010QDZZT4",
+        "exchange": "BVMF",
+        "ticker": "BIWF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ATOM PARTICIPACOES SA",
+        "displaySymbol": "ATOM3.SA",
+        "figi": "BBG000LM0V62",
+        "exchange": "BVMF",
+        "ticker": "ATOM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO BTG PACTUAL SA-UNIT",
+        "displaySymbol": "BPAC11.SA",
+        "figi": "BBG00FZW5NJ1",
+        "exchange": "BVMF",
+        "ticker": "BPAC11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "TREND ETF IFIX",
+        "displaySymbol": "XFIX11.SA",
+        "figi": "BBG00YC6Y0D6",
+        "exchange": "BVMF",
+        "ticker": "XFIX11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA HERING",
+        "displaySymbol": "HGTX3.SA",
+        "figi": "BBG000BLCZJ9",
+        "exchange": "BVMF",
+        "ticker": "HGTX3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SUZANO SA",
+        "displaySymbol": "SUZB3.SA",
+        "figi": "BBG00J5Q0BT9",
+        "exchange": "BVMF",
+        "ticker": "SUZB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TREND ETF LBMA OURO",
+        "displaySymbol": "GOLD11.SA",
+        "figi": "BBG00YJ6VL55",
+        "exchange": "BVMF",
+        "ticker": "GOLD11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "MIRAE ASSET RENDA FIXA PRE F",
+        "displaySymbol": "FIXA11.SA",
+        "figi": "BBG00LY6NYR3",
+        "exchange": "BVMF",
+        "ticker": "FIXA11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "VITTIA FERTILIZANTES E BIOLO",
+        "displaySymbol": "1847409D.SA",
+        "figi": "BBG00Y77W5D1",
+        "exchange": "BVMF",
+        "ticker": "1847409D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EUROZONE ETF",
+        "displaySymbol": "BEZU39.SA",
+        "figi": "BBG00YCTZS44",
+        "exchange": "BVMF",
+        "ticker": "BEZU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "VALE SA",
+        "displaySymbol": "VALE3.SA",
+        "figi": "BBG000BHNSQ4",
+        "exchange": "BVMF",
+        "ticker": "VALE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE SANEAMENTO DO PA-UNIT",
+        "displaySymbol": "SAPR11.SA",
+        "figi": "BBG00JBB34Q1",
+        "exchange": "BVMF",
+        "ticker": "SAPR11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES PREFERRED \u0026 INCOME S",
+        "displaySymbol": "BPRS39.SA",
+        "figi": "BBG00YG4P4W8",
+        "exchange": "BVMF",
+        "ticker": "BPRS39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TREND ETF ACWI",
+        "displaySymbol": "ACWI11.SA",
+        "figi": "BBG00YZ0JJF8",
+        "exchange": "BVMF",
+        "ticker": "ACWI11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "LINX SA",
+        "displaySymbol": "LINX3.SA",
+        "figi": "BBG003PMJ9J7",
+        "exchange": "BVMF",
+        "ticker": "LINX3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "WESTWING COMERCIO VAREJISTA",
+        "displaySymbol": "1664821D.SA",
+        "figi": "BBG00YZDPMM8",
+        "exchange": "BVMF",
+        "ticker": "1664821D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LIFEMED INDUSTRIAL DE EQUIPA",
+        "displaySymbol": "LMED3.SA",
+        "figi": "BBG00R9J9P77",
+        "exchange": "BVMF",
+        "ticker": "LMED3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO INTER SA - ORD",
+        "displaySymbol": "BIDI3.SA",
+        "figi": "BBG00PQNXW17",
+        "exchange": "BVMF",
+        "ticker": "BIDI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE GAS DE SAO PAULO",
+        "displaySymbol": "CGAS3.SA",
+        "figi": "BBG000BD03P4",
+        "exchange": "BVMF",
+        "ticker": "CGAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IRANI SA",
+        "displaySymbol": "RANI3.SA",
+        "figi": "BBG000C0KCT5",
+        "exchange": "BVMF",
+        "ticker": "RANI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO SANTANDER (BRASIL) SA",
+        "displaySymbol": "SANB3.SA",
+        "figi": "BBG000FQ3VX7",
+        "exchange": "BVMF",
+        "ticker": "SANB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SLC AGRICOLA SA",
+        "displaySymbol": "SLCE3.SA",
+        "figi": "BBG000R7T9Q5",
+        "exchange": "BVMF",
+        "ticker": "SLCE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AZEVEDO E TRAVASSOS SA",
+        "displaySymbol": "AZEV3.SA",
+        "figi": "BBG000BFGJD0",
+        "exchange": "BVMF",
+        "ticker": "AZEV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CELULOSE IRANI SA-UNITS",
+        "displaySymbol": "1455478D.SA",
+        "figi": "BBG00F37T4Z9",
+        "exchange": "BVMF",
+        "ticker": "1455478D.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "METALGRAFICA IGUACU SA",
+        "displaySymbol": "MTIG3.SA",
+        "figi": "BBG000BZKZD5",
+        "exchange": "BVMF",
+        "ticker": "MTIG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "JBS SA",
+        "displaySymbol": "JBSS3.SA",
+        "figi": "BBG000N6Q190",
+        "exchange": "BVMF",
+        "ticker": "JBSS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TEKA-TECELAGEM KUEHNRICH SA",
+        "displaySymbol": "TEKA3.SA",
+        "figi": "BBG000C1R717",
+        "exchange": "BVMF",
+        "ticker": "TEKA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HERCULES SA FABRICA TALHERES",
+        "displaySymbol": "HETA3.SA",
+        "figi": "BBG000BXDKS5",
+        "exchange": "BVMF",
+        "ticker": "HETA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOCAWEB SERVICOS DE INTERNET",
+        "displaySymbol": "LWSA3.SA",
+        "figi": "BBG00RDTRZL2",
+        "exchange": "BVMF",
+        "ticker": "LWSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BAHEMA SA",
+        "displaySymbol": "BAHI3.SA",
+        "figi": "BBG000BD4Z79",
+        "exchange": "BVMF",
+        "ticker": "BAHI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PLANO \u0026 PLANO DESENVOLVIMENT",
+        "displaySymbol": "PLPL3.SA",
+        "figi": "BBG00W8ZZHL4",
+        "exchange": "BVMF",
+        "ticker": "PLPL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE DIVIDEND GROWTH",
+        "displaySymbol": "BGWH39.SA",
+        "figi": "BBG010QF0096",
+        "exchange": "BVMF",
+        "ticker": "BGWH39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TELECOMUNIC BRASILEIRAS S.A.",
+        "displaySymbol": "TELB3.SA",
+        "figi": "BBG000BJLJF4",
+        "exchange": "BVMF",
+        "ticker": "TELB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CSN CIMENTOS SA",
+        "displaySymbol": "1349422D.SA",
+        "figi": "BBG0113PNVN8",
+        "exchange": "BVMF",
+        "ticker": "1349422D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PRATICA KLIMAQUIP IND E COM",
+        "displaySymbol": "PTCA3.SA",
+        "figi": "BBG00M59L422",
+        "exchange": "BVMF",
+        "ticker": "PTCA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ETF BRADESCO IBOVESPA FI",
+        "displaySymbol": "BOVB11.SA",
+        "figi": "BBG00PKFXV94",
+        "exchange": "BVMF",
+        "ticker": "BOVB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SIDERURGICA J.L. ALIPERTI SA",
+        "displaySymbol": "APTI3.SA",
+        "figi": "BBG000BCR9J1",
+        "exchange": "BVMF",
+        "ticker": "APTI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TECBLU TECELAGEM BLUMENAU SA",
+        "displaySymbol": "TENE3.SA",
+        "figi": "BBG000C1S4Q6",
+        "exchange": "BVMF",
+        "ticker": "TENE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA TECIDOS NORTE DE MINAS",
+        "displaySymbol": "CTNM3.SA",
+        "figi": "BBG000BTHYQ2",
+        "exchange": "BVMF",
+        "ticker": "CTNM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PADTEC HOLDING SA",
+        "displaySymbol": "PDTC3.SA",
+        "figi": "BBG000BWTV24",
+        "exchange": "BVMF",
+        "ticker": "PDTC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BR MALLS PARTICIPACOES SA",
+        "displaySymbol": "BRML3.SA",
+        "figi": "BBG000QS9TX0",
+        "exchange": "BVMF",
+        "ticker": "BRML3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PET CENTER COMERCIO E PARTIC",
+        "displaySymbol": "PETZ3.SA",
+        "figi": "BBG00WSPZG63",
+        "exchange": "BVMF",
+        "ticker": "PETZ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INFRACOMMERCE CXAAS SA",
+        "displaySymbol": "IFCM3.SA",
+        "figi": "BBG00ZHG3219",
+        "exchange": "BVMF",
+        "ticker": "IFCM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MAGAZINE LUIZA SA",
+        "displaySymbol": "MGLU3.SA",
+        "figi": "BBG001M81KM5",
+        "exchange": "BVMF",
+        "ticker": "MGLU3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CR2 EMPREENDIMENTOS IMOBILIA",
+        "displaySymbol": "CRDE3.SA",
+        "figi": "BBG000R3Z9M1",
+        "exchange": "BVMF",
+        "ticker": "CRDE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GRUPO SBF SA",
+        "displaySymbol": "SBFG3.SA",
+        "figi": "BBG00NVC52L5",
+        "exchange": "BVMF",
+        "ticker": "SBFG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BTG ESG FDO INDICE S\u0026P/ B3",
+        "displaySymbol": "ESGB11.SA",
+        "figi": "BBG00XRJL4J4",
+        "exchange": "BVMF",
+        "ticker": "ESGB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "GRUPO MATEUS SA",
+        "displaySymbol": "GMAT3.SA",
+        "figi": "BBG00WRDFGY2",
+        "exchange": "BVMF",
+        "ticker": "GMAT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EVEN CONSTRUTORA E INCORPORA",
+        "displaySymbol": "EVEN3.SA",
+        "figi": "BBG000L274P8",
+        "exchange": "BVMF",
+        "ticker": "EVEN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALPARGATAS SA",
+        "displaySymbol": "ALPA3.SA",
+        "figi": "BBG000BBZTN5",
+        "exchange": "BVMF",
+        "ticker": "ALPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES USTECHNOLOGY ETF",
+        "displaySymbol": "BIYW39.SA",
+        "figi": "BBG00YCTZP22",
+        "exchange": "BVMF",
+        "ticker": "BIYW39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "JOAO FORTES ENGENHARIA S.A.",
+        "displaySymbol": "JFEN3.SA",
+        "figi": "BBG000BYHBY2",
+        "exchange": "BVMF",
+        "ticker": "JFEN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOJAS AMERICANAS SA",
+        "displaySymbol": "LAME3.SA",
+        "figi": "BBG000BYMP75",
+        "exchange": "BVMF",
+        "ticker": "LAME3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EMPRESA METROPOLITANA DE AGU",
+        "displaySymbol": "EMAE3.SA",
+        "figi": "BBG000C1VXT5",
+        "exchange": "BVMF",
+        "ticker": "EMAE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW ETF IMA-B5 P2",
+        "displaySymbol": "B5P211.SA",
+        "figi": "BBG00Y6S8XL3",
+        "exchange": "BVMF",
+        "ticker": "B5P211.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "PETRORECONCAVO SA",
+        "displaySymbol": "RECV3.SA",
+        "figi": "BBG001QCGMV2",
+        "exchange": "BVMF",
+        "ticker": "RECV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TIVIT TERCEIRIZACAO DE PROCE",
+        "displaySymbol": "TVIT3.SA",
+        "figi": "BBG000RDMKD8",
+        "exchange": "BVMF",
+        "ticker": "TVIT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MONTEIRO ARANHA S.A.",
+        "displaySymbol": "MOAR3.SA",
+        "figi": "BBG000BZDK91",
+        "exchange": "BVMF",
+        "ticker": "MOAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DURATEX SA",
+        "displaySymbol": "DTEX3.SA",
+        "figi": "BBG000QBDMT2",
+        "exchange": "BVMF",
+        "ticker": "DTEX3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TECNOSOLO ENGENHARIA SA",
+        "displaySymbol": "TCNO3.SA",
+        "figi": "BBG000C1N3G4",
+        "exchange": "BVMF",
+        "ticker": "TCNO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MAHLE-METAL LEVE SA",
+        "displaySymbol": "LEVE3.SA",
+        "figi": "BBG000BYQRM0",
+        "exchange": "BVMF",
+        "ticker": "LEVE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE SANEAMENTO DO PARANA",
+        "displaySymbol": "SAPR3.SA",
+        "figi": "BBG000FQW7X8",
+        "exchange": "BVMF",
+        "ticker": "SAPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "REDE ENERGIA SA",
+        "displaySymbol": "REDE3.SA",
+        "figi": "BBG000BV5MJ4",
+        "exchange": "BVMF",
+        "ticker": "REDE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NORTIS INCORPORADORA E CONST",
+        "displaySymbol": "1816417D.SA",
+        "figi": "BBG00W7F0YD9",
+        "exchange": "BVMF",
+        "ticker": "1816417D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BICICLETAS MONARK SA",
+        "displaySymbol": "BMKS3.SA",
+        "figi": "BBG000BJ5HL9",
+        "exchange": "BVMF",
+        "ticker": "BMKS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DO RIO GRANDE",
+        "displaySymbol": "CSRN3.SA",
+        "figi": "BBG000D0J5R3",
+        "exchange": "BVMF",
+        "ticker": "CSRN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CEMEPE INVESTIMENTOS S.A.",
+        "displaySymbol": "MAPT3.SA",
+        "figi": "BBG000BZ2DN3",
+        "exchange": "BVMF",
+        "ticker": "MAPT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BOMBRIL SA",
+        "displaySymbol": "BOBR3.SA",
+        "figi": "BBG000BJH4D4",
+        "exchange": "BVMF",
+        "ticker": "BOBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENERGISA SA-UNITS",
+        "displaySymbol": "ENGI11.SA",
+        "figi": "BBG000MHBSM9",
+        "exchange": "BVMF",
+        "ticker": "ENGI11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "HOTEIS OTHON S.A.",
+        "displaySymbol": "HOOT3.SA",
+        "figi": "BBG000BXFJ60",
+        "exchange": "BVMF",
+        "ticker": "HOOT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES ESG MSCI USA LEADERS",
+        "displaySymbol": "BSUS39.SA",
+        "figi": "BBG010QF0RV2",
+        "exchange": "BVMF",
+        "ticker": "BSUS39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CINESYSTEM SA",
+        "displaySymbol": "CNSY3.SA",
+        "figi": "BBG00DQ6Z2F0",
+        "exchange": "BVMF",
+        "ticker": "CNSY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BB ETF S\u0026P DIVIDENDOS BRASIL",
+        "displaySymbol": "BBSD11.SA",
+        "figi": "BBG007LVVHS0",
+        "exchange": "BVMF",
+        "ticker": "BBSD11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BCO BTG PACTUAL SA - CMN RCP",
+        "displaySymbol": "BPAC9.SA",
+        "figi": "BBG011CJYPB6",
+        "exchange": "BVMF",
+        "ticker": "BPAC9.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES BOVESPA IBRX",
+        "displaySymbol": "BRAX11.SA",
+        "figi": "BBG000QCL6X1",
+        "exchange": "BVMF",
+        "ticker": "BRAX11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES U.S. FINANCIAL SERVI",
+        "displaySymbol": "BIYG39.SA",
+        "figi": "BBG010QDZTL6",
+        "exchange": "BVMF",
+        "ticker": "BIYG39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "3R PETROLEUM OLEO E GAS SA",
+        "displaySymbol": "RRRP3.SA",
+        "figi": "BBG00Y4RJKG9",
+        "exchange": "BVMF",
+        "ticker": "RRRP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MMX MINERACAO E METALICOS SA",
+        "displaySymbol": "MMXM3.SA",
+        "figi": "BBG000G6BQN3",
+        "exchange": "BVMF",
+        "ticker": "MMXM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE S\u0026P MIDCAP ETF",
+        "displaySymbol": "BIJH39.SA",
+        "figi": "BBG00YCTZQY5",
+        "exchange": "BVMF",
+        "ticker": "BIJH39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FINANCEIRA ALFA SA",
+        "displaySymbol": "CRIV3.SA",
+        "figi": "BBG000BT3M10",
+        "exchange": "BVMF",
+        "ticker": "CRIV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EMPREENDIMENTOS PAGUE MENOS",
+        "displaySymbol": "PGMN3.SA",
+        "figi": "BBG00WBQZ3Z6",
+        "exchange": "BVMF",
+        "ticker": "PGMN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI BRAZIL ETF",
+        "displaySymbol": "BEWZ39.SA",
+        "figi": "BBG00YCTZRZ2",
+        "exchange": "BVMF",
+        "ticker": "BEWZ39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "DIRECIONAL ENGENHARIA SA",
+        "displaySymbol": "DIRR3.SA",
+        "figi": "BBG000P8NBB2",
+        "exchange": "BVMF",
+        "ticker": "DIRR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALFA HOLDINGS SA",
+        "displaySymbol": "RPAD3.SA",
+        "figi": "BBG000C0PBQ5",
+        "exchange": "BVMF",
+        "ticker": "RPAD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AMBEV SA",
+        "displaySymbol": "ABEV3.SA",
+        "figi": "BBG000DCR703",
+        "exchange": "BVMF",
+        "ticker": "ABEV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALPER CONSULTORIA E CORRETOR",
+        "displaySymbol": "APER3.SA",
+        "figi": "BBG0018FJ3F2",
+        "exchange": "BVMF",
+        "ticker": "APER3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IDIV FUNDO DE INDICE",
+        "displaySymbol": "DIVO11.SA",
+        "figi": "BBG002GKL349",
+        "exchange": "BVMF",
+        "ticker": "DIVO11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI SWITZERLAND ETF",
+        "displaySymbol": "BEWL39.SA",
+        "figi": "BBG010QF0NL2",
+        "exchange": "BVMF",
+        "ticker": "BEWL39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "OCEANPACT SERVICOS MARITIMOS",
+        "displaySymbol": "OPCT3.SA",
+        "figi": "BBG00Z0HKHC1",
+        "exchange": "BVMF",
+        "ticker": "OPCT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DTCOM-DIRECT TO COMPANY SA",
+        "displaySymbol": "DTCY3.SA",
+        "figi": "BBG000D3NW93",
+        "exchange": "BVMF",
+        "ticker": "DTCY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE MSCI EMERGING",
+        "displaySymbol": "BIEM39.SA",
+        "figi": "BBG00YCTZP77",
+        "exchange": "BVMF",
+        "ticker": "BIEM39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "IGUATEMI EMP DE SHOPPING",
+        "displaySymbol": "IGTA3.SA",
+        "figi": "BBG000QSG6X2",
+        "exchange": "BVMF",
+        "ticker": "IGTA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RUMO MALHA NORTE SA - PREFA",
+        "displaySymbol": "FRRN5B.SA",
+        "figi": "BBG002292RK9",
+        "exchange": "BVMF",
+        "ticker": "FRRN5B.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI SPAIN ETF",
+        "displaySymbol": "BEWP39.SA",
+        "figi": "BBG00YCTZN36",
+        "exchange": "BVMF",
+        "ticker": "BEWP39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BAUMER SA",
+        "displaySymbol": "BALM3.SA",
+        "figi": "BBG000BFLXL4",
+        "exchange": "BVMF",
+        "ticker": "BALM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE MSCI EAFE ETF",
+        "displaySymbol": "BIEF39.SA",
+        "figi": "BBG00YCTZNX3",
+        "exchange": "BVMF",
+        "ticker": "BIEF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TRISUL SA",
+        "displaySymbol": "TRIS3.SA",
+        "figi": "BBG000T1JJ30",
+        "exchange": "BVMF",
+        "ticker": "TRIS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ODONTOPREV S.A.",
+        "displaySymbol": "ODPV3.SA",
+        "figi": "BBG000QBXRG3",
+        "exchange": "BVMF",
+        "ticker": "ODPV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "VIVARA PARTICIPACOES SA",
+        "displaySymbol": "VIVA3.SA",
+        "figi": "BBG00QB10DC5",
+        "exchange": "BVMF",
+        "ticker": "VIVA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA INDUSTRIAL CATAGUASES",
+        "displaySymbol": "CATA3.SA",
+        "figi": "BBG000LVSNN1",
+        "exchange": "BVMF",
+        "ticker": "CATA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NORTEC QUIMICA S/A",
+        "displaySymbol": "NRTQ3.SA",
+        "figi": "BBG0043KV687",
+        "exchange": "BVMF",
+        "ticker": "NRTQ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RESTOQUE COMERCIO E CONFEC",
+        "displaySymbol": "LLIS3.SA",
+        "figi": "BBG000VBN4F0",
+        "exchange": "BVMF",
+        "ticker": "LLIS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PETROBRAS - PETROLEO BRAS",
+        "displaySymbol": "PETR3.SA",
+        "figi": "BBG000BFTBL4",
+        "exchange": "BVMF",
+        "ticker": "PETR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA CELG DE PARTICIPACOES SA",
+        "displaySymbol": "GPAR3.SA",
+        "figi": "BBG000C4GXD3",
+        "exchange": "BVMF",
+        "ticker": "GPAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA HABITASUL DE PARTICIPACO",
+        "displaySymbol": "HBTS3.SA",
+        "figi": "BBG000BXC894",
+        "exchange": "BVMF",
+        "ticker": "HBTS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "T4F ENTRETENIMENTO SA",
+        "displaySymbol": "SHOW3.SA",
+        "figi": "BBG001FBVVD9",
+        "exchange": "BVMF",
+        "ticker": "SHOW3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ITAUSA SA",
+        "displaySymbol": "ITSA3.SA",
+        "figi": "BBG000BY3RS9",
+        "exchange": "BVMF",
+        "ticker": "ITSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE LOCACAO DAS AMERICAS",
+        "displaySymbol": "LCAM3.SA",
+        "figi": "BBG002W5QBP8",
+        "exchange": "BVMF",
+        "ticker": "LCAM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "QUALITY SOFTWARE SA",
+        "displaySymbol": "QUSW3.SA",
+        "figi": "BBG005YZ2TB5",
+        "exchange": "BVMF",
+        "ticker": "QUSW3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MOVIDA PARTICIPACOES SA",
+        "displaySymbol": "MOVI3.SA",
+        "figi": "BBG00FRT72M7",
+        "exchange": "BVMF",
+        "ticker": "MOVI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "FRAS-LE SA",
+        "displaySymbol": "FRAS3.SA",
+        "figi": "BBG000C1CYN0",
+        "exchange": "BVMF",
+        "ticker": "FRAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "FOCUS ENERGIA HOLDING PARTIC",
+        "displaySymbol": "POWE3.SA",
+        "figi": "BBG00YXTKQ23",
+        "exchange": "BVMF",
+        "ticker": "POWE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ADVANCED DIGITAL HEALTH- RTS",
+        "displaySymbol": "ADHM9.SA",
+        "figi": "BBG00T442ZB1",
+        "exchange": "BVMF",
+        "ticker": "ADHM9.SA",
+        "type": "ADR"
+    }, {
+        "currency": "BRL",
+        "description": "VALID SOLUCOES SA",
+        "displaySymbol": "VLID3.SA",
+        "figi": "BBG000NXBDD6",
+        "exchange": "BVMF",
+        "ticker": "VLID3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SANSUY SA INDUSTRIA DE PLAST",
+        "displaySymbol": "SNSY3.SA",
+        "figi": "BBG000C17VG0",
+        "exchange": "BVMF",
+        "ticker": "SNSY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GENERAL SHOPPING E OUTLETS D",
+        "displaySymbol": "GSHP3.SA",
+        "figi": "BBG000RJ3LC5",
+        "exchange": "BVMF",
+        "ticker": "GSHP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IRF-M",
+        "displaySymbol": "IRFM11.SA",
+        "figi": "BBG00QB95MF0",
+        "exchange": "BVMF",
+        "ticker": "IRFM11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FINANSINOS SA",
+        "displaySymbol": "FNCN3.SA",
+        "figi": "BBG000BWGWF2",
+        "exchange": "BVMF",
+        "ticker": "FNCN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MINASMAQUINAS SA",
+        "displaySymbol": "MMAQ3.SA",
+        "figi": "BBG000BZBMQ0",
+        "exchange": "BVMF",
+        "ticker": "MMAQ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES GLOBAL TECH ETF",
+        "displaySymbol": "BIXN39.SA",
+        "figi": "BBG00YFSYTT5",
+        "exchange": "BVMF",
+        "ticker": "BIXN39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ELECTRO ACO ALTONA SA",
+        "displaySymbol": "EALT3.SA",
+        "figi": "BBG000BV02Q5",
+        "exchange": "BVMF",
+        "ticker": "EALT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EMP NACL COM REDITO E PART",
+        "displaySymbol": "ECPR3.SA",
+        "figi": "BBG000BFNKP6",
+        "exchange": "BVMF",
+        "ticker": "ECPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO ESTADO DO PARA S.A.",
+        "displaySymbol": "BPAR3.SA",
+        "figi": "BBG000BJHL91",
+        "exchange": "BVMF",
+        "ticker": "BPAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRF SA",
+        "displaySymbol": "BRFS3.SA",
+        "figi": "BBG000BGPX56",
+        "exchange": "BVMF",
+        "ticker": "BRFS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ETF BRADESCO IMA-B5+ FUNDO D",
+        "displaySymbol": "B5MB11.SA",
+        "figi": "BBG00R2JFDS1",
+        "exchange": "BVMF",
+        "ticker": "B5MB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES SILVER TRUST",
+        "displaySymbol": "BSLV39.SA",
+        "figi": "BBG00YCPRJC2",
+        "exchange": "BVMF",
+        "ticker": "BSLV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SUL AMERICA SA - UNITS",
+        "displaySymbol": "SULA11.SA",
+        "figi": "BBG000TDRSL5",
+        "exchange": "BVMF",
+        "ticker": "SULA11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "HELBOR EMPREENDIMENTOS SA",
+        "displaySymbol": "HBOR3.SA",
+        "figi": "BBG000R5RY59",
+        "exchange": "BVMF",
+        "ticker": "HBOR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO MODAL SA",
+        "displaySymbol": "MODL11.SA",
+        "figi": "BBG010LLLPC6",
+        "exchange": "BVMF",
+        "ticker": "MODL11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "KARSTEN SA",
+        "displaySymbol": "CTKA3.SA",
+        "figi": "BBG000BTD5S7",
+        "exchange": "BVMF",
+        "ticker": "CTKA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "YUNY INCORPORADORA SA",
+        "displaySymbol": "2891159Z.SA",
+        "figi": "BBG00WKJL8V0",
+        "exchange": "BVMF",
+        "ticker": "2891159Z.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LUPATECH SA",
+        "displaySymbol": "LUPA3.SA",
+        "figi": "BBG000P5G397",
+        "exchange": "BVMF",
+        "ticker": "LUPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "JEREISSATI PARTICIPACOES SA",
+        "displaySymbol": "JPSA3.SA",
+        "figi": "BBG000BZ8Z30",
+        "exchange": "BVMF",
+        "ticker": "JPSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ATHENA SAUDE BRASIL SA",
+        "displaySymbol": "ATEA3.SA",
+        "figi": "BBG00ZMGJ2Q9",
+        "exchange": "BVMF",
+        "ticker": "ATEA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "USINAS SIDERURGICAS DE MINAS",
+        "displaySymbol": "USIM3.SA",
+        "figi": "BBG000K5DTT6",
+        "exchange": "BVMF",
+        "ticker": "USIM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "REDE D'OR SAO LUIZ SA",
+        "displaySymbol": "RDOR3.SA",
+        "figi": "BBG00Y6VG9H5",
+        "exchange": "BVMF",
+        "ticker": "RDOR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GRENDENE SA",
+        "displaySymbol": "GRND3.SA",
+        "figi": "BBG000PVXDY1",
+        "exchange": "BVMF",
+        "ticker": "GRND3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SAFRA IBOVESPA FUNDO INDICE",
+        "displaySymbol": "SAET11.SA",
+        "figi": "BBG011BY9PK2",
+        "exchange": "BVMF",
+        "ticker": "SAET11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI CHINA ETF",
+        "displaySymbol": "BCHI39.SA",
+        "figi": "BBG00YCTZPQ6",
+        "exchange": "BVMF",
+        "ticker": "BCHI39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "SER EDUCACIONAL SA",
+        "displaySymbol": "SEER3.SA",
+        "figi": "BBG00564RY27",
+        "exchange": "BVMF",
+        "ticker": "SEER3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PORTO SUDESTE VM SA",
+        "displaySymbol": "PSVM11.SA",
+        "figi": "BBG0086JRPX3",
+        "exchange": "BVMF",
+        "ticker": "PSVM11.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW MORNGST HEALTHCARE",
+        "displaySymbol": "HTEK11.SA",
+        "figi": "BBG011CHDT61",
+        "exchange": "BVMF",
+        "ticker": "HTEK11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "RANDON SA IMPLEMENTOS E PART",
+        "displaySymbol": "RAPT3.SA",
+        "figi": "BBG000C0L6N3",
+        "exchange": "BVMF",
+        "ticker": "RAPT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CENTRAIS ELETRICA STA CATARI",
+        "displaySymbol": "CLSC3.SA",
+        "figi": "BBG000BNYBW9",
+        "exchange": "BVMF",
+        "ticker": "CLSC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SARAIVA SA-LIVREIROS EDITORE",
+        "displaySymbol": "SLED3.SA",
+        "figi": "BBG000C14RF3",
+        "exchange": "BVMF",
+        "ticker": "SLED3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE FIACAO E TECIDOS CEDR",
+        "displaySymbol": "CEDO3.SA",
+        "figi": "BBG000BN7LF6",
+        "exchange": "BVMF",
+        "ticker": "CEDO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA DE TRANSMISSAO DE ENERGI",
+        "displaySymbol": "TRPL3.SA",
+        "figi": "BBG000D5HWB2",
+        "exchange": "BVMF",
+        "ticker": "TRPL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA PARTICIP ALIANCA BAHIA",
+        "displaySymbol": "PEAB3.SA",
+        "figi": "BBG000BDYPY8",
+        "exchange": "BVMF",
+        "ticker": "PEAB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "VAMOS LOCACAO DE CAMINHOES M",
+        "displaySymbol": "VAMO3.SA",
+        "figi": "BBG00NV434V0",
+        "exchange": "BVMF",
+        "ticker": "VAMO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HIDROVIAS DO BRASIL SA",
+        "displaySymbol": "HBSA3.SA",
+        "figi": "BBG004HTKXZ6",
+        "exchange": "BVMF",
+        "ticker": "HBSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA SANEAMENTO MINAS GERAIS",
+        "displaySymbol": "CSMG3.SA",
+        "figi": "BBG000M51WV7",
+        "exchange": "BVMF",
+        "ticker": "CSMG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES SELECT DIVIDEND ETF",
+        "displaySymbol": "BDVY39.SA",
+        "figi": "BBG00YCPKLV3",
+        "exchange": "BVMF",
+        "ticker": "BDVY39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TECHNOS SA",
+        "displaySymbol": "TECN3.SA",
+        "figi": "BBG001QMC774",
+        "exchange": "BVMF",
+        "ticker": "TECN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ETF TREND MSCI CHINA",
+        "displaySymbol": "XINA11.SA",
+        "figi": "BBG00YMW8KL4",
+        "exchange": "BVMF",
+        "ticker": "XINA11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TUPY SA",
+        "displaySymbol": "TUPY3.SA",
+        "figi": "BBG000C257F4",
+        "exchange": "BVMF",
+        "ticker": "TUPY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CSN MINERACAO SA",
+        "displaySymbol": "CMIN3.SA",
+        "figi": "BBG00XY8WPB9",
+        "exchange": "BVMF",
+        "ticker": "CMIN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BB SEGURIDADE PARTICIPACOES",
+        "displaySymbol": "BBSE3.SA",
+        "figi": "BBG004DK6PB8",
+        "exchange": "BVMF",
+        "ticker": "BBSE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SAO PAULO TURISMO SA",
+        "displaySymbol": "AHEB3.SA",
+        "figi": "BBG000BBPGM5",
+        "exchange": "BVMF",
+        "ticker": "AHEB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EXCELSIOR ALIMENTOS SA",
+        "displaySymbol": "BAUH3.SA",
+        "figi": "BBG000BG1P22",
+        "exchange": "BVMF",
+        "ticker": "BAUH3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA PARANAENSE DE ENERG-UNIT",
+        "displaySymbol": "CPLE11.SA",
+        "figi": "BBG010FY4YL5",
+        "exchange": "BVMF",
+        "ticker": "CPLE11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "MARFRIG GLOBAL FOODS SA",
+        "displaySymbol": "MRFG3.SA",
+        "figi": "BBG000R7TFZ1",
+        "exchange": "BVMF",
+        "ticker": "MRFG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI ALL COUNTRY ASI",
+        "displaySymbol": "BAAX39.SA",
+        "figi": "BBG00YCPKL25",
+        "exchange": "BVMF",
+        "ticker": "BAAX39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES US FINANCIALS ETF",
+        "displaySymbol": "BIYF39.SA",
+        "figi": "BBG00YCTZPK2",
+        "exchange": "BVMF",
+        "ticker": "BIYF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DO CEARA",
+        "displaySymbol": "COCE3.SA",
+        "figi": "BBG000BQ5XF5",
+        "exchange": "BVMF",
+        "ticker": "COCE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI UNITED KINGDOM",
+        "displaySymbol": "BEWU39.SA",
+        "figi": "BBG00YCTZLX7",
+        "exchange": "BVMF",
+        "ticker": "BEWU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "LOG COMMERCIAL PROPERTIES E",
+        "displaySymbol": "LOGG3.SA",
+        "figi": "BBG00MTYT2V5",
+        "exchange": "BVMF",
+        "ticker": "LOGG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DOHLER SA COMERCIO E INDUSTR",
+        "displaySymbol": "DOHL3.SA",
+        "figi": "BBG000BTVQB9",
+        "exchange": "BVMF",
+        "ticker": "DOHL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SIMPAR SA",
+        "displaySymbol": "SIMH3.SA",
+        "figi": "BBG00XD2R2K2",
+        "exchange": "BVMF",
+        "ticker": "SIMH3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SPRINGS GLOBAL PARTICIPACOES",
+        "displaySymbol": "SGPS3.SA",
+        "figi": "BBG000JTVQN8",
+        "exchange": "BVMF",
+        "ticker": "SGPS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "KEPLER WEBER SA",
+        "displaySymbol": "KEPL3.SA",
+        "figi": "BBG000BYJYB5",
+        "exchange": "BVMF",
+        "ticker": "KEPL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE US REIT ETF",
+        "displaySymbol": "BUSR39.SA",
+        "figi": "BBG010QF0R60",
+        "exchange": "BVMF",
+        "ticker": "BUSR39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ETERNIT SA",
+        "displaySymbol": "ETER3.SA",
+        "figi": "BBG000BVSX50",
+        "exchange": "BVMF",
+        "ticker": "ETER3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "JOAQUIM OLIVEIRA S.A.-PARTIC",
+        "displaySymbol": "JOPA3.SA",
+        "figi": "BBG000BYHPT7",
+        "exchange": "BVMF",
+        "ticker": "JOPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "KALLAS INCORPORACOES E CONST",
+        "displaySymbol": "KLAS3.SA",
+        "figi": "BBG0115KSJ04",
+        "exchange": "BVMF",
+        "ticker": "KLAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW IGCT FUNDO DE INDICE",
+        "displaySymbol": "GOVE11.SA",
+        "figi": "BBG0028FBHD9",
+        "exchange": "BVMF",
+        "ticker": "GOVE11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FERTILIZANTES HERINGER LTDA",
+        "displaySymbol": "FHER3.SA",
+        "figi": "BBG000QBKQ24",
+        "exchange": "BVMF",
+        "ticker": "FHER3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "POMIFRUTAS SA",
+        "displaySymbol": "FRTA3.SA",
+        "figi": "BBG000QSVQR8",
+        "exchange": "BVMF",
+        "ticker": "FRTA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIMS SA",
+        "displaySymbol": "CMSA3.SA",
+        "figi": "BBG000BPTH66",
+        "exchange": "BVMF",
+        "ticker": "CMSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "JALLES MACHADO SA",
+        "displaySymbol": "JALL3.SA",
+        "figi": "BBG00Z61KCJ4",
+        "exchange": "BVMF",
+        "ticker": "JALL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DOTZ SA",
+        "displaySymbol": "DOTZ3.SA",
+        "figi": "BBG00ZLGTPJ6",
+        "exchange": "BVMF",
+        "ticker": "DOTZ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MARCOPOLO SA",
+        "displaySymbol": "POMO3.SA",
+        "figi": "BBG000C0CVP6",
+        "exchange": "BVMF",
+        "ticker": "POMO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOJAS QUERO QUERO S/A",
+        "displaySymbol": "LJQQ3.SA",
+        "figi": "BBG00W7G3VZ6",
+        "exchange": "BVMF",
+        "ticker": "LJQQ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA CATARINENSE AGUAS SANEAM",
+        "displaySymbol": "CASN3.SA",
+        "figi": "BBG000C3DW59",
+        "exchange": "BVMF",
+        "ticker": "CASN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MELIUZ SA - ON",
+        "displaySymbol": "CASH3.SA",
+        "figi": "BBG00XT1Y9C3",
+        "exchange": "BVMF",
+        "ticker": "CASH3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CAMBUCI S.A.",
+        "displaySymbol": "CAMB3.SA",
+        "figi": "BBG000BM5734",
+        "exchange": "BVMF",
+        "ticker": "CAMB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE S\u0026P 500 ETF",
+        "displaySymbol": "BIVB39.SA",
+        "figi": "BBG00YCTZNL6",
+        "exchange": "BVMF",
+        "ticker": "BIVB39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TIM SA",
+        "displaySymbol": "TIMS3.SA",
+        "figi": "BBG00XS1L2Y9",
+        "exchange": "BVMF",
+        "ticker": "TIMS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO BTG PACTUAL SA",
+        "displaySymbol": "BPAC3.SA",
+        "figi": "BBG002XY8194",
+        "exchange": "BVMF",
+        "ticker": "BPAC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PANATLANTICA SA",
+        "displaySymbol": "PATI3.SA",
+        "figi": "BBG000C02805",
+        "exchange": "BVMF",
+        "ticker": "PATI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BIOMM SA",
+        "displaySymbol": "BIOM3.SA",
+        "figi": "BBG000P5NF92",
+        "exchange": "BVMF",
+        "ticker": "BIOM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES NASDAQ BIOTECHNOLOGY",
+        "displaySymbol": "BIBB39.SA",
+        "figi": "BBG00YCTZQL9",
+        "exchange": "BVMF",
+        "ticker": "BIBB39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EAFE GROWTH ETF",
+        "displaySymbol": "BEFG39.SA",
+        "figi": "BBG010QDZ7Y0",
+        "exchange": "BVMF",
+        "ticker": "BEFG39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO ALFA DE INVESTIMENTO",
+        "displaySymbol": "BRIV3.SA",
+        "figi": "BBG000BK1JJ9",
+        "exchange": "BVMF",
+        "ticker": "BRIV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INDUSTRIAS J B DUARTE SA",
+        "displaySymbol": "JBDU3.SA",
+        "figi": "BBG000BYFSQ6",
+        "exchange": "BVMF",
+        "ticker": "JBDU3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ITAU UNIBANCO HOLDING SA",
+        "displaySymbol": "ITUB3.SA",
+        "figi": "BBG000BF0CL3",
+        "exchange": "BVMF",
+        "ticker": "ITUB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALLPARK EMPREENDIMENTOS PART",
+        "displaySymbol": "ALPK3.SA",
+        "figi": "BBG00TWFW2W2",
+        "exchange": "BVMF",
+        "ticker": "ALPK3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "B3 SA-BRASIL BOLSA BALCAO",
+        "displaySymbol": "B3SA3.SA",
+        "figi": "BBG000FYRHB9",
+        "exchange": "BVMF",
+        "ticker": "B3SA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHA CURR HEDGED MSCI EAFE",
+        "displaySymbol": "BHEF39.SA",
+        "figi": "BBG010Q988N9",
+        "exchange": "BVMF",
+        "ticker": "BHEF39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "DOMMO ENERGIA SA",
+        "displaySymbol": "DMMO3.SA",
+        "figi": "BBG007TBYZH5",
+        "exchange": "BVMF",
+        "ticker": "DMMO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PRINER SERVICOS INDUSTRIAIS",
+        "displaySymbol": "PRNR3.SA",
+        "figi": "BBG00JC2W9Y8",
+        "exchange": "BVMF",
+        "ticker": "PRNR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES GLOBAL HEALTHCARE ET",
+        "displaySymbol": "BIXJ39.SA",
+        "figi": "BBG00YFSYS99",
+        "exchange": "BVMF",
+        "ticker": "BIXJ39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "HBR REALTY EMPREENDIMENTOS I",
+        "displaySymbol": "HBRE3.SA",
+        "figi": "BBG00Z0WWB92",
+        "exchange": "BVMF",
+        "ticker": "HBRE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI CANADA ETF",
+        "displaySymbol": "BEWC39.SA",
+        "figi": "BBG010QF0LB7",
+        "exchange": "BVMF",
+        "ticker": "BEWC39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES S\u0026P 500 VALUE ETF",
+        "displaySymbol": "BIVE39.SA",
+        "figi": "BBG010Q54968",
+        "exchange": "BVMF",
+        "ticker": "BIVE39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "METALFRIO SOLUTIONS SA",
+        "displaySymbol": "FRIO3.SA",
+        "figi": "BBG000GCWF88",
+        "exchange": "BVMF",
+        "ticker": "FRIO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TERRA SANTA AGRO SA",
+        "displaySymbol": "TESA3.SA",
+        "figi": "BBG000Q9ZC33",
+        "exchange": "BVMF",
+        "ticker": "TESA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EMBRAER SA",
+        "displaySymbol": "EMBR3.SA",
+        "figi": "BBG000BVFFG1",
+        "exchange": "BVMF",
+        "ticker": "EMBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "STARA SA INDUSTRIA DE IMPLEM",
+        "displaySymbol": "STTR3.SA",
+        "figi": "BBG00HVPFR06",
+        "exchange": "BVMF",
+        "ticker": "STTR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TROCAFONE SA",
+        "displaySymbol": "1893055D.SA",
+        "figi": "BBG0119B43B9",
+        "exchange": "BVMF",
+        "ticker": "1893055D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EQUATORIAL PARA DISTRIBUIDOR",
+        "displaySymbol": "EQPA3.SA",
+        "figi": "BBG000BLD3H1",
+        "exchange": "BVMF",
+        "ticker": "EQPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DOMMO ENERGIA SA - RCPT",
+        "displaySymbol": "DMMO9.SA",
+        "figi": "BBG00YGD7XX3",
+        "exchange": "BVMF",
+        "ticker": "DMMO9.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BOA VISTA SERVICOS SA",
+        "displaySymbol": "BOAS3.SA",
+        "figi": "BBG00X71T4F1",
+        "exchange": "BVMF",
+        "ticker": "BOAS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ECORODOVIAS INFRA E LOG SA",
+        "displaySymbol": "ECOR3.SA",
+        "figi": "BBG000QSPZF8",
+        "exchange": "BVMF",
+        "ticker": "ECOR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW NYSE FANG+",
+        "displaySymbol": "TECK11.SA",
+        "figi": "BBG010HP6T22",
+        "exchange": "BVMF",
+        "ticker": "TECK11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIELO SA",
+        "displaySymbol": "CIEL3.SA",
+        "figi": "BBG000QVRZH7",
+        "exchange": "BVMF",
+        "ticker": "CIEL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "FLEX SA",
+        "displaySymbol": "FLEX3.SA",
+        "figi": "BBG00K8HDPK7",
+        "exchange": "BVMF",
+        "ticker": "FLEX3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DIAGNOSTICOS DA AMERICA SA",
+        "displaySymbol": "DASA3.SA",
+        "figi": "BBG000PNTC85",
+        "exchange": "BVMF",
+        "ticker": "DASA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CYRELA BRAZIL REALTY SA EMP",
+        "displaySymbol": "CYRE3.SA",
+        "figi": "BBG000BHPKM3",
+        "exchange": "BVMF",
+        "ticker": "CYRE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "WESTWING COMERCIO VAREJISTA",
+        "displaySymbol": "WEST3.SA",
+        "figi": "BBG00YZDMNZ5",
+        "exchange": "BVMF",
+        "ticker": "WEST3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CONSTRUTORA TENDA SA",
+        "displaySymbol": "TEND3.SA",
+        "figi": "BBG002GTK680",
+        "exchange": "BVMF",
+        "ticker": "TEND3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GERDAU S.A.",
+        "displaySymbol": "GGBR3.SA",
+        "figi": "BBG000N897J1",
+        "exchange": "BVMF",
+        "ticker": "GGBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MAESTRO LOCADORA DE VEICULOS",
+        "displaySymbol": "MSRO3.SA",
+        "figi": "BBG009DFKMC8",
+        "exchange": "BVMF",
+        "ticker": "MSRO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES GLOBAL REIT ETF",
+        "displaySymbol": "BGRT39.SA",
+        "figi": "BBG010QF0RF0",
+        "exchange": "BVMF",
+        "ticker": "BGRT39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "AMBIPAR PARTICIPACOES E EMPR",
+        "displaySymbol": "AMBP3.SA",
+        "figi": "BBG00VNJXKC0",
+        "exchange": "BVMF",
+        "ticker": "AMBP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RNI NEGOCIOS IMOBILIARIOS SA",
+        "displaySymbol": "RDNI3.SA",
+        "figi": "BBG000QRZLD2",
+        "exchange": "BVMF",
+        "ticker": "RDNI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CPFL ENERGIA SA",
+        "displaySymbol": "CPFE3.SA",
+        "figi": "BBG000Q992K5",
+        "exchange": "BVMF",
+        "ticker": "CPFE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ESTADUAL DE DISTRIBUICAO",
+        "displaySymbol": "CEED3.SA",
+        "figi": "BBG000R7LG69",
+        "exchange": "BVMF",
+        "ticker": "CEED3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PARANAPANEMA S.A.",
+        "displaySymbol": "PMAM3.SA",
+        "figi": "BBG000C07JJ6",
+        "exchange": "BVMF",
+        "ticker": "PMAM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "MOURA DUBEUX ENGENHARIA S/A",
+        "displaySymbol": "MDNE3.SA",
+        "figi": "BBG00RHV7L72",
+        "exchange": "BVMF",
+        "ticker": "MDNE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "NOTRE DAME INTERMED PAR SA",
+        "displaySymbol": "GNDI3.SA",
+        "figi": "BBG00KHH9QC9",
+        "exchange": "BVMF",
+        "ticker": "GNDI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "METALURGICA GERDAU SA",
+        "displaySymbol": "GOAU3.SA",
+        "figi": "BBG000BX32R7",
+        "exchange": "BVMF",
+        "ticker": "GOAU3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SAFRA PRE 5M",
+        "displaySymbol": "SFPR11.SA",
+        "figi": "BBG00YC6XLX9",
+        "exchange": "BVMF",
+        "ticker": "SFPR11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ONE FOODS HOLDINGS LTD",
+        "displaySymbol": "1428323D.SA",
+        "figi": "BBG00DGGB2W6",
+        "exchange": "BVMF",
+        "ticker": "1428323D.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PORTO SEGURO SA",
+        "displaySymbol": "PSSA3.SA",
+        "figi": "BBG000D7JN44",
+        "exchange": "BVMF",
+        "ticker": "PSSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "WEG SA",
+        "displaySymbol": "WEGE3.SA",
+        "figi": "BBG000BV7KM2",
+        "exchange": "BVMF",
+        "ticker": "WEGE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CONSORCIO ALFA DE ADMINIST",
+        "displaySymbol": "BRGE3.SA",
+        "figi": "BBG000BJQD44",
+        "exchange": "BVMF",
+        "ticker": "BRGE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES INC ISHARES ESG AWAR",
+        "displaySymbol": "BEGE39.SA",
+        "figi": "BBG00YCTZQC9",
+        "exchange": "BVMF",
+        "ticker": "BEGE39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA SEGUROS ALIANCA DA BAHIA",
+        "displaySymbol": "CSAB3.SA",
+        "figi": "BBG000BT5RP1",
+        "exchange": "BVMF",
+        "ticker": "CSAB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI AUSTRALIA ETFIA",
+        "displaySymbol": "BEWA39.SA",
+        "figi": "BBG010QF0N14",
+        "exchange": "BVMF",
+        "ticker": "BEWA39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ANIMA HOLDING SA",
+        "displaySymbol": "ANIM3.SA",
+        "figi": "BBG0059H9T62",
+        "exchange": "BVMF",
+        "ticker": "ANIM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRASILAGRO-CIA BRASILEIRA DE",
+        "displaySymbol": "AGRO3.SA",
+        "figi": "BBG000P1P902",
+        "exchange": "BVMF",
+        "ticker": "AGRO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RECRUSUL SA",
+        "displaySymbol": "RCSL3.SA",
+        "figi": "BBG000C0LLG8",
+        "exchange": "BVMF",
+        "ticker": "RCSL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO MERCANTIL DE INVESTIME",
+        "displaySymbol": "BMIN3.SA",
+        "figi": "BBG000BJ51R8",
+        "exchange": "BVMF",
+        "ticker": "BMIN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALMEIDA JUNIOR SHOPPING CENT",
+        "displaySymbol": "9572306Z.SA",
+        "figi": "BBG00KDS02B2",
+        "exchange": "BVMF",
+        "ticker": "9572306Z.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EMG MKT MIN VOL",
+        "displaySymbol": "BEMV39.SA",
+        "figi": "BBG010QDYJX6",
+        "exchange": "BVMF",
+        "ticker": "BEMV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "WLM INDUSTRIA E COMERCIO SA",
+        "displaySymbol": "WLMM3.SA",
+        "figi": "BBG000C0XQC8",
+        "exchange": "BVMF",
+        "ticker": "WLMM3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "PETRO RIO SA",
+        "displaySymbol": "PRIO3.SA",
+        "figi": "BBG001768FS4",
+        "exchange": "BVMF",
+        "ticker": "PRIO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "VULCABRAS AZALEIA SA",
+        "displaySymbol": "VULC3.SA",
+        "figi": "BBG000C2H7H9",
+        "exchange": "BVMF",
+        "ticker": "VULC3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INSTITUTO HERMES PARDINI SA",
+        "displaySymbol": "PARD3.SA",
+        "figi": "BBG00FVNT1V3",
+        "exchange": "BVMF",
+        "ticker": "PARD3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DIMED SA DISTRIBUIDORA DE ME",
+        "displaySymbol": "PNVL3.SA",
+        "figi": "BBG000C09256",
+        "exchange": "BVMF",
+        "ticker": "PNVL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BIOMM SA - RCT",
+        "displaySymbol": "BIOM9.SA",
+        "figi": "BBG00YFF7PD8",
+        "exchange": "BVMF",
+        "ticker": "BIOM9.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GETNINJAS SA",
+        "displaySymbol": "NINJ3.SA",
+        "figi": "BBG010CHWWD7",
+        "exchange": "BVMF",
+        "ticker": "NINJ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRASIL BROKERS PARTICIPACOES",
+        "displaySymbol": "BBRK3.SA",
+        "figi": "BBG000SW8LW8",
+        "exchange": "BVMF",
+        "ticker": "BBRK3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BB ETF IBOVESPA FUNDO DE IND",
+        "displaySymbol": "BBOV11.SA",
+        "figi": "BBG00XV3FYG8",
+        "exchange": "BVMF",
+        "ticker": "BBOV11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI USA MIN VOL FAC",
+        "displaySymbol": "BUSM39.SA",
+        "figi": "BBG00YCPVQZ6",
+        "exchange": "BVMF",
+        "ticker": "BUSM39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "COSAN SA",
+        "displaySymbol": "CSAN3.SA",
+        "figi": "BBG000QC7HL6",
+        "exchange": "BVMF",
+        "ticker": "CSAN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO SANTANDER  BRASIL-UNIT",
+        "displaySymbol": "SANB11.SA",
+        "figi": "BBG000QP1F64",
+        "exchange": "BVMF",
+        "ticker": "SANB11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI SOUTH KOREA ETF",
+        "displaySymbol": "BEWY39.SA",
+        "figi": "BBG00YCTZR82",
+        "exchange": "BVMF",
+        "ticker": "BEWY39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW ID ETF IMA-B",
+        "displaySymbol": "IMAB11.SA",
+        "figi": "BBG00P5MHWQ3",
+        "exchange": "BVMF",
+        "ticker": "IMAB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "JHSF PARTICIPACOES SA",
+        "displaySymbol": "JHSF3.SA",
+        "figi": "BBG000PGKZZ8",
+        "exchange": "BVMF",
+        "ticker": "JHSF3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "VIVER INCORPORADORA E CONSTR",
+        "displaySymbol": "VIVR3.SA",
+        "figi": "BBG000R5FW74",
+        "exchange": "BVMF",
+        "ticker": "VIVR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ORIZON VALORIZACAO DE RESIDU",
+        "displaySymbol": "ORVR3.SA",
+        "figi": "BBG00YLW5FS2",
+        "exchange": "BVMF",
+        "ticker": "ORVR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HASHDEX NASDAQ CRYPTO INDEX",
+        "displaySymbol": "HASH11.SA",
+        "figi": "BBG00ZZP98Z3",
+        "exchange": "BVMF",
+        "ticker": "HASH11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CONSERVAS ODERICH SA",
+        "displaySymbol": "ODER3.SA",
+        "figi": "BBG000B9WZ13",
+        "exchange": "BVMF",
+        "ticker": "ODER3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INVESTIMENTOS BEMGE SA",
+        "displaySymbol": "FIGE3.SA",
+        "figi": "BBG000BG5GC7",
+        "exchange": "BVMF",
+        "ticker": "FIGE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRQ SOLUCOES EM INFORMATICA",
+        "displaySymbol": "BRQB3.SA",
+        "figi": "BBG00BVVW658",
+        "exchange": "BVMF",
+        "ticker": "BRQB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI GLOBAL MIN VOL",
+        "displaySymbol": "BCWV39.SA",
+        "figi": "BBG010QF09J6",
+        "exchange": "BVMF",
+        "ticker": "BCWV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA TECIDOS SANTANENSE",
+        "displaySymbol": "CTSA3.SA",
+        "figi": "BBG000BTKW73",
+        "exchange": "BVMF",
+        "ticker": "CTSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CFL INC PAR S/A",
+        "displaySymbol": "CFLP3.SA",
+        "figi": "BBG00X7L5CJ1",
+        "exchange": "BVMF",
+        "ticker": "CFLP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CHINA LARGE-CAP ETF",
+        "displaySymbol": "BFXI39.SA",
+        "figi": "BBG010QF0HG1",
+        "exchange": "BVMF",
+        "ticker": "BFXI39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI INDIA ETF",
+        "displaySymbol": "BNDA39.SA",
+        "figi": "BBG00YCTZRT9",
+        "exchange": "BVMF",
+        "ticker": "BNDA39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "MRV ENGENHARIA",
+        "displaySymbol": "MRVE3.SA",
+        "figi": "BBG000QWTBF8",
+        "exchange": "BVMF",
+        "ticker": "MRVE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "HYPERA SA",
+        "displaySymbol": "HYPE3.SA",
+        "figi": "BBG000HWN5W8",
+        "exchange": "BVMF",
+        "ticker": "HYPE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CRISTAL PIGMENTOS DO BRASIL",
+        "displaySymbol": "CRPG3.SA",
+        "figi": "BBG000C1W329",
+        "exchange": "BVMF",
+        "ticker": "CRPG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ULTRAPAR PARTICIPACOES SA",
+        "displaySymbol": "UGPA3.SA",
+        "figi": "BBG000C2XVK4",
+        "exchange": "BVMF",
+        "ticker": "UGPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SMARTFIT - ORDINARY",
+        "displaySymbol": "SMFT3.SA",
+        "figi": "BBG00K61DDB1",
+        "exchange": "BVMF",
+        "ticker": "SMFT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EUCATEX SA INDUSTRIA E COMER",
+        "displaySymbol": "EUCA3.SA",
+        "figi": "BBG000BC1240",
+        "exchange": "BVMF",
+        "ticker": "EUCA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA SIDERURGICA NACIONAL SA",
+        "displaySymbol": "CSNA3.SA",
+        "figi": "BBG000BT9XW6",
+        "exchange": "BVMF",
+        "ticker": "CSNA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANESTES SA-BANCO ESTADO ESP",
+        "displaySymbol": "BEES3.SA",
+        "figi": "BBG000BGWBF5",
+        "exchange": "BVMF",
+        "ticker": "BEES3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "EDP - ENERGIAS DO BRASIL SA",
+        "displaySymbol": "ENBR3.SA",
+        "figi": "BBG000BVW0J2",
+        "exchange": "BVMF",
+        "ticker": "ENBR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BLAU FARMACEUTICA SA",
+        "displaySymbol": "BLAU3.SA",
+        "figi": "BBG00J8C4XQ8",
+        "exchange": "BVMF",
+        "ticker": "BLAU3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ALPHAVILLE SA",
+        "displaySymbol": "AVLL3.SA",
+        "figi": "BBG00YJ8GXF1",
+        "exchange": "BVMF",
+        "ticker": "AVLL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI TAIWAN ETF",
+        "displaySymbol": "BEWT39.SA",
+        "figi": "BBG00YCTZRN5",
+        "exchange": "BVMF",
+        "ticker": "BEWT39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CURY CONSTRUTORA E INCORPORA",
+        "displaySymbol": "CURY3.SA",
+        "figi": "BBG00X0T4YB2",
+        "exchange": "BVMF",
+        "ticker": "CURY3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IGUA SA",
+        "displaySymbol": "IGSN3.SA",
+        "figi": "BBG001DLLDK2",
+        "exchange": "BVMF",
+        "ticker": "IGSN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI GERMANY ETF",
+        "displaySymbol": "BEWG39.SA",
+        "figi": "BBG00YCTZM29",
+        "exchange": "BVMF",
+        "ticker": "BEWG39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "YDUQS PARTICIPACOES SA",
+        "displaySymbol": "YDUQ3.SA",
+        "figi": "BBG000RPWQ38",
+        "exchange": "BVMF",
+        "ticker": "YDUQ3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENEVA SA",
+        "displaySymbol": "ENEV3.SA",
+        "figi": "BBG000RNWL16",
+        "exchange": "BVMF",
+        "ticker": "ENEV3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AMPLA ENERGIA E SERVICOS SA",
+        "displaySymbol": "CBEE3.SA",
+        "figi": "BBG000BMK0G8",
+        "exchange": "BVMF",
+        "ticker": "CBEE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IOCHPE-MAXION S.A.",
+        "displaySymbol": "MYPK3.SA",
+        "figi": "BBG000BZPMZ5",
+        "exchange": "BVMF",
+        "ticker": "MYPK3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "IT NOW ISE FUNDO DE INDICE",
+        "displaySymbol": "ISUS11.SA",
+        "figi": "BBG00280JWD1",
+        "exchange": "BVMF",
+        "ticker": "ISUS11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES EXPONENTIAL TECH ETF",
+        "displaySymbol": "BXTC39.SA",
+        "figi": "BBG010QF0SF8",
+        "exchange": "BVMF",
+        "ticker": "BXTC39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CRUZEIRO DO SUL EDUCACIONAL",
+        "displaySymbol": "CSED3.SA",
+        "figi": "BBG00Y0BB1L2",
+        "exchange": "BVMF",
+        "ticker": "CSED3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "WHIRLPOOL SA",
+        "displaySymbol": "WHRL3.SA",
+        "figi": "BBG000BZGW92",
+        "exchange": "BVMF",
+        "ticker": "WHRL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AERIS INDUSTRIA E COMERCIO D",
+        "displaySymbol": "AERI3.SA",
+        "figi": "BBG00XXS54C2",
+        "exchange": "BVMF",
+        "ticker": "AERI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EAFE ETF",
+        "displaySymbol": "BEFA39.SA",
+        "figi": "BBG00YCPKHJ6",
+        "exchange": "BVMF",
+        "ticker": "BEFA39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BRADESPAR SA",
+        "displaySymbol": "BRAP3.SA",
+        "figi": "BBG000C25NR6",
+        "exchange": "BVMF",
+        "ticker": "BRAP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "KORA SAUDE PARTICIPACOES SA",
+        "displaySymbol": "KRSA3.SA",
+        "figi": "BBG00ZXZHJ08",
+        "exchange": "BVMF",
+        "ticker": "KRSA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BOA SAFRA SEMENTES SA",
+        "displaySymbol": "SOJA3.SA",
+        "figi": "BBG00ZXZ1FW8",
+        "exchange": "BVMF",
+        "ticker": "SOJA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA PARANAENSE DE ENERGIA",
+        "displaySymbol": "CPLE3.SA",
+        "figi": "BBG000BS2VN9",
+        "exchange": "BVMF",
+        "ticker": "CPLE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "TPI - TRIUNFO PARTICIPACOES",
+        "displaySymbol": "TPIS3.SA",
+        "figi": "BBG000GK07B9",
+        "exchange": "BVMF",
+        "ticker": "TPIS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "INTER CONSTRUTORA E INC SA",
+        "displaySymbol": "INNT3.SA",
+        "figi": "BBG00K7R7JK7",
+        "exchange": "BVMF",
+        "ticker": "INNT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES TRUST ISHARES ESG AW",
+        "displaySymbol": "BEGU39.SA",
+        "figi": "BBG00YCTZQ11",
+        "exchange": "BVMF",
+        "ticker": "BEGU39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA MELHORAMENTOS DE SAO PAU",
+        "displaySymbol": "MSPA3.SA",
+        "figi": "BBG000BZG118",
+        "exchange": "BVMF",
+        "ticker": "MSPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI EMERGING MARKET",
+        "displaySymbol": "BEEM39.SA",
+        "figi": "BBG00YCPKJH4",
+        "exchange": "BVMF",
+        "ticker": "BEEM39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "BCO BTG PACTUAL SA- PREF RCP",
+        "displaySymbol": "BPAC12.SA",
+        "figi": "BBG011CK07F6",
+        "exchange": "BVMF",
+        "ticker": "BPAC12.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "REFINARIA DE PETROLEOS MANGU",
+        "displaySymbol": "RPMG3.SA",
+        "figi": "BBG000BNJDR8",
+        "exchange": "BVMF",
+        "ticker": "RPMG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SONDOTECNICA ENGENHARIA SOLO",
+        "displaySymbol": "SOND3.SA",
+        "figi": "BBG000C19BQ1",
+        "exchange": "BVMF",
+        "ticker": "SOND3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "RUMO MALHA NORTE SA - COMMON",
+        "displaySymbol": "FRRN3B.SA",
+        "figi": "BBG000BWN867",
+        "exchange": "BVMF",
+        "ticker": "FRRN3B.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "METALURGICA RIOSULENSE S.A.",
+        "displaySymbol": "RSUL3.SA",
+        "figi": "BBG000C0QXY7",
+        "exchange": "BVMF",
+        "ticker": "RSUL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CORE S\u0026P SMALL-CAP E",
+        "displaySymbol": "BIJR39.SA",
+        "figi": "BBG00YCTZR37",
+        "exchange": "BVMF",
+        "ticker": "BIJR39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "WETZEL SA",
+        "displaySymbol": "MWET3.SA",
+        "figi": "BBG000BZP261",
+        "exchange": "BVMF",
+        "ticker": "MWET3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DE MINAS GER",
+        "displaySymbol": "CMIG3.SA",
+        "figi": "BBG000BCFVY8",
+        "exchange": "BVMF",
+        "ticker": "CMIG3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ROSSI RESIDENCIAL SA",
+        "displaySymbol": "RSID3.SA",
+        "figi": "BBG000BGRJ73",
+        "exchange": "BVMF",
+        "ticker": "RSID3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "AES BRASIL ENERGIA SA",
+        "displaySymbol": "AESB3.SA",
+        "figi": "BBG00ZGXS3Z7",
+        "exchange": "BVMF",
+        "ticker": "AESB3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES EUROPE ETF",
+        "displaySymbol": "BIEV39.SA",
+        "figi": "BBG010Q53KY3",
+        "exchange": "BVMF",
+        "ticker": "BIEV39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "MPM CORPOREOS SA",
+        "displaySymbol": "ESPA3.SA",
+        "figi": "BBG00YVGP757",
+        "exchange": "BVMF",
+        "ticker": "ESPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "LOG-IN LOGISTICA INTERMODAL",
+        "displaySymbol": "LOGN3.SA",
+        "figi": "BBG000R5G0G3",
+        "exchange": "BVMF",
+        "ticker": "LOGN3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES CARBONO EFICIENTE",
+        "displaySymbol": "ECOO11.SA",
+        "figi": "BBG00341XLR4",
+        "exchange": "BVMF",
+        "ticker": "ECOO11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ENERGETICA DE SAO PAULO",
+        "displaySymbol": "CESP3.SA",
+        "figi": "BBG000BN9V17",
+        "exchange": "BVMF",
+        "ticker": "CESP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ELETROBRAS PARTICIPACOES SA",
+        "displaySymbol": "LIPR3.SA",
+        "figi": "BBG000BD1676",
+        "exchange": "BVMF",
+        "ticker": "LIPR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "DUKE ENERGY INTL GERACAO PAR",
+        "displaySymbol": "GEPA3.SA",
+        "figi": "BBG000D5KGD1",
+        "exchange": "BVMF",
+        "ticker": "GEPA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES MSCI MEXICO ETF",
+        "displaySymbol": "BEWW39.SA",
+        "figi": "BBG00YCTZM83",
+        "exchange": "BVMF",
+        "ticker": "BEWW39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "NEOENERGIA SA",
+        "displaySymbol": "NEOE3.SA",
+        "figi": "BBG000BX1R21",
+        "exchange": "BVMF",
+        "ticker": "NEOE3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "GPS PARTICIPACOES E EMPREEND",
+        "displaySymbol": "GGPS3.SA",
+        "figi": "BBG00ZXZHKF9",
+        "exchange": "BVMF",
+        "ticker": "GGPS3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ISHARES U.S. MEDICAL DEVICES",
+        "displaySymbol": "BIHI39.SA",
+        "figi": "BBG010QDYZ15",
+        "exchange": "BVMF",
+        "ticker": "BIHI39.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "FERROVIA CENTRO-ATLANTICA SA",
+        "displaySymbol": "VSPT3.SA",
+        "figi": "BBG000C2GYS9",
+        "exchange": "BVMF",
+        "ticker": "VSPT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "KLABIN SA - UNIT",
+        "displaySymbol": "KLBN11.SA",
+        "figi": "BBG005TJJ8C4",
+        "exchange": "BVMF",
+        "ticker": "KLBN11.SA",
+        "type": "Unit"
+    }, {
+        "currency": "BRL",
+        "description": "ETF BRADESCO IMA-B FUNDO DE",
+        "displaySymbol": "IMBB11.SA",
+        "figi": "BBG00R2JGC11",
+        "exchange": "BVMF",
+        "ticker": "IMBB11.SA",
+        "type": "ETP"
+    }, {
+        "currency": "BRL",
+        "description": "TELEFONICA BRASIL S.A.",
+        "displaySymbol": "VIVT3.SA",
+        "figi": "BBG000C9BF46",
+        "exchange": "BVMF",
+        "ticker": "VIVT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA SANEAMENTO BASICO DE SP",
+        "displaySymbol": "SBSP3.SA",
+        "figi": "BBG000BGSDR3",
+        "exchange": "BVMF",
+        "ticker": "SBSP3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA BRASILEIRA DE DISTRIBUIC",
+        "displaySymbol": "PCAR3.SA",
+        "figi": "BBG000C03H77",
+        "exchange": "BVMF",
+        "ticker": "PCAR3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BRB BANCO DE BRASILIA SA",
+        "displaySymbol": "BSLI3.SA",
+        "figi": "BBG000BLDDL4",
+        "exchange": "BVMF",
+        "ticker": "BSLI3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "CIA ESTADUAL DE GERACAO E TR",
+        "displaySymbol": "EEEL3.SA",
+        "figi": "BBG000CSYF58",
+        "exchange": "BVMF",
+        "ticker": "EEEL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "M DIAS BRANCO SA",
+        "displaySymbol": "MDIA3.SA",
+        "figi": "BBG000BS3877",
+        "exchange": "BVMF",
+        "ticker": "MDIA3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "SAO MARTINHO SA",
+        "displaySymbol": "SMTO3.SA",
+        "figi": "BBG000QVK0G2",
+        "exchange": "BVMF",
+        "ticker": "SMTO3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "ENERGISA MATO GROSSO DISTRIB",
+        "displaySymbol": "ENMT3.SA",
+        "figi": "BBG000BP57D6",
+        "exchange": "BVMF",
+        "ticker": "ENMT3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BARDELLA SA INDUSTRIAS MECAN",
+        "displaySymbol": "BDLL3.SA",
+        "figi": "BBG000BGS0Q2",
+        "exchange": "BVMF",
+        "ticker": "BDLL3.SA",
+        "type": "Common Stock"
+    }, {
+        "currency": "BRL",
+        "description": "BANCO INTER SA-UNITS",
+        "displaySymbol": "BIDI11.SA",
+        "figi": "BBG00KK062H3",
+        "exchange": "BVMF",
+        "ticker": "BIDI11.SA",
+        "type": "Unit"
+    }
+]
