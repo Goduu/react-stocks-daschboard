@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Paper, Avatar, TextField, AccordionDetails, AccordionSummary, Accordion, Typography } from '@material-ui/core';
-import Card from '../Card'
-import {SwotInterface} from './SwotInterface'
-import { amber, lime, teal, orange } from '@material-ui/core/colors';
+import { makeStyles } from '@mui/styles';
+import { SwotInterface } from './SwotInterface'
+import { amber, lime, teal, orange } from '@mui/material/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -91,24 +88,24 @@ function Swot(props) {
 
     return (
         <SwotInterface
-        classes={classes} expanded={expanded}
-        str1={str1} setStr1={setStr1}
-        str2={str2} setStr2={setStr2}
-        str3={str3} setStr3={setStr3}
-        wek1={wek1} setWek1={setWek1}
-        wek2={wek2} setWek2={setWek2}
-        wek3={wek3} setWek3={setWek3}
-        opt1={opt1} setOpt1={setOpt1}
-        opt2={opt2} setOpt2={setOpt2}
-        opt3={opt3} setOpt3={setOpt3}
-        trt1={trt1} setTrt1={setTrt1}
-        trt2={trt2} setTrt2={setTrt2}
-        trt3={trt3} setTrt3={setTrt3}
-        saveParams={saveParams} handleChange={handleChange}
-        {...props}
+            classes={classes} expanded={expanded}
+            str1={str1} setStr1={setStr1}
+            str2={str2} setStr2={setStr2}
+            str3={str3} setStr3={setStr3}
+            wek1={wek1} setWek1={setWek1}
+            wek2={wek2} setWek2={setWek2}
+            wek3={wek3} setWek3={setWek3}
+            opt1={opt1} setOpt1={setOpt1}
+            opt2={opt2} setOpt2={setOpt2}
+            opt3={opt3} setOpt3={setOpt3}
+            trt1={trt1} setTrt1={setTrt1}
+            trt2={trt2} setTrt2={setTrt2}
+            trt3={trt3} setTrt3={setTrt3}
+            saveParams={saveParams} handleChange={handleChange}
+            {...props}
         />
     );
 }
 
 
-export {Swot}
+export { Swot }

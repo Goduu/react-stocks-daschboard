@@ -6,8 +6,8 @@ import {
   DialogActions,
   Button,
   Box,
-  withStyles,
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 
 const styles = (theme) => ({
   dialogPaper: { maxWidth: `${theme.breakpoints.values.md}px !important` },

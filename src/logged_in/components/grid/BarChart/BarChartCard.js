@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import {
   BarChart,
   Bar,
   Tooltip,
   ResponsiveContainer,
   YAxis,
-  XAxis
+  XAxis,
 } from "recharts";
 import {
   Card,
@@ -17,29 +17,25 @@ import {
   Menu,
   MenuItem,
   Box,
-  makeStyles
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { fetchDividendData } from '../../../../shared/functions/requests'
-import NoData from '../../../../shared/components/NoData'
-import { useSelector} from 'react-redux';
-
+  makeStyles,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { fetchDividendData } from "../../../../shared/functions/requests";
+import NoData from "../../../../shared/components/NoData";
+import { useSelector } from "react-redux";
 
 // https://codesandbox.io/s/8m6n8?file=/src/Chart.jsx candelstick chart
-
-
 
 const itemHeight = 216;
 const options = ["6 Months", "1 Year", "5 Years", "Max"];
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
-    border: '1px solid rgba(255, 255, 255, 0.12)',
-    borderRadius: '5px'
+    height: "100%",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    borderRadius: "5px",
   },
-}))
+}));
 
 function DividendChart(props) {
   const classes = useStyles();
@@ -49,29 +45,34 @@ function DividendChart(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(props.params.period);
   const [chartData, setChartData] = useState();
-  const token = useSelector(state => state.auth.token)
+  const token = useSelector((state) => state.auth.token);
 
-  let ticker = props.identifier
+  let ticker = props.identifier;
   useEffect(() => {
-    fetchDividendData(ticker, selectedOption, token)
-      .then(res => {
-        if (res.PriceHistory) {
-          res = res.PriceHistory.map(p => {
-            return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
-          })
-          setChartData(res)
-        }
-      })
-  }, [ticker,token,selectedOption])
+    fetchDividendData(ticker, selectedOption, token).then((res) => {
+      if (res.PriceHistory) {
+        res = res.PriceHistory.map((p) => {
+          return {
+            ...p,
+            date: new Date(
+              p.date.year,
+              p.date.month,
+              p.date.dayOfMonth
+            ).toLocaleDateString(),
+          };
+        });
+        setChartData(res);
+      }
+    });
+  }, [ticker, token, selectedOption]);
 
   useEffect(() => {
-    firstCall()
-  }, [])
+    firstCall();
+  }, []);
 
   const firstCall = useCallback(() => {
-    selectOption(props.params.period)
-  }, [props.params.period]
-  );
+    selectOption(props.params.period);
+  }, [props.params.period]);
 
   const handleClick = useCallback(
     (event) => {
@@ -96,9 +97,9 @@ function DividendChart(props) {
       case "5 Years":
         return "Last 5 years";
       case "Max":
-        return "Historic Period"
+        return "Historic Period";
       default:
-        return
+        return;
       // throw new Error("No branch selected in switch-statement");
     }
   }, [selectedOption]);
@@ -110,13 +111,13 @@ function DividendChart(props) {
   const selectOption = useCallback(
     (selectedOption_) => {
       setSelectedOption(selectedOption_);
-      let period = 300
+      let period = 300;
       switch (selectedOption_) {
         case "6 Months":
-          period = 180
+          period = 180;
           break;
         case "1 Year":
-          period = 365
+          period = 365;
           break;
         case "5 Years":
           period = 1825;
@@ -125,25 +126,31 @@ function DividendChart(props) {
           period = 30000;
           break;
         default:
-          period = 30
+          period = 30;
       }
-      fetchDividendData(ticker, period, token)
-        .then(res => {
-          res = res.PriceHistory.map(p => {
-            return {...p, date: new Date(p.date.year,p.date.month,p.date.dayOfMonth).toLocaleDateString()}
-          })
-          setChartData(res)
-        })
-      props.changeParams({ id: props.i, content: { period: selectedOption_ } })
+      fetchDividendData(ticker, period, token).then((res) => {
+        res = res.PriceHistory.map((p) => {
+          return {
+            ...p,
+            date: new Date(
+              p.date.year,
+              p.date.month,
+              p.date.dayOfMonth
+            ).toLocaleDateString(),
+          };
+        });
+        setChartData(res);
+      });
+      props.changeParams({ id: props.i, content: { period: selectedOption_ } });
       handleClose();
     },
-    [setSelectedOption, handleClose, props, ticker,token]
+    [setSelectedOption, handleClose, props, ticker, token]
   );
 
   const isOpen = Boolean(anchorEl);
 
   return (
-    <Box height={'100px'} className={classes.root}>
+    <Box height={"100px"} className={classes.root}>
       <Card>
         <Box pt={2} px={2} pb={4}>
           <Box display="flex" justifyContent="space-between">
@@ -192,26 +199,39 @@ function DividendChart(props) {
           </Box>
         </Box>
         <CardContent>
-          <Box height={'73px'}>
-            {chartData ?
+          <Box height={"73px"}>
+            {chartData ? (
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} type="number" margin={{ top: 0, left: 1, right: 1, bottom: 0 }}>
-                  <Bar type="monotone" dataKey="adjDividend" fill="#8884d8" strokeWidth={2} dot={false} />
-                  <YAxis domain={[0, 'dataMax']} hide />
-                  <XAxis dataKey="date"  hide />
+                <BarChart
+                  data={chartData}
+                  type="number"
+                  margin={{ top: 0, left: 1, right: 1, bottom: 0 }}
+                >
+                  <Bar
+                    type="monotone"
+                    dataKey="adjDividend"
+                    fill="#8884d8"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <YAxis domain={[0, "dataMax"]} hide />
+                  <XAxis dataKey="date" hide />
                   <Tooltip
                     formatter={formatter}
                     cursor={false}
                     contentStyle={{
                       border: "none",
-                      borderRadius: '5px',
-                      boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
-                      color: 'black'
+                      borderRadius: "5px",
+                      boxShadow:
+                        "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+                      color: "black",
                     }}
                   />
                 </BarChart>
               </ResponsiveContainer>
-              : <NoData />}
+            ) : (
+              <NoData />
+            )}
           </Box>
         </CardContent>
       </Card>
@@ -227,8 +247,8 @@ DividendChart.propTypes = {
 };
 
 export default function BarChartCard(props) {
-  return ({
-    type: 'chart',
+  return {
+    type: "chart",
     i: props.i,
     content: (
       <div key={props.i} data-grid={props}>
@@ -241,9 +261,9 @@ export default function BarChartCard(props) {
           {...props}
           color={"red"}
           height="100px"
-          title="Dividend" />
+          title="Dividend"
+        />
       </div>
-    )
-  }
-  );
+    ),
+  };
 }

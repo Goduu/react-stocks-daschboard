@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { findWatchlist, fetchWatchlistData, updateWatchlist, fetchTickersInfosByList } from '../../../shared/functions/requests.js';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { useTranslation } from 'react-i18next';
 import { formatValueByType } from '../../../shared/functions/formatValueByType'
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from '@mui/base';
 
 
 import WatchlistInterface from './WatchlistInterface'
@@ -135,10 +135,10 @@ function Watchlist(props) {
                         ]
                         el.priceChart = []
                         el.priceChart.values = el.chart.indicators.quote[0].close
-                        .filter(r => r !== null)
-                        .map(r => {
-                            return { value: r.toFixed(2) }
-                        })
+                            .filter(r => r !== null)
+                            .map(r => {
+                                return { value: r.toFixed(2) }
+                            })
                         el.price = el.chart.indicators.quote[0].close.slice(-1)[0] && el.chart.indicators.quote[0].close.slice(-1)[0].toFixed(2)
                         return el
                     }

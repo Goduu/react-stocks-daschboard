@@ -15,10 +15,9 @@ import {
   FormControl,
   Select,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import withWidth from "@material-ui/core/withWidth";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
@@ -289,4 +288,4 @@ Settings1.propTypes = {
   pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Settings1));
+export default withStyles(styles, { withTheme: true })(Settings1);

@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography } from "@mui/material";
+import { withStyles } from "@mui/styles";
 
-const styles = theme => ({
+const styles = (theme) => ({
   main: {
     backgroundColor: theme.palette.warning.light,
     border: `${theme.border.borderWidth}px solid ${theme.palette.warning.main}`,
     padding: theme.spacing(2),
-    borderRadius: theme.shape.borderRadius
-  }
+    borderRadius: theme.shape.borderRadius,
+  },
 });
 
 function HighlighedInformation(props) {
@@ -26,9 +27,9 @@ HighlighedInformation.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
-    PropTypes.array
+    PropTypes.array,
   ]).isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(HighlighedInformation);

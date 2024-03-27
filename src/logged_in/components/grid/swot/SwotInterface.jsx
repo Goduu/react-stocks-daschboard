@@ -1,6 +1,6 @@
 import React from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Avatar, TextField, AccordionDetails, AccordionSummary, Accordion, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Avatar, TextField, AccordionDetails, AccordionSummary, Accordion, Typography } from '@mui/material';
 import Card from '../Card'
 import PropTypes from "prop-types";
 

@@ -10,9 +10,9 @@ import {
   ListItemText,
   Typography,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import MessageIcon from "@material-ui/icons/Message";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import MessageIcon from "@mui/icons-material/Message";
 import MessageListItem from "./MessageListItem";
 
 const styles = (theme) => ({

@@ -6,24 +6,24 @@ import {
   DialogContent,
   DialogActions,
   Typography,
-  withStyles
-} from "@material-ui/core";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ColoredButton from "../../../shared/components/ColoredButton";
 
-const styles = theme => ({
+const styles = (theme) => ({
   dialogActions: {
     justifyContent: "flex-start",
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    paddingRight: theme.spacing(2),
   },
   dialog: {
-    zIndex: 1400
+    zIndex: 1400,
   },
   backIcon: {
-    marginRight: theme.spacing(1)
-  }
+    marginRight: theme.spacing(1),
+  },
 });
 
 function CookieRulesDialog(props) {
@@ -131,10 +131,7 @@ function CookieRulesDialog(props) {
         </Typography>
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
-        <ColoredButton
-          onClick={onClose}
-          variant="contained"
-        >
+        <ColoredButton onClick={onClose} variant="contained">
           <ArrowBackIcon className={classes.backIcon} />
           Back
         </ColoredButton>
@@ -147,7 +144,7 @@ CookieRulesDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CookieRulesDialog);

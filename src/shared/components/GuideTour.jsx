@@ -1,12 +1,11 @@
 import { React, useState, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Popover, ClickAwayListener, TextField, Paper, Avatar, Grid, IconButton,InputAdornment } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Popover, ClickAwayListener, TextField, Paper, Avatar, Grid, IconButton, InputAdornment, Rating } from '@mui/material';
 import { useEffect } from 'react';
-import Rating from '@material-ui/lab/Rating';
-import MessageIcon from '@material-ui/icons/Message';
+import MessageIcon from '@mui/icons-material/Message';
 import { useDispatch } from 'react-redux';
 import { isSidedrawerOpen } from '../redux/actions/ui.actions.js'
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@mui/icons-material/Send';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,40 +58,40 @@ function HoverRating() {
                             setHover(newHover);
                         }}
                     />
-                
-                <Popover
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    anchorEl={anchorReview}
-                    open={reviewOpen}
-                >
-                    <Paper elevation={1} className={classes.commentBox}>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Review"
-                            variant="outlined"
-                            multiline
-                            rows={5}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        className={classes.iconButton}
-                                        onClick={() => {
-                                        }}>
-                                        <SendIcon />
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </Paper>
-                </Popover>
+
+                    <Popover
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        anchorEl={anchorReview}
+                        open={reviewOpen}
+                    >
+                        <Paper elevation={1} className={classes.commentBox}>
+                            <TextField
+                                required
+                                id="filled-required"
+                                label="Review"
+                                variant="outlined"
+                                multiline
+                                rows={5}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            className={classes.iconButton}
+                                            onClick={() => {
+                                            }}>
+                                            <SendIcon />
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </Paper>
+                    </Popover>
                 </Grid>
                 <Grid item className={classes.comments}>
                     <Avatar onClick={() => dispatch(isSidedrawerOpen(true))}><MessageIcon /></Avatar>

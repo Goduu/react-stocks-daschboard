@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Paper, Typography, LinearProgress } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Button, Paper, Typography, LinearProgress } from '@mui/material';
 import { getQuoteData } from '../../../../shared/functions/requests.js';
 import Stockinfos from './StockInfos';
 import { useSelector } from 'react-redux';
 import Card from '../Card'
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@mui/material/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -90,4 +90,4 @@ function MainCard(props) {
 
 }
 
-export {MainCard}
+export { MainCard }

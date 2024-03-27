@@ -1,8 +1,8 @@
 import { React, useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { getGridsIdentifiers } from '../../../../shared/functions/requests.js';
-import {SelectMenuInterface} from './SelectMenuInterface'
+import { SelectMenuInterface } from './SelectMenuInterface'
 
 // '-webkit-mask-image': 'linear-gradient(90deg, #000 96%, transparent)',
 const menuWidth = 500
@@ -106,7 +106,7 @@ export function SelectMenu(props) {
         // setIsMaxLeft(myRef.current.scrollLeft <= 0)
         setIsMaxRight(myRef.current.scrollWidth <= myRef.current.clientWidth + 4)
 
-    },[myRef.current && myRef.current.scrollWidth])
+    }, [myRef.current && myRef.current.scrollWidth])
 
     useEffect(() => {
         getGridsIdentifiers(userId, token)
@@ -124,14 +124,14 @@ export function SelectMenu(props) {
 
     return (
         <SelectMenuInterface
-        classes={classes}
-        isMaxLeft={isMaxLeft}
-        scrollRight={scrollRight}
-        scrollLeft={scrollLeft}
-        isMaxRight={isMaxRight}
-        identifiers={identifiers}
-        myRef={myRef}
-        {...props} />
+            classes={classes}
+            isMaxLeft={isMaxLeft}
+            scrollRight={scrollRight}
+            scrollLeft={scrollLeft}
+            isMaxRight={isMaxRight}
+            identifiers={identifiers}
+            myRef={myRef}
+            {...props} />
     );
 }
 

@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
 import { fetchPriceData, fetchDividendData, fetchFinancialHistory } from '../../../../shared/functions/requests'
@@ -45,7 +45,7 @@ function MultichartsFullscreen(props) {
     const theme = useTheme();
 
     const firstCall = useCallback(() => {
-        let charts_ =[]
+        let charts_ = []
         let title_
         props.params.charts.forEach(s => {
             charts_.push({ name: s.name, type: s.type, pos: s.pos, color: s.color })

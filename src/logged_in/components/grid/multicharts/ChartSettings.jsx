@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@mui/styles';
 import PropTypes from 'prop-types';
 import {
     Dialog, ButtonGroup, Button, Switch, DialogTitle, ListItemText, Checkbox, DialogActions,
     ListItem, List, Radio, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     InputLabel, Select, Tooltip, InputAdornment, MenuItem
-} from '@material-ui/core/';
-import { blue } from '@material-ui/core/colors';
+} from '@mui/material/';
+import { blue } from '@mui/material/colors';
 import { useEffect } from 'react';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import StopRoundedIcon from '@material-ui/icons/StopRounded';
-import { color } from '@material-ui/system';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import StopRoundedIcon from '@mui/icons-material/StopRounded';
+import { color } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,7 +83,7 @@ export default function StatisticsSettings(props) {
                 chartsSettings_.push({ name: c.name, type: c.type, pos: c.pos, color: c.color, period: period })
             }
         })
-        saveSettings({period: period, charts: chartsSettings_});
+        saveSettings({ period: period, charts: chartsSettings_ });
         setOpen(false);
         // setSelectedValue(value);
     };

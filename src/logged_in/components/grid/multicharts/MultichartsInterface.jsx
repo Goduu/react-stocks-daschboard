@@ -6,12 +6,12 @@ import ChartSettings from './ChartSettings'
 import { format } from "date-fns";
 import _ from 'lodash'
 import Card from '../Card'
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import {
     Paper,
     Grid,
     Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 
 const CustomTooltip = props => {
@@ -46,7 +46,7 @@ function MultichartInterface(props) {
         icon: FullscreenIcon,
         action: () => handleFullScreen('multichart')
     }
-    console.log("props2",props)
+    console.log("props2", props)
 
     return (
         <Card openSettings={() => setConfigOpen(!configOpen)} {...props} extraMenu={extraMenu} >
@@ -117,7 +117,7 @@ function MultichartInterface(props) {
                             })}
 
                         </ComposedChart>
-                        
+
                     </ResponsiveContainer>
                 }
 

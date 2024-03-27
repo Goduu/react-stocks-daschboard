@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Cropper from "react-cropper";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
 import shadeColor from "../functions/shadeColor";
 
 const styles = {
@@ -41,13 +41,14 @@ const styles = {
       minWidth: "0 !important",
       width: "100%",
     },
-    ".cropper-wrap-box, .cropper-canvas, .cropper-drag-box, .cropper-crop-box, .cropper-modal": {
-      bottom: "0",
-      left: "0",
-      position: "absolute",
-      right: "0",
-      top: "0",
-    },
+    ".cropper-wrap-box, .cropper-canvas, .cropper-drag-box, .cropper-crop-box, .cropper-modal":
+      {
+        bottom: "0",
+        left: "0",
+        position: "absolute",
+        right: "0",
+        top: "0",
+      },
     ".cropper-wrap-box, .cropper-canvas": {
       overflow: "hidden",
     },
@@ -260,9 +261,10 @@ const styles = {
     ".cropper-crop": {
       cursor: "crosshair",
     },
-    ".cropper-disabled .cropper-drag-box, .cropper-disabled .cropper-face, .cropper-disabled .cropper-line, .cropper-disabled .cropper-point": {
-      cursor: "not-allowed",
-    },
+    ".cropper-disabled .cropper-drag-box, .cropper-disabled .cropper-face, .cropper-disabled .cropper-line, .cropper-disabled .cropper-point":
+      {
+        cursor: "not-allowed",
+      },
   },
 };
 

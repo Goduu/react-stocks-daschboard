@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { Button, createMuiTheme } from "@mui/material";
 
 function ColoredButton(props) {
   const { color, children, theme } = props;
@@ -8,22 +8,20 @@ function ColoredButton(props) {
     ...theme,
     palette: {
       primary: {
-        main: color
-      }
-    }
+        main: color,
+      },
+    },
   });
   const buttonProps = (({ color, theme, children, ...o }) => o)(props);
   return (
-    <MuiThemeProvider theme={buttonTheme}>
-      <Button {...buttonProps} color="primary">
-        {children}
-      </Button>
-    </MuiThemeProvider>
+    <Button {...buttonProps} color="primary">
+      {children}
+    </Button>
   );
 }
 
 ColoredButton.propTypes = {
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
 };
 
 export default memo(ColoredButton);

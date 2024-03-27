@@ -1,10 +1,10 @@
 import { React, useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { getTickers, getTrendingTickers } from '../../../../shared/functions/requests.js';
-import { TextField, InputLabel, MenuItem, FormControl, Select, Avatar, Button, Tooltip, Typography, CardContent, Card } from '@material-ui/core';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
+import { TextField, InputLabel, MenuItem, FormControl, Select, Avatar, Button, Tooltip, Typography, CardContent, Card } from '@mui/material';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
 import { useSelector } from 'react-redux';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
     LineChart,
     Line,

@@ -16,10 +16,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles,
   Box,
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = (theme) => ({
   cardContentInner: {

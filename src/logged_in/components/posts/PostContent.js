@@ -9,9 +9,9 @@ import {
   Button,
   Paper,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import DeleteIcon from "@mui/icons-material/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
@@ -27,18 +27,12 @@ const styles = {
 const rowsPerPage = 25;
 
 function PostContent(props) {
-  const {
-    pushMessageToSnackbar,
-    setPosts,
-    posts,
-    openAddPostModal,
-    classes,
-  } = props;
+  const { pushMessageToSnackbar, setPosts, posts, openAddPostModal, classes } =
+    props;
   const [page, setPage] = useState(0);
   const [isDeletePostDialogOpen, setIsDeletePostDialogOpen] = useState(false);
-  const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] = useState(
-    false
-  );
+  const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] =
+    useState(false);
 
   const closeDeletePostDialog = useCallback(() => {
     setIsDeletePostDialogOpen(false);

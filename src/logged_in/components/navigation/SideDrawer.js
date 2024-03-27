@@ -7,27 +7,28 @@ import {
   Divider,
   Typography,
   Box,
-  withStyles
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { isSidedrawerOpen } from '../../../shared/redux/actions/ui.actions.js'
-import CommentCard from './CommentCard'
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import CloseIcon from "@mui/icons-material/Close";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { isSidedrawerOpen } from "../../../shared/redux/actions/ui.actions.js";
+import CommentCard from "./CommentCard";
 
 const drawerWidth = 340;
 
 const styles = {
   toolbar: {
-    minWidth: drawerWidth
-  }
+    minWidth: drawerWidth,
+  },
 };
 
 const comments = [
   {
-    author: 'Samuel',
+    author: "Samuel",
     date: new Date(),
-    comment: "Ut vel orci mollis, suscipit est id, viverra mauris. Nam hendrerit mattis turpis, vitae volutpat ex convallis non. Integer porttitor eget dolor sed volutpat",
+    comment:
+      "Ut vel orci mollis, suscipit est id, viverra mauris. Nam hendrerit mattis turpis, vitae volutpat ex convallis non. Integer porttitor eget dolor sed volutpat",
     rating: 2.5,
     avatar: {
       topType: "WinterHat3",
@@ -42,13 +43,14 @@ const comments = [
       eyeType: "EyeRoll",
       eyebrowType: "UpDownNatural",
       mouthType: "Twinkle",
-      skinColor: "Yellow"
-    }
+      skinColor: "Yellow",
+    },
   },
   {
-    author: 'John',
+    author: "John",
     date: new Date(),
-    comment: "Pellentesque egestas tortor id sodales tempus. Duis vel elit nunc. Praesent ut sapien dictum, molestie risus sed, vestibulum mi. In in sollicitudin nisl, a euismod enim. Vestibulum aliquam posuere semper. Vivamus leo est, ornare sed mi in, condimentum finibus est",
+    comment:
+      "Pellentesque egestas tortor id sodales tempus. Duis vel elit nunc. Praesent ut sapien dictum, molestie risus sed, vestibulum mi. In in sollicitudin nisl, a euismod enim. Vestibulum aliquam posuere semper. Vivamus leo est, ornare sed mi in, condimentum finibus est",
     rating: 4.5,
     avatar: {
       topType: "ShortHairFrizzle",
@@ -62,13 +64,14 @@ const comments = [
       eyeType: "EyeRoll",
       eyebrowType: "UpDownNatural",
       mouthType: "Twinkle",
-      skinColor: "Yellow"
-    }
+      skinColor: "Yellow",
+    },
   },
   {
-    author: 'Helena',
+    author: "Helena",
     date: new Date(),
-    comment: "Pellentesque egestas tortor id sodales tempus. Duis vel elit nunc. Praesent ut sapien dictum, molestie risus sed, vestibulum mi. In in sollicitudin nisl, a euismod enim. Vestibulum aliquam posuere semper. Vivamus leo est, ornare sed mi in, condimentum finibus est",
+    comment:
+      "Pellentesque egestas tortor id sodales tempus. Duis vel elit nunc. Praesent ut sapien dictum, molestie risus sed, vestibulum mi. In in sollicitudin nisl, a euismod enim. Vestibulum aliquam posuere semper. Vivamus leo est, ornare sed mi in, condimentum finibus est",
     rating: 5,
     avatar: {
       topType: "Hijab",
@@ -81,22 +84,27 @@ const comments = [
       eyeType: "EyeRoll",
       eyebrowType: "UpDownNatural",
       mouthType: "Twinkle",
-      skinColor: "Brown"
-    }
-  }
-]
+      skinColor: "Brown",
+    },
+  },
+];
 
 function SideDrawer(props) {
   const { classes } = props;
-  const sidedrawer = useSelector(state => state.ui.sidedrawer)
+  const sidedrawer = useSelector((state) => state.ui.sidedrawer);
   const dispatch = useDispatch();
 
   const onClose = (val) => {
-    dispatch(isSidedrawerOpen(val))
-  }
+    dispatch(isSidedrawerOpen(val));
+  };
 
   return (
-    <Drawer anchor="right" open={sidedrawer} variant="temporary" onClose={() => onClose(false)}>
+    <Drawer
+      anchor="right"
+      open={sidedrawer}
+      variant="temporary"
+      onClose={() => onClose(false)}
+    >
       <Toolbar disableGutters className={classes.toolbar}>
         <Box
           pl={3}
@@ -125,8 +133,8 @@ function SideDrawer(props) {
         width="100%"
         alignItems="center"
       >
-        {comments.map(c => {
-          return <CommentCard {...c} />
+        {comments.map((c) => {
+          return <CommentCard {...c} />;
         })}
       </Box>
     </Drawer>
@@ -136,7 +144,7 @@ function SideDrawer(props) {
 SideDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SideDrawer);

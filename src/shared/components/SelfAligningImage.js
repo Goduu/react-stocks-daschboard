@@ -1,8 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
-import { GridListTileBar, withStyles } from "@material-ui/core";
-import VertOptions from "./VertOptions";
+import { withStyles } from "@mui/styles";
 
 const styles = {
   imageContainer: {
@@ -22,15 +21,8 @@ const styles = {
 };
 
 function SelfAligningImage(props) {
-  const {
-    classes,
-    src,
-    title,
-    timeStamp,
-    options,
-    roundedBorder,
-    theme,
-  } = props;
+  const { classes, src, title, timeStamp, options, roundedBorder, theme } =
+    props;
   const img = useRef();
   const [hasMoreWidthThanHeight, setHasMoreWidthThanHeight] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -60,17 +52,14 @@ function SelfAligningImage(props) {
         alt=""
       />
       {title && (
-        <GridListTileBar
-          title={title}
-          subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
-            awareOfUnicodeTokens: true,
-          })}
-          actionIcon={
-            options.length > 0 && (
-              <VertOptions color={theme.palette.common.white} items={options} />
-            )
-          }
-        />
+        <>
+          <h1>{title}</h1>
+          <h3>
+            {format(new Date(timeStamp * 1000), "PP - k:mm", {
+              awareOfUnicodeTokens: true,
+            })}
+          </h3>
+        </>
       )}
     </div>
   );

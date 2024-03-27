@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
-import { makeStyles } from '@material-ui/styles';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import PowerInputIcon from '@material-ui/icons/PowerInput';
-import { Dialog, Input, InputAdornment, IconButton, DialogActions, DialogContent, DialogTitle, Button } from '@material-ui/core';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { withStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-import SettingsIcon from '@material-ui/icons/Settings';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
-import Select from '@material-ui/core/Select';
+import { makeStyles } from '@mui/styles';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import PowerInputIcon from '@mui/icons-material/PowerInput';
+import { Dialog, Input, InputAdornment, IconButton, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import { withStyles } from '@mui/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
 import { useSelector, useDispatch } from 'react-redux';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import _ from 'lodash'
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 
 const NameField = (props) => {
     const { headersIni } = props;
@@ -27,7 +26,7 @@ const NameField = (props) => {
 
     const handleChange = (field, value) => {
         setHeaders(prev => {
-            const temp =  prev.map(p => {
+            const temp = prev.map(p => {
                 p.field = p.field === field ? _.camelCase(value) : p.field
                 p.headerName = p.field === field ? value : p.headerName
                 return p

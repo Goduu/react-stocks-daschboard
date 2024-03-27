@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux'
 import { useCallback } from 'react';
 import { fetchPriceData, fetchDividendData, fetchFinancialHistory } from '../../../../shared/functions/requests'

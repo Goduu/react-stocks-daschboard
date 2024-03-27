@@ -1,14 +1,14 @@
 import { React } from 'react';
-import { Paper, Grid, Typography, Radio, Tooltip, Link, Popover } from '@material-ui/core';
+import { Paper, Grid, Typography, Radio, Tooltip, Link, Popover } from '@mui/material';
 import CardWrapper from '../Card'
 import StatisticsSettings from './StatisticsSettings'
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
-import GradeOutlinedIcon from '@material-ui/icons/GradeOutlined';
-import GradeIcon from '@material-ui/icons/Grade';
-import Skeleton from '@material-ui/lab/Skeleton';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
+import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
+import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
+import GradeIcon from '@mui/icons-material/Grade';
+import Skeleton from '@mui/material/Skeleton';
 import formatStatistics from '../../../../shared/functions/formatStatistics';
 
 function StatisticsInterface(props) {
@@ -81,9 +81,9 @@ function StatisticsInterface(props) {
                                 </Popover>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" noWrap className={classes.link}>
-                                <Tooltip title={t(statisticGroup + '.' + statisticSelected+ ".long")}>
-                                    <Link href={t(statisticGroup + '.' + statisticSelected+ ".ref")} target="_blank" color="inherit" >
-                                        {t(statisticGroup + '.' + statisticSelected+ ".label")}
+                                <Tooltip title={t(statisticGroup + '.' + statisticSelected + ".long")}>
+                                    <Link href={t(statisticGroup + '.' + statisticSelected + ".ref")} target="_blank" color="inherit" >
+                                        {t(statisticGroup + '.' + statisticSelected + ".label")}
                                     </Link>
                                 </Tooltip>
                             </Typography>

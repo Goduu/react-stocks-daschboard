@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
@@ -31,8 +31,7 @@ function Main(props) {
 
   const selectHome = useCallback(() => {
     smoothScrollTop();
-    document.title =
-      "Nexit - Learn it yourself!";
+    document.title = "Nexit - Learn it yourself!";
     setSelectedTab("Home");
   }, [setSelectedTab]);
 

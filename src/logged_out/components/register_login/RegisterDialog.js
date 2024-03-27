@@ -7,16 +7,18 @@ import {
   Checkbox,
   Typography,
   FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import { addUser, login } from '../../../shared/functions/requests.js';
-import { useDispatch } from 'react-redux';
-import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
-import { withRouter } from "react-router-dom";
+import { addUser, login } from "../../../shared/functions/requests.js";
+import { useDispatch } from "react-redux";
+import {
+  setToken,
+  setUser,
+} from "../../../shared/redux/actions/auth.actions.js";
 
 const styles = (theme) => ({
   link: {
@@ -35,10 +37,17 @@ const styles = (theme) => ({
   },
 });
 
-
 function RegisterDialog(props) {
   const dispatch = useDispatch();
-  const { setStatus, theme, onClose, openTermsDialog, status, classes, history } = props;
+  const {
+    setStatus,
+    theme,
+    onClose,
+    openTermsDialog,
+    status,
+    classes,
+    history,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [hasTermsOfServiceError, setHasTermsOfServiceError] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -60,15 +69,15 @@ function RegisterDialog(props) {
     }
     setStatus(null);
     setIsLoading(true);
-    addUser(registerEmail.current.value, registerPassword.current.value)
-      .then((res) => {
+    addUser(registerEmail.current.value, registerPassword.current.value).then(
+      (res) => {
         setIsLoading(false);
-        dispatch(setToken(res.authToken))
-        dispatch(setUser(res.info))
+        dispatch(setToken(res.authToken));
+        dispatch(setUser(res.info));
         setIsLoading(false);
         history.push("/c/dashboard");
-
-      })
+      }
+    );
     setIsLoading(false);
   }, [
     setIsLoading,
@@ -260,5 +269,6 @@ RegisterDialog.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(RegisterDialog));
+export default withStyles(styles, { withTheme: true })(RegisterDialog);
+
 // export default withRouter(withStyles(styles)(LoginDialog));

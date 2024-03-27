@@ -12,9 +12,9 @@ import {
   OutlinedInput,
   MenuItem,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import CloseIcon from "@mui/icons-material/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
 
@@ -147,29 +147,28 @@ function AddPostOptions(props) {
     );
   }, [onDrop, files, classes, deleteItem]);
 
-  const inputs = 
-    [
-      {
-        state: option1,
-        label: "Option 1",
-        stateName: "option1",
-      },
-      {
-        state: option2,
-        label: "Option 2",
-        stateName: "option2",
-      },
-      {
-        state: option3,
-        label: "Option 3",
-        stateName: "option3",
-      },
-      {
-        state: option4,
-        label: "Option 4",
-        stateName: "option4",
-      },
-    ];
+  const inputs = [
+    {
+      state: option1,
+      label: "Option 1",
+      stateName: "option1",
+    },
+    {
+      state: option2,
+      label: "Option 2",
+      stateName: "option2",
+    },
+    {
+      state: option3,
+      label: "Option 3",
+      stateName: "option3",
+    },
+    {
+      state: option4,
+      label: "Option 4",
+      stateName: "option4",
+    },
+  ];
 
   return (
     <Fragment>

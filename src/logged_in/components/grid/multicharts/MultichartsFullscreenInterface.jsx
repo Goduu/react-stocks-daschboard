@@ -5,12 +5,12 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } 
 import ChartSettings from './ChartSettings'
 import _ from 'lodash'
 import Card from '../Card'
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import {
     Paper,
     Grid,
     Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 
 const CustomTooltip = props => {
@@ -24,7 +24,7 @@ const CustomTooltip = props => {
                 <div>
                     {payload && payload.map(pld => {
                         return (
-                            <p key={pld.dataKey+'full'}>{pld.dataKey}:
+                            <p key={pld.dataKey + 'full'}>{pld.dataKey}:
                                 {pld ? pld.payload[pld.dataKey].toFixed(2) : " -- "}</p>)
                     })
                     }
@@ -38,7 +38,7 @@ const CustomTooltip = props => {
 
 
 function MultichartsFullscreenInterface(props) {
-    const { classes, configOpen, charts, chartsData, title, subtitle, params,  } = props
+    const { classes, configOpen, charts, chartsData, title, subtitle, params, } = props
 
     const { saveSettings, dateFormatter, handleFullScreen } = props
     const extraMenu = {
@@ -96,7 +96,7 @@ function MultichartsFullscreenInterface(props) {
                             {charts.map(el => {
                                 if (el.type === 'bar') {
                                     return <Bar
-                                        key={el.name+'full'}
+                                        key={el.name + 'full'}
                                         dataKey={el.name}
                                         barSize={300}
                                         fill={el.color}
@@ -104,7 +104,7 @@ function MultichartsFullscreenInterface(props) {
                                         name={el.name} />
                                 } else if (el.type === 'line') {
                                     return <Line
-                                        key={el.name+'full'}
+                                        key={el.name + 'full'}
                                         dataKey={el.name}
                                         stroke={el.color}
                                         strokeWidth={2}

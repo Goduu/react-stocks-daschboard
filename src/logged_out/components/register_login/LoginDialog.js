@@ -1,22 +1,24 @@
 import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { withRouter } from "react-router-dom";
 import {
   TextField,
   Button,
   Checkbox,
   Typography,
   FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import { login } from '../../../shared/functions/requests.js';
-import { useDispatch } from 'react-redux';
-import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
+import { login } from "../../../shared/functions/requests.js";
+import { useDispatch } from "react-redux";
+import {
+  setToken,
+  setUser,
+} from "../../../shared/redux/actions/auth.actions.js";
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -39,16 +41,14 @@ const styles = (theme) => ({
   },
 });
 
-
 function loginUser(user, password) {
   return new Promise((resolve, reject) => {
-
     login({ email: user, password: password })
-      .then(res => {
-        resolve(res)
-      }).catch(e => reject(e))
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((e) => reject(e));
   });
-
 }
 
 function LoginDialog(props) {
@@ -70,18 +70,25 @@ function LoginDialog(props) {
     setIsLoading(true);
     setStatusMessage(null);
     loginUser(loginEmail.current.value, loginPassword.current.value)
-      .then(res => {
-        dispatch(setToken(res.authToken))
-        dispatch(setUser(res.info))
+      .then((res) => {
+        dispatch(setToken(res.authToken));
+        dispatch(setUser(res.info));
         setIsLoading(false);
         history.push("/c/dashboard");
       })
       .catch((e) => {
-        setStatusMessage("invalidPassword")
+        setStatusMessage("invalidPassword");
         setIsLoading(false);
-      })
+      });
     //     setStatusMessage("invalidEmail");
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatusMessage, dispatch]);
+  }, [
+    setIsLoading,
+    loginEmail,
+    loginPassword,
+    history,
+    setStatusMessage,
+    dispatch,
+  ]);
 
   return (
     <Fragment>
@@ -217,4 +224,4 @@ LoginDialog.propTypes = {
   status: PropTypes.string,
 };
 
-export default withRouter(withStyles(styles)(LoginDialog));
+export default withStyles(styles)(LoginDialog);

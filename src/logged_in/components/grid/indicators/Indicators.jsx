@@ -1,21 +1,21 @@
 import { React, useState, useEffect } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import { withStyles, makeStyles } from '@mui/styles';
 import _ from 'lodash'
 import { fetchIndicators } from '../../../../shared/functions/requests.js';
-import InfoIcon from '@material-ui/icons/Info';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Avatar from '@material-ui/core/Avatar';
+import InfoIcon from '@mui/icons-material/Info';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import Avatar from '@mui/material/Avatar';
 import { useTranslation, Trans } from 'react-i18next';
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
 import TransferList from './TransferList'
-import EditIcon from '@material-ui/icons/Edit';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import EditIcon from '@mui/icons-material/Edit';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 let init = {
     'hist': [
@@ -159,18 +159,18 @@ export default function Indicators(props) {
 export function IndicatorsGrid(props) {
 
     return (
-            <div key={props.i} data-grid={props}>
-                <span className="grid-menu">
+        <div key={props.i} data-grid={props}>
+            <span className="grid-menu">
 
-                    <span onClick={() => props.onRemoveItem(props.i)}>
-                        <CloseIcon fontSize="small" />
-                    </span>
+                <span onClick={() => props.onRemoveItem(props.i)}>
+                    <CloseIcon fontSize="small" />
                 </span>
-                <div className="grid-content">
-                    <Indicators key={props.i} {...props} editIndicatorList={props.editIndicatorList} />
-                </div>
-
+            </span>
+            <div className="grid-content">
+                <Indicators key={props.i} {...props} editIndicatorList={props.editIndicatorList} />
             </div>
-        )
+
+        </div>
+    )
 
 }

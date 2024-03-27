@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Grid, Box, isWidthUp, withWidth, withStyles } from "@material-ui/core";
+import { Grid, Box } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import BlogCard from "./BlogCard";
 
 const styles = (theme) => ({
@@ -27,16 +28,16 @@ function getVerticalBlogPosts(width, blogPosts) {
   const gridRows = [[], [], []];
   let rows;
   let xs;
-  if (isWidthUp("md", width)) {
-    rows = 3;
-    xs = 4;
-  } else if (isWidthUp("sm", width)) {
-    rows = 2;
-    xs = 6;
-  } else {
-    rows = 1;
-    xs = 12;
-  }
+  // if (isWidthUp("md", width)) {
+  //   rows = 3;
+  //   xs = 4;
+  // } else if (isWidthUp("sm", width)) {
+  //   rows = 2;
+  //   xs = 6;
+  // } else {
+  rows = 1;
+  xs = 12;
+  // }
   blogPosts.forEach((blogPost, index) => {
     gridRows[index % rows].push(
       <Grid key={blogPost.id} item xs={12}>
@@ -88,4 +89,4 @@ Blog.propTypes = {
   blogPosts: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Blog));
+export default withStyles(styles, { withTheme: true })(Blog);

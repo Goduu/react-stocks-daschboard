@@ -1,8 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React, { useEffect, useState } from "react";
-import { TextField, Typography, List, ListItem } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import { TextField, Typography, List, ListItem, Autocomplete } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { fetchTickersBySearch } from '../../../shared/functions/requests.js';
 import { useSelector } from 'react-redux';
 
@@ -81,7 +80,7 @@ export default function TickerSelector(props) {
                 {tickers.map(t => {
                     return (
                         <ListItem
-                            onClick={() => handleListItemClick(t.ticker) }
+                            onClick={() => handleListItemClick(t.ticker)}
                             key={t.ticker}
                             className={classes.listItem}
                         >

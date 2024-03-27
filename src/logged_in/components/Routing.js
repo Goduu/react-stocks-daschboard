@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
-import { withStyles } from "@material-ui/core";
+import { Routes } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import Dashboard from "./dashboard/Dashboard";
 import Grid from "./grid/Grid";
 import Watchlist from "./watchlist/Watchlist";
@@ -79,7 +79,7 @@ function Routing(props) {
   useLocationBlocker();
   return (
     <div className={classes.wrapper}>
-      <Switch>
+      <Routes>
         <PropsRoute
           path="/c/grid/:ticker?"
           component={Grid}
@@ -124,7 +124,7 @@ function Routing(props) {
           isAccountActivated={isAccountActivated}
           selectDashboard={selectDashboard}
         />
-      </Switch>
+      </Routes>
     </div>
   );
 }

@@ -15,26 +15,24 @@ import {
   Hidden,
   Tooltip,
   Box,
-  withStyles,
-  isWidthUp,
-  withWidth,
-} from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import InsertChartIcon from '@material-ui/icons/InsertChart';
-import ImageIcon from "@material-ui/icons/Image";
-import ReorderIcon from '@material-ui/icons/Reorder';
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import ImageIcon from "@mui/icons-material/Image";
+import ReorderIcon from "@mui/icons-material/Reorder";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import MenuIcon from "@mui/icons-material/Menu";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
-import { removeToken } from '../../../logged_out/components/register_login/loginSlice';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import Avatar from 'avataaars'
+import { removeToken } from "../../../logged_out/components/register_login/loginSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import Avatar from "avataaars";
 
 const styles = (theme) => ({
   appBar: {
@@ -87,7 +85,7 @@ const styles = (theme) => ({
       width: theme.spacing(9),
     },
     backgroundColor: theme.palette.background.paper,
-    zIndex: 0
+    zIndex: 0,
   },
   smBordered: {
     [theme.breakpoints.down("xs")]: {
@@ -132,13 +130,13 @@ const styles = (theme) => ({
 
 function NavBar(props) {
   const dispatch = useDispatch();
-  const avatar = useSelector(state => state.auth.avatar)
+  const avatar = useSelector((state) => state.auth.avatar);
   const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
-  const userName = useSelector(state => state.auth.name)
+  const userName = useSelector((state) => state.auth.name);
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -157,8 +155,8 @@ function NavBar(props) {
   }, [setIsSideDrawerOpen]);
 
   const handleLogout = () => {
-    dispatch(removeToken())
-  }
+    dispatch(removeToken());
+  };
   const menuItems = [
     {
       link: "/c/grid",
@@ -292,7 +290,7 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {isWidthUp("sm", width) && (
+            {/* {isWidthUp("sm", width) && (
               <Box mr={3}>
                 <Balance
                   balance={2573}
@@ -306,10 +304,9 @@ function NavBar(props) {
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
               <div className={classes.accountAvatar}>
-
                 <Avatar
-                  avatarStyle='Circle'
-                  style={{ width: '35px', height: '35px' }}
+                  avatarStyle="Circle"
+                  style={{ width: "35px", height: "35px" }}
                   {...avatar}
                 />
               </div>
@@ -320,8 +317,8 @@ function NavBar(props) {
                     <Typography color="textPrimary">{userName}</Typography>
                   }
                 />
-              )}
-            </ListItem>
+              )} 
+            </ListItem>*/}
           </Box>
           <IconButton
             onClick={openDrawer}
@@ -405,4 +402,4 @@ NavBar.propTypes = {
   openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(NavBar));
+export default withStyles(styles, { withTheme: true })(NavBar);

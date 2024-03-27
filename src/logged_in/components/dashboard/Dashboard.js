@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box } from "@mui/material";
 import SettingsArea from "./SettingsArea";
 import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
 import AvatarSelection from "./AvatarSelection";
-import { InDevelopment } from '../../../shared/components/InDevelopment';
+import { InDevelopment } from "../../../shared/components/InDevelopment";
 
 function Dashboard(props) {
   const {
@@ -24,7 +24,7 @@ function Dashboard(props) {
 
   return (
     <Fragment>
-      <InDevelopment/>
+      <InDevelopment />
       <StatisticsArea CardChart={CardChart} data={statistics} />
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>

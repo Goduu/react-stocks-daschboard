@@ -1,10 +1,9 @@
 import { React } from 'react';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Grid from '@material-ui/core/Grid';
-import EcoIcon from '@material-ui/icons/Eco';
-import { green } from '@material-ui/core/colors';
+import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid';
+import { green } from '@mui/material/colors';
 import Card from '../Card'
 
 
@@ -21,7 +20,7 @@ function EsgInterface(props) {
                         <div className={classes.header}>
                             <Typography variant="h6" >
                                 ESG Risk
-                                <EcoIcon style={{ color: green[500] }} />
+                                "EcoIcon"
                                 <Chip variant="outlined" size="small" label={t('esg.' + esgs.performance)} />
                             </Typography>
 

@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import TableChartIcon from '@material-ui/icons/TableChart';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import DeleteIcon from '@material-ui/icons/Delete';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import Tooltip from '@material-ui/core/Tooltip';
-import RssFeedIcon from '@material-ui/icons/RssFeed';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import LabelIcon from '@material-ui/icons/Label';
+import { makeStyles } from '@mui/styles';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import ListItemText from '@mui/material/ListItemText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import Tooltip from '@mui/material/Tooltip';
+import RssFeedIcon from '@mui/icons-material/RssFeed';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LabelIcon from '@mui/icons-material/Label';
 
 const options = [
     { value: 'note', label: 'Note', icon: <TextFieldsIcon /> },

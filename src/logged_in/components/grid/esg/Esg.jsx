@@ -1,10 +1,10 @@
 import { React, useState, useEffect } from 'react';
-import {  makeStyles } from '@material-ui/core/styles';
-import { amber, lime,  orange } from '@material-ui/core/colors';
+import { makeStyles } from '@mui/styles';
+import { amber, lime, orange } from '@mui/material/colors';
 import { useTranslation } from 'react-i18next';
 import { fetchEsgRisk } from '../../../../shared/functions/requests.js';
 import { useSelector } from 'react-redux'
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from '@mui/base';
 import { EsgInterface } from './EsgInterface'
 
 const useStyles = makeStyles((theme) => ({

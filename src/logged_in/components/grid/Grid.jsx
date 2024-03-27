@@ -5,9 +5,9 @@ import _ from "lodash";
 import { useSelector } from 'react-redux';
 import { saveGridElements, fetchGridElements, deleteGrid, deactivateGrid, fetchTickerData } from '../../../shared/functions/requests.js';
 import { getCardProps, getRestoredItems, getFullScreenCard } from './gridProps'
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from '@mui/base';
 import { GridInterface } from './GridInterface'
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   fullScreen: {

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
+import { Routes } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
@@ -11,7 +11,7 @@ function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
   useLocationBlocker();
   return (
-    <Switch>
+    <Routes>
       {blogPosts.map((post) => (
         <PropsRoute
           path={post.url}
@@ -34,7 +34,7 @@ function Routing(props) {
         blogPosts={blogPosts}
       />
       <PropsRoute path="/" component={Home} selectHome={selectHome} />
-    </Switch>
+    </Routes>
   );
 }
 

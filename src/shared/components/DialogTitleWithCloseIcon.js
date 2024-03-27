@@ -5,19 +5,13 @@ import {
   DialogTitle,
   Typography,
   Box,
-  withTheme
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+  withTheme,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 function DialogTitleWithCloseIcon(props) {
-  const {
-    theme,
-    paddingBottom,
-    onClose,
-    disabled,
-    title,
-    disablePadding
-  } = props;
+  const { theme, paddingBottom, onClose, disabled, title, disablePadding } =
+    props;
   return (
     <DialogTitle
       style={{
@@ -29,7 +23,7 @@ function DialogTitleWithCloseIcon(props) {
         paddingLeft: disablePadding ? 0 : null,
         paddingRight: disablePadding ? 0 : null,
         paddingTop: disablePadding ? 0 : theme.spacing(2),
-        width: "100%"
+        width: "100%",
       }}
       disableTypography
     >
@@ -54,7 +48,7 @@ DialogTitleWithCloseIcon.propTypes = {
   onClose: PropTypes.func,
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  disablePadding: PropTypes.bool
+  disablePadding: PropTypes.bool,
 };
 
 export default withTheme(DialogTitleWithCloseIcon);

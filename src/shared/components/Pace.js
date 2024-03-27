@@ -1,25 +1,25 @@
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
 
 const styles = {
   "@global": {
     ".pace": {
       pointerEvents: "none",
-      userSelect: "none"
+      userSelect: "none",
     },
     ".pace-inactive": {
-      display: "none"
+      display: "none",
     },
     ".pace .pace-progress": {
-      background: props => props.color || null,
+      background: (props) => props.color || null,
       position: "fixed",
       zIndex: 2000,
       top: 0,
       right: "100%",
       width: "100%",
-      height: 3
-    }
-  }
+      height: 3,
+    },
+  },
 };
 
 function Pace() {
@@ -28,7 +28,7 @@ function Pace() {
 }
 
 Pace.propTypes = {
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Pace);
@@ -40,8 +40,8 @@ export default withStyles(styles)(Pace);
  */
 window.paceOptions = {
   ajax: {
-    trackMethods: ["GET", "POST"]
-  }
+    trackMethods: ["GET", "POST"],
+  },
 };
 
 /*! pace 1.0.0 */
@@ -97,7 +97,7 @@ function activatePace() {
     W,
     X = [].slice,
     Y = {}.hasOwnProperty,
-    Z = function(a, b) {
+    Z = function (a, b) {
       function c() {
         this.constructor = a;
       }
@@ -111,7 +111,7 @@ function activatePace() {
     },
     $ =
       [].indexOf ||
-      function(a) {
+      function (a) {
         for (var b = 0, c = this.length; c > b; b++)
           if (b in this && this[b] === a) return b;
         return -1;
@@ -130,9 +130,9 @@ function activatePace() {
       target: "body",
       elements: { checkInterval: 100, selectors: ["body"] },
       eventLag: { minSamples: 10, sampleCount: 3, lagThreshold: 3 },
-      ajax: { trackMethods: ["GET"], trackWebSockets: !0, ignoreURLs: [] }
+      ajax: { trackMethods: ["GET"], trackWebSockets: !0, ignoreURLs: [] },
     },
-      C = function() {
+      C = function () {
         var a;
         return null !=
           (a =
@@ -151,23 +151,23 @@ function activatePace() {
         window.msRequestAnimationFrame,
       t = window.cancelAnimationFrame || window.mozCancelAnimationFrame,
       null == E &&
-        ((E = function(a) {
+        ((E = function (a) {
           return setTimeout(a, 50);
         }),
-        (t = function(a) {
+        (t = function (a) {
           return clearTimeout(a);
         })),
-      G = function(a) {
+      G = function (a) {
         var b, c;
         return (
           (b = C()),
-          (c = function() {
+          (c = function () {
             var d;
             return (
               (d = C() - b),
               d >= 33
                 ? ((b = C()),
-                  a(d, function() {
+                  a(d, function () {
                     return E(c);
                   }))
                 : setTimeout(c, 33 - d)
@@ -175,7 +175,7 @@ function activatePace() {
           })()
         );
       },
-      F = function() {
+      F = function () {
         var a, b, c;
         return (
           (c = arguments[0]),
@@ -184,7 +184,7 @@ function activatePace() {
           "function" == typeof c[b] ? c[b].apply(c, a) : c[b]
         );
       },
-      v = function() {
+      v = function () {
         var a, b, c, d, e, f, g;
         for (
           b = arguments[0],
@@ -206,13 +206,13 @@ function activatePace() {
                   : (b[a] = e));
         return b;
       },
-      q = function(a) {
+      q = function (a) {
         var b, c, d, e, f;
         for (c = b = 0, e = 0, f = a.length; f > e; e++)
           (d = a[e]), (c += Math.abs(d)), b++;
         return c / b;
       },
-      x = function(a, b) {
+      x = function (a, b) {
         var c, d, e;
         if (
           (null == a && (a = "options"),
@@ -232,10 +232,10 @@ function activatePace() {
           }
         }
       },
-      g = (function() {
+      g = (function () {
         function a() {}
         return (
-          (a.prototype.on = function(a, b, c, d) {
+          (a.prototype.on = function (a, b, c, d) {
             var e;
             return (
               null == d && (d = !1),
@@ -244,10 +244,10 @@ function activatePace() {
               this.bindings[a].push({ handler: b, ctx: c, once: d })
             );
           }),
-          (a.prototype.once = function(a, b, c) {
+          (a.prototype.once = function (a, b, c) {
             return this.on(a, b, c, !0);
           }),
-          (a.prototype.off = function(a, b) {
+          (a.prototype.off = function (a, b) {
             var c, d, e;
             if (null != (null != (d = this.bindings) ? d[a] : void 0)) {
               if (null == b) return delete this.bindings[a];
@@ -260,7 +260,7 @@ function activatePace() {
               return e;
             }
           }),
-          (a.prototype.trigger = function() {
+          (a.prototype.trigger = function () {
             var a, b, c, d, e, f, g, h, i;
             if (
               ((c = arguments[0]),
@@ -291,18 +291,18 @@ function activatePace() {
     Q++
   )
     (K = U[Q]), D[K] === !0 && (D[K] = u[K]);
-  (i = (function(a) {
+  (i = (function (a) {
     function b() {
       return (V = b.__super__.constructor.apply(this, arguments));
     }
     return Z(b, a), b;
   })(Error)),
-    (b = (function() {
+    (b = (function () {
       function a() {
         this.progress = 0;
       }
       return (
-        (a.prototype.getElement = function() {
+        (a.prototype.getElement = function () {
           var a;
           if (null == this.el) {
             if (((a = document.querySelector(D.target)), !a)) throw new i();
@@ -321,7 +321,7 @@ function activatePace() {
           }
           return this.el;
         }),
-        (a.prototype.finish = function() {
+        (a.prototype.finish = function () {
           var a;
           return (
             (a = this.getElement()),
@@ -334,10 +334,10 @@ function activatePace() {
             (document.body.className += " pace-done")
           );
         }),
-        (a.prototype.update = function(a) {
+        (a.prototype.update = function (a) {
           return (this.progress = a), this.render();
         }),
-        (a.prototype.destroy = function() {
+        (a.prototype.destroy = function () {
           try {
             this.getElement().parentNode.removeChild(this.getElement());
           } catch (a) {
@@ -345,7 +345,7 @@ function activatePace() {
           }
           return (this.el = void 0);
         }),
-        (a.prototype.render = function() {
+        (a.prototype.render = function () {
           var a, b, c, d, e, f, g;
           if (null == document.querySelector(D.target)) return !1;
           for (
@@ -373,18 +373,18 @@ function activatePace() {
             (this.lastRenderedProgress = this.progress)
           );
         }),
-        (a.prototype.done = function() {
+        (a.prototype.done = function () {
           return this.progress >= 100;
         }),
         a
       );
     })()),
-    (h = (function() {
+    (h = (function () {
       function a() {
         this.bindings = {};
       }
       return (
-        (a.prototype.trigger = function(a, b) {
+        (a.prototype.trigger = function (a, b) {
           var c, d, e, f, g;
           if (null != this.bindings[a]) {
             for (f = this.bindings[a], g = [], d = 0, e = f.length; e > d; d++)
@@ -392,7 +392,7 @@ function activatePace() {
             return g;
           }
         }),
-        (a.prototype.on = function(a, b) {
+        (a.prototype.on = function (a, b) {
           var c;
           return (
             null == (c = this.bindings)[a] && (c[a] = []),
@@ -405,7 +405,7 @@ function activatePace() {
     (P = window.XMLHttpRequest),
     (O = window.XDomainRequest),
     (N = window.WebSocket),
-    (w = function(a, b) {
+    (w = function (a, b) {
       var c, d, e, f;
       f = [];
       for (d in b.prototype)
@@ -420,7 +420,7 @@ function activatePace() {
       return f;
     }),
     (A = []),
-    (j.ignore = function() {
+    (j.ignore = function () {
       var a, b, c;
       return (
         (b = arguments[0]),
@@ -431,7 +431,7 @@ function activatePace() {
         c
       );
     }),
-    (j.track = function() {
+    (j.track = function () {
       var a, b, c;
       return (
         (b = arguments[0]),
@@ -442,7 +442,7 @@ function activatePace() {
         c
       );
     }),
-    (J = function(a) {
+    (J = function (a) {
       var b;
       if ((null == a && (a = "GET"), "track" === A[0])) return "force";
       if (!A.length && D.ajax) {
@@ -452,16 +452,16 @@ function activatePace() {
       }
       return !1;
     }),
-    (k = (function(a) {
+    (k = (function (a) {
       function b() {
         var a,
           c = this;
         b.__super__.constructor.apply(this, arguments),
-          (a = function(a) {
+          (a = function (a) {
             var b;
             return (
               (b = a.open),
-              (a.open = function(d, e) {
+              (a.open = function (d, e) {
                 return (
                   J(d) && c.trigger("request", { type: d, url: e, request: a }),
                   b.apply(a, arguments)
@@ -469,7 +469,7 @@ function activatePace() {
               })
             );
           }),
-          (window.XMLHttpRequest = function(b) {
+          (window.XMLHttpRequest = function (b) {
             var c;
             return (c = new P(b)), a(c), c;
           });
@@ -477,7 +477,7 @@ function activatePace() {
           w(window.XMLHttpRequest, P);
         } catch (d) {}
         if (null != O) {
-          window.XDomainRequest = function() {
+          window.XDomainRequest = function () {
             var b;
             return (b = new O()), a(b), b;
           };
@@ -486,7 +486,7 @@ function activatePace() {
           } catch (d) {}
         }
         if (null != N && D.ajax.trackWebSockets) {
-          window.WebSocket = function(a, b) {
+          window.WebSocket = function (a, b) {
             var d;
             return (
               (d = null != b ? new N(a, b) : new N(a)),
@@ -495,7 +495,7 @@ function activatePace() {
                   type: "socket",
                   url: a,
                   protocols: b,
-                  request: d
+                  request: d,
                 }),
               d
             );
@@ -508,10 +508,10 @@ function activatePace() {
       return Z(b, a), b;
     })(h)),
     (R = null),
-    (y = function() {
+    (y = function () {
       return null == R && (R = new k()), R;
     }),
-    (I = function(a) {
+    (I = function (a) {
       var b, c, d, e;
       for (e = D.ajax.ignoreURLs, c = 0, d = e.length; d > c; c++)
         if (((b = e[c]), "string" == typeof b)) {
@@ -519,7 +519,7 @@ function activatePace() {
         } else if (b.test(a)) return !0;
       return !1;
     }),
-    y().on("request", function(b) {
+    y().on("request", function (b) {
       var c, d, e, f, g;
       return (
         (f = b.type),
@@ -532,7 +532,7 @@ function activatePace() {
           : ((d = arguments),
             (c = D.restartOnRequestAfter || 0),
             "boolean" == typeof c && (c = 0),
-            setTimeout(function() {
+            setTimeout(function () {
               var b, c, g, h, i, k;
               if (
                 (b =
@@ -556,16 +556,16 @@ function activatePace() {
             }, c))
       );
     }),
-    (a = (function() {
+    (a = (function () {
       function a() {
         var a = this;
         (this.elements = []),
-          y().on("request", function() {
+          y().on("request", function () {
             return a.watch.apply(a, arguments);
           });
       }
       return (
-        (a.prototype.watch = function(a) {
+        (a.prototype.watch = function (a) {
           var b, c, d, e;
           return (
             (d = a.type),
@@ -580,7 +580,7 @@ function activatePace() {
         a
       );
     })()),
-    (o = (function() {
+    (o = (function () {
       function a(a) {
         var b,
           c,
@@ -594,7 +594,7 @@ function activatePace() {
             c = null,
               a.addEventListener(
                 "progress",
-                function(a) {
+                function (a) {
                   return (h.progress = a.lengthComputable
                     ? (100 * a.loaded) / a.total
                     : h.progress + (100 - h.progress) / 2);
@@ -610,14 +610,14 @@ function activatePace() {
             (b = g[d]),
               a.addEventListener(
                 b,
-                function() {
+                function () {
                   return (h.progress = 100);
                 },
                 !1
               );
         else
           (f = a.onreadystatechange),
-            (a.onreadystatechange = function() {
+            (a.onreadystatechange = function () {
               var b;
               return (
                 0 === (b = a.readyState) || 4 === b
@@ -629,7 +629,7 @@ function activatePace() {
       }
       return a;
     })()),
-    (n = (function() {
+    (n = (function () {
       function a(a) {
         var b,
           c,
@@ -644,7 +644,7 @@ function activatePace() {
           (b = e[c]),
             a.addEventListener(
               b,
-              function() {
+              function () {
                 return (f.progress = 100);
               },
               !1
@@ -652,7 +652,7 @@ function activatePace() {
       }
       return a;
     })()),
-    (d = (function() {
+    (d = (function () {
       function a(a) {
         var b, c, d, f;
         for (
@@ -669,26 +669,26 @@ function activatePace() {
       }
       return a;
     })()),
-    (e = (function() {
+    (e = (function () {
       function a(a) {
         (this.selector = a), (this.progress = 0), this.check();
       }
       return (
-        (a.prototype.check = function() {
+        (a.prototype.check = function () {
           var a = this;
           return document.querySelector(this.selector)
             ? this.done()
-            : setTimeout(function() {
+            : setTimeout(function () {
                 return a.check();
               }, D.elements.checkInterval);
         }),
-        (a.prototype.done = function() {
+        (a.prototype.done = function () {
           return (this.progress = 100);
         }),
         a
       );
     })()),
-    (c = (function() {
+    (c = (function () {
       function a() {
         var a,
           b,
@@ -696,7 +696,7 @@ function activatePace() {
         (this.progress =
           null != (b = this.states[document.readyState]) ? b : 100),
           (a = document.onreadystatechange),
-          (document.onreadystatechange = function() {
+          (document.onreadystatechange = function () {
             return (
               null != c.states[document.readyState] &&
                 (c.progress = c.states[document.readyState]),
@@ -708,7 +708,7 @@ function activatePace() {
         (a.prototype.states = { loading: 0, interactive: 50, complete: 100 }), a
       );
     })()),
-    (f = (function() {
+    (f = (function () {
       function a() {
         var a,
           b,
@@ -721,7 +721,7 @@ function activatePace() {
           (e = []),
           (d = 0),
           (c = C()),
-          (b = setInterval(function() {
+          (b = setInterval(function () {
             var g;
             return (
               (g = C() - c - 50),
@@ -737,7 +737,7 @@ function activatePace() {
       }
       return a;
     })()),
-    (m = (function() {
+    (m = (function () {
       function a(a) {
         (this.source = a),
           (this.last = this.sinceLastUpdate = 0),
@@ -747,7 +747,7 @@ function activatePace() {
           null != this.source && (this.progress = F(this.source, "progress"));
       }
       return (
-        (a.prototype.tick = function(a, b) {
+        (a.prototype.tick = function (a, b) {
           var c;
           return (
             null == b && (b = F(this.source, "progress")),
@@ -782,21 +782,21 @@ function activatePace() {
     (p = null),
     (s = null),
     (j.running = !1),
-    (z = function() {
+    (z = function () {
       return D.restartOnPushState ? j.restart() : void 0;
     }),
     null != window.history.pushState &&
       ((T = window.history.pushState),
-      (window.history.pushState = function() {
+      (window.history.pushState = function () {
         return z(), T.apply(window.history, arguments);
       })),
     null != window.history.replaceState &&
       ((W = window.history.replaceState),
-      (window.history.replaceState = function() {
+      (window.history.replaceState = function () {
         return z(), W.apply(window.history, arguments);
       })),
     (l = { ajax: a, elements: d, document: c, eventLag: f }),
-    (B = function() {
+    (B = function () {
       var a, c, d, e, f, g, h, i;
       for (
         j.sources = L = [],
@@ -815,7 +815,7 @@ function activatePace() {
         (K = i[d]), L.push(new K(D));
       return (j.bar = r = new b()), (H = []), (M = new m());
     })(),
-    (j.stop = function() {
+    (j.stop = function () {
       return (
         j.trigger("stop"),
         (j.running = !1),
@@ -825,17 +825,17 @@ function activatePace() {
         B()
       );
     }),
-    (j.restart = function() {
+    (j.restart = function () {
       return j.trigger("restart"), j.stop(), j.start();
     }),
-    (j.go = function() {
+    (j.go = function () {
       var a;
       return (
         (j.running = !0),
         r.render(),
         (a = C()),
         (s = !1),
-        (p = G(function(b, c) {
+        (p = G(function (b, c) {
           var d, e, f, g, h, i, k, l, n, o, p, q, t, u, v, w;
           for (
             l = 100 - r.progress, e = p = 0, f = !0, i = q = 0, u = L.length;
@@ -861,7 +861,7 @@ function activatePace() {
             r.done() || f || s
               ? (r.update(100),
                 j.trigger("done"),
-                setTimeout(function() {
+                setTimeout(function () {
                   return r.finish(), (j.running = !1), j.trigger("hide");
                 }, Math.max(D.ghostTime, Math.max(D.minTime - (C() - a), 0))))
               : c()
@@ -869,7 +869,7 @@ function activatePace() {
         }))
       );
     }),
-    (j.start = function(a) {
+    (j.start = function (a) {
       v(D, a), (j.running = !0);
       try {
         r.render();
@@ -881,7 +881,7 @@ function activatePace() {
         : setTimeout(j.start, 50);
     }),
     "function" == typeof define && define.amd
-      ? define(function() {
+      ? define(function () {
           return j;
         })
       : "object" == typeof exports

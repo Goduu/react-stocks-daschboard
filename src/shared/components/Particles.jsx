@@ -1,5 +1,5 @@
 import Particles from "react-tsparticles";
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 
 
 export default function ParticlesMain(props) {

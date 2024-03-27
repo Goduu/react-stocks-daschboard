@@ -1,5 +1,5 @@
 import { createRef, React, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { TitleInterface } from './TitleInterface'
 
 
@@ -35,12 +35,12 @@ function Title(props) {
     }
     const saveParams = (e) => {
         props.changeParams({ id: props.i, content: { title: e.target.value, subtitle: subtitle } })
-    }   
+    }
     const saveSubtitle = (e) => {
-        props.changeParams({ id: props.i, content: { title: title , subtitle: e.target.value } })
+        props.changeParams({ id: props.i, content: { title: title, subtitle: e.target.value } })
     }
 
-    
+
 
     return (
         <TitleInterface

@@ -1,24 +1,17 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {
-  Grid,
-  Typography,
-  Card,
-  Button,
-  Hidden,
-  Box,
-  withStyles,
-  withWidth,
-  isWidthUp,
-} from "@material-ui/core";
+import { Grid, Typography, Card, Button, Hidden, Box } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
-import { login } from "../../../shared/functions/requests"
-import { useDispatch } from 'react-redux';
-import { setToken, setUser } from '../../../shared/redux/actions/auth.actions.js'
-import { withRouter } from "react-router-dom";
-import ParticlesMain from "../../../shared/components/Particles"
+import { login } from "../../../shared/functions/requests";
+import { useDispatch } from "react-redux";
+import {
+  setToken,
+  setUser,
+} from "../../../shared/redux/actions/auth.actions.js";
+import ParticlesMain from "../../../shared/components/Particles";
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -108,20 +101,24 @@ function HeadSection(props) {
   const dispatch = useDispatch();
 
   const loginTour = () => {
-    login({ email: 'guide@tour.com', password: 'xL1ZuT9vPVb' })
-      .then(res => {
-        dispatch(setToken(res.authToken))
-        dispatch(setUser(res.info))
-        history.push("/c/grid");
-      })
-
-  }
+    login({ email: "guide@tour.com", password: "xL1ZuT9vPVb" }).then((res) => {
+      dispatch(setToken(res.authToken));
+      dispatch(setUser(res.info));
+      history.push("/c/grid");
+    });
+  };
   return (
-    <div style={{zIndex: 0}}>
+    <div style={{ zIndex: 0 }}>
       <Fragment>
         <div className={classNames("lg-p-top", classes.wrapper)}>
-          <div style={{ position: 'absolute', width: '100vw', marginTop: '-145px', zIndex: 0 }}>
-
+          <div
+            style={{
+              position: "absolute",
+              width: "100vw",
+              marginTop: "-145px",
+              zIndex: 0,
+            }}
+          >
             <ParticlesMain density={30} />
           </div>
           <div className={classNames("container-fluid", classes.container)}>
@@ -141,18 +138,13 @@ function HeadSection(props) {
                         height="100%"
                       >
                         <Box mb={4}>
-                          <Typography
-                            variant={isWidthUp("lg", width) ? "h3" : "h4"}
-                          >
+                          <Typography variant={"h3"}>
                             Stocks Studies made easyer!
                           </Typography>
                         </Box>
                         <div>
                           <Box mb={2}>
-                            <Typography
-                              variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                              color="textSecondary"
-                            >
+                            <Typography variant={"h6"} color="textSecondary">
                               Lorem ipsum dolor sit amet, consetetur sadipscing
                               elitr, sed diam nonumy eirmod tempor invidunt
                             </Typography>
@@ -203,6 +195,4 @@ HeadSection.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default withWidth()(
-  withRouter(withStyles(styles, { withTheme: true })(HeadSection))
-);
+export default withStyles(styles, { withTheme: true })(HeadSection);

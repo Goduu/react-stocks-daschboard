@@ -11,13 +11,13 @@ import {
     ListSubheader,
     makeStyles,
     Menu, MenuItem
-} from '@material-ui/core/';
+} from '@mui/material/';
 import { useEffect } from 'react';
 import _ from 'lodash'
 import { useTranslation } from 'react-i18next';
 
 export default function StatisticsSettings(props) {
-    const { saveSettings,statistics, setStatisticGroup, statisticGroup, handleClose, setOpen, open } = props;
+    const { saveSettings, statistics, setStatisticGroup, statisticGroup, handleClose, setOpen, open } = props;
     // const [open, setOpen] = useState(props.open);
     const { t } = useTranslation();
 
@@ -88,7 +88,7 @@ export default function StatisticsSettings(props) {
                                             value={key}
                                             onClick={() => handleSave(key)}
                                         >
-                                            {t(statisticGroup + '.' + key+'.label')}
+                                            {t(statisticGroup + '.' + key + '.label')}
 
 
                                         </ListItem >

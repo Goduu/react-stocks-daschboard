@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from "@mui/styles";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
@@ -41,9 +41,8 @@ function Main(props) {
   const [Dropzone, setDropzone] = useState(null);
   const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
   const [DateTimePicker, setDateTimePicker] = useState(null);
-  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(
-    false
-  );
+  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] =
+    useState(false);
   const [transactions, setTransactions] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
@@ -245,7 +244,7 @@ function Main(props) {
     hasFetchedCardChart,
     setHasFetchedCardChart,
   ]);
-  
+
   const selectWatchlist = useCallback(() => {
     smoothScrollTop();
     document.title = "Nexit - Watchlist";

@@ -6,8 +6,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
-} from "@material-ui/core";
+  Button,
+} from "@mui/material";
 import ButtonCircularProgress from "./ButtonCircularProgress";
 
 function ConfirmationDialog(props) {
@@ -46,7 +46,7 @@ ConfirmationDialog.propTypes = {
   loading: PropTypes.bool,
   title: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  onConfirm: PropTypes.func
+  onConfirm: PropTypes.func,
 };
 
 export default ConfirmationDialog;

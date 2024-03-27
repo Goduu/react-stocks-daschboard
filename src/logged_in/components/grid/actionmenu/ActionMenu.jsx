@@ -1,24 +1,12 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { Tooltip, Fab } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import TableChartIcon from '@material-ui/icons/TableChart';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import LabelIcon from '@material-ui/icons/Label';
-import MultilineChartIcon from '@material-ui/icons/MultilineChart';
-import EcoIcon from '@material-ui/icons/Eco';
+import { makeStyles, useTheme } from '@mui/styles';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import MultilineChartIcon from '@mui/icons-material/MultilineChart';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 
 const useStyles = makeStyles((theme) => ({
     speedDial: {
@@ -32,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         // height: theme.spacing(5),
         color: theme.palette.background.paper
     },
-    wrapper:{
+    wrapper: {
         display: 'flex'
     },
     tooltip: {
@@ -50,7 +38,7 @@ const options = [
     // { value: 'dividendchart', label: 'Dividend Chart', icon: <EqualizerIcon /> },
     { value: 'swot', label: 'SWOT-Analysis', icon: <AssignmentIcon /> },
     // { value: 'indicators', label: 'Indicators', icon: <LabelIcon /> },
-    { value: 'esg', label: 'ESG Risk', icon: <EcoIcon /> },
+    { value: 'esg', label: 'ESG Risk', icon: <AssignmentIcon /> },
     { value: 'multichart', label: 'Multicharts', icon: <MultilineChartIcon /> },
     { value: 'statistics', label: 'Statistics', icon: <TrendingUpIcon /> },
     { value: 'title', label: 'Title', icon: <TrendingUpIcon /> },

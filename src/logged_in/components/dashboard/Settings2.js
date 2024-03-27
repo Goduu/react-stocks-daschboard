@@ -16,9 +16,9 @@ import {
   MenuItem,
   Checkbox,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HelpIcon from "../../../shared/components/HelpIcon";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";

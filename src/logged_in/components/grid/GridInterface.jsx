@@ -7,7 +7,7 @@ import { SelectMenu } from './selectmenu/SelectMenu';
 import ActionMenu from './actionmenu/ActionMenu';
 import NewDashboard from './newdashboard/NewDashboard';
 import GuideTour from '../../../shared/components/GuideTour'
-import { Dialog, Paper } from '@material-ui/core';
+import { Dialog, Paper } from '@mui/material';
 
 // const ResponsiveReactGridLayout = WidthProvider(RGL);
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -17,7 +17,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
  */
 function GridInterface(props) {
   // Variables
-  let { review, gridItems, identifier, newDashboardClosed, classes, fullScreenItem,layouts } = props
+  let { review, gridItems, identifier, newDashboardClosed, classes, fullScreenItem, layouts } = props
   // Functions
   let { onAddItem, deleteDashboard, selectDashboard, newDashboard, currentBreakpoint,
     onLayoutChange, onBreakpointChange, handleBack, chooseIdentifier, fullScreen, handleFullScreen } = props

@@ -1,8 +1,8 @@
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
-import {useSelector, useDispatch} from 'react-redux'
+import Snackbar from '@mui/material/Snackbar';
+import { Alert as MuiAlert } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { useSelector, useDispatch } from 'react-redux'
 import { closeNotification } from '../redux/actions/notification.actions'
 
 function Alert(props) {

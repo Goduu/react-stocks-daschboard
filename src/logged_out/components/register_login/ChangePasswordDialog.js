@@ -7,8 +7,8 @@ import {
   DialogActions,
   Button,
   Typography,
-  withStyles,
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = (theme) => ({

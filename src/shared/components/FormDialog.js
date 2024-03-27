@@ -1,26 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Dialog, DialogContent, Box, withStyles } from "@material-ui/core";
+import { Dialog, DialogContent, Box } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import DialogTitleWithCloseIcon from "./DialogTitleWithCloseIcon";
 
-const styles = theme => ({
+const styles = (theme) => ({
   dialogPaper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     paddingBottom: theme.spacing(3),
-    maxWidth: 420
+    maxWidth: 420,
   },
   actions: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   dialogPaperScrollPaper: {
-    maxHeight: "none"
+    maxHeight: "none",
   },
   dialogContent: {
     paddingTop: 0,
-    paddingBottom: 0
-  }
+    paddingBottom: 0,
+  },
 });
 
 /**
@@ -37,7 +38,7 @@ function FormDialog(props) {
     onFormSubmit,
     content,
     actions,
-    hideBackdrop
+    hideBackdrop,
   } = props;
   return (
     <Dialog
@@ -47,7 +48,7 @@ function FormDialog(props) {
       disableEscapeKeyDown={loading}
       classes={{
         paper: classes.dialogPaper,
-        paperScrollPaper: classes.dialogPaperScrollPaper
+        paperScrollPaper: classes.dialogPaperScrollPaper,
       }}
       hideBackdrop={hideBackdrop ? hideBackdrop : false}
     >
@@ -77,7 +78,7 @@ FormDialog.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
   content: PropTypes.element.isRequired,
   actions: PropTypes.element.isRequired,
-  hideBackdrop: PropTypes.bool.isRequired
+  hideBackdrop: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FormDialog);

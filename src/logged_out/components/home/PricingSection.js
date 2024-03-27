@@ -1,52 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {
-  Grid,
-  Typography,
-  isWidthUp,
-  withWidth,
-  withStyles
-} from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import PriceCard from "./PriceCard";
 import calculateSpacing from "./calculateSpacing";
 
-const styles = theme => ({
-  main:{
+const styles = (theme) => ({
+  main: {
     background: theme.palette.background.default,
-    paddingTop: '5em'
+    paddingTop: "5em",
   },
   containerFix: {
     [theme.breakpoints.down("md")]: {
       paddingLeft: theme.spacing(6),
-      paddingRight: theme.spacing(6)
+      paddingRight: theme.spacing(6),
     },
     [theme.breakpoints.down("sm")]: {
       paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
+      paddingRight: theme.spacing(4),
     },
     [theme.breakpoints.down("xs")]: {
       paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2)
+      paddingRight: theme.spacing(2),
     },
     overflow: "hidden",
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   cardWrapper: {
     [theme.breakpoints.down("xs")]: {
       marginLeft: "auto",
       marginRight: "auto",
-      maxWidth: 340
-    }
+      maxWidth: 340,
+    },
   },
   cardWrapperHighlighted: {
     [theme.breakpoints.down("xs")]: {
       marginLeft: "auto",
       marginRight: "auto",
-      maxWidth: 360
-    }
-  }
+      maxWidth: 360,
+    },
+  },
 });
 
 function PricingSection(props) {
@@ -109,7 +104,7 @@ function PricingSection(props) {
             sm={6}
             lg={3}
             data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
+            data-aos-delay={"400"}
           >
             <PriceCard
               title="Business"
@@ -129,7 +124,7 @@ function PricingSection(props) {
             sm={6}
             lg={3}
             data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
+            data-aos-delay={"600"}
           >
             <PriceCard
               title="Tycoon"
@@ -149,9 +144,7 @@ function PricingSection(props) {
 }
 
 PricingSection.propTypes = {
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(
-  withWidth()(PricingSection)
-);
+export default withStyles(styles, { withTheme: true })(PricingSection);

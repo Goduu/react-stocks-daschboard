@@ -1,19 +1,14 @@
 import _ from 'lodash';
-import { Paper, Button, IconButton, Fade } from '@material-ui/core';
-import { useState, useCallback } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { IconButton, Fade } from '@mui/material';
+import { useState } from 'react';
+import { makeStyles, useTheme } from '@mui/styles';
 import CardWrapper from '../Card'
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import { DataGrid } from '@material-ui/data-grid';
-import {
-    randomCreatedDate,
-    randomTraderName,
-    randomUpdatedDate,
-} from '@material-ui/x-grid-data-generator';
-import DeleteIcon from '@material-ui/icons/Delete';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { DataGrid } from '@mui/x-data-grid';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { TableSetting } from './TableSettings'
+import { faker } from '@faker-js/faker';
 
-const gridStyle = { height: '100%' }
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,17 +49,17 @@ const columnsIni = [
 const rowsIni = [
     {
         id: 1,
-        name: randomTraderName(),
+        name: faker.internet.userName(),
         age: 25,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
+        dateCreated: faker.date.past(),
+        lastLogin: faker.date.past(),
     },
     {
         id: 2,
-        name: randomTraderName(),
+        name: faker.internet.userName(),
         age: 36,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
+        dateCreated: faker.date.past(),
+        lastLogin: faker.date.past(),
     },
 ]
 
@@ -89,7 +84,7 @@ const Table = (props) => {
                     name: '',
                     age: 0,
                     dateCreated: '',
-                    lastLogin: randomUpdatedDate(),
+                    lastLogin: faker.date.past(),
                 },
             )
             return copy

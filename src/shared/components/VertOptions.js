@@ -7,9 +7,9 @@ import {
   ListItemText,
   ListItemIcon,
   MenuItem,
-  withStyles,
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = {
   listItemtext: {

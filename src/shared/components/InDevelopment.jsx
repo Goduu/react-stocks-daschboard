@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
-import BuildIcon from '@material-ui/icons/Build';
-import {Tooltip} from '@material-ui/core';
-import { yellow } from "@material-ui/core/colors";
+import { makeStyles } from '@mui/styles';
+import BuildIcon from '@mui/icons-material/Build';
+import { Tooltip } from '@mui/material';
+import { yellow } from "@mui/material/colors";
 
 const useStyles = makeStyles((theme) => ({
     "@keyframes spin": {
@@ -30,5 +30,5 @@ function InDevelopment(props) {
 
 }
 
-export {InDevelopment}
+export { InDevelopment }
 

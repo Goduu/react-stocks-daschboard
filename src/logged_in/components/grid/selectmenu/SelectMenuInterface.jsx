@@ -1,9 +1,9 @@
 import { React } from 'react';
-import { IconButton, Paper, Grid, Typography, Tooltip } from '@material-ui/core';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import DeleteIcon from '@material-ui/icons/Delete';
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
+import { IconButton, Paper, Grid, Typography, Tooltip } from '@mui/material';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 
 /*

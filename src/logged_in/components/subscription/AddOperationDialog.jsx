@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import { TextField, InputAdornment, Grid } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-// import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import { TextField, InputAdornment, Grid } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+// import { makeStyles } from '@mui/styles';
 
 const BUY = 1; const SELL = 2; const DIVIDEND = 3;
 // const useStyles = makeStyles((theme) => ({
@@ -65,7 +65,8 @@ export default function AddOperadionDialog(props) {
       value: value,
       shares: operation === SELL ? -shares : shares,
       date: new Date(date).getTime(),
-      operation: operation }
+      operation: operation
+    }
 
     if (validadeOperation()) {
       if (id) {
@@ -112,7 +113,7 @@ export default function AddOperadionDialog(props) {
                 color="primary"
                 onClick={() => setOperation(BUY)}>
                 Buy
-            </Button>
+              </Button>
             </Grid>
             <Grid>
               <Button
@@ -120,14 +121,14 @@ export default function AddOperadionDialog(props) {
                 color="primary"
                 onClick={() => setOperation(SELL)}>
                 Sell
-            </Button>
+              </Button>
             </Grid>
             <Grid>
               <Button variant={operation === DIVIDEND ? 'contained' : "outlined"}
                 color="primary"
                 onClick={() => setOperation(DIVIDEND)}>
                 Dividend
-            </Button>
+              </Button>
             </Grid>
           </Grid>
           <br />

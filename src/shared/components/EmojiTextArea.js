@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import {
   TextField,
@@ -9,49 +8,49 @@ import {
   FormHelperText,
   Box,
   Grid,
-  withStyles
-} from "@material-ui/core";
-import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
-import CloseIcon from "@material-ui/icons/Close";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import CloseIcon from "@mui/icons-material/Close";
 import countWithEmojis from "../functions/countWithEmojis";
 
-const styles = theme => ({
+const styles = (theme) => ({
   "@global": {
     ".emoji-mart-category-label": theme.typography.body1,
     ".emoji-mart-bar": { display: "none !important" },
     ".emoji-mart-search input": {
       ...theme.typography.body1,
-      ...theme.border
+      ...theme.border,
     },
     ".emoji-mart-search": {
       marginTop: `${theme.spacing(1)}px !important`,
       paddingRight: `${theme.spacing(1)}px !important`,
       paddingLeft: `${theme.spacing(1)}px !important`,
-      paddingBottom: `${theme.spacing(1)}px !important`
+      paddingBottom: `${theme.spacing(1)}px !important`,
     },
     ".emoji-mart-search-icon": {
       top: "5px !important",
       right: "14px !important",
-      fontSize: 20
+      fontSize: 20,
     },
     ".emoji-mart-scroll": {
-      height: 240
+      height: 240,
     },
     ".emoji-mart": {
-      ...theme.border
-    }
+      ...theme.border,
+    },
   },
   floatButtonWrapper: {
     position: "absolute",
     bottom: 12,
-    right: 12
+    right: 12,
   },
   floatButtonSVG: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.light,
   },
   relative: {
-    position: "relative"
-  }
+    position: "relative",
+  },
 });
 
 /**
@@ -59,7 +58,7 @@ const styles = theme => ({
  * are not displayed correcty in the browser.
  * We won't display them.
  */
-const emojisToShowFilter = emoji => {
+const emojisToShowFilter = (emoji) => {
   if (emoji.unified.length > 5) {
     return false;
   }
@@ -75,14 +74,14 @@ function EmojiTextarea(props) {
     maxCharacters,
     emojiSet,
     inputClassName,
-    onChange
+    onChange,
   } = props;
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [characters, setCharacters] = useState(0);
 
   const onSelectEmoji = useCallback(
-    emoji => {
+    (emoji) => {
       let _characters;
       let _value = value + emoji.native;
       if (maxCharacters) {
@@ -101,7 +100,7 @@ function EmojiTextarea(props) {
   );
 
   const handleTextFieldChange = useCallback(
-    event => {
+    (event) => {
       const { target } = event;
       const { value } = target;
       let characters;
@@ -144,8 +143,8 @@ function EmojiTextarea(props) {
             placeholder={placeholder}
             InputProps={{
               classes: {
-                notchedOutline: inputClassName ? inputClassName : null
-              }
+                notchedOutline: inputClassName ? inputClassName : null,
+              },
             }}
           />
           <div className={classes.floatButtonWrapper}>
@@ -192,7 +191,7 @@ EmojiTextarea.propTypes = {
   placeholder: PropTypes.string,
   maxCharacters: PropTypes.number,
   onChange: PropTypes.func,
-  inputClassName: PropTypes.string
+  inputClassName: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(EmojiTextarea);

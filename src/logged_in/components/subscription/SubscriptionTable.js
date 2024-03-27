@@ -6,83 +6,85 @@ import {
   TableCell,
   TablePagination,
   TableRow,
-  withStyles
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
 import ColorfulChip from "../../../shared/components/ColorfulChip";
 import unixToDateString from "../../../shared/functions/unixToDateString";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
-import { getAllOperations } from '../../../shared/functions/requests'
+import { getAllOperations } from "../../../shared/functions/requests";
 import { useSelector } from "react-redux";
-import { useTranslation } from 'react-i18next';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+import { useTranslation } from "react-i18next";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import IconButton from "@mui/material/IconButton";
 
-const BUY = 1; const SELL = 2; const DIVIDEND = 3;
+const BUY = 1;
+const SELL = 2;
+const DIVIDEND = 3;
 
-const styles = theme => ({
+const styles = (theme) => ({
   tableWrapper: {
     overflowX: "auto",
-    width: "100%"
+    width: "100%",
   },
   blackBackground: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   contentWrapper: {
     padding: theme.spacing(3),
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
     },
-    width: "100%"
+    width: "100%",
   },
   dBlock: {
-    display: "block !important"
+    display: "block !important",
   },
   dNone: {
-    display: "none !important"
+    display: "none !important",
   },
   firstData: {
-    paddingLeft: theme.spacing(3)
-  }
+    paddingLeft: theme.spacing(3),
+  },
 });
 
 const rows = [
   {
     id: "asset",
     numeric: false,
-    label: "Asset"
+    label: "Asset",
   },
   {
     id: "operation",
     numeric: false,
-    label: "Operation"
+    label: "Operation",
   },
   {
     id: "price",
     numeric: false,
-    label: "Price"
+    label: "Price",
   },
   {
     id: "shares",
     numeric: false,
-    label: "Shares"
+    label: "Shares",
   },
   {
     id: "total",
     numeric: false,
-    label: "Total"
+    label: "Total",
   },
   {
     id: "date",
     numeric: false,
-    label: "Date"
+    label: "Date",
   },
   {
     id: "actions",
     numeric: false,
-    label: "Actions"
+    label: "Actions",
   },
 ];
 
@@ -92,8 +94,8 @@ function SubscriptionTable(props) {
   const { theme, classes } = props;
   const [page, setPage] = useState(0);
   const [transactions, setTransactions] = useState(props.transactions);
-  const userId = useSelector(state => state.auth.id)
-  const token = useSelector(state => state.auth.token)
+  const userId = useSelector((state) => state.auth.id);
+  const token = useSelector((state) => state.auth.token);
   const { t } = useTranslation();
 
   const handleChangePage = useCallback(
@@ -104,27 +106,25 @@ function SubscriptionTable(props) {
   );
 
   useEffect(() => {
-    setTransactions(props.transactions)
-  }, [props.transactions])
+    setTransactions(props.transactions);
+  }, [props.transactions]);
 
   const refreshOperations = useCallback(() => {
-    getAllOperations(userId, token)
-      .then(transactions => {
-        setTransactions(transactions)
-
-      })
-  }, [userId, token])
+    getAllOperations(userId, token).then((transactions) => {
+      setTransactions(transactions);
+    });
+  }, [userId, token]);
 
   useEffect(() => {
-    refreshOperations()
-  }, [])
+    refreshOperations();
+  }, []);
 
   const getOperationLabel = (op) => {
-    let res = op === DIVIDEND ?  'Dividend' : op === BUY ? 'Buy' : 'Sell'
-    return res
-  }
+    let res = op === DIVIDEND ? "Dividend" : op === BUY ? "Buy" : "Sell";
+    return res;
+  };
 
-  const operations = ['Buy', 'Sell', 'Dividend']
+  const operations = ["Buy", "Sell", "Dividend"];
 
   if (transactions.length > 0) {
     return (
@@ -151,10 +151,12 @@ function SubscriptionTable(props) {
                     {getOperationLabel(transaction.operation)}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                  {`$${transaction.value}`}
+                    {`$${transaction.value}`}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                  {transaction.operation !== DIVIDEND ? transaction.shares : '-'}
+                    {transaction.operation !== DIVIDEND
+                      ? transaction.shares
+                      : "-"}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {transaction.operation == BUY ? (
@@ -166,7 +168,9 @@ function SubscriptionTable(props) {
                       />
                     ) : transaction.operation == SELL ? (
                       <ColorfulChip
-                        label={`+${currencyPrettyPrint(transaction.value * transaction.shares)}`}
+                        label={`+${currencyPrettyPrint(
+                          transaction.value * transaction.shares
+                        )}`}
                         color={theme.palette.success.dark}
                       />
                     ) : (
@@ -177,13 +181,21 @@ function SubscriptionTable(props) {
                     )}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {t('date', { date: new Date(transaction.date) })}
+                    {t("date", { date: new Date(transaction.date) })}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <IconButton aria-label="delete" size='small' onClick={() =>props.edit(transaction)}>
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      onClick={() => props.edit(transaction)}
+                    >
                       <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" size='small' onClick={() =>props.delete(transaction.id)}>
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      onClick={() => props.delete(transaction.id)}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
@@ -197,17 +209,17 @@ function SubscriptionTable(props) {
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
-            "aria-label": "Previous Page"
+            "aria-label": "Previous Page",
           }}
           nextIconButtonProps={{
-            "aria-label": "Next Page"
+            "aria-label": "Next Page",
           }}
           onChangePage={handleChangePage}
           classes={{
             select: classes.dNone,
             selectIcon: classes.dNone,
             actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
-            caption: transactions.length > 0 ? classes.dBlock : classes.dNone
+            caption: transactions.length > 0 ? classes.dBlock : classes.dNone,
           }}
           labelRowsPerPage=""
         />
@@ -226,7 +238,7 @@ function SubscriptionTable(props) {
 SubscriptionTable.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  transactions: PropTypes.arrayOf(PropTypes.object).isRequired
+  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(SubscriptionTable);

@@ -1,12 +1,6 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import {
-  BarChart,
-  Bar,
-  Tooltip,
-  ResponsiveContainer,
-  YAxis,
-} from "recharts";
+import { BarChart, Bar, Tooltip, ResponsiveContainer, YAxis } from "recharts";
 import format from "date-fns/format";
 import {
   Card,
@@ -15,10 +9,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles,
   Box,
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = (theme) => ({
   cardContentInner: {
@@ -165,7 +159,7 @@ function BarChartCard(props) {
         <Box className={classes.cardContentInner} height={height}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={processData()} type="number">
-              <Bar type="monotone" dataKey="value" fill="#8884d8"  />
+              <Bar type="monotone" dataKey="value" fill="#8884d8" />
               <Tooltip
                 labelFormatter={labelFormatter}
                 formatter={formatter}

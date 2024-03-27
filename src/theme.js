@@ -1,5 +1,5 @@
-import { responsiveFontSizes } from "@material-ui/core";
-import { createTheme } from '@material-ui/core/styles'
+import { responsiveFontSizes } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 // border
 const borderWidth = 2;
@@ -7,23 +7,23 @@ const borderColor = "rgba(0, 0, 0, 0.13)!important";
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
-    primary: { main: '#7467ef' },
-    secondary: { main: '#ff9e43' },
-    background: { default: '#222A45', paper:'#1a2038'},
-    text: {primary: '#fff'},
+    type: "dark",
+    primary: { main: "#7467ef" },
+    secondary: { main: "#ff9e43" },
+    background: { default: "#222A45", paper: "#1a2038" },
+    text: { primary: "#fff" },
     triad: {
-      red: '#FF3D57',
-      yellow: '#ff9e43',
-      green: '#08ad6c',
+      red: "#FF3D57",
+      yellow: "#ff9e43",
+      green: "#08ad6c",
     },
     text: {
-      green: '#4caf50'
-    }
+      green: "#4caf50",
+    },
   },
   border: {
     borderColor: borderColor,
-    borderWidth: borderWidth
+    borderWidth: borderWidth,
   },
 });
 
@@ -50,8 +50,5 @@ export default responsiveFontSizes(theme);
 
 // bg:#1a2038
 // bgpap: #222A45
-
-
-
 
 // /*

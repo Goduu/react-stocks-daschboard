@@ -1,22 +1,22 @@
 import React from 'react'
-import DescriptionIcon from '@material-ui/icons/Description';
-import InboxOutlinedIcon from '@material-ui/icons/InboxOutlined';
-import { makeStyles } from '@material-ui/core/styles';
+import DescriptionIcon from '@mui/icons-material/Description';
+import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     root: {
         display: 'block',
         marginLeft: '40%',
         position: 'relative',
-        
+
     },
-    iconDoc:{
+    iconDoc: {
         position: 'absolute',
         fontSize: '3em',
         marginLeft: '1.4vw',
         marginTop: '-2vh',
     },
-    boxIcon:{
+    boxIcon: {
         position: 'absolute',
         fontSize: '4em',
         marginLeft: '1vw',

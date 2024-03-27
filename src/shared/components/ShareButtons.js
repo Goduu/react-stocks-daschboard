@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, SvgIcon } from "@material-ui/core";
+import { Grid, SvgIcon } from "@mui/material";
 import ColoredButton from "./ColoredButton";
 
 /**
@@ -285,7 +285,7 @@ ShareButtons.propTypes = {
   types: PropTypes.arrayOf(PropTypes.string).isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  forceWhite: PropTypes.bool
+  forceWhite: PropTypes.bool,
 };
 
 export default ShareButtons;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { SvgIcon } from "@material-ui/core";
+import { SvgIcon } from "@mui/material";
 import ColoredButton from "./ColoredButton";
 
 /**
@@ -217,7 +217,7 @@ function ShareButton(props) {
 ShareButton.propTypes = {
   type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
 };
 
 export default ShareButton;

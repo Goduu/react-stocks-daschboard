@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useTheme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import { fetchStatistics } from '../../../../shared/functions/requests.js';
 import { useTranslation } from 'react-i18next';
 import { formatValueByType } from '../../../../shared/functions/formatValueByType'

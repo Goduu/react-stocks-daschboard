@@ -1,19 +1,19 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import { makeStyles } from '@material-ui/core/styles';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Link from '@material-ui/core/Link';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import { makeStyles } from '@mui/styles';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Link from '@mui/material/Link';
 
 
 const useStyles = makeStyles({
   root: {
-      zIndex: 4
+    zIndex: 4
   },
- 
+
 });
 
 export default function StockInfos(props) {
@@ -35,9 +35,9 @@ export default function StockInfos(props) {
         <DialogTitle id="alert-dialog-title">{props.data.longName}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Exchange: {props.data.fullExchangeName} <br/>
-            Sector: {props.data.sector}<br/>
-            Industry: {props.data.industry}<br/>
+            Exchange: {props.data.fullExchangeName} <br />
+            Sector: {props.data.sector}<br />
+            Industry: {props.data.industry}<br />
           </DialogContentText>
           <DialogContentText id="alert-dialog-description">
             {props.data.longBusinessSummary}
@@ -51,7 +51,7 @@ export default function StockInfos(props) {
           <Link href={props.data.website} target="_blank" color="inherit">
             <Button onClick={props.onClose} color="primary" autoFocus>
               Visit Website
-          </Button>
+            </Button>
           </Link>
         </DialogActions>
       </Dialog>
